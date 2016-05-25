@@ -33,8 +33,9 @@ internal      | logical, TRUE or FALSE, if true data is imported into R workspac
 
 Batch mode uses similar parameters but you provide a comma separated file with site names and latitude longitude which are sequentially downloaded. Format of the comma separated file is as such: site name, latitude, longitude.
 
-	batch.download.daymet(file_location='my_sites.csv',start_yr=1980,end_yr=2010,internal=TRUE)
-
+```R
+batch.download.daymet(file_location='my_sites.csv',start_yr=1980,end_yr=2010,internal=TRUE)
+```
 
 ### Gridded data download
 
