@@ -59,7 +59,7 @@ If only the first set of coordinates is provided the tile in which these reside 
 
 ## Notes
 
-Furthermore, the below code (bash script) allows you to convert [the ancillary DAYMET data](https://daymet.ornl.gov/files/ancillary_files.tgz) to a latitude / longitude format for further and easy processing. Although this is not an integral part of the DaymetR package is might prove useful in subsequent analysis. The R equivalent of this code will be up shortly.
+Furthermore, the below code (bash script) allows you to convert [the ancillary DAYMET data](https://daymet.ornl.gov/files/ancillary_files.tgz) to a latitude / longitude format for further and easy processing. Although this is not an integral part of the DaymetR package it might prove useful in subsequent analysis. The R equivalent of this code will be up shortly.
 
 ```bash
 #!/bin/bash
