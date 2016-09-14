@@ -1,2 +1,4 @@
 language: r
-cache: packages
+apt_packages:
+  - gdal-bin
+  - libgdal-dev
