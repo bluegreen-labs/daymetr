@@ -1,19 +1,10 @@
 language: r
+
 sudo: required
+
 apt_packages:
-  - libnetcdf-dev
-  - udunits-bin
-  - libudunits2-dev
-  - netcdf-bin
-  - libproj-dev
-  - libcurl4-gnutls-dev
-  - libdap-dev
-  - libgdal-dev
-  - libgdal1h
-  - libhdf5-dev
-  - libhdf5-serial-dev
-  - libgdal-dev
-  - libgdal1-dev
-  
+ - libproj-dev
+ - libgdal-dev
+
 r_binary_packages:
   - rgdal
