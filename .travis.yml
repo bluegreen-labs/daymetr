@@ -1,4 +1,6 @@
 language: r
-apt_packages:
-  - gdal-bin
-  - libgdal-dev
+addons:
+  apt:
+    packages:
+      - gdal-bin
+      - libgdal-dev
