@@ -1,5 +1,5 @@
 language: r
-
+sudo: required
 apt_packages:
   - libnetcdf-dev
   - udunits-bin
