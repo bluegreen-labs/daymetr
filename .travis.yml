@@ -1,12 +1,17 @@
 language: r
 
-before_install:
-- sudo mv /etc/apt/sources.list.d/pgdg-source.list* /tmp
-- sudo apt-get -qq remove postgis
-- sudo add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
-- sudo apt-get update -qq
-- sudo apt-get install -qq bison flex python-lxml libfribidi-dev swig cmake 
-librsvg2-dev colordiff postgis postgresql-9.1-postgis-2.0-scripts libpq-dev 
-libpng12-dev libjpeg-dev libgif-dev libgeos-dev libgd2-xpm-dev libfreetype6-
-dev libfcgi-dev libcurl4-gnutls-dev libcairo2-dev libgdal1-dev libproj-dev 
-libxml2-dev python-dev php5-dev libexempi-dev lcov lftp
+apt_packages:
+  - libnetcdf-dev
+  - udunits-bin
+  - libudunits2-dev
+  - netcdf-bin
+  - libproj-dev
+  - libcurl4-gnutls-dev
+  - libdap-dev
+  - libgdal-dev
+  - libgdal1h
+  - libhdf5-7 = 1.8.11-3ubuntu1~precise1~ppa1
+  - libhdf5-dev
+  - libhdf5-serial-dev
+  - libgdal-dev
+  - libgdal1-dev
