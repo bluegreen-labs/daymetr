@@ -4,3 +4,4 @@ addons:
     packages:
       - gdal-bin
       - libgdal-dev
+      - libhdf5-serial-dev
