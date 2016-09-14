@@ -9,7 +9,7 @@ Description: Functions to (batch) download single pixel DAYMET data
     data for a region of interest specified by a top left / bottom right
     coordinate pair or a single pixel location.
 Depends:
-    R (>= 3.1.0),
+    R (>= 3.2.5),
     sp,
     rgeos,
     rgdal,
