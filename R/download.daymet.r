@@ -11,7 +11,11 @@
 #' @keywords DAYMET, climate data
 #' @export
 #' @examples
-#' download.daymet("testsite",lat=36.0133,lon=-84.2625,start_yr=1980,end_yr=2000)
+#' download.daymet("testsite",
+#'                 lat=36.0133,
+#'                 lon=-84.2625,
+#'                 start_yr=1980,
+#'                 end_yr=2000)
 
 # TODO: rewrite to use RCurl instead of downloader
 
@@ -19,7 +23,7 @@ download.daymet = function(site="Daymet",
                             lat=36.0133,
                             lon=-84.2625,
                             start_yr=1980,
-                            end_yr=as.numeric(format(Sys.time(), "%Y"))-2, # default range is current year -2 (just to be sure)
+                            end_yr=as.numeric(format(Sys.time(), "%Y"))-1,
                             internal=FALSE,
                             quiet=FALSE){
   
@@ -53,7 +57,10 @@ download.daymet = function(site="Daymet",
   }
   
   # download the data into file daymet_file
-  error = try(downloader::download(download_string,daymet_file,extra=getOption("-f"),quiet=TRUE),silent=TRUE)
+  error = try(downloader::download(download_string,
+                                   daymet_file,
+                                   extra=getOption("-f"),
+                                   quiet=TRUE),silent=TRUE)
   
   # double error check on the validity of the file
   # Daymet stopped giving errors on out of geographic range requests
@@ -63,48 +70,62 @@ download.daymet = function(site="Daymet",
     error = try(read.table(daymet_file,header=T,sep=','),silent=TRUE)
     if (inherits(error,"try-error")){
       file.remove(daymet_file)
-      stop("You requested data is outside DAYMET coverage, the file is empty --> check coordinates!")
+      stop("You requested data is outside DAYMET coverage,
+           the file is empty --> check coordinates!")
     }
     
     # use grepl instead of grep, returns logical any() ensures one argument is returned
     if (any(grepl("HTTP Status 500", error))){ 
       file.remove(daymet_file)
-      stop("You requested data is outside DAYMET coverage, the file is empty --> check coordinates!")
+      stop("You requested data is outside DAYMET coverage,
+           the file is empty --> check coordinates!")
     }
   }
   
   # new download.file behaviour deletes files if they are empty 0 bytes
   # so testing for the presence of the file works now
   if (inherits(error,"try-error")){
-    stop("You requested data is outside DAYMET coverage, the file is empty --> check coordinates!")
+    stop("You requested data is outside DAYMET coverage,
+         the file is empty --> check coordinates!")
   }
   
   # if internal is FALSE assign the downloaded datafile to
   # an internal variable (we'll keep the original file)
-  if (internal == T || internal==TRUE){
+  if (internal == T || internal == TRUE) {
     
-        # read ancillary data from downloaded file header
-        # this includes, tile nr and altitude
-        tile = as.numeric(scan(daymet_file, skip=2, nlines = 1, what = character(),quiet=TRUE)[2])
-        alt = as.numeric(scan(daymet_file, skip=3, nlines = 1, what = character(),quiet=TRUE)[2])
-        
-        # read in the real climate data
-        data = read.table(daymet_file,sep=',',skip=7,header=TRUE)
+    # read ancillary data from downloaded file header
+    # this includes, tile nr and altitude
+    tile = as.numeric(scan(daymet_file,
+                           skip = 2,
+                           nlines = 1,
+                           what = character(),
+                           quiet = TRUE)[2])
     
-        # put all data in a list 
-        tmp_struct = list(site,lat,lon,alt,tile,data)
-        
-        # name all list variables appropriately
-        names(tmp_struct) = c('site','lattitude','longitude','altitude','tile','data')
-        
-        # reassign the data a new name in your global workspace (outside the function)
-        # and delete the original
-        assign(site,tmp_struct,envir=.GlobalEnv)
-        rm(tmp_struct)
+    alt = as.numeric(scan(daymet_file,
+                          skip = 3,nlines = 1,
+                          what = character(),
+                          quiet = TRUE)[2])
+    
+    # read in the real climate data
+    data = read.table(daymet_file,
+                      sep = ',',
+                      skip = 7,
+                      header = TRUE)
+    
+    # put all data in a list
+    tmp_struct = list(site, lat, lon, alt, tile, data)
+    
+    # name all list variables appropriately
+    names(tmp_struct) = c('site', 'lattitude', 'longitude', 'altitude', 'tile', 'data')
+    
+    # reassign the data a new name in your global workspace (outside the function)
+    # and delete the original
+    assign(site, tmp_struct, envir = .GlobalEnv)
+    rm(tmp_struct)
   }
   
   # feedback
-  if (quiet=="FALSE"){
+  if (quiet == "FALSE") {
     cat('Done !\n')
   }
 }
