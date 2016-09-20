@@ -1,13 +1,15 @@
 Package: DaymetR
 Title: Batch download single pixel or gridded DAYMET data
 Version: 1.0
-Authors@R: "Koen Hufkens <koen.hufkens@gmail.com> [aut, cre]"
-Description: Functions to (batch) download single pixel DAYMET data
+Authors@R: person("Hufkens","Koen",
+		  email="koen.hufkens@gmail.com",
+		  role=c("aut", "cre"))
+Description: 
+    This package provides functions to (batch) download single pixel DAYMET data
     (http://daymet.ornl.gov) directly into your R workspace, or save them as
-    csv files on your computer. Both a batch version as a single download
-    version are provided. In addition, code is provided to download gridded
-    data for a region of interest specified by a top left / bottom right
-    coordinate pair or a single pixel location.
+    csv files on your computer. In addition, code is provided to download
+    the gridded DAYMET data for a region of interest specified 
+    by a top left / bottom right coordinate pair or a single pixel location.
 Depends:
     R (>= 3.2.5)
 Imports:
