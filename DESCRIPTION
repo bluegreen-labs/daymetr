@@ -15,5 +15,5 @@ Imports:
     rgeos,
     rgdal,
     downloader
-License: GPL2
+License: AGPLv3 + file LICENSE
 LazyData: true

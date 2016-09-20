@@ -79,10 +79,10 @@ download.daymet.tiles = function(lat1=36.0133,
         poly_corners[5,] = c(lon1,lat2)
         
         # make into a polygon object
-        ROI = sp::SpatialPolygons(list(Polygons(list(Polygon(poly_corners)),1)))
+        ROI = sp::SpatialPolygons(list(sp::Polygons(list(sp::Polygon(poly_corners)),1)))
         
         # set original projection
-        proj4string(ROI) = projection
+        sp::proj4string(ROI) = projection
         
         # extract pixels within the ROI
         r = rgeos::gIntersection(ROI,tile_outlines,byid=TRUE)
