@@ -19,7 +19,6 @@ batch.download.daymet <- function(file_location,
   locations = read.table(file_location,sep=',')
 
   # loop over all lines in the file
-  # and download DAYMET data
   for (i in 1:dim(locations)[1]){
     site = as.character(locations[i,1])
     lat = as.numeric(locations[i,2])
