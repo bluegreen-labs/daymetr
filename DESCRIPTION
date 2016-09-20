@@ -8,8 +8,13 @@ Description: Functions to (batch) download single pixel DAYMET data
     version are provided. In addition, code is provided to download gridded
     data for a region of interest specified by a top left / bottom right
     coordinate pair or a single pixel location.
+<<<<<<< HEAD
 Imports:
     R (>= 3.1.0),
+=======
+Depends:
+    R (>= 3.2.5),
+>>>>>>> 8f4a4eef2c12fb4168e8c82561f45f6e0eefb61c
     sp,
     rgeos,
     rgdal,
