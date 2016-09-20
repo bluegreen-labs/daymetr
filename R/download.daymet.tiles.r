@@ -18,12 +18,6 @@
 #' download.daymet.tiles(lat1=36.0133,lon1=-84.2625,start_yr=1980,end_yr=2000,param="ALL")
 
 download.daymet.tiles <- function(lat1=36.0133,lon1=-84.2625,lat2=NA,lon2=NA,start_yr=1980,end_yr=1980,param="ALL"){
-
-  # check if necessary libraries are loaded
-  require(rgdal) # interface to OGR
-  require(sp)    # spatial library 
-  require(rgeos) # spatial library
-  require(downloader) # download.file() wrapper which supports https
   
   # determine system
   OS = Sys.info()[['sysname']]
@@ -35,11 +29,11 @@ download.daymet.tiles <- function(lat1=36.0133,lon1=-84.2625,lat2=NA,lon2=NA,sta
   data("DAYMET_grid")
   
   # grab the projection string. This is a LCC projection.
-  projection <- CRS(proj4string(tile_outlines))
+  projection = sp::CRS(proj4string(tile_outlines))
   
   # extract tile IDs (vector shape) and the DAYMET IDs associated
   # with them
-  tile_nrs <- tile_outlines@data[,1]
+  tile_nrs = tile_outlines@data[,1]
   
   # if argument 3 or 4 are the default grab only the tile
   # of the first coordinate set, if 4 arguments are given
@@ -47,10 +41,10 @@ download.daymet.tiles <- function(lat1=36.0133,lon1=-84.2625,lat2=NA,lon2=NA,sta
   if ( is.na(lat2) | is.na(lon2)){
     
         # create coordinate pairs, with original coordinate  system
-        location <- SpatialPoints(cbind(lon1,lat1), projection)
+        location <- sp::SpatialPoints(cbind(lon1,lat1), projection)
         
         # extract tile for this location
-        tiles <- over(location,tile_outlines)$TileID
+        tiles <- sp::over(location,tile_outlines)$TileID
         
         # do not continue if outside range
         if (is.na(tiles)){
@@ -60,8 +54,8 @@ download.daymet.tiles <- function(lat1=36.0133,lon1=-84.2625,lat2=NA,lon2=NA,sta
       }else{
       
         # create coordinate pairs, with original coordinate system
-        topleft <- SpatialPoints(cbind(lon1,lat1), projection)
-        bottomright <- SpatialPoints(cbind(lon2,lat2), projection)
+        topleft <- sp::SpatialPoints(cbind(lon1,lat1), projection)
+        bottomright <- sp::SpatialPoints(cbind(lon2,lat2), projection)
 
         # this is some juggling to define a polygon (vector format)
         # which I will convert to LCC and use as a mask to extract
@@ -74,21 +68,21 @@ download.daymet.tiles <- function(lat1=36.0133,lon1=-84.2625,lat2=NA,lon2=NA,sta
         poly_corners[5,] <- c(lon1,lat2)
         
         # make into a polygon object
-        ROI <- SpatialPolygons(list(Polygons(list(Polygon(poly_corners)),1)))
+        ROI = sp::SpatialPolygons(list(Polygons(list(Polygon(poly_corners)),1)))
         
         # set original projection
-        proj4string(ROI) <- projection
+        proj4string(ROI) = projection
         
         # extract pixels within the ROI
-        r <- gIntersection(ROI,tile_outlines,byid=TRUE)
+        r <- rgeos::gIntersection(ROI,tile_outlines,byid=TRUE)
         
         if (is.null(r)){
           stop("Your defined range is outside DAYMET coverage, check your coordinate values!")
         }
         
         # extract tile IDs and match to DAYMET grid IDs
-        polygon_nr <- as.numeric(sapply(r@polygons,function(x)unlist(strsplit(x@ID,split=' '))[2])) + 1
-        tiles <- tile_nrs[polygon_nr]
+        polygon_nr = as.numeric(sapply(r@polygons,function(x)unlist(strsplit(x@ID,split=' '))[2])) + 1
+        tiles = tile_nrs[polygon_nr]
   }
   
   # calculate the end of the range of years to download
@@ -131,7 +125,7 @@ download.daymet.tiles <- function(lat1=36.0133,lon1=-84.2625,lat2=NA,lon2=NA,sta
         cat(paste('Downloading DAYMET data for tile: ',j,'; year: ',i,'; product: ',k,'\n',sep=''))
         
         # download data, force binary data mode
-        try(download(download_string,daymet_file,quiet=TRUE,mode="wb"),silent=FALSE)  
+        try(downloader::download(download_string,daymet_file,quiet=TRUE,mode="wb"),silent=FALSE)  
       }
     }
   }

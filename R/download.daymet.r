@@ -13,16 +13,15 @@
 #' @examples
 #' download.daymet("testsite",lat=36.0133,lon=-84.2625,start_yr=1980,end_yr=2000)
 
-download.daymet <- function(site="Daymet",
+# TODO: rewrite to use RCurl instead of downloader
+
+download.daymet = function(site="Daymet",
                             lat=36.0133,
                             lon=-84.2625,
                             start_yr=1980,
                             end_yr=as.numeric(format(Sys.time(), "%Y"))-2, # default range is current year -2 (just to be sure)
                             internal=FALSE,
                             quiet=FALSE){
-  
-  # check if necessary libraries are loaded
-  require(downloader) # download.file() wrapper which supports https
   
   # calculate the end of the range of years to download
   max_year = as.numeric(format(Sys.time(), "%Y"))-1
@@ -47,14 +46,14 @@ download.daymet <- function(site="Daymet",
   download_string = sprintf("https://daymet.ornl.gov/data/send/saveData?lat=%s&lon=%s&measuredParams=tmax,tmin,dayl,prcp,srad,swe,vp&year=%s",lat,lon,year_range)
 
   # create filename for the output file
-  daymet_file = paste(site,"_",start_yr,"_",end_yr,'.csv',sep='')
+  daymet_file = sprintf("%s_%s_%s.csv",site,start_yr,end_yr)
   
   if (quiet=="FALSE"){
     cat(paste('Downloading DAYMET data for: ',site,' at ',lat,'/',lon,' latitude/longitude !\n',sep=''))
   }
   
   # download the data into file daymet_file
-  error = try(download(download_string,daymet_file,extra=getOption("-f"),quiet=TRUE),silent=TRUE)
+  error = try(downloader::download(download_string,daymet_file,extra=getOption("-f"),quiet=TRUE),silent=TRUE)
   
   # double error check on the validity of the file
   # Daymet stopped giving errors on out of geographic range requests
@@ -86,17 +85,17 @@ download.daymet <- function(site="Daymet",
     
         # read ancillary data from downloaded file header
         # this includes, tile nr and altitude
-        tile <- as.numeric(scan(daymet_file, skip=2, nlines = 1, what = character(),quiet=TRUE)[2])
-        alt <- as.numeric(scan(daymet_file, skip=3, nlines = 1, what = character(),quiet=TRUE)[2])
+        tile = as.numeric(scan(daymet_file, skip=2, nlines = 1, what = character(),quiet=TRUE)[2])
+        alt = as.numeric(scan(daymet_file, skip=3, nlines = 1, what = character(),quiet=TRUE)[2])
         
         # read in the real climate data
-        data <- read.table(daymet_file,sep=',',skip=6,header=TRUE)
+        data = read.table(daymet_file,sep=',',skip=7,header=TRUE)
     
         # put all data in a list 
-        tmp_struct <- list(site,lat,lon,alt,tile,data)
+        tmp_struct = list(site,lat,lon,alt,tile,data)
         
         # name all list variables appropriately
-        names(tmp_struct) <- c('site','lattitude','longitude','altitude','tile','data')
+        names(tmp_struct) = c('site','lattitude','longitude','altitude','tile','data')
         
         # reassign the data a new name in your global workspace (outside the function)
         # and delete the original

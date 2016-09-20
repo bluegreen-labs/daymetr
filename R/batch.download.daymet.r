@@ -10,7 +10,9 @@
 #' @keywords DAYMET, climate data
 #' @export
 #' @examples
-#' batch.download.daymet("mylocation.csv",start_yr=1980,end_yr=2000,internal=TRUE)
+#' 
+#' # NOT RUN
+#' # batch.download.daymet("mylocation.csv",start_yr=1980,end_yr=2000,internal=TRUE)
 
 batch.download.daymet <- function(file_location,
                                   start_yr=1980,
@@ -18,7 +20,7 @@ batch.download.daymet <- function(file_location,
                                   internal=FALSE){
   
   # read table with sites and coordinates
-  locations <- read.table(file_location,sep=',')
+  locations = read.table(file_location,sep=',')
 
   # loop over all lines in the file
   # and download DAYMET data
@@ -26,6 +28,6 @@ batch.download.daymet <- function(file_location,
     site = as.character(locations[i,1])
     lat = as.numeric(locations[i,2])
     lon = as.numeric(locations[i,3])
-    try(download.daymet(site=site,lat=lat,lon=lon,start_yr=start_yr,end_yr=end_yr,internal=internal),silent=FALSE)
+    try(downloader::download.daymet(site=site,lat=lat,lon=lon,start_yr=start_yr,end_yr=end_yr,internal=internal),silent=FALSE)
   }
 }
