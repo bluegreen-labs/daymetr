@@ -39,7 +39,7 @@ download.daymet.tiles = function(lat1=36.0133,
   data("DAYMET_grid")
   
   # grab the projection string. This is a LCC projection.
-  projection = sp::CRS(proj4string(tile_outlines))
+  projection = sp::CRS(sp::proj4string(tile_outlines))
   
   # extract tile IDs (vector shape) and the DAYMET IDs associated
   # with them
