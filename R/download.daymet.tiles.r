@@ -128,7 +128,7 @@ download.daymet.tiles = function(lat1=36.0133,
       for ( k in param ){
         
         # create download string / url  
-        download_string = sprintf("https://daymet.ornl.gov/thredds/fileServer/ornldaac/1219/tiles/%s/%s_%s/%s.nc",i,j,i,k)
+        download_string = sprintf("http://thredds.daac.ornl.gov/thredds/catalog/ornldaac/1328/tiles/%s/%s_%s/%s.nc",i,j,i,k)
                 
         # create filename for the output file
         daymet_file = paste(k,"_",i,"_",j,".nc",sep='')
