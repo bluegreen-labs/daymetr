@@ -19,6 +19,10 @@ before_install:
   - cd $CURWD
 
 language: r
+r:
+  - oldrel
+  - release
+  - devel
 
 sudo: required
 
@@ -26,3 +30,6 @@ warnings_are_errors: false
 
 r_packages:
   - rgdal
+  - sp
+  - rgeos
+  - downloader
