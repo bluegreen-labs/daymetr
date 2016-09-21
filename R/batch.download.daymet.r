@@ -9,6 +9,10 @@
 #' @param internal : TRUE or FALSE, load data into workspace or save to disc
 #' @keywords DAYMET, climate data
 #' @export
+#' @examples
+#' 
+#' # NOT RUN
+#' # batch.download("yourlocations.csv")
 
 batch.download.daymet <- function(file_location,
                                   start_yr=1980,
