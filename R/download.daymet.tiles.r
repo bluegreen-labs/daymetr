@@ -15,14 +15,14 @@
 #' @keywords DAYMET, climate data
 #' @export
 #' @examples
-#' download.daymet.tiles(lat1=36.0133,
-#'                       lon1=-84.2625,
+#' download.daymet.tiles(lat1=35.6737,
+#'                       lon1=-86.3968,
 #'                       start_yr=1980,
-#'                       end_yr=2000,
+#'                       end_yr=1980,
 #'                       param="ALL")
 
-download.daymet.tiles = function(lat1=36.0133,
-                                 lon1=-84.2625,
+download.daymet.tiles = function(lat1=35.6737,
+                                 lon1=-86.3968,
                                  lat2=NA,
                                  lon2=NA,
                                  start_yr=1980,
@@ -36,7 +36,7 @@ download.daymet.tiles = function(lat1=36.0133,
   # (this is an imported shapefile)
   # I do not store any additional data in the .rdata
   # file to keep the code transparent.
-  data("DAYMET_grid")
+  #data("DAYMET_grid")
   
   # grab the projection string. This is a LCC projection.
   projection = sp::CRS(sp::proj4string(tile_outlines))
@@ -63,43 +63,29 @@ download.daymet.tiles = function(lat1=36.0133,
         }
 
       }else{
-      
-        # create coordinate pairs, with original coordinate system
-        topleft = sp::SpatialPoints(cbind(lon1,lat1), projection)
-        bottomright = sp::SpatialPoints(cbind(lon2,lat2), projection)
-
+        
         # this is some juggling to define a polygon (vector format)
         # which I will convert to LCC and use as a mask to extract
         # tile numbers. As such I avoid artefacts due to resampling.
-        poly_corners = matrix(NA,5,2)
-        poly_corners[1,] = c(lon1,lat2)
-        poly_corners[2,] = c(lon2,lat2)
-        poly_corners[3,] = c(lon2,lat1)
-        poly_corners[4,] = c(lon1,lat1)
-        poly_corners[5,] = c(lon1,lat2)
-        
-        # make into a polygon object
-        ROI = sp::SpatialPolygons(list(sp::Polygons(list(sp::Polygon(poly_corners)),1)))
+        rect_corners = cbind(c(lon1,rep(lon2,2),lon1),
+                             c(rep(lat2,2),rep(lat1,2)))
+        ROI = sp::SpatialPoints(cbind(rect_corners[,1],
+                                      rect_corners[,2]), projection)
         
         # set original projection
         sp::proj4string(ROI) = projection
         
-        # extract pixels within the ROI
-        r = rgeos::gIntersection(ROI,tile_outlines,byid=TRUE)
+        # extract unique tiles overlapping the rectangular ROI
+        tiles = unique(sp::over(ROI,tile_outlines)$TileID)
         
-        if (is.null(r)){
+        if (is.null(tiles)){
           stop("Your defined range is outside DAYMET coverage,
                check your coordinate values!")
         }
-        
-        # extract tile IDs and match to DAYMET grid IDs
-        polygon_nr = as.numeric(sapply(r@polygons,function(x)unlist(strsplit(x@ID,split=' '))[2])) + 1
-        tiles = tile_nrs[polygon_nr]
   }
   
   # calculate the end of the range of years to download
-  # conservative setting based upon the current date
-  # -1 year
+  # conservative setting based upon the current date -1 year
   max_year = as.numeric(format(Sys.time(), "%Y"))-1
   
   # check validaty of the range of years to download
@@ -110,6 +96,7 @@ download.daymet.tiles = function(lat1=36.0133,
   if (start_yr < 1980){
     stop("Start year preceeds valid data range!")
   }
+  rect_corners = cbind(c(lon1,rep(lon2,2),lon1),c(rep(lat2,2),rep(lat1,2)))
   
   if (end_yr > max_year){
     stop("End year exceeds valid data range!")
@@ -128,7 +115,7 @@ download.daymet.tiles = function(lat1=36.0133,
       for ( k in param ){
         
         # create download string / url  
-        download_string = sprintf("http://thredds.daac.ornl.gov/thredds/catalog/ornldaac/1328/tiles/%s/%s_%s/%s.nc",i,j,i,k)
+        download_string = sprintf("http://thredds.daac.ornl.gov/thredds/fileServer/ornldaac/1328/tiles/%s/%s_%s/%s.nc",i,j,i,k)
                 
         # create filename for the output file
         daymet_file = paste(k,"_",i,"_",j,".nc",sep='')
