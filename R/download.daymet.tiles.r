@@ -36,7 +36,7 @@ download.daymet.tiles = function(lat1=35.6737,
   # (this is an imported shapefile)
   # I do not store any additional data in the .rdata
   # file to keep the code transparent.
-  #data("DAYMET_grid")
+  data("DAYMET_grid")
   
   # grab the projection string. This is a LCC projection.
   projection = sp::CRS(sp::proj4string(tile_outlines))
