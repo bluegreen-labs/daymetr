@@ -13,7 +13,6 @@ Depends:
     R (>= 3.2.5)
 Imports:
     sp,
-    rgeos,
     rgdal,
     downloader
 License: AGPLv3 + file LICENSE
