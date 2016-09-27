@@ -27,6 +27,6 @@ batch.download.daymet <- function(file_location,
     site = as.character(locations[i,1])
     lat = as.numeric(locations[i,2])
     lon = as.numeric(locations[i,3])
-    try(downloader::download.daymet(site=site,lat=lat,lon=lon,start_yr=start_yr,end_yr=end_yr,internal=internal),silent=FALSE)
+    try(download.daymet(site=site,lat=lat,lon=lon,start_yr=start_yr,end_yr=end_yr,internal=internal),silent=FALSE)
   }
 }
