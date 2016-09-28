@@ -4,7 +4,7 @@
 \alias{download.daymet.tiles}
 \title{Function to batch download gridded DAYMET data}
 \usage{
-download.daymet.tiles(lat1 = 36.0133, lon1 = -84.2625, lat2 = NA,
+download.daymet.tiles(lat1 = 35.6737, lon1 = -86.3968, lat2 = NA,
   lon2 = NA, start_yr = 1980, end_yr = 1980, param = "ALL")
 }
 \arguments{
@@ -30,13 +30,15 @@ climate variables.}
 This function downloads DAYMET data
 }
 \examples{
-download.daymet.tiles(lat1=36.0133,
-                      lon1=-84.2625,
-                      start_yr=1980,
-                      end_yr=2000,
-                      param="ALL")
+
+# NOT RUN
+# download.daymet.tiles(lat1=35.6737,
+#                       lon1=-86.3968,
+#                       start_yr=1980,
+#                       end_yr=1980,
+#                       param="ALL")
 }
-\keyword{DAYMET,}
 \keyword{climate}
 \keyword{data}
+\keyword{daymet,}
 

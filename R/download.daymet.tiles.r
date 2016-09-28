@@ -12,7 +12,7 @@
 #' solar radiation (srad), precipitation (prcp) , day length (dayl).
 #' The default setting is ALL, this will download all the previously mentioned
 #' climate variables.
-#' @keywords DAYMET, climate data
+#' @keywords daymet, climate data
 #' @export
 #' @examples
 #' 

@@ -1,4 +1,4 @@
-Package: DaymetR
+Package: daymetr
 Title: Batch download single pixel or gridded DAYMET data
 Version: 1.0
 Authors@R: person("Hufkens","Koen",
@@ -18,3 +18,4 @@ Imports:
 License: AGPLv3 + file LICENSE
 LazyData: true
 RoxygenNote: 5.0.1
+

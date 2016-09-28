@@ -20,17 +20,20 @@ download.daymet(site = "Daymet", lat = 36.0133, lon = -84.2625,
 \item{end_yr}{: end of the range of years over which to download data}
 
 \item{internal}{: TRUE or FALSE, load data into workspace or save to disc}
+
+\item{quiet:}{TRUE or FALSE, to provide verbose output}
 }
 \description{
 This function downloads DAYMET data for a single
 location.
 }
 \examples{
-download.daymet("testsite",
-                lat=36.0133,
-                lon=-84.2625,
-                start_yr=1980,
-                end_yr=2000)
+
+# NOT RUN
+# download.daymet("testsite",
+#                 lat=36.0133,
+#                 lon=-84.2625,
+#                 start_yr=1980)
 }
 \keyword{DAYMET,}
 \keyword{climate}

@@ -24,7 +24,7 @@ location.
 \examples{
 
 # NOT RUN
-# batch.download("yourlocations.csv")
+# batch.download.daymet("yourlocations.csv")
 }
 \keyword{DAYMET,}
 \keyword{climate}
