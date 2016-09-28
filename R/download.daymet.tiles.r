@@ -15,11 +15,13 @@
 #' @keywords DAYMET, climate data
 #' @export
 #' @examples
-#' download.daymet.tiles(lat1=35.6737,
-#'                       lon1=-86.3968,
-#'                       start_yr=1980,
-#'                       end_yr=1980,
-#'                       param="ALL")
+#' 
+#' # NOT RUN
+#' # download.daymet.tiles(lat1=35.6737,
+#' #                       lon1=-86.3968,
+#' #                       start_yr=1980,
+#' #                       end_yr=1980,
+#' #                       param="ALL")
 
 download.daymet.tiles = function(lat1=35.6737,
                                  lon1=-86.3968,
@@ -36,7 +38,7 @@ download.daymet.tiles = function(lat1=35.6737,
   # (this is an imported shapefile)
   # I do not store any additional data in the .rdata
   # file to keep the code transparent.
-  data("DAYMET_grid")
+  utils::data("DAYMET_grid")
   
   # grab the projection string. This is a LCC projection.
   projection = sp::CRS(sp::proj4string(tile_outlines))

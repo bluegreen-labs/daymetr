@@ -12,7 +12,7 @@
 #' @examples
 #' 
 #' # NOT RUN
-#' # batch.download("yourlocations.csv")
+#' # batch.download.daymet("yourlocations.csv")
 
 batch.download.daymet <- function(file_location,
                                   start_yr=1980,
@@ -20,7 +20,7 @@ batch.download.daymet <- function(file_location,
                                   internal=FALSE){
   
   # read table with sites and coordinates
-  locations = read.table(file_location,sep=',')
+  locations = utils::read.table(file_location,sep=',')
 
   # loop over all lines in the file
   for (i in 1:dim(locations)[1]){

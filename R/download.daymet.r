@@ -8,14 +8,16 @@
 #' @param start_yr : start of the range of years over which to download data
 #' @param end_yr : end of the range of years over which to download data
 #' @param internal : TRUE or FALSE, load data into workspace or save to disc
+#' @param quiet: TRUE or FALSE, to provide verbose output
 #' @keywords DAYMET, climate data
 #' @export
 #' @examples
-#' download.daymet("testsite",
-#'                 lat=36.0133,
-#'                 lon=-84.2625,
-#'                 start_yr=1980,
-#'                 end_yr=2000)
+#' 
+#' # NOT RUN
+#' # download.daymet("testsite",
+#' #                 lat=36.0133,
+#' #                 lon=-84.2625,
+#' #                 start_yr=1980)
 
 # TODO: rewrite to use RCurl instead of downloader
 
@@ -67,7 +69,7 @@ download.daymet = function(site="Daymet",
   # these are not trapped anymore with the usual routine
   # below, until further notice this patch is in place
   if(file.exists(daymet_file)){
-    error = try(read.table(daymet_file,header=T,sep=','),silent=TRUE)
+    error = try(utils::read.table(daymet_file,header=T,sep=','),silent=TRUE)
     if (inherits(error,"try-error")){
       file.remove(daymet_file)
       stop("You requested data is outside DAYMET coverage,
@@ -107,7 +109,7 @@ download.daymet = function(site="Daymet",
                           quiet = TRUE)[2])
     
     # read in the real climate data
-    data = read.table(daymet_file,
+    data = utils::read.table(daymet_file,
                       sep = ',',
                       skip = 7,
                       header = TRUE)
