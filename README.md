@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/khufkens/daymetr.svg?branch=master)](https://travis-ci.org/khufkens/daymetr)
 
-# DaymetR
+# daymetr
 
-The DaymetR R package provides functions to (batch) download single pixel or gridded [Daymet data](http://daymet.ornl.gov/) (tiled) data directly into your R workspace, or save them as csv/tif files on your computer. Gridded (tiled) data downloads for a region of interest are specified by a top left / bottom right coordinate pair or a single pixel location.
+The **daymetr** R package provides functions to (batch) download single pixel or gridded [daymet data](http://daymet.ornl.gov/) (tiled) data directly into your R workspace, or save them as csv/tif files on your computer. Gridded (tiled) data downloads for a region of interest are specified by a top left / bottom right coordinate pair or a single pixel location.
 
 ## Installation
 
@@ -11,7 +11,7 @@ clone the project to your home computer using the following command (with git in
 ```R
 require(devtools)
 install_github("khufkens/daymetr") # install the package
-library(DaymetR) # load the package
+library(daymetr) # load the package
 ```
 
 ## Use
