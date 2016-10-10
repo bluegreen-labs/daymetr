@@ -61,4 +61,4 @@ If only the first set of coordinates is provided the tile in which these reside 
 
 ### Dependencies
 
-The code depends on the following R packages: sp, rgdal, downloader and should be installed alongside the DaymetR package.
+The code depends on the following R packages: sp, rgdal, curl and will be installed alongside the daymetr package.
