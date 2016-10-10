@@ -14,7 +14,7 @@ Depends:
 Imports:
     sp,
     rgdal,
-    downloader
+    curl
 License: AGPLv3 + file LICENSE
 LazyData: true
 RoxygenNote: 5.0.1

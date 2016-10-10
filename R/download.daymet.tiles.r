@@ -129,7 +129,7 @@ download.daymet.tiles = function(lat1=35.6737,
                   '\n',sep=''))
         
         # download data, force binary data mode
-        try(downloader::download(download_string,
+        try(curl::curl_download(download_string,
                                  daymet_file,
                                  quiet=TRUE,
                                  mode="wb"),silent=FALSE)  

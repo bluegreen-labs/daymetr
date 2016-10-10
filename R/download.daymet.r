@@ -17,14 +17,12 @@
 #' # download.daymet("testsite",
 #' #                 lat=36.0133,
 #' #                 lon=-84.2625,
-#' #                 start_yr=1980)
-
-# TODO: rewrite to use RCurl instead of downloader
+#' #                 start_yr=2000)
 
 download.daymet = function(site="Daymet",
                             lat=36.0133,
                             lon=-84.2625,
-                            start_yr=1980,
+                            start_yr=2000,
                             end_yr=as.numeric(format(Sys.time(), "%Y"))-1,
                             internal=FALSE,
                             quiet=FALSE){
@@ -58,13 +56,22 @@ download.daymet = function(site="Daymet",
     cat(paste('Downloading DAYMET data for: ',site,' at ',lat,'/',lon,' latitude/longitude !\n',sep=''))
   }
   
-  # download the data into file daymet_file
-  error = try(downloader::download(download_string,
+  # try to download the data
+  error = try(curl::curl_download(download_string,
                                    daymet_file,
-                                   extra=getOption("-f"),
+                                   mode="w",
                                    quiet=TRUE),silent=TRUE)
   
-  # double error check on the validity of the file
+  # use grepl to trap timeout errors (VPN / firewall issues or server down)
+  if (any(grepl("Timeout", error))){ 
+    file.remove(daymet_file)
+    stop("Your request timed out, the servers are too busy
+          or more likely you are behind a firewall or VPN
+          which impedes daymetr traffic!
+          [Try again on a later date, or on a direct connection]")
+  }
+  
+  # double error check on the validity of the fileSs
   # Daymet stopped giving errors on out of geographic range requests
   # these are not trapped anymore with the usual routine
   # below, until further notice this patch is in place

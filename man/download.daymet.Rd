@@ -5,7 +5,7 @@
 \title{Function to download single location DAYMET data}
 \usage{
 download.daymet(site = "Daymet", lat = 36.0133, lon = -84.2625,
-  start_yr = 1980, end_yr = as.numeric(format(Sys.time(), "\%Y")) - 1,
+  start_yr = 2000, end_yr = as.numeric(format(Sys.time(), "\%Y")) - 1,
   internal = FALSE, quiet = FALSE)
 }
 \arguments{
@@ -33,7 +33,7 @@ location.
 # download.daymet("testsite",
 #                 lat=36.0133,
 #                 lon=-84.2625,
-#                 start_yr=1980)
+#                 start_yr=2000)
 }
 \keyword{DAYMET,}
 \keyword{climate}
