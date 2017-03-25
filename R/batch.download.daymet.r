@@ -6,19 +6,19 @@
 #' in a format site, latitude, longitude
 #' @param start_yr : start of the range of years over which to download data
 #' @param end_yr : end of the range of years over which to download data
-#' @param internal : TRUE or FALSE, load data into workspace or save to disc
+#' @param internal : assign or FALSE, load data into workspace or save to disc
 #' @keywords DAYMET, climate data
 #' @export
 #' @examples
-#' 
+#'
 #' # NOT RUN
 #' # batch.download.daymet("yourlocations.csv")
 
 batch.download.daymet <- function(file_location,
                                   start_yr=1980,
                                   end_yr=as.numeric(format(Sys.time(), "%Y"))-1,
-                                  internal=FALSE){
-  
+                                  internal="assign"){
+
   # read table with sites and coordinates
   locations = utils::read.table(file_location,sep=',')
 
