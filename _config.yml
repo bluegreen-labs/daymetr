@@ -1,0 +1,8 @@
+title: daymetr
+description: R package to download tiled and single pixel daymet data from the ORNL DAAC
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-minimal
+
+gems:
+  - jekyll-mentions
