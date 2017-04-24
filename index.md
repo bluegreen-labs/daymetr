@@ -1,8 +1,9 @@
 [![Build Status](https://travis-ci.org/khufkens/daymetr.svg?branch=master)](https://travis-ci.org/khufkens/daymetr)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.437886.svg)](https://doi.org/10.5281/zenodo.437886)
 
 # daymetr
 
-The **daymetr** R package provides functions to (batch) download single pixel or gridded [daymet data](http://daymet.ornl.gov/) (tiled) data directly into your R workspace, or save them as csv/tif files on your computer. Gridded (tiled) data downloads for a region of interest are specified by a top left / bottom right coordinate pair or a single pixel location.
+The **daymetr** R package provides functions to (batch) download single pixel or gridded [daymet data](http://daymet.ornl.gov/) (tiled) data directly into your R workspace, or save them as csv/tif files on your computer. Gridded (tiled) data downloads for a region of interest are specified by a top left / bottom right coordinate pair or a single pixel location. Please cite as: Koen Hufkens. (2017). khufkens/daymetr: Download daymet data using R. Zenodo. http://doi.org/10.5281/zenodo.437886.
 
 ## Installation
 
