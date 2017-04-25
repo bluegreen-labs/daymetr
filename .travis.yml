@@ -1,3 +1,5 @@
+dist: trusty
+
 before_install:
   - sudo apt-get install libproj-dev libgeos++-dev
   - export CURWD=`pwd`
