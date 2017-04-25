@@ -22,7 +22,12 @@ library(daymetr) # load the package
 For a single site use the following format
 
 ```R
- download.daymet(site="Oak Ridge National Laboratories",lat=36.0133,lon=-84.2625,start_yr=1980,end_yr=2010,internal=TRUE)
+ download.daymet(site = "Oak Ridge National Laboratories",
+                lat = 36.0133,
+                lon = -84.2625,
+                start_yr = 1980,
+                end_yr = 2010,
+                internal = TRUE)
 ```
 
 Parameter     | Description                      
@@ -37,7 +42,10 @@ internal      | logical, TRUE or FALSE, if true data is imported into R workspac
 Batch mode uses similar parameters but you provide a comma separated file with site names and latitude longitude which are sequentially downloaded. Format of the comma separated file is as such: site name, latitude, longitude.
 
 ```R
-batch.download.daymet(file_location='my_sites.csv',start_yr=1980,end_yr=2010,internal=TRUE)
+batch.download.daymet(file_location = 'my_sites.csv',
+                      start_yr = 1980,
+                      end_yr = 2010,
+                      internal = TRUE)
 ```
 
 ### Gridded data download
@@ -45,7 +53,13 @@ batch.download.daymet(file_location='my_sites.csv',start_yr=1980,end_yr=2010,int
 For gridded data use the following format
 
 ```R
-download.daymet.tiles(lat1=36.0133,lon1=-84.2625,lat2=NA,lon2=NA,start_yr=1980,end_yr=2012,param="ALL")
+download.daymet.tiles(lat1 = 36.0133,
+                      lon1 = -84.2625,
+                      lat2 = NA,
+                      lon2 = NA,
+                      start_yr = 1980,
+                      end_yr = 2012,
+                      param = "ALL")
 ```
 
 Parameter     | Description                      
