@@ -12,9 +12,9 @@
 #' @examples
 #'
 #' # NOT RUN
-#' # batch.download.daymet("yourlocations.csv")
+#' # download_daymet_batch("yourlocations.csv")
 
-batch.download.daymet <- function(file_location,
+download_daymet_batch <- function(file_location,
                                   start_yr=1980,
                                   end_yr=as.numeric(format(Sys.time(), "%Y"))-1,
                                   internal="assign"){
