@@ -16,12 +16,12 @@
 #' @examples
 #'
 #' # NOT RUN
-#' # download.daymet("testsite",
+#' # download_daymet("testsite",
 #' #                 lat=36.0133,
 #' #                 lon=-84.2625,
 #' #                 start_yr=2000)
 
-download.daymet = function(site="Daymet",
+download_daymet = function(site="Daymet",
                             lat=36.0133,
                             lon=-84.2625,
                             start_yr=2000,
