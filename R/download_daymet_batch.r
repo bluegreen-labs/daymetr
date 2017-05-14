@@ -11,8 +11,9 @@
 #' @export
 #' @examples
 #'
-#' # NOT RUN
-#' # download_daymet_batch("yourlocations.csv")
+#' \dontrun{
+#' download_daymet_batch("yourlocations.csv")
+#' }
 
 download_daymet_batch <- function(file_location,
                                   start_yr=1980,

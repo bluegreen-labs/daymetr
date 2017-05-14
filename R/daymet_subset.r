@@ -36,7 +36,7 @@ daymet_subset = function(data, offset = 264){
 
   # subset the data and assign correct
   # layer names, for clarity
-  s = subset(data, layer_selection)
+  s = raster::subset(data, layer_selection)
   names(s) = layer_doy[layer_selection]
 
   # final subset for phenology modelling

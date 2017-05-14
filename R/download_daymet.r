@@ -15,11 +15,12 @@
 #' @export
 #' @examples
 #'
-#' # NOT RUN
-#' # download_daymet("testsite",
-#' #                 lat=36.0133,
-#' #                 lon=-84.2625,
-#' #                 start_yr=2000)
+#' \dontrun{
+#' download_daymet("testsite_name",
+#'                 lat=36.0133,
+#'                 lon=-84.2625,
+#'                 start_yr=2000)
+#' }
 
 download_daymet = function(site="Daymet",
                             lat=36.0133,

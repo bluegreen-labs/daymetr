@@ -6,8 +6,7 @@
 a single mean daily temperature (tmean) tile
 for easy post processing and modelling.}
 \usage{
-daymet_tmean(path = ".", tile = NULL, year = NULL, lat_lon = TRUE,
-  internal = FALSE)
+daymet_tmean(path = ".", tile = NULL, year = NULL, internal = FALSE)
 }
 \arguments{
 \item{path:}{full path location of the daymet tiles}

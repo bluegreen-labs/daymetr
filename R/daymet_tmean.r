@@ -24,11 +24,10 @@
 daymet_tmean = function(path='.',
                         tile = NULL,
                         year = NULL,
-                        lat_lon = TRUE,
                         internal = FALSE){
 
   # reproject to lat-lon
-  latlon = CRS("+init=epsg:4326")
+  latlon = sp::CRS("+init=epsg:4326")
 
   # exit on missing tile
   if ( is.null(tile) | is.null(year) ) {
@@ -40,26 +39,19 @@ daymet_tmean = function(path='.',
   tmax = sprintf('%s/tmax_%s_%s.nc',path, year, tile)
 
   # load everything into a raster stack
-  minmax_stack = stack(tmin, tmax)
+  minmax_stack = raster::stack(tmin, tmax)
 
   # list layers
   layers = rep(1:365,2)
 
   # calculate layer mean, but back in tmean stack
-  tmean_stack = stackApply(minmax_stack, indices = layers, fun = mean)
-
-  # reproject to lat lon if required, this is the default
-  # as lat lon coordinates are needed in subsequent routines
-  # for some modelling efforts
-  if (lat_lon == TRUE){
-    tmean_stack = projectRaster(tmean_stack, crs = latlon)
-  }
+  tmean_stack = raster::stackApply(minmax_stack, indices = layers, fun = mean)
 
   # return all data to raster, either as a geotiff
   # or as a local object
   if (internal == FALSE){
-    writeRaster(tmean_stack,
-              sprintf('%s/%s_%s_tmean.tif', path, year, tile),
+    raster::writeRaster(tmean_stack,
+              sprintf('%s/tmean_%s_%s.tif', path, year, tile),
               overwrite = TRUE)
   } else {
     return(tmean_stack)

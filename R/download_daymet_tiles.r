@@ -1,10 +1,9 @@
 #' Function to batch download gridded DAYMET data
 #'
 #' This function downloads DAYMET data 
-#' @param lat1 : top left latitude (decimal degrees)
-#' @param lon1 : top left longitude (decimal degrees)
-#' @param lat2 : bottom right latitude (decimal degrees)
-#' @param lon2 : bottom right longitude(decimal degrees)
+#' @param location : location of a point c(lat, lon) or a bounding box defined
+#' by a top left and bottom-right coordinates c(lat, lon, lat, lon)
+#' @param tiles : which tiles to download, overrides geographic constraints
 #' @param start_yr : start of the range of years over which to download data
 #' @param end_yr : end of the range of years over which to download data
 #' @param param : climate variable you want to download vapour pressure (vp), 
@@ -16,23 +15,21 @@
 #' @export
 #' @examples
 #' 
-#' # NOT RUN
-#' # download_daymet_tiles(lat1=35.6737,
-#' #                       lon1=-86.3968,
-#' #                       start_yr=1980,
-#' #                       end_yr=1980,
-#' #                       param="ALL")
+#' \dontrun{
+#' download_daymet_tiles(location = c(35.6737,-86.3968),
+#'                       start_yr = 1980,
+#'                       end_yr = 1980,
+#'                       param = "ALL")
+#' }
 
-download_daymet_tiles = function(lat1=35.6737,
-                                 lon1=-86.3968,
-                                 lat2=NA,
-                                 lon2=NA,
-                                 start_yr=1980,
-                                 end_yr=1980,
-                                 param="ALL"){
+download_daymet_tiles = function(location = c(35.6737, -86.3968),
+                                 tiles = NULL,
+                                 start_yr = 1980,
+                                 end_yr = 1980,
+                                 param = "ALL"){
   
-  # determine system
-  OS = Sys.info()[['sysname']]
+  # set server path
+  server = "http://thredds.daac.ornl.gov/thredds/fileServer/ornldaac/1328/tiles"
   
   # load DAYMET grid associated with the package
   # (this is an imported shapefile)
@@ -43,52 +40,48 @@ download_daymet_tiles = function(lat1=35.6737,
   # grab the projection string. This is a LCC projection.
   projection = sp::CRS(sp::proj4string(tile_outlines))
   
-  # extract tile IDs (vector shape) and the DAYMET IDs associated
-  # with them
-  tile_nrs = tile_outlines@data[,1]
-  
-  # if argument 3 or 4 are the default grab only the tile
-  # of the first coordinate set, if 4 arguments are given
-  # extract all tile numbers within this region of interest
-  if ( is.na(lat2) | is.na(lon2)){
+  # override tile selection if tiles are specified on the command line
+  if (!is.null(tiles)){
+    tile_selection = as.vector(unlist(tiles))
+  } else if ( length(location) == 2 ){
     
-        # create coordinate pairs, with original coordinate  system
-        location = sp::SpatialPoints(cbind(lon1,lat1), projection)
-        
-        # extract tile for this location
-        tiles = sp::over(location,tile_outlines)$TileID
-        
-        # do not continue if outside range
-        if (is.na(tiles)){
-          stop("Your defined range is outside DAYMET coverage,
+    # create coordinate pairs, with original coordinate  system
+    location = sp::SpatialPoints(cbind(location[1],location[2]), projection)
+    
+    # extract tile for this location
+    tiles = sp::over(location,tile_outlines)$TileID
+    
+    # do not continue if outside range
+    if (is.na(tiles)){
+      stop("Your defined range is outside DAYMET coverage,
                check your coordinate values!")
-        }
-
-      }else{
-        
-        # this is some juggling to define a polygon (vector format)
-        # which I will convert to LCC and use as a mask to extract
-        # tile numbers. As such I avoid artefacts due to resampling.
-        rect_corners = cbind(c(lon1,rep(lon2,2),lon1),
-                             c(rep(lat2,2),rep(lat1,2)))
-        ROI = sp::SpatialPoints(cbind(rect_corners[,1],
-                                      rect_corners[,2]), projection)
-        
-        # set original projection
-        sp::proj4string(ROI) = projection
-        
-        # extract unique tiles overlapping the rectangular ROI
-        tiles = unique(sp::over(ROI,tile_outlines)$TileID)
-        
-        if (is.null(tiles)){
-          stop("Your defined range is outside DAYMET coverage,
+    }
+    
+  } else if (length(locations) ==4 ){
+    
+    # define a polygon to which will be intersected with the 
+    # tiles object to deterrmine tiles to download
+    rect_corners = cbind(c(location[2],rep(location[4],2),location[2]),
+                         c(rep(location[3],2),rep(location[1],2)))
+    ROI = sp::SpatialPolygons(list(sp::Polygons(list(sp::Polygon(list(rect_corners))),"bb")),
+                              proj4string = projection)
+    
+    # extract unique tiles overlapping the rectangular ROI
+    tile_selection = unique(sp::over(ROI,tile_outlines, returnList = TRUE)[[1]]$TileID)
+    
+    # check tile selection
+    if (is.null(tile_selection)){
+      stop("Your defined range is outside DAYMET coverage,
                check your coordinate values!")
-        }
+    }
+  } else {
+    stop("check the coordinates: specifiy a single location,\n
+             top-left bottom-right or provide a tile selection \n")
   }
   
   # calculate the end of the range of years to download
-  # conservative setting based upon the current date -1 year
-  max_year = as.numeric(format(Sys.time(), "%Y"))-1
+  # conservative setting based upon the current date - 1 year
+  max_year = as.numeric(format(Sys.time(), "%Y")) - 1
   
   # check validaty of the range of years to download
   # I'm not sure when new data is released so this might be a
@@ -98,8 +91,6 @@ download_daymet_tiles = function(lat1=35.6737,
   if (start_yr < 1980){
     stop("Start year preceeds valid data range!")
   }
-  rect_corners = cbind(c(lon1,rep(lon2,2),lon1),c(rep(lat2,2),rep(lat1,2)))
-  
   if (end_yr > max_year){
     stop("End year exceeds valid data range!")
   }
@@ -108,7 +99,7 @@ download_daymet_tiles = function(lat1=35.6737,
   year_range = seq(start_yr,end_yr,by=1)
 
   # check the parameters we want to download
-  if (param == "ALL"){
+  if (param[1] == "ALL"){
     param = c('vp','tmin','tmax','swe','srad','prcp','dayl')
   }
 
@@ -117,7 +108,7 @@ download_daymet_tiles = function(lat1=35.6737,
       for ( k in param ){
         
         # create download string / url  
-        download_string = sprintf("http://thredds.daac.ornl.gov/thredds/fileServer/ornldaac/1328/tiles/%s/%s_%s/%s.nc",i,j,i,k)
+        download_string = sprintf("%s/%s/%s_%s/%s.nc",server,i,j,i,k)
                 
         # create filename for the output file
         daymet_file = paste(k,"_",i,"_",j,".nc",sep='')
@@ -132,7 +123,8 @@ download_daymet_tiles = function(lat1=35.6737,
         try(curl::curl_download(download_string,
                                  daymet_file,
                                  quiet=TRUE,
-                                 mode="wb"),silent=FALSE)  
+                                 mode="wb"),
+            silent=FALSE)
       }
     }
   }

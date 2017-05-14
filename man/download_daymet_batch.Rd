@@ -23,8 +23,9 @@ location.
 }
 \examples{
 
-# NOT RUN
-# download_daymet_batch("yourlocations.csv")
+\dontrun{
+download_daymet_batch("yourlocations.csv")
+}
 }
 \keyword{DAYMET,}
 \keyword{climate}
