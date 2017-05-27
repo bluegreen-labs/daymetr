@@ -12,7 +12,7 @@
 #' @examples
 #'
 #' \dontrun{
-#' download_daymet_batch("yourlocations.csv")
+#' download_daymet_batch(file_location = "yourlocations.csv")
 #' }
 
 download_daymet_batch <- function(file_location,

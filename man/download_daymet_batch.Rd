@@ -24,7 +24,7 @@ location.
 \examples{
 
 \dontrun{
-download_daymet_batch("yourlocations.csv")
+download_daymet_batch(file_location = "yourlocations.csv")
 }
 }
 \keyword{DAYMET,}
