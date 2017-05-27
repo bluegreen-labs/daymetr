@@ -7,8 +7,8 @@
 #' @param lon : longitude (decimal degrees)
 #' @param start_yr : start of the range of years over which to download data
 #' @param end_yr : end of the range of years over which to download data
-#' @param internal : FALSE, assign or data.frame,
-#' download to file (FALSE) or assign a variable dynamically or return a
+#' @param internal : takes FALSE, "assign" or "data.frame",
+#' Download to file (FALSE) or "assign" a variable dynamically or return a
 #' data frame to the command line
 #' @param quiet: TRUE or FALSE, to provide verbose output
 #' @keywords DAYMET, climate data
@@ -63,7 +63,7 @@ download_daymet = function(site="Daymet",
   # create filename for the output file
   daymet_file = sprintf("%s/%s_%s_%s.csv",path,site,start_yr,end_yr)
 
-  if (quiet=="FALSE"){
+  if (quiet == "FALSE"){
     cat(paste('Downloading DAYMET data for: ',site,' at ',lat,'/',lon,' latitude/longitude !\n',sep=''))
   }
 
