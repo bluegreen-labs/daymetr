@@ -53,10 +53,8 @@ download_daymet_batch(file_location = 'my_sites.csv',
 For gridded data use the following format
 
 ```R
-download_daymet_tiles(lat1 = 36.0133,
-                      lon1 = -84.2625,
-                      lat2 = NA,
-                      lon2 = NA,
+download_daymet_tiles(location = c(36.0133,-84.2625),
+                      tiles = NULL,
                       start_yr = 1980,
                       end_yr = 2012,
                       param = "ALL")
@@ -64,10 +62,8 @@ download_daymet_tiles(lat1 = 36.0133,
 
 Parameter     | Description                      
 ------------- | ------------------------------ 	
-lat1	      | top left latitude
-lon1          | top left longitude
-lat2          | bottom right latitude (can be empty)
-lon2	      | bottom right latitude (can be empty)
+location	      | vector with a point location c(lat,lon) or top left / bottom right pair c(lat,lon,lat,lon)
+sites          | vector with tile numbers if location point or top left / bottom right pair is not provided
 start_yr      | start year of the time series (data start in 1980)
 end_yr        | end year of the time series (current year - 2 years / for safety, tweak this check to reflect the currently available data)
 param         | climate variable you want to download vapour pressure (vp), minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), solar radiation (srad), precipitation (prcp) , day length (dayl). The default setting is ALL, this will download all the previously mentioned climate variables.
