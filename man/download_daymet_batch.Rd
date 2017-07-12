@@ -4,16 +4,16 @@
 \alias{download_daymet_batch}
 \title{Function to batch download single location DAYMET data}
 \usage{
-download_daymet_batch(file_location, start_yr = 1980,
-  end_yr = as.numeric(format(Sys.time(), "\%Y")) - 1, internal = "assign")
+download_daymet_batch(file_location, start = 1980,
+  end = as.numeric(format(Sys.time(), "\%Y")) - 1, internal = "assign")
 }
 \arguments{
 \item{file_location}{: file with several site locations and coordinates
 in a format site, latitude, longitude}
 
-\item{start_yr}{: start of the range of years over which to download data}
+\item{start}{: start of the range of years over which to download data}
 
-\item{end_yr}{: end of the range of years over which to download data}
+\item{end}{: end of the range of years over which to download data}
 
 \item{internal}{: assign or FALSE, load data into workspace or save to disc}
 }

@@ -5,7 +5,7 @@
 \title{Function to batch download gridded DAYMET data}
 \usage{
 download_daymet_tiles(location = c(35.6737, -86.3968), tiles = NULL,
-  start_yr = 1980, end_yr = 1980, param = "ALL")
+  start = 1980, end = 1980, param = "ALL")
 }
 \arguments{
 \item{location}{: location of a point c(lat, lon) or a bounding box defined
@@ -13,9 +13,9 @@ by a top left and bottom-right coordinates c(lat, lon, lat, lon)}
 
 \item{tiles}{: which tiles to download, overrides geographic constraints}
 
-\item{start_yr}{: start of the range of years over which to download data}
+\item{start}{: start of the range of years over which to download data}
 
-\item{end_yr}{: end of the range of years over which to download data}
+\item{end}{: end of the range of years over which to download data}
 
 \item{param}{: climate variable you want to download vapour pressure (vp), 
 minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), 
@@ -30,8 +30,8 @@ This function downloads DAYMET data
 
 \dontrun{
 download_daymet_tiles(location = c(35.6737,-86.3968),
-                      start_yr = 1980,
-                      end_yr = 1980,
+                      start = 1980,
+                      end = 1980,
                       param = "ALL")
 }
 }

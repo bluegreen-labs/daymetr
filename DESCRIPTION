@@ -8,7 +8,8 @@ Description: This package provides functions to (batch) download single pixel
     DAYMET data (http://daymet.ornl.gov) directly into your R workspace, or save
     them as csv files on your computer. In addition, code is provided to download
     the gridded DAYMET data for a region of interest specified by a top left /
-    bottom right coordinate pair or a single pixel location.
+    bottom right coordinate pair or a single pixel location. Tiles can be
+    averaged and subset for further modelling work using included functions.
 Depends:
     R (>= 3.2.5)
 Imports:
@@ -17,4 +18,5 @@ Imports:
     curl
 License: AGPLv3 + file LICENSE
 LazyData: true
+ByteCompile: true
 RoxygenNote: 6.0.1

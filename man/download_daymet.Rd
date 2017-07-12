@@ -5,7 +5,7 @@
 \title{Function to download single location DAYMET data}
 \usage{
 download_daymet(site = "Daymet", lat = 36.0133, lon = -84.2625,
-  start_yr = 2000, end_yr = as.numeric(format(Sys.time(), "\%Y")) - 1,
+  start = 2000, end = as.numeric(format(Sys.time(), "\%Y")) - 1,
   internal = FALSE, quiet = FALSE)
 }
 \arguments{
@@ -15,12 +15,12 @@ download_daymet(site = "Daymet", lat = 36.0133, lon = -84.2625,
 
 \item{lon}{: longitude (decimal degrees)}
 
-\item{start_yr}{: start of the range of years over which to download data}
+\item{start}{: start of the range of years over which to download data}
 
-\item{end_yr}{: end of the range of years over which to download data}
+\item{end}{: end of the range of years over which to download data}
 
-\item{internal}{: FALSE, assign or data.frame,
-download to file (FALSE) or assign a variable dynamically or return a
+\item{internal}{: takes FALSE, "assign" or "data.frame",
+Download to file (FALSE) or "assign" a variable dynamically or return a
 data frame to the command line}
 
 \item{quiet:}{TRUE or FALSE, to provide verbose output}
@@ -35,7 +35,7 @@ location.
 download_daymet("testsite_name",
                 lat=36.0133,
                 lon=-84.2625,
-                start_yr=2000)
+                start=2000)
 }
 }
 \keyword{DAYMET,}
