@@ -5,8 +5,8 @@
 #' @param site : the site name.
 #' @param lat : latitude (decimal degrees)
 #' @param lon : longitude (decimal degrees)
-#' @param start_yr : start of the range of years over which to download data
-#' @param end_yr : end of the range of years over which to download data
+#' @param start : start of the range of years over which to download data
+#' @param end : end of the range of years over which to download data
 #' @param internal : takes FALSE, "assign" or "data.frame",
 #' Download to file (FALSE) or "assign" a variable dynamically or return a
 #' data frame to the command line
@@ -19,16 +19,16 @@
 #' download_daymet("testsite_name",
 #'                 lat=36.0133,
 #'                 lon=-84.2625,
-#'                 start_yr=2000)
+#'                 start=2000)
 #' }
 
-download_daymet = function(site="Daymet",
-                            lat=36.0133,
-                            lon=-84.2625,
-                            start_yr=2000,
-                            end_yr=as.numeric(format(Sys.time(), "%Y"))-1,
-                            internal=FALSE,
-                            quiet=FALSE){
+download_daymet = function(site = "Daymet",
+                            lat = 36.0133,
+                            lon = -84.2625,
+                            start = 2000,
+                            end = as.numeric(format(Sys.time(), "%Y"))-1,
+                            internal = FALSE,
+                            quiet = FALSE){
 
   # set path, the current working directory if not internal
   # otherwise the tmp location
@@ -46,22 +46,22 @@ download_daymet = function(site="Daymet",
   # very conservative setting, remove it if you see more recent data
   # on the website
 
-  if (start_yr < 1980){
+  if (start < 1980){
     stop("Start year preceeds valid data range!")
   }
 
-  if (end_yr > max_year){
+  if (end > max_year){
     stop("End year exceeds valid data range!")
   }
 
   # if the year range is valid, create a string of valid years
-  year_range = paste(seq(start_yr,end_yr,by=1),collapse=",")
+  year_range = paste(seq(start,end,by=1),collapse=",")
 
   # create download string / url
   download_string = sprintf("https://daymet.ornl.gov/data/send/saveData?lat=%s&lon=%s&measuredParams=tmax,tmin,dayl,prcp,srad,swe,vp&year=%s",lat,lon,year_range)
 
   # create filename for the output file
-  daymet_file = sprintf("%s/%s_%s_%s.csv",path,site,start_yr,end_yr)
+  daymet_file = sprintf("%s/%s_%s_%s.csv",path,site,start,end)
 
   if (quiet == "FALSE"){
     cat(paste('Downloading DAYMET data for: ',site,' at ',lat,'/',lon,' latitude/longitude !\n',sep=''))

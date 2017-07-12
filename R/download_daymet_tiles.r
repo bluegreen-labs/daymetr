@@ -4,8 +4,8 @@
 #' @param location : location of a point c(lat, lon) or a bounding box defined
 #' by a top left and bottom-right coordinates c(lat, lon, lat, lon)
 #' @param tiles : which tiles to download, overrides geographic constraints
-#' @param start_yr : start of the range of years over which to download data
-#' @param end_yr : end of the range of years over which to download data
+#' @param start : start of the range of years over which to download data
+#' @param end : end of the range of years over which to download data
 #' @param param : climate variable you want to download vapour pressure (vp), 
 #' minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), 
 #' solar radiation (srad), precipitation (prcp) , day length (dayl).
@@ -17,15 +17,15 @@
 #' 
 #' \dontrun{
 #' download_daymet_tiles(location = c(35.6737,-86.3968),
-#'                       start_yr = 1980,
-#'                       end_yr = 1980,
+#'                       start = 1980,
+#'                       end = 1980,
 #'                       param = "ALL")
 #' }
 
 download_daymet_tiles = function(location = c(35.6737, -86.3968),
                                  tiles = NULL,
-                                 start_yr = 1980,
-                                 end_yr = 1980,
+                                 start = 1980,
+                                 end = 1980,
                                  param = "ALL"){
   
   # set server path
@@ -88,15 +88,15 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
   # very conservative setting, remove it if you see more recent data
   # on the website
   
-  if (start_yr < 1980){
+  if (start < 1980){
     stop("Start year preceeds valid data range!")
   }
-  if (end_yr > max_year){
+  if (end > max_year){
     stop("End year exceeds valid data range!")
   }
   
   # if the year range is valid, create a string of valid years
-  year_range = seq(start_yr,end_yr,by=1)
+  year_range = seq(start,end,by=1)
 
   # check the parameters we want to download
   if (param[1] == "ALL"){
