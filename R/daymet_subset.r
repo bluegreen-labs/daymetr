@@ -5,8 +5,8 @@
 #' The output serves as input for further data processing and
 #' modelling efforts.
 #'
-#' @param data: rasterStack or rasterBrick of 730 layers (2 consecutive years)
-#' @param offset: offset of the time series in DOY (default = 264, sept 21)
+#' @param data rasterStack or rasterBrick of 730 layers (2 consecutive years)
+#' @param offset offset of the time series in DOY (default = 264, sept 21)
 #' @keywords modelling, mean daily temperature
 #' @export
 #' @examples
@@ -15,12 +15,11 @@
 #' my_subset = daymet_subset(mystack, offset = 264)
 #' }
 
-
 # create subset of layers to calculate phenology model output on
 daymet_subset = function(data, offset = 264){
 
   # sanity check
-  if(nlayers(data) != 730){
+  if(raster::nlayers(data) != 730){
     stop("Does not contain two years worth of data, check stack size...")
   }
 
