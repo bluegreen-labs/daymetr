@@ -5,17 +5,17 @@
 \title{Function to geographically subset regions exceeding tile limits}
 \usage{
 download_daymet_ncss(location = c(36.61, -85.37, -81.29, 33.57),
-  start_yr = 1988, end_yr = 1988, param = "tmin")
+  start = 1988, end = 1988, param = "tmin")
 }
 \arguments{
-\item{location}{: location of a bounding box c(lat, lon, lat, lon) defined
+\item{location}{location of a bounding box c(lat, lon, lat, lon) defined
 by a top left and bottom-right coordinates}
 
-\item{start_yr}{: start of the range of years over which to download data}
+\item{start}{start of the range of years over which to download data}
 
-\item{end_yr}{: end of the range of years over which to download data}
+\item{end}{end of the range of years over which to download data}
 
-\item{param}{: climate variable you want to download vapour pressure (vp), 
+\item{param}{climate variable you want to download vapour pressure (vp), 
 minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), 
 solar radiation (srad), precipitation (prcp) , day length (dayl).
 The default setting is ALL, this will download all the previously mentioned
@@ -28,8 +28,8 @@ This function downloads DAYMET data
 
 \dontrun{
 download_daymet_ncss(location = c(36.61,-85.37,-81.29,33.57),
-                      start_yr = 1980,
-                      end_yr = 1980,
+                      start = 1980,
+                      end = 1980,
                       param = "tmin")
 }
 }

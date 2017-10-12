@@ -8,16 +8,16 @@ download_daymet_tiles(location = c(35.6737, -86.3968), tiles = NULL,
   start = 1980, end = 1980, param = "ALL")
 }
 \arguments{
-\item{location}{: location of a point c(lat, lon) or a bounding box defined
+\item{location}{location of a point c(lat, lon) or a bounding box defined
 by a top left and bottom-right coordinates c(lat, lon, lat, lon)}
 
-\item{tiles}{: which tiles to download, overrides geographic constraints}
+\item{tiles}{which tiles to download, overrides geographic constraints}
 
-\item{start}{: start of the range of years over which to download data}
+\item{start}{start of the range of years over which to download data}
 
-\item{end}{: end of the range of years over which to download data}
+\item{end}{end of the range of years over which to download data}
 
-\item{param}{: climate variable you want to download vapour pressure (vp), 
+\item{param}{climate variable you want to download vapour pressure (vp), 
 minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), 
 solar radiation (srad), precipitation (prcp) , day length (dayl).
 The default setting is ALL, this will download all the previously mentioned

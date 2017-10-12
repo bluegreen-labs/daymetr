@@ -9,9 +9,9 @@ required for this function to work.}
 daymet_subset(data, offset = 264)
 }
 \arguments{
-\item{data:}{rasterStack or rasterBrick of 730 layers (2 consecutive years)}
+\item{data}{rasterStack or rasterBrick of 730 layers (2 consecutive years)}
 
-\item{offset:}{offset of the time series in DOY (default = 264, sept 21)}
+\item{offset}{offset of the time series in DOY (default = 264, sept 21)}
 }
 \description{
 The output serves as input for further data processing and

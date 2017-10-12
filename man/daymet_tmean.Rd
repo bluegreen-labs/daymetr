@@ -9,13 +9,13 @@ for easy post processing and modelling.}
 daymet_tmean(path = ".", tile = NULL, year = NULL, internal = FALSE)
 }
 \arguments{
-\item{path:}{full path location of the daymet tiles}
+\item{path}{full path location of the daymet tiles}
 
-\item{tile:}{which tile to process}
+\item{tile}{which tile to process}
 
-\item{year:}{which year to process}
+\item{year}{which year to process}
 
-\item{internal:}{TRUE / FALSE (if FALSE, write the output to file)
+\item{internal}{TRUE / FALSE (if FALSE, write the output to file)
 using the Daymet file format protocol.}
 }
 \description{

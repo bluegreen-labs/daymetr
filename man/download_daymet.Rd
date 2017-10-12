@@ -6,24 +6,27 @@
 \usage{
 download_daymet(site = "Daymet", lat = 36.0133, lon = -84.2625,
   start = 2000, end = as.numeric(format(Sys.time(), "\%Y")) - 1,
-  internal = FALSE, quiet = FALSE)
+  path = getwd(), internal = FALSE, quiet = FALSE)
 }
 \arguments{
-\item{site}{: the site name.}
+\item{site}{the site name.}
 
-\item{lat}{: latitude (decimal degrees)}
+\item{lat}{latitude (decimal degrees)}
 
-\item{lon}{: longitude (decimal degrees)}
+\item{lon}{longitude (decimal degrees)}
 
-\item{start}{: start of the range of years over which to download data}
+\item{start}{start of the range of years over which to download data}
 
-\item{end}{: end of the range of years over which to download data}
+\item{end}{end of the range of years over which to download data}
 
-\item{internal}{: takes FALSE, "assign" or "data.frame",
-Download to file (FALSE) or "assign" a variable dynamically or return a
-data frame to the command line}
+\item{path}{set path where to save the data if internal = FALSE, default is 
+the current working directory (default = getwd())}
 
-\item{quiet:}{TRUE or FALSE, to provide verbose output}
+\item{internal}{TRUE or FALSE, if TRUE returns a list to the R workspace if
+FALSE puts the downloaded data into the current working directory
+(default = FALSE)}
+
+\item{quiet}{TRUE or FALSE, to provide verbose output}
 }
 \description{
 This function downloads DAYMET data for a single
