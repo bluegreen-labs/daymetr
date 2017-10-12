@@ -2,11 +2,11 @@
 #'
 #' This function downloads DAYMET data for several single pixel
 #' location.
-#' @param file_location : file with several site locations and coordinates
+#' @param file_location file with several site locations and coordinates
 #' in a format site, latitude, longitude
-#' @param start : start of the range of years over which to download data
-#' @param end : end of the range of years over which to download data
-#' @param internal : assign or FALSE, load data into workspace or save to disc
+#' @param start start of the range of years over which to download data
+#' @param end end of the range of years over which to download data
+#' @param internal assign or FALSE, load data into workspace or save to disc
 #' @keywords DAYMET, climate data
 #' @export
 #' @examples
