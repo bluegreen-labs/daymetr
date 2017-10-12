@@ -67,9 +67,11 @@ download_daymet = function(site = "Daymet",
   }
 
   # try to download the data
-  error = try(httr::GET(url = download_string,
+  error = try(httr::content(httr::GET(url = download_string,
                          httr::write_disk(path = daymet_tmp_file,
                                           overwrite = TRUE)),
+                         "text",
+                         encoding = "UTF-8"),
                silent = TRUE)
 
   # use grepl to trap timeout errors (VPN / firewall issues or server down)
