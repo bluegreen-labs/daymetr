@@ -15,8 +15,8 @@ Depends:
 Imports:
     sp,
     raster,
-    curl
-License: AGPLv3 + file LICENSE
+    httr
+License: file LICENSE
 LazyData: true
 ByteCompile: true
 RoxygenNote: 6.0.1
