@@ -40,7 +40,6 @@ download_daymet = function(site = "Daymet",
   # I'm not sure when new data is released so this might be a
   # very conservative setting, remove it if you see more recent data
   # on the website
-
   if (start < 1980){
     stop("Start year preceeds valid data range!")
   }
@@ -55,24 +54,27 @@ download_daymet = function(site = "Daymet",
   # create download string / url
   download_string = sprintf("https://daymet.ornl.gov/data/send/saveData?lat=%s&lon=%s&measuredParams=tmax,tmin,dayl,prcp,srad,swe,vp&year=%s",lat,lon,year_range)
 
-  # create filename for the output file
+  # create filename for the output files
   daymet_file = sprintf("%s/%s_%s_%s.csv", path, site, start, end)
   daymet_tmp_file = sprintf("%s/%s_%s_%s.csv", tempdir(), site, start, end)
   
   # provide verbose feedback
-  if (quiet == "FALSE"){
-    cat(paste('Downloading DAYMET data for: ',site,' at ',lat,'/',lon,' latitude/longitude !\n',sep=''))
+  if (!quiet){
+    cat(paste('Downloading DAYMET data for: ',site,
+              ' at ',lat,
+              '/',lon,
+              ' latitude/longitude !\n',sep=''))
   }
 
   # try to download the data
   error = try(httr::GET(url = download_string,
                          httr::write_disk(path = daymet_tmp_file,
-                                          overwrite = FALSE)),
+                                          overwrite = TRUE)),
                silent = TRUE)
 
   # use grepl to trap timeout errors (VPN / firewall issues or server down)
   if (any(grepl("Timeout", error))){
-    file.remove(daymet_file)
+    file.remove(daymet_tmp_file)
     stop("Your request timed out, the servers are too busy
           or more likely you are behind a firewall or VPN
           which impedes daymetr traffic!
@@ -83,17 +85,18 @@ download_daymet = function(site = "Daymet",
   # Daymet stopped giving errors on out of geographic range requests
   # these are not trapped anymore with the usual routine
   # below, until further notice this patch is in place
-  if(file.exists(daymet_file)){
-    error = try(utils::read.table(daymet_file,header=T,sep=','),silent=TRUE)
+  if(file.exists(daymet_tmp_file)){
+    error = try(utils::read.table(daymet_tmp_file,header=T,sep=','),silent=TRUE)
     if (inherits(error,"try-error")){
-      file.remove(daymet_file)
+      file.remove(daymet_tmp_file)
       stop("Your requested data is outside DAYMET coverage,
            the file is empty --> check coordinates!")
     }
 
-    # use grepl instead of grep, returns logical any() ensures one argument is returned
+    # use grepl instead of grep, returns logical any()
+    # ensures one argument is returned
     if (any(grepl("HTTP Status 500", error))){
-      file.remove(daymet_file)
+      file.remove(daymet_tmp_file)
       stop("Your requested data is outside DAYMET coverage,
            the file is empty --> check coordinates!")
     }
@@ -146,7 +149,14 @@ download_daymet = function(site = "Daymet",
     } else {
       # copy data from temporary file to final location
       # and delete original
-      file.copy(daymet_tmp_file, daymet_file)
+      file.copy(daymet_tmp_file, daymet_file,
+               overwrite = TRUE,
+               copy.mode = FALSE)
       file.remove(daymet_tmp_file)
+      
+      # some feedback
+      if (!quiet) {
+        cat('File written to disk !\n')
+      }
     }
 }
