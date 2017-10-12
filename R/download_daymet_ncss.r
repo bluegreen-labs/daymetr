@@ -1,11 +1,11 @@
 #' Function to geographically subset regions exceeding tile limits
 #'
 #' This function downloads DAYMET data 
-#' @param location : location of a bounding box c(lat, lon, lat, lon) defined
+#' @param location location of a bounding box c(lat, lon, lat, lon) defined
 #' by a top left and bottom-right coordinates
-#' @param start_yr : start of the range of years over which to download data
-#' @param end_yr : end of the range of years over which to download data
-#' @param param : climate variable you want to download vapour pressure (vp), 
+#' @param start start of the range of years over which to download data
+#' @param end end of the range of years over which to download data
+#' @param param climate variable you want to download vapour pressure (vp), 
 #' minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), 
 #' solar radiation (srad), precipitation (prcp) , day length (dayl).
 #' The default setting is ALL, this will download all the previously mentioned
@@ -16,14 +16,14 @@
 #' 
 #' \dontrun{
 #' download_daymet_ncss(location = c(36.61,-85.37,-81.29,33.57),
-#'                       start_yr = 1980,
-#'                       end_yr = 1980,
+#'                       start = 1980,
+#'                       end = 1980,
 #'                       param = "tmin")
 #' }
 
 download_daymet_ncss = function(location = c(36.61, -85.37, -81.29, 33.57),
-                                 start_yr = 1988,
-                                 end_yr = 1988,
+                                 start = 1988,
+                                 end = 1988,
                                  param = "tmin"){
   
   # set server path
@@ -43,15 +43,15 @@ download_daymet_ncss = function(location = c(36.61, -85.37, -81.29, 33.57),
   # very conservative setting, remove it if you see more recent data
   # on the website
   
-  if (start_yr < 1980){
+  if (start < 1980){
     stop("Start year preceeds valid data range!")
   }
-  if (end_yr > max_year){
+  if (end > max_year){
     stop("End year exceeds valid data range!")
   }
   
   # if the year range is valid, create a string of valid years
-  year_range = seq(start_yr,end_yr,by=1)
+  year_range = seq(start, end, by=1)
   
   # check the parameters we want to download
   if (param == "ALL"){
@@ -76,8 +76,8 @@ download_daymet_ncss = function(location = c(36.61, -85.37, -81.29, 33.57),
                                 location[2],
                                 location[3],
                                 location[4],
-                                start_yr,
-                                end_yr)
+                                start,
+                                end)
       
       # create filename for the output file
       daymet_file = paste(j,"_",i,"_ncss.nc",sep='')
@@ -89,10 +89,11 @@ download_daymet_ncss = function(location = c(36.61, -85.37, -81.29, 33.57),
                 '\n',sep=''))
       
       # download data, force binary data mode
-      status = try(curl::curl_download(download_string,
-                                       daymet_file,
-                                       quiet=TRUE,
-                                       mode="wb"), silent=TRUE)
+      status = try(httr::GET(url = download_string,
+                            httr::write_disk(path = daymet_file,
+                                             overwrite = FALSE),
+                            httr::progress()),
+                  silent = TRUE)
       
       # error / stop on 400 error
       if(inherits(status,"try-error")){
