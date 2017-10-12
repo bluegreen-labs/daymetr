@@ -6,10 +6,10 @@
 #' as the original files. Optionally a raster object
 #' is returned to the current workspace.
 #'
-#' @param path: full path location of the daymet tiles
-#' @param tile: which tile to process
-#' @param year: which year to process
-#' @param internal: TRUE / FALSE (if FALSE, write the output to file)
+#' @param path full path location of the daymet tiles
+#' @param tile which tile to process
+#' @param year which year to process
+#' @param internal TRUE / FALSE (if FALSE, write the output to file)
 #' using the Daymet file format protocol.
 #' @keywords modelling, mean daily temperature
 #' @export
