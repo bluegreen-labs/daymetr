@@ -2,15 +2,17 @@
 #'
 #' This function downloads DAYMET data for a single
 #' location.
-#' @param site : the site name.
-#' @param lat : latitude (decimal degrees)
-#' @param lon : longitude (decimal degrees)
-#' @param start : start of the range of years over which to download data
-#' @param end : end of the range of years over which to download data
-#' @param internal : takes FALSE, "assign" or "data.frame",
-#' Download to file (FALSE) or "assign" a variable dynamically or return a
-#' data frame to the command line
-#' @param quiet: TRUE or FALSE, to provide verbose output
+#' @param site the site name.
+#' @param lat latitude (decimal degrees)
+#' @param lon longitude (decimal degrees)
+#' @param start start of the range of years over which to download data
+#' @param end end of the range of years over which to download data
+#' @param path set path where to save the data if internal = FALSE, default is 
+#' the current working directory (default = getwd())
+#' @param internal TRUE or FALSE, if TRUE returns a list to the R workspace if
+#' FALSE puts the downloaded data into the current working directory
+#' (default = FALSE)
+#' @param quiet TRUE or FALSE, to provide verbose output
 #' @keywords DAYMET, climate data
 #' @export
 #' @examples
@@ -27,16 +29,9 @@ download_daymet = function(site = "Daymet",
                             lon = -84.2625,
                             start = 2000,
                             end = as.numeric(format(Sys.time(), "%Y"))-1,
+                            path = getwd(),
                             internal = FALSE,
                             quiet = FALSE){
-
-  # set path, the current working directory if not internal
-  # otherwise the tmp location
-  if (internal == "assign" || internal == "data.frame"){
-    path = tempdir()
-  } else {
-    path = getwd()
-  }
 
   # calculate the end of the range of years to download
   max_year = as.numeric(format(Sys.time(), "%Y"))-1
@@ -55,23 +50,25 @@ download_daymet = function(site = "Daymet",
   }
 
   # if the year range is valid, create a string of valid years
-  year_range = paste(seq(start,end,by=1),collapse=",")
+  year_range = paste(seq(start, end, by=1), collapse=",")
 
   # create download string / url
   download_string = sprintf("https://daymet.ornl.gov/data/send/saveData?lat=%s&lon=%s&measuredParams=tmax,tmin,dayl,prcp,srad,swe,vp&year=%s",lat,lon,year_range)
 
   # create filename for the output file
-  daymet_file = sprintf("%s/%s_%s_%s.csv",path,site,start,end)
-
+  daymet_file = sprintf("%s/%s_%s_%s.csv", path, site, start, end)
+  daymet_tmp_file = sprintf("%s/%s_%s_%s.csv", tempdir(), site, start, end)
+  
+  # provide verbose feedback
   if (quiet == "FALSE"){
     cat(paste('Downloading DAYMET data for: ',site,' at ',lat,'/',lon,' latitude/longitude !\n',sep=''))
   }
 
   # try to download the data
-  error = try(curl::curl_download(download_string,
-                                   daymet_file,
-                                   mode="w",
-                                   quiet=TRUE),silent=TRUE)
+  error = try(httr::GET(url = download_string,
+                         httr::write_disk(path = daymet_tmp_file,
+                                          overwrite = FALSE)),
+               silent = TRUE)
 
   # use grepl to trap timeout errors (VPN / firewall issues or server down)
   if (any(grepl("Timeout", error))){
@@ -82,7 +79,7 @@ download_daymet = function(site = "Daymet",
           [Try again on a later date, or on a direct connection]")
   }
 
-  # double error check on the validity of the fileSs
+  # double error check on the validity of the files
   # Daymet stopped giving errors on out of geographic range requests
   # these are not trapped anymore with the usual routine
   # below, until further notice this patch is in place
@@ -114,25 +111,25 @@ download_daymet = function(site = "Daymet",
     cat('Done !\n')
   }
 
-  # if internal is FALSE assign the downloaded datafile to
-  # an internal variable (we'll keep the original file)
-  if (internal == "assign" || internal == "data.frame") {
-
+  # if internal is FALSE just copy the temporary
+  # file over to the destination path, if TRUE
+  # return data to the R workspace
+  if (internal) {
     # read ancillary data from downloaded file header
     # this includes, tile nr and altitude
-    tile = as.numeric(scan(daymet_file,
+    tile = as.numeric(scan(daymet_tmp_file,
                            skip = 2,
                            nlines = 1,
                            what = character(),
                            quiet = TRUE)[2])
 
-    alt = as.numeric(scan(daymet_file,
+    alt = as.numeric(scan(daymet_tmp_file,
                           skip = 3,nlines = 1,
                           what = character(),
                           quiet = TRUE)[2])
 
     # read in the real climate data
-    data = utils::read.table(daymet_file,
+    data = utils::read.table(daymet_tmp_file,
                       sep = ',',
                       skip = 7,
                       header = TRUE)
@@ -143,13 +140,10 @@ download_daymet = function(site = "Daymet",
     # name all list variables appropriately
     names(tmp_struct) = c('site', 'lattitude', 'longitude', 'altitude', 'tile', 'data')
 
-    # reassign the data a new name in your global workspace (outside the function)
-    # or return a data frame to the command line
-    if (internal == "assign") {
-      assign(site, tmp_struct, envir = .GlobalEnv)
+    # return the temporary data structure (nested list)
+    return(tmp_struct)
+    
     } else {
-      # return data frame
-      return(tmp_struct)
+      file.copy(daymet_tmp_file, daymet_file)
     }
-  }
 }
