@@ -107,7 +107,7 @@ download_daymet = function(site = "Daymet",
   }
 
   # feedback
-  if (quiet == "FALSE") {
+  if (!quiet) {
     cat('Done !\n')
   }
 
@@ -144,6 +144,9 @@ download_daymet = function(site = "Daymet",
     return(tmp_struct)
     
     } else {
+      # copy data from temporary file to final location
+      # and delete original
       file.copy(daymet_tmp_file, daymet_file)
+      file.remove(daymet_tmp_file)
     }
 }
