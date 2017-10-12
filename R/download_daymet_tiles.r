@@ -1,12 +1,12 @@
 #' Function to batch download gridded DAYMET data
 #'
 #' This function downloads DAYMET data 
-#' @param location : location of a point c(lat, lon) or a bounding box defined
+#' @param location location of a point c(lat, lon) or a bounding box defined
 #' by a top left and bottom-right coordinates c(lat, lon, lat, lon)
-#' @param tiles : which tiles to download, overrides geographic constraints
-#' @param start : start of the range of years over which to download data
-#' @param end : end of the range of years over which to download data
-#' @param param : climate variable you want to download vapour pressure (vp), 
+#' @param tiles which tiles to download, overrides geographic constraints
+#' @param start start of the range of years over which to download data
+#' @param end end of the range of years over which to download data
+#' @param param climate variable you want to download vapour pressure (vp), 
 #' minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), 
 #' solar radiation (srad), precipitation (prcp) , day length (dayl).
 #' The default setting is ALL, this will download all the previously mentioned
@@ -29,15 +29,10 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
                                  param = "ALL"){
   
   # set server path
-  server = "http://thredds.daac.ornl.gov/thredds/fileServer/ornldaac/1328/tiles"
-  
-  # load DAYMET grid associated with the package
-  # (this is an imported shapefile)
-  # I do not store any additional data in the .rdata
-  # file to keep the code transparent.
-  utils::data("DAYMET_grid")
+  server = "https://thredds.daac.ornl.gov/thredds/fileServer/ornldaac/1328/tiles"
   
   # grab the projection string. This is a LCC projection.
+  # (lazy load the tile_outlines)
   projection = sp::CRS(sp::proj4string(tile_outlines))
   
   # override tile selection if tiles are specified on the command line
@@ -57,7 +52,7 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
                check your coordinate values!")
     }
     
-  } else if (length(locations) ==4 ){
+  } else if (length(location) ==4 ){
     
     # define a polygon to which will be intersected with the 
     # tiles object to deterrmine tiles to download
@@ -119,12 +114,17 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
                   '; product: ',k,
                   '\n',sep=''))
         
-        # download data, force binary data mode
-        try(curl::curl_download(download_string,
-                                 daymet_file,
-                                 quiet=TRUE,
-                                 mode="wb"),
-            silent=FALSE)
+        # download daymet tiles using httr
+        status = try(httr::GET(url = download_string,
+                               httr::write_disk(path = daymet_file,
+                                                overwrite = FALSE),
+                               httr::progress()),
+                     silent = TRUE)
+        
+        # error / stop on 400 error
+        if(inherits(status,"try-error")){
+          cat("download failed ... (check warning messages)")
+        }
       }
     }
   }
