@@ -2,7 +2,7 @@
 % Please edit documentation in R/daymet_subset.r
 \name{daymet_subset}
 \alias{daymet_subset}
-\title{Returns an offset dataset with data running from offset DOY in year -1 to
+\title{Returns an offset dataset with data running from offset DOY in year - 1 to
 offset DOY in the current year. Two years of data (730 data layers) are
 required for this function to work.}
 \usage{
