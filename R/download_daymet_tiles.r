@@ -44,7 +44,7 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
     location = sp::SpatialPoints(cbind(location[1],location[2]), projection)
     
     # extract tile for this location
-    tiles = sp::over(location,tile_outlines)$TileID
+    tile_selection = sp::over(location,tile_outlines)$TileID
     
     # do not continue if outside range
     if (is.na(tiles)){
@@ -52,7 +52,7 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
                check your coordinate values!")
     }
     
-  } else if (length(location) ==4 ){
+  } else if (length(location) == 4 ){
     
     # define a polygon to which will be intersected with the 
     # tiles object to deterrmine tiles to download
@@ -99,7 +99,7 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
   }
 
   for ( i in year_range ){
-    for ( j in tiles ){
+    for ( j in tile_selection ){
       for ( k in param ){
         
         # create download string / url  
