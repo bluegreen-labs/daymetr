@@ -1,6 +1,6 @@
 Package: daymetr
 Title: Batch download single pixel or gridded DAYMET data
-Version: 1.1
+Version: 1.2
 Authors@R: person("Hufkens","Koen",
 		  email="koen.hufkens@gmail.com",
 		  role=c("aut", "cre"))
