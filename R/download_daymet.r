@@ -53,7 +53,7 @@ download_daymet = function(site = "Daymet",
 
   # create download string / url
   download_string = sprintf("https://daymet.ornl.gov/data/send/saveData?lat=%s&lon=%s&measuredParams=tmax,tmin,dayl,prcp,srad,swe,vp&year=%s",lat,lon,year_range)
-
+  
   # create filename for the output files
   daymet_file = sprintf("%s/%s_%s_%s.csv", path, site, start, end)
   daymet_tmp_file = sprintf("%s/%s_%s_%s.csv", tempdir(), site, start, end)
@@ -88,7 +88,8 @@ download_daymet = function(site = "Daymet",
   # these are not trapped anymore with the usual routine
   # below, until further notice this patch is in place
   if(file.exists(daymet_tmp_file)){
-    error = try(utils::read.table(daymet_tmp_file,header=T,sep=','),silent=TRUE)
+    error = try(utils::read.table(daymet_tmp_file, header = T, sep = ','),
+                silent = TRUE)
     if (inherits(error,"try-error")){
       file.remove(daymet_tmp_file)
       stop("Your requested data is outside DAYMET coverage,
@@ -140,10 +141,20 @@ download_daymet = function(site = "Daymet",
                       header = TRUE)
 
     # put all data in a list
-    tmp_struct = list(site, lat, lon, alt, tile, data)
+    tmp_struct = list(site,
+                      lat,
+                      lon,
+                      alt,
+                      tile,
+                      data)
 
     # name all list variables appropriately
-    names(tmp_struct) = c('site', 'lattitude', 'longitude', 'altitude', 'tile', 'data')
+    names(tmp_struct) = c('site',
+                          'lattitude',
+                          'longitude',
+                          'altitude',
+                          'tile',
+                          'data')
 
     # return the temporary data structure (nested list)
     return(tmp_struct)
