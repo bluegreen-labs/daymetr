@@ -12,11 +12,11 @@
 #' @examples
 #'
 #' \dontrun{
-#' my_subset = daymet_subset(mystack, offset = 264)
+#' my_subset = daymet_tile_offset(mystack, offset = 264)
 #' }
 
 # create subset of layers to calculate phenology model output on
-daymet_subset = function(data, offset = 264){
+daymet_tile_offset = function(data, offset = 264){
 
   # sanity check
   if(raster::nlayers(data) != 730){

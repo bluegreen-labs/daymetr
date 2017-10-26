@@ -16,12 +16,12 @@
 #' @examples
 #'
 #' \dontrun{
-#' daymet_tmean(path = ".",
+#' daymet_tile_tmean(path = ".",
 #'              tile = 11935,
 #'              year = 2015)
 #' }
 
-daymet_tmean = function(path='.',
+daymet_tile_tmean = function(path='.',
                         tile = NULL,
                         year = NULL,
                         internal = FALSE){
