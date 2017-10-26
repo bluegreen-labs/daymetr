@@ -65,31 +65,34 @@ download_daymet_ncss = function(location = c(36.61, -85.37, -81.29, 33.57),
   for ( i in year_range ){
     for ( j in param ){
       
-      # create download string / url  
-      download_string = sprintf("%s/%s/daymet_v3_%s_%s_na.nc4?var=lat&var=lon&var=%s&north=%s&west=%s&east=%s&south=%s&time_start=%s-01-01T12:00:00Z&time_end=%s-12-30T12:00:00Z",
-                                server,
-                                i, # year
-                                j, # param,
-                                i,
-                                j,
-                                location[1],
-                                location[2],
-                                location[3],
-                                location[4],
-                                start,
-                                end)
+      # create server string (varies per product / year)
+      server_string = sprintf("%s/%s/daymet_v3_%s_%s_na.nc4", server, i, j, i)
+                   
+      # formulate query to pass to httr           
+      query = list(
+        "var" = lat,
+        "var" = lon,
+        "var" = j,
+        "north" = location[1],
+        "west" = location[2],
+        "east" = location[3],
+        "south" = location[4],
+        "time_start" = paste0(start, "-01-01T12:00:00Z"),
+        "time_end" = paste0(end, "-12-30T12:00:00Z")
+      )
       
       # create filename for the output file
-      daymet_file = paste(j,"_",i,"_ncss.nc",sep='')
+      daymet_file = paste0(j,"_",i,"_ncss.nc")
       
       # provide some feedback
-      cat(paste('Downloading DAYMET subset: ',
+      cat(paste0('Downloading DAYMET subset: ',
                 '; year: ',i,
                 '; product: ',j,
-                '\n',sep=''))
+                '\n'))
       
       # download data, force binary data mode
-      status = try(httr::GET(url = download_string,
+      status = try(httr::GET(url = server_string,
+                             query = query,
                             httr::write_disk(path = daymet_file,
                                              overwrite = FALSE),
                             httr::progress()),
