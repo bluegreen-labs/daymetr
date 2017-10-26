@@ -109,10 +109,10 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
         daymet_file = paste(k,"_",i,"_",j,".nc",sep='')
         
         # provide some feedback
-        cat(paste('Downloading DAYMET data for tile: ',j,
+        cat(paste0('Downloading DAYMET data for tile: ',j,
                   '; year: ',i,
                   '; product: ',k,
-                  '\n',sep=''))
+                  '\n'))
         
         # download daymet tiles using httr
         status = try(httr::GET(url = download_string,
