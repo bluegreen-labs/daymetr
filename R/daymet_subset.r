@@ -1,4 +1,4 @@
-#' Returns an offset dataset with data running from offset DOY in year -1 to
+#' Returns an offset dataset with data running from offset DOY in year - 1 to
 #' offset DOY in the current year. Two years of data (730 data layers) are
 #' required for this function to work.
 #'
@@ -31,7 +31,8 @@ daymet_subset = function(data, offset = 264){
   layer_doy = rep(1:365,2)
 
   # final layer selection
-  layer_selection = which((layer_year == 1 & layer_doy >= 244) | (layer_year == 2 & layer_doy < 244))
+  layer_selection = which((layer_year == 1 & layer_doy >= 244) |
+                            (layer_year == 2 & layer_doy < 244))
 
   # subset the data and assign correct
   # layer names, for clarity
