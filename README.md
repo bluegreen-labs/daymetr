@@ -48,9 +48,11 @@ download_daymet_batch(file_location = 'my_sites.csv',
                       internal = TRUE)
 ```
 
-### Gridded data download
+### Gridded data downloads
 
-For gridded data use the following format
+For gridded data use either download_daymet_tiles() for individual tiles or download_daymet_ncss() for a netCDF subset which is not bound by tile limits (but restricted to a 6GB query size).
+
+#### *Tiled data*
 
 ```R
 download_daymet_tiles(location = c(36.0133,-84.2625),
@@ -63,15 +65,33 @@ download_daymet_tiles(location = c(36.0133,-84.2625),
 Parameter     | Description                      
 ------------- | ------------------------------ 	
 location	      | vector with a point location c(lat,lon) or top left / bottom right pair c(lat,lon,lat,lon)
-sites          | vector with tile numbers if location point or top left / bottom right pair is not provided
+tiles          | vector with tile numbers if location point or top left / bottom right pair is not provided
 start      | start year of the time series (data start in 1980)
 end        | end year of the time series (current year - 2 years / for safety, tweak this check to reflect the currently available data)
 param         | climate variable you want to download vapour pressure (vp), minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), solar radiation (srad), precipitation (prcp) , day length (dayl). The default setting is ALL, this will download all the previously mentioned climate variables.
 
 If only the first set of coordinates is provided the tile in which these reside is downloaded. If your region of interest falls outside the scope of the DAYMET data coverage a warning is issued. If both top left and bottom right coordinates are provided all tiles covering the region of interst are downloaded. I would caution against downloading too much data, as file sizes do add up. So be careful how you specify your region of interest.
 
-## References
+#### *netCDF subset (ncss) data*
 
-Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2017 An integrated phenology modelling framework in R: Phenology modelling with phenor. in review
-or 
-use the above DOI
+```R
+download_daymet_ncss(location = c(36.61,-85.37,-81.29,33.57),
+                     start = 1980,
+                     end = 1980,
+                     param = "tmin")
+```
+
+Parameter     | Description                      
+------------- | ------------------------------ 	
+location	      | bounding box extent defined as top left / bottom right pair c(lat,lon,lat,lon)
+start      | start year of the time series (data start in 1980)
+end        | end year of the time series (current year - 2 years / for safety, tweak this check to reflect the currently available data)
+param         | climate variable you want to download vapour pressure (vp), minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), solar radiation (srad), precipitation (prcp) , day length (dayl). The default setting is ALL, this will download all the previously mentioned climate variables.
+
+## Reference
+
+Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2017 An integrated phenology modelling framework in R: Phenology modelling with phenor. Methods in Ecology & Evolution (in review).
+
+## Acknowledgements
+
+This project was is supported by the National Science Foundation’s Macro-system Biology Program (award EF-1065029).
