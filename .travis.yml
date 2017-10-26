@@ -27,10 +27,8 @@ r:
 
 sudo: required
 
-warnings_are_errors: false
+warnings_are_errors: true
 
 r_packages:
   - rgdal
   - sp
-  - rgeos
-  - downloader
