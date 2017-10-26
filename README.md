@@ -88,6 +88,9 @@ start      | start year of the time series (data start in 1980)
 end        | end year of the time series (current year - 2 years / for safety, tweak this check to reflect the currently available data)
 param         | climate variable you want to download vapour pressure (vp), minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), solar radiation (srad), precipitation (prcp) , day length (dayl). The default setting is ALL, this will download all the previously mentioned climate variables.
 
+Keep in mind that the bounding box is defined by the minimum (square) bounding box in a Lambert Conformal Conic (LCC) projection as defined by the provided geographic coordinates. In general the query area will be larger than the requested location. For more information I refer to [Daymet documentation](https://daymet.ornl.gov/web_services.html) on the web service.
+
+
 ## Reference
 
 Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2017 An integrated phenology modelling framework in R: Phenology modelling with phenor. Methods in Ecology & Evolution (in review).
