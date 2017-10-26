@@ -13,6 +13,7 @@
 #' FALSE puts the downloaded data into the current working directory
 #' (default = FALSE)
 #' @param quiet TRUE or FALSE, to provide verbose output
+#' @param force TRUE or FALSE, override the conservative end year setting
 #' @keywords DAYMET, climate data
 #' @export
 #' @examples
@@ -28,14 +29,23 @@ download_daymet = function(site = "Daymet",
                             lat = 36.0133,
                             lon = -84.2625,
                             start = 2000,
-                            end = as.numeric(format(Sys.time(), "%Y"))-1,
+                            end = as.numeric(format(Sys.time(), "%Y")) - 1,
                             path = getwd(),
                             internal = FALSE,
-                            quiet = FALSE){
+                            quiet = FALSE,
+                            force = FALSE){
 
-  # calculate the end of the range of years to download
-  max_year = as.numeric(format(Sys.time(), "%Y"))-1
-
+  # define API server, might change so put it on top
+  server = "https://daymet.ornl.gov/data/send/saveData"
+  
+  # force the max year to be the current year or
+  # current year - 1 (conservative)
+  if (!force){
+    max_year = as.numeric(format(Sys.time(), "%Y")) - 1
+  } else {
+    max_year = as.numeric(format(Sys.time(), "%Y"))
+  }
+  
   # check validaty of the range of years to download
   # I'm not sure when new data is released so this might be a
   # very conservative setting, remove it if you see more recent data
@@ -49,10 +59,13 @@ download_daymet = function(site = "Daymet",
   }
 
   # if the year range is valid, create a string of valid years
-  year_range = paste(seq(start, end, by=1), collapse=",")
-
-  # create download string / url
-  download_string = sprintf("https://daymet.ornl.gov/data/send/saveData?lat=%s&lon=%s&measuredParams=tmax,tmin,dayl,prcp,srad,swe,vp&year=%s",lat,lon,year_range)
+  year_range = paste(seq(start, end, by = 1), collapse=",")
+ 
+  # construct the query to be served to the server
+  query = list("lat" = lat,
+               "lon" = lon,
+               "measuredParams" = "tmax,tmin,dayl,prcp,srad,swe,vp",
+               "year"=year_range)
   
   # create filename for the output files
   daymet_file = sprintf("%s/%s_%s_%s.csv", path, site, start, end)
@@ -67,9 +80,10 @@ download_daymet = function(site = "Daymet",
   }
 
   # try to download the data
-  error = try(httr::content(httr::GET(url = download_string,
-                         httr::write_disk(path = daymet_tmp_file,
-                                          overwrite = TRUE)),
+  error = try(httr::content(httr::GET(url = server,
+                                      query = query,
+                                      httr::write_disk(path = daymet_tmp_file, 
+                                                       overwrite = TRUE)),
                          "text",
                          encoding = "UTF-8"),
                silent = TRUE)
