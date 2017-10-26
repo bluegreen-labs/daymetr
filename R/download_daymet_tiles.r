@@ -6,6 +6,8 @@
 #' @param tiles which tiles to download, overrides geographic constraints
 #' @param start start of the range of years over which to download data
 #' @param end end of the range of years over which to download data
+#' @param path where should the downloaded tiles be stored, defaults to the
+#' current working directory (default = ".")
 #' @param param climate variable you want to download vapour pressure (vp), 
 #' minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), 
 #' solar radiation (srad), precipitation (prcp) , day length (dayl).
@@ -26,6 +28,7 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
                                  tiles = NULL,
                                  start = 1980,
                                  end = 1980,
+                                 path = ".",
                                  param = "ALL"){
   
   # set server path
@@ -98,6 +101,7 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
     param = c('vp','tmin','tmax','swe','srad','prcp','dayl')
   }
 
+  # loop over years, tiles and parameters
   for ( i in year_range ){
     for ( j in tile_selection ){
       for ( k in param ){
@@ -106,7 +110,7 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
         download_string = sprintf("%s/%s/%s_%s/%s.nc",server,i,j,i,k)
                 
         # create filename for the output file
-        daymet_file = paste(k,"_",i,"_",j,".nc",sep='')
+        daymet_file = paste0(path,"/",k,"_",i,"_",j,".nc")
         
         # provide some feedback
         cat(paste0('Downloading DAYMET data for tile: ',j,
