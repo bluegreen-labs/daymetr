@@ -51,7 +51,7 @@ download_daymet_ncss = function(location = c(36.61, -85.37, -81.29, 33.57),
   }
   
   # if the year range is valid, create a string of valid years
-  year_range = seq(start, end, by=1)
+  year_range = seq(start, end, by = 1)
   
   # check the parameters we want to download
   if (param == "ALL"){
@@ -70,8 +70,8 @@ download_daymet_ncss = function(location = c(36.61, -85.37, -81.29, 33.57),
                    
       # formulate query to pass to httr           
       query = list(
-        "var" = lat,
-        "var" = lon,
+        "var" = "lat",
+        "var" = "lon",
         "var" = j,
         "north" = location[1],
         "west" = location[2],
