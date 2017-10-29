@@ -1,5 +1,7 @@
 ^\.travis\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^README\.Rmd$
+README.Rmd
 _config.yml
+cran-comments.md
+CONDUCT.md
