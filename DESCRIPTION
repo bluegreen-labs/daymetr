@@ -1,22 +1,20 @@
 Package: daymetr
-Title: Batch download single pixel or gridded DAYMET data
+Title: Interface to the Daymet Web Services
 Version: 1.2
 Authors@R: person("Hufkens","Koen",
 		  email="koen.hufkens@gmail.com",
 		  role=c("aut", "cre"))
-Description: This package provides functions to (batch) download single pixel
-    DAYMET data (http://daymet.ornl.gov) directly into your R workspace, or save
-    them as csv files on your computer. In addition, code is provided to download
-    the gridded DAYMET data for a region of interest specified by a top left /
-    bottom right coordinate pair or a single pixel location. Tiles can be
-    averaged and subset for further modelling work using included functions.
+Description: Programmatic interface to the Daymet web services. Allows for 
+    easy downloads of Daymet climate data (<http://daymet.ornl.gov>) directly
+    to your R workspace or your computer. Routines for both single pixel data
+    downloads and gridded (netCDF) data are provided.
 Depends:
     R (>= 3.2.5)
 Imports:
     sp,
     raster,
     httr
-License: file LICENSE
+License: AGPL-3
 LazyData: true
 ByteCompile: true
 RoxygenNote: 6.0.1
