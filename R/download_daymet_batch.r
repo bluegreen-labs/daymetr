@@ -7,7 +7,8 @@
 #' @param start start of the range of years over which to download data
 #' @param end end of the range of years over which to download data
 #' @param internal assign or FALSE, load data into workspace or save to disc
-#' @return a nested list or writes data to file
+#' @return Daymet data for point locations as a nested list or
+#' data written to csv files
 #' @keywords DAYMET, climate data
 #' @export
 #' @examples

@@ -10,6 +10,9 @@
 #' solar radiation (srad), precipitation (prcp) , day length (dayl).
 #' The default setting is ALL, this will download all the previously mentioned
 #' climate variables.
+#' @param path directory where to store the downloaded data
+#' @return netCDF data file of an area circumscribed by the location bounding
+#' box
 #' @keywords daymet, climate data
 #' @export
 #' @examples
@@ -24,7 +27,8 @@
 download_daymet_ncss = function(location = c(36.61, -85.37, -81.29, 33.57),
                                  start = 1988,
                                  end = 1988,
-                                 param = "tmin"){
+                                 param = "tmin",
+                                 path = "."){
   
   # set server path
   server = "https://thredds.daac.ornl.gov/thredds/ncss/grid/ornldaac/1328"
@@ -82,7 +86,7 @@ download_daymet_ncss = function(location = c(36.61, -85.37, -81.29, 33.57),
       )
       
       # create filename for the output file
-      daymet_file = paste0(j,"_",i,"_ncss.nc")
+      daymet_file = paste0(path,"/",j,"_",i,"_ncss.nc")
       
       # provide some feedback
       cat(paste0('Downloading DAYMET subset: ',

@@ -5,7 +5,7 @@
 \title{Function to geographically subset regions exceeding tile limits}
 \usage{
 download_daymet_ncss(location = c(36.61, -85.37, -81.29, 33.57),
-  start = 1988, end = 1988, param = "tmin")
+  start = 1988, end = 1988, param = "tmin", path = ".")
 }
 \arguments{
 \item{location}{location of a bounding box c(lat, lon, lat, lon) defined
@@ -20,6 +20,12 @@ minimum and maximum temperature (tmin,tmax), snow water equivalent (swe),
 solar radiation (srad), precipitation (prcp) , day length (dayl).
 The default setting is ALL, this will download all the previously mentioned
 climate variables.}
+
+\item{path}{directory where to store the downloaded data}
+}
+\value{
+netCDF data file of an area circumscribed by the location bounding
+box
 }
 \description{
 This function downloads DAYMET data

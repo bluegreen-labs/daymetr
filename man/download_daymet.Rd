@@ -30,6 +30,10 @@ FALSE puts the downloaded data into the current working directory
 
 \item{force}{TRUE or FALSE, override the conservative end year setting}
 }
+\value{
+Daymet data for a point location, returned to the R workspace or
+written to disk as a csv file.
+}
 \description{
 This function downloads DAYMET data for a single
 location.

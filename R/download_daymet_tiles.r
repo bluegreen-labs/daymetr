@@ -13,6 +13,7 @@
 #' solar radiation (srad), precipitation (prcp) , day length (dayl).
 #' The default setting is ALL, this will download all the previously mentioned
 #' climate variables.
+#' @return downloads netCDF tiles as defined by the Daymet tile grid
 #' @keywords daymet, climate data
 #' @export
 #' @examples

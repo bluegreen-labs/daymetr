@@ -14,7 +14,7 @@ daymet_tile_offset(data, offset = 264)
 \item{offset}{offset of the time series in DOY (default = 264, sept 21)}
 }
 \description{
-The output serves as input for further data processing and
+The output serves as input for further data processing and ecosystem
 modelling efforts.
 }
 \examples{

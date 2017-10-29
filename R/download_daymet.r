@@ -14,6 +14,8 @@
 #' (default = FALSE)
 #' @param quiet TRUE or FALSE, to provide verbose output
 #' @param force TRUE or FALSE, override the conservative end year setting
+#' @return Daymet data for a point location, returned to the R workspace or
+#' written to disk as a csv file.
 #' @keywords DAYMET, climate data
 #' @export
 #' @examples

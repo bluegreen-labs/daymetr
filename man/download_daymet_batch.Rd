@@ -18,7 +18,8 @@ in a format site, latitude, longitude}
 \item{internal}{assign or FALSE, load data into workspace or save to disc}
 }
 \value{
-a nested list or writes data to file
+Daymet data for point locations as a nested list or
+data written to csv files
 }
 \description{
 This function downloads DAYMET data for several single pixel
