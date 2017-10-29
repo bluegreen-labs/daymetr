@@ -90,7 +90,7 @@ download_daymet_ncss = function(location = c(36.61, -85.37, -81.29, 33.57),
       
       # provide some feedback
       cat(paste0('Downloading DAYMET subset: ',
-                '; year: ',i,
+                'year: ',i,
                 '; product: ',j,
                 '\n'))
       
