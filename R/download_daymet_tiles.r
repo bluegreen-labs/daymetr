@@ -35,15 +35,9 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
   # set server path
   server = "https://thredds.daac.ornl.gov/thredds/fileServer/ornldaac/1328/tiles"
   
-  # grab the tile outlines from the included data
-  # this gets around the Note you would get on 
-  # R CMD CHECK when using the data directly
-  # which works, but gives a spurious CRAN check
-  tile_outlines = daymetr::tile_outlines
-  
   # grab the projection string. This is a LCC projection.
   # (lazy load the tile_outlines)
-  projection = sp::CRS(sp::proj4string(tile_outlines))
+  projection = sp::CRS(sp::proj4string(daymetr::tile_outlines))
   
   # override tile selection if tiles are specified on the command line
   if (!is.null(tiles)){
@@ -51,13 +45,13 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
   } else if ( length(location) == 2 ){
     
     # create coordinate pairs, with original coordinate  system
-    location = sp::SpatialPoints(cbind(location[1],location[2]), projection)
+    location = sp::SpatialPoints(list(location[2],location[1]), projection)
     
     # extract tile for this location
-    tile_selection = sp::over(location,tile_outlines)$TileID
+    tile_selection = sp::over(location,daymetr::tile_outlines)$TileID
     
     # do not continue if outside range
-    if (is.na(tiles)){
+    if (is.na(tile_selection)){
       stop("Your defined range is outside DAYMET coverage,
                check your coordinate values!")
     }
@@ -72,7 +66,7 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
                               proj4string = projection)
     
     # extract unique tiles overlapping the rectangular ROI
-    tile_selection = unique(sp::over(ROI,tile_outlines, returnList = TRUE)[[1]]$TileID)
+    tile_selection = unique(sp::over(ROI,daymetr::tile_outlines, returnList = TRUE)[[1]]$TileID)
     
     # check tile selection
     if (is.null(tile_selection)){
