@@ -5,7 +5,7 @@
 daymetr
 =======
 
-The **daymetr** R package provides functions to (batch) download single pixel or gridded [daymet data](http://daymet.ornl.gov/) (tiled) data directly into your R workspace, or save them as csv/tif files on your computer. Gridded (tiled) data downloads for a region of interest are specified by a top left / bottom right coordinate pair or a single pixel location. To properly cite this package see the reference at the end of the page.
+The **daymetr** R package provides functions to (batch) download single pixel or gridded [daymet data](http://daymet.ornl.gov/) (tiled) data directly into your R workspace, or save them as csv/netCDF files on your computer. Gridded (tiled) data downloads for a region of interest are specified by a top left / bottom right coordinate pair or a single pixel location. To properly cite this package see the reference at the end of the page.
 
 Installation
 ------------
