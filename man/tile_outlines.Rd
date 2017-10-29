@@ -18,6 +18,6 @@ tile_outlines
 \description{
 Large SpatialPolygonDataFrame containing the outlines of all the 
 Daymet tiles available as well as projection information. This data
-was converted from a shapefile as provided on the Daymet  main website.
+was converted from a shapefile as provided on the Daymet main website.
 }
 \keyword{datasets}
