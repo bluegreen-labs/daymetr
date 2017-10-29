@@ -5,7 +5,8 @@
 \title{Function to batch download single location DAYMET data}
 \usage{
 download_daymet_batch(batch_file, start = 1980,
-  end = as.numeric(format(Sys.time(), "\%Y")) - 1, internal = TRUE)
+  end = as.numeric(format(Sys.time(), "\%Y")) - 1, internal = TRUE,
+  force = FALSE)
 }
 \arguments{
 \item{batch_file}{file with several site locations and coordinates
@@ -16,6 +17,8 @@ in a format site, latitude, longitude}
 \item{end}{end of the range of years over which to download data}
 
 \item{internal}{assign or FALSE, load data into workspace or save to disc}
+
+\item{force}{TRUE or FALSE, override the conservative end year setting}
 }
 \value{
 Daymet data for point locations as a nested list or

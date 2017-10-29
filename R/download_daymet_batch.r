@@ -7,6 +7,7 @@
 #' @param start start of the range of years over which to download data
 #' @param end end of the range of years over which to download data
 #' @param internal assign or FALSE, load data into workspace or save to disc
+#' @param force TRUE or FALSE, override the conservative end year setting
 #' @return Daymet data for point locations as a nested list or
 #' data written to csv files
 #' @keywords DAYMET, climate data
@@ -20,7 +21,8 @@
 download_daymet_batch <- function(batch_file,
                                   start = 1980,
                                   end = as.numeric(format(Sys.time(), "%Y"))-1,
-                                  internal = TRUE){
+                                  internal = TRUE,
+                                  force = FALSE){
 
   # read table with sites and coordinates
   locations = utils::read.table(batch_file, sep=',')
@@ -37,7 +39,8 @@ download_daymet_batch <- function(batch_file,
       lon = lon,
       start = start,
       end = end,
-      internal = internal
+      internal = internal,
+      force = force
     ),
     silent = FALSE)
   })
