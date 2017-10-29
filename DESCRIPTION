@@ -4,10 +4,11 @@ Version: 1.2
 Authors@R: person("Hufkens","Koen",
 		  email="koen.hufkens@gmail.com",
 		  role=c("aut", "cre"))
-Description: Programmatic interface to the Daymet web services. Allows for 
-    easy downloads of Daymet climate data (<http://daymet.ornl.gov>) directly
-    to your R workspace or your computer. Routines for both single pixel data
-    downloads and gridded (netCDF) data are provided.
+Description: Programmatic interface to the Daymet web services
+    (<http://daymet.ornl.gov>) web services. Allows for easy downloads of
+    Daymet climate data  directly to your R workspace or your computer. 
+    Routines for both single pixel data downloads and
+    gridded (netCDF) data are provided.
 Depends:
     R (>= 3.2.5)
 Imports:
