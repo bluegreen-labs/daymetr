@@ -35,6 +35,12 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
   # set server path
   server = "https://thredds.daac.ornl.gov/thredds/fileServer/ornldaac/1328/tiles"
   
+  # grab the tile outlines from the included data
+  # this gets around the Note you would get on 
+  # R CMD CHECK when using the data directly
+  # which works, but gives a spurious CRAN check
+  tile_outlines = daymetr::tile_outlines
+  
   # grab the projection string. This is a LCC projection.
   # (lazy load the tile_outlines)
   projection = sp::CRS(sp::proj4string(tile_outlines))
