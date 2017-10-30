@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_daymet_tiles.r
 \name{download_daymet_tiles}
 \alias{download_daymet_tiles}
-\title{Function to batch download gridded DAYMET data}
+\title{Function to batch download gridded 'Daymet' data tiles}
 \usage{
 download_daymet_tiles(location = c(35.6737, -86.3968), tiles = NULL,
   start = 1980, end = 1980, path = ".", param = "ALL")
@@ -30,7 +30,7 @@ climate variables.}
 downloads netCDF tiles as defined by the Daymet tile grid
 }
 \description{
-This function downloads DAYMET data
+Function to batch download gridded 'Daymet' data tiles
 }
 \examples{
 

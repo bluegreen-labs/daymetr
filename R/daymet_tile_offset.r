@@ -1,9 +1,7 @@
 #' Returns an offset dataset with data running from offset DOY in year - 1 to
 #' offset DOY in the current year. Two years of data (730 data layers) are
-#' required for this function to work.
-#'
-#' The output serves as input for further data processing and ecosystem
-#' modelling efforts.
+#' required for this function to work. The output serves as input for further
+#' data processing and / or ecosystem modelling efforts.
 #'
 #' @param data rasterStack or rasterBrick of 730 layers (2 consecutive years)
 #' @param offset offset of the time series in DOY (default = 264, sept 21)

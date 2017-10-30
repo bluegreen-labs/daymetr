@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_daymet_ncss.r
 \name{download_daymet_ncss}
 \alias{download_daymet_ncss}
-\title{Function to geographically subset regions exceeding tile limits}
+\title{Function to geographically subset 'Daymet' regions exceeding tile limits}
 \usage{
 download_daymet_ncss(location = c(36.61, -85.37, -81.29, 33.57),
   start = 1988, end = 1988, param = "tmin", path = ".")
@@ -28,7 +28,7 @@ netCDF data file of an area circumscribed by the location bounding
 box
 }
 \description{
-This function downloads DAYMET data
+Function to geographically subset 'Daymet' regions exceeding tile limits
 }
 \examples{
 

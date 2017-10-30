@@ -2,7 +2,7 @@
 % Please edit documentation in R/daymet_tile_tmean.r
 \name{daymet_tile_tmean}
 \alias{daymet_tile_tmean}
-\title{Averages tmax and tmin Daymet tiles into
+\title{Averages tmax and tmin 'Daymet' tiles into
 a single mean daily temperature (tmean) tile
 for easy post processing and modelling.}
 \usage{

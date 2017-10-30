@@ -1,6 +1,5 @@
-#' Function to batch download gridded DAYMET data
+#' Function to batch download gridded 'Daymet' data tiles
 #'
-#' This function downloads DAYMET data 
 #' @param location location of a point c(lat, lon) or a bounding box defined
 #' by a top left and bottom-right coordinates c(lat, lon, lat, lon)
 #' @param tiles which tiles to download, overrides geographic constraints

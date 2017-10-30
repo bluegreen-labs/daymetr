@@ -1,4 +1,4 @@
-#' Averages tmax and tmin Daymet tiles into
+#' Averages tmax and tmin 'Daymet' tiles into
 #' a single mean daily temperature (tmean) tile
 #' for easy post processing and modelling.
 #'

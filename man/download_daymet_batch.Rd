@@ -2,7 +2,8 @@
 % Please edit documentation in R/download_daymet_batch.r
 \name{download_daymet_batch}
 \alias{download_daymet_batch}
-\title{Function to batch download single location DAYMET data}
+\title{This function downloads 'Daymet' data for several single pixel
+location, as specified by a batch file.}
 \usage{
 download_daymet_batch(batch_file, start = 1980,
   end = as.numeric(format(Sys.time(), "\%Y")) - 1, internal = TRUE,
@@ -10,7 +11,7 @@ download_daymet_batch(batch_file, start = 1980,
 }
 \arguments{
 \item{batch_file}{file with several site locations and coordinates
-in a format site, latitude, longitude}
+in a comma delimited format: site, latitude, longitude}
 
 \item{start}{start of the range of years over which to download data}
 
@@ -25,8 +26,8 @@ Daymet data for point locations as a nested list or
 data written to csv files
 }
 \description{
-This function downloads DAYMET data for several single pixel
-location.
+This function downloads 'Daymet' data for several single pixel
+location, as specified by a batch file.
 }
 \examples{
 

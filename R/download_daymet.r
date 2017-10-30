@@ -1,39 +1,38 @@
-#' Function to download single location DAYMET data
+#' Function to download single location 'Daymet' data
 #'
-#' This function downloads DAYMET data for a single
-#' location.
 #' @param site the site name.
 #' @param lat latitude (decimal degrees)
 #' @param lon longitude (decimal degrees)
 #' @param start start of the range of years over which to download data
 #' @param end end of the range of years over which to download data
 #' @param path set path where to save the data if internal = FALSE, default is 
-#' the current working directory (default = getwd())
-#' @param internal TRUE or FALSE, if TRUE returns a list to the R workspace if
-#' FALSE puts the downloaded data into the current working directory
-#' (default = FALSE)
-#' @param quiet TRUE or FALSE, to provide verbose output
-#' @param force TRUE or FALSE, override the conservative end year setting
+#' the current working directory (default = ".")
+#' @param internal \code{TRUE} or \code{FALSE}, if \code{TRUE} returns a list to the R workspace if
+#' \code{FALSE} puts the downloaded data into the current working directory
+#' (default = \code{FALSE})
+#' @param quiet \code{TRUE} or \code{FALSE} (default), to provide verbose output
+#' @param force \code{TRUE} or \code{FALSE} (default), override the conservative end year setting
 #' @return Daymet data for a point location, returned to the R workspace or
 #' written to disk as a csv file.
-#' @keywords DAYMET, climate data
+#' @keywords Daymet, climate data, single pixel
 #' @export
 #' @examples
 #'
 #' \dontrun{
-#' download_daymet("testsite_name",
-#'                 lat=36.0133,
-#'                 lon=-84.2625,
-#'                 start=2000)
-#' }
+#' daymet_data = download_daymet("testsite_name",
+#'                 lat = 36.0133,
+#'                 lon = -84.2625,
+#'                 start = 2000,
+#'                 internal = TRUE)
+#'}
 
 download_daymet = function(site = "Daymet",
                             lat = 36.0133,
                             lon = -84.2625,
                             start = 2000,
                             end = as.numeric(format(Sys.time(), "%Y")) - 1,
-                            path = getwd(),
-                            internal = FALSE,
+                            path = ".",
+                            internal = TRUE,
                             quiet = FALSE,
                             force = FALSE){
 

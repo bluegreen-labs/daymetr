@@ -1,6 +1,5 @@
-#' Function to geographically subset regions exceeding tile limits
+#' Function to geographically subset 'Daymet' regions exceeding tile limits
 #'
-#' This function downloads DAYMET data 
 #' @param location location of a bounding box c(lat, lon, lat, lon) defined
 #' by a top left and bottom-right coordinates
 #' @param start start of the range of years over which to download data

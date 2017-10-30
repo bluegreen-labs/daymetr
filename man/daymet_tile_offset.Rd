@@ -4,7 +4,8 @@
 \alias{daymet_tile_offset}
 \title{Returns an offset dataset with data running from offset DOY in year - 1 to
 offset DOY in the current year. Two years of data (730 data layers) are
-required for this function to work.}
+required for this function to work. The output serves as input for further
+data processing and / or ecosystem modelling efforts.}
 \usage{
 daymet_tile_offset(data, offset = 264)
 }
@@ -14,8 +15,10 @@ daymet_tile_offset(data, offset = 264)
 \item{offset}{offset of the time series in DOY (default = 264, sept 21)}
 }
 \description{
-The output serves as input for further data processing and ecosystem
-modelling efforts.
+Returns an offset dataset with data running from offset DOY in year - 1 to
+offset DOY in the current year. Two years of data (730 data layers) are
+required for this function to work. The output serves as input for further
+data processing and / or ecosystem modelling efforts.
 }
 \examples{
 
