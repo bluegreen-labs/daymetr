@@ -17,14 +17,19 @@
 #' download_daymet_batch(file_location = "yourlocations.csv")
 #' }
 
-download_daymet_batch <- function(batch_file,
+download_daymet_batch <- function(file_location,
                                   start = 1980,
                                   end = as.numeric(format(Sys.time(), "%Y"))-1,
                                   internal = TRUE,
                                   force = FALSE){
 
+  # check if the file exists
+  if(!file.exists(file_location)){
+    stop("file does not exist, please check the file path!")
+  }
+  
   # read table with sites and coordinates
-  locations = utils::read.table(batch_file, sep=',')
+  locations = utils::read.table(file_location, sep=',')
 
   # loop over all lines in the file return
   # nested list
