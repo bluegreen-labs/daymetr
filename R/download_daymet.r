@@ -19,11 +19,35 @@
 #' @examples
 #'
 #' \dontrun{
+#' # The following commands Daymet data
+#' # for the location provided by a set
+#' # of lat, lon coordinates. In addition,
+#' # the start year is specified, with the
+#' # end year left blank (downloading all
+#' # available data from the start year.
+#' 
 #' daymet_data = download_daymet("testsite_name",
 #'                 lat = 36.0133,
 #'                 lon = -84.2625,
 #'                 start = 2000,
 #'                 internal = TRUE)
+#'
+#' # We can now quickly calculate and plot
+#' # daily mean temperature. Also, take note of
+#' # the weird format of the header. I do not
+#' # alter this format as to keep compatibility
+#' # with other ways of acquiring Daymet data.
+#' 
+#' # list headers
+#' str(daymet_data)
+#' 
+#' # calculate the mean daily temperature
+#' mean_daily_temperature = by(daymet_data,
+#'                             INDICES = daymet_data$doy,
+#'                             function(x){
+#'                              mean(x$tmax.. + x$tmin)/2)
+#'                             })
+#'                 
 #'}
 
 download_daymet = function(site = "Daymet",

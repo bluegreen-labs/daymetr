@@ -1,7 +1,7 @@
 #' This function downloads 'Daymet' data for several single pixel
 #' location, as specified by a batch file.
 #' 
-#' @param batch_file file with several site locations and coordinates
+#' @param file_location file with several site locations and coordinates
 #' in a comma delimited format: site, latitude, longitude
 #' @param start start of the range of years over which to download data
 #' @param end end of the range of years over which to download data
@@ -14,6 +14,13 @@
 #' @examples
 #'
 #' \dontrun{
+#' # The download_daymet_batch() routine is a wrapper around
+#' # the download_daymet() function. It queries a file with
+#' # coordinates to easily download a large batch of daymet
+#' # pixel locations. When internal = TRUE, the data is stored
+#' # in a structured list in an R variable. If FALSE, the data
+#' # is written to disk.
+#' 
 #' download_daymet_batch(file_location = "yourlocations.csv")
 #' }
 

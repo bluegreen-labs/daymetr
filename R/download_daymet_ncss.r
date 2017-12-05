@@ -17,10 +17,23 @@
 #' @examples
 #' 
 #' \dontrun{
+#' # The following call allows you to subset gridded
+#' # Daymet data using a bounding box location. This
+#' # is an alternative way to query gridded data. The
+#' # routine is particularly helpful if you need certain
+#' # data which stradles boundaries of multiple tiles
+#' # or a smaller subset of a larger tile. Keep in mind
+#' # that there is a 6GB upper limit to the output file
+#' # so querying larger regions will result in an error.
+#' # To download larger areas use the download_daymet_tiles()
+#' # function.
+#' 
+#' # Download a subset of a / multiple tiles.
 #' download_daymet_ncss(location = c(36.61,-85.37,-81.29,33.57),
 #'                       start = 1980,
 #'                       end = 1980,
-#'                       param = "tmin")
+#'                       param = "tmin",
+#'                       path = "a_directory")
 #' }
 
 download_daymet_ncss = function(location = c(36.61, -85.37, -81.29, 33.57),

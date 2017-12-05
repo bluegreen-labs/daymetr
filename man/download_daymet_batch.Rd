@@ -5,12 +5,12 @@
 \title{This function downloads 'Daymet' data for several single pixel
 location, as specified by a batch file.}
 \usage{
-download_daymet_batch(batch_file, start = 1980,
+download_daymet_batch(file_location = NULL, start = 1980,
   end = as.numeric(format(Sys.time(), "\%Y")) - 1, internal = TRUE,
   force = FALSE)
 }
 \arguments{
-\item{batch_file}{file with several site locations and coordinates
+\item{file_location}{file with several site locations and coordinates
 in a comma delimited format: site, latitude, longitude}
 
 \item{start}{start of the range of years over which to download data}
@@ -32,6 +32,13 @@ location, as specified by a batch file.
 \examples{
 
 \dontrun{
+# The download_daymet_batch() routine is a wrapper around
+# the download_daymet() function. It queries a file with
+# coordinates to easily download a large batch of daymet
+# pixel locations. When internal = TRUE, the data is stored
+# in a structured list in an R variable. If FALSE, the data
+# is written to disk.
+
 download_daymet_batch(file_location = "yourlocations.csv")
 }
 }

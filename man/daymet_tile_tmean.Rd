@@ -27,9 +27,26 @@ is returned to the current workspace.
 \examples{
 
 \dontrun{
-daymet_tile_tmean(path = ".",
-             tile = 11935,
-             year = 2015)
+# This code calculates the mean temperature
+# for all daymet tiles in a user provided
+# directory. In this example we first
+# download tile 11935 for tmin and tmax
+
+# download a tile
+download_daymet_tiles(tiles = 11935,
+                      start = 1980,
+                      end = 1980,
+                      param = c("tmin","tmax"),
+                      path = "path_with_daymet_tiles")
+
+# calculate the mean temperature and export
+# the result to the R workspace (internal = TRUE)
+# If internal = FALSE, a file tmean_11935_1980.tif
+# is written into the source path (path_with_daymet_tiles)
+tmean = daymet_tile_tmean(path = "path_with_daymet_tiles",
+                          tile = 11935,
+                          year = 1980,
+                          internal = TRUE)
 }
 }
 \keyword{daily}
