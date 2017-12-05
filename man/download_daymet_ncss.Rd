@@ -5,7 +5,7 @@
 \title{Function to geographically subset 'Daymet' regions exceeding tile limits}
 \usage{
 download_daymet_ncss(location = c(36.61, -85.37, -81.29, 33.57),
-  start = 1988, end = 1988, param = "tmin", path = ".")
+  start = 1988, end = 1988, param = "tmin", path = "~")
 }
 \arguments{
 \item{location}{location of a bounding box c(lat, lon, lat, lon) defined
