@@ -40,10 +40,10 @@ download_daymet_ncss = function(location = c(36.61, -85.37, -81.29, 33.57),
                                  start = 1988,
                                  end = 1988,
                                  param = "tmin",
-                                 path = "."){
+                                 path = "~"){
   
   # set server path
-  server = "https://thredds.daac.ornl.gov/thredds/ncss/grid/ornldaac/1328"
+  server = "https://thredds.daac.ornl.gov/thredds/ncss/ornldaac/1328"
   
   # check if there are enough coordinates specified
   if (length(location)!=4){
@@ -94,7 +94,9 @@ download_daymet_ncss = function(location = c(36.61, -85.37, -81.29, 33.57),
         "east" = location[3],
         "south" = location[4],
         "time_start" = paste0(start, "-01-01T12:00:00Z"),
-        "time_end" = paste0(end, "-12-30T12:00:00Z")
+        "time_end" = paste0(end, "-12-30T12:00:00Z"),
+        "timeStride" = 1,
+        "accept" = "netcdf"
       )
       
       # create filename for the output file
@@ -110,7 +112,7 @@ download_daymet_ncss = function(location = c(36.61, -85.37, -81.29, 33.57),
       status = try(httr::GET(url = server_string,
                              query = query,
                             httr::write_disk(path = daymet_file,
-                                             overwrite = FALSE),
+                                             overwrite = TRUE),
                             httr::progress()),
                   silent = TRUE)
       
