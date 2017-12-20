@@ -3,14 +3,9 @@ http://cran.r-project.org/web/packages/policies.html
 
 ## test environments
 
-- local OSX install on R 3.3.1
+- local OSX install on R 3.4.3
 - Ubuntu 14.04 on Travis-CI (devel / release)
 
 ## R CMD check results
 
 0 errors | 0 warnings | 0 notes
-
-This is a new submission.
-
-Thanks! Koen Hufkens
- 
