@@ -4,7 +4,7 @@
 \alias{download_daymet_ncss}
 \title{Function to geographically subset 'Daymet' regions exceeding tile limits}
 \usage{
-download_daymet_ncss(location = c(36.61, -85.37, -81.29, 33.57),
+download_daymet_ncss(location = c(36.61, -85.37, 33.57, -81.29),
   start = 1988, end = 1988, param = "tmin", path = "~")
 }
 \arguments{

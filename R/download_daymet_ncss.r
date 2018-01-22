@@ -36,7 +36,7 @@
 #'                       path = "a_directory")
 #' }
 
-download_daymet_ncss = function(location = c(36.61, -85.37, -81.29, 33.57),
+download_daymet_ncss = function(location = c(36.61, -85.37, 33.57, -81.29),
                                  start = 1988,
                                  end = 1988,
                                  param = "tmin",
@@ -91,8 +91,8 @@ download_daymet_ncss = function(location = c(36.61, -85.37, -81.29, 33.57),
         "var" = j,
         "north" = location[1],
         "west" = location[2],
-        "east" = location[3],
-        "south" = location[4],
+        "east" = location[4],
+        "south" = location[3],
         "time_start" = paste0(start, "-01-01T12:00:00Z"),
         "time_end" = paste0(end, "-12-30T12:00:00Z"),
         "timeStride" = 1,
