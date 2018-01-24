@@ -206,6 +206,8 @@ download_daymet = function(site = "Daymet",
         file.copy(daymet_tmp_file, daymet_file, overwrite = TRUE,
                   copy.mode = FALSE)
         file.remove(daymet_tmp_file)
+      } else {
+        message("Output path == tempdir(), file not copied or removed!")
       }
       # some feedback
       if (!quiet) {
