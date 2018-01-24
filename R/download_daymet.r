@@ -131,24 +131,24 @@ download_daymet = function(site = "Daymet",
                 silent = TRUE)
     if (inherits(error,"try-error")){
       file.remove(daymet_tmp_file)
-      stop("Your requested data is outside DAYMET coverage,
-           the file is empty --> check coordinates!")
+      stop("Your requested data is outside DAYMET (temporal) coverage,
+         the file is empty --> check coordinates and start/end years!")
     }
 
     # use grepl instead of grep, returns logical any()
     # ensures one argument is returned
     if (any(grepl("HTTP Status 500", error))){
       file.remove(daymet_tmp_file)
-      stop("Your requested data is outside DAYMET coverage,
-           the file is empty --> check coordinates!")
+      stop("Your requested data is outside DAYMET (temporal) coverage,
+         the file is empty --> check coordinates and start/end years!")
     }
   }
 
   # new download.file behaviour deletes files if they are empty 0 bytes
   # so testing for the presence of the file works now
   if (inherits(error,"try-error")){
-    stop("Your requested data is outside DAYMET coverage,
-         the file is empty --> check coordinates!")
+    stop("Your requested data is outside DAYMET (temporal) coverage,
+         the file is empty --> check coordinates and start/end years!")
   }
 
   # feedback
