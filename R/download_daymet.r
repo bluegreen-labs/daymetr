@@ -199,10 +199,9 @@ download_daymet = function(site = "Daymet",
     return(tmp_struct)
     
     } else {
-      # copy data from temporary file to final location
-      # and delete original, with an exception for tempdir() location
-      # to facilitate integration into other packages and not expose
-      # the data to users
+      # Copy data from temporary file to final location
+      # and delete original, with an exception for tempdir() location.
+      # The latter to facilitate package integration.
       if (!identical(normalizePath(daymet_tmp_file), normalizePath(daymet_file))) {
         file.copy(daymet_tmp_file, daymet_file, overwrite = TRUE,
                   copy.mode = FALSE)
