@@ -200,12 +200,14 @@ download_daymet = function(site = "Daymet",
     
     } else {
       # copy data from temporary file to final location
-      # and delete original
-      file.copy(daymet_tmp_file, daymet_file,
-               overwrite = TRUE,
-               copy.mode = FALSE)
-      file.remove(daymet_tmp_file)
-      
+      # and delete original, with an exception for tempdir() location
+      # to facilitate integration into other packages and not expose
+      # the data to users
+      if (!identical(normalizePath(daymet_tmp_file), normalizePath(daymet_file))) {
+        file.copy(daymet_tmp_file, daymet_file, overwrite = TRUE,
+                  copy.mode = FALSE)
+        file.remove(daymet_tmp_file)
+      }
       # some feedback
       if (!quiet) {
         cat('File written to disk !\n')
