@@ -178,9 +178,9 @@ Keep in mind that the bounding box is defined by the minimum (square) bounding b
 Reference
 ---------
 
-Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2017 An integrated phenology modelling framework in R: Phenology modelling with phenor. Methods in Ecology & Evolution (in review).
+Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2017 An integrated phenology modelling framework in R: Phenology modelling with phenor. Methods in Ecology & Evolution ([in press](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12970/full)).
 
 Acknowledgements
 ----------------
 
-This project was is supported by the National Science Foundation’s Macro-system Biology Program (award EF-1065029).
+This project was is supported by the National Science Foundation’s Macro-system Biology Program (awards EF-1065029 and EF-1702697).
