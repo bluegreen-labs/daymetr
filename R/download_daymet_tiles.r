@@ -31,8 +31,8 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
                                  path = ".",
                                  param = "ALL"){
   
-  # set server path
-  server = "https://thredds.daac.ornl.gov/thredds/fileServer/ornldaac/1328/tiles"
+  # set url path
+  base_url = "https://thredds.daac.ornl.gov/thredds/fileServer/ornldaac/1328/tiles"
   
   # grab the projection string. This is a LCC projection.
   # (lazy load the tile_outlines)
@@ -107,7 +107,7 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
       for ( k in param ){
         
         # create download string / url  
-        download_string = sprintf("%s/%s/%s_%s/%s.nc",server,i,j,i,k)
+        url = sprintf("%s/%s/%s_%s/%s.nc",base_url,i,j,i,k)
                 
         # create filename for the output file
         daymet_file = paste0(path,"/",k,"_",i,"_",j,".nc")
@@ -119,7 +119,7 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
                   '\n'))
         
         # download daymet tiles using httr
-        status = try(httr::GET(url = download_string,
+        status = try(httr::GET(url = url,
                                httr::write_disk(path = daymet_file,
                                                 overwrite = FALSE),
                                httr::progress()),

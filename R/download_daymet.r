@@ -60,8 +60,8 @@ download_daymet = function(site = "Daymet",
                             quiet = FALSE,
                             force = FALSE){
 
-  # define API server, might change so put it on top
-  server = "https://daymet.ornl.gov/data/send/saveData"
+  # define API url, might change so put it on top
+  url = "https://daymet.ornl.gov/data/send/saveData"
   
   # force the max year to be the current year or
   # current year - 1 (conservative)
@@ -105,7 +105,7 @@ download_daymet = function(site = "Daymet",
   }
 
   # try to download the data
-  error = try(httr::content(httr::GET(url = server,
+  error = try(httr::content(httr::GET(url = url,
                                       query = query,
                                       httr::write_disk(path = daymet_tmp_file, 
                                                        overwrite = TRUE)),

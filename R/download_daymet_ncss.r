@@ -9,7 +9,9 @@
 #' solar radiation (srad), precipitation (prcp) , day length (dayl).
 #' The default setting is ALL, this will download all the previously mentioned
 #' climate variables.
-#' @param path directory where to store the downloaded data
+#' @param frequency frequency of the data requested (default = "daily", other
+#' options are "monthly" or "annual".
+#' @param path directory where to store the downloaded data (default = ".")
 #' @return netCDF data file of an area circumscribed by the location bounding
 #' box
 #' @keywords daymet, climate data
@@ -40,10 +42,24 @@ download_daymet_ncss = function(location = c(36.61, -85.37, 33.57, -81.29),
                                  start = 1988,
                                  end = 1988,
                                  param = "tmin",
-                                 path = "~"){
+                                 frequency = "daily",
+                                 path = "."){
   
-  # set server path
-  server = "https://thredds.daac.ornl.gov/thredds/ncss/ornldaac/1328"
+  # base url path
+  base_url = "https://thredds.daac.ornl.gov/thredds/ncss/ornldaac"
+  
+  # remove capitals from frequency
+  frequency = tolower(frequency)
+  
+  # set final url path depending on the frequency of the
+  # data requested
+  if(frequency == "monthly"){
+    base_url = sprintf("%s/%s", base_url, 1345)
+  } else if (frequency == "annual"){
+    base_url = sprintf("%s/%s", base_url, 1343)
+  } else {
+    base_url = sprintf("%s/%s", base_url, 1328)
+  }
   
   # check if there are enough coordinates specified
   if (length(location)!=4){
@@ -69,11 +85,12 @@ download_daymet_ncss = function(location = c(36.61, -85.37, 33.57, -81.29),
   # if the year range is valid, create a string of valid years
   year_range = seq(start, end, by = 1)
   
-  # check the parameters we want to download
+  # check the parameters we want to download in case of
+  # ALL list those
   if (param == "ALL"){
-    param = c('vp','tmin','tmax','swe','srad','prcp','dayl')
+      param = c('vp','tmin','tmax','swe','srad','prcp','dayl')
   }
-  
+
   # provide some feedback
   cat('Creating a subset of the Daymet data
       be patient, this might take a while!\n')
@@ -81,9 +98,27 @@ download_daymet_ncss = function(location = c(36.61, -85.37, 33.57, -81.29),
   for ( i in year_range ){
     for ( j in param ){
       
-      # create server string (varies per product / year)
-      server_string = sprintf("%s/%s/daymet_v3_%s_%s_na.nc4", server, i, j, i)
-                   
+      if (frequency != "daily"){
+        if (j != "prcp"){
+          prefix = paste0(substr(frequency,1,3),"avg")
+        } else {
+          prefix = paste0(substr(frequency,1,3),"ttl")
+        }
+        
+        # create url string (varies per product / year)
+        url = sprintf("%s/daymet_v3_%s_%s_%s_na.nc4", base_url, j, prefix, i)
+        
+        # create filename for the output file
+        daymet_file = paste0(path,"/",j,"_",prefix,"_",i,"_ncss.nc")
+        
+      } else {
+        # create url string (varies per product / year)
+        url = sprintf("%s/%s/daymet_v3_%s_%s_na.nc4", base_url, i, j, i)
+        
+        # create filename for the output file
+        daymet_file = paste0(path,"/",j,"_daily_",i,"_ncss.nc")
+      }
+      
       # formulate query to pass to httr           
       query = list(
         "var" = "lat",
@@ -99,9 +134,6 @@ download_daymet_ncss = function(location = c(36.61, -85.37, 33.57, -81.29),
         "accept" = "netcdf"
       )
       
-      # create filename for the output file
-      daymet_file = paste0(path,"/",j,"_",i,"_ncss.nc")
-      
       # provide some feedback
       cat(paste0('Downloading DAYMET subset: ',
                 'year: ',i,
@@ -109,7 +141,7 @@ download_daymet_ncss = function(location = c(36.61, -85.37, 33.57, -81.29),
                 '\n'))
       
       # download data, force binary data mode
-      status = try(httr::GET(url = server_string,
+      status = try(httr::GET(url = url,
                              query = query,
                             httr::write_disk(path = daymet_file,
                                              overwrite = TRUE),
