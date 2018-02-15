@@ -5,7 +5,7 @@
 \title{Function to geographically subset 'Daymet' regions exceeding tile limits}
 \usage{
 download_daymet_ncss(location = c(36.61, -85.37, 33.57, -81.29),
-  start = 1988, end = 1988, param = "tmin", frequency = "daily",
+  start = 1980, end = 1980, param = "tmin", frequency = "daily",
   path = ".")
 }
 \arguments{
