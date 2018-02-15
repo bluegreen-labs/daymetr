@@ -34,21 +34,23 @@ nc2tif <- function(path = ".",
                    overwrite = TRUE){
   
   #list all .nc files in a directory
-  files <- list.files(path=path,
-                      pattern="\\.nc$")
+  files <- list.files(path = path,
+                      pattern = "\\.nc$")
   
   # loop through files
   lapply(files, function(i){
     data <- raster::brick(i)
     
+    # feedback
     cat("Writing",
         tools::file_path_sans_ext(i),
         "file. Be patient, this may take a while.")
     
+    # write data to file
     raster::writeRaster(data,
-                        filename=tools::file_path_sans_ext(i),
-                        format="GTiff",
-                        overwrite=overwrite,
-                        progress="text")
+                        filename = tools::file_path_sans_ext(i),
+                        format = "GTiff",
+                        overwrite = overwrite,
+                        progress = "text")
   })
 }
