@@ -10,11 +10,11 @@
 #' @examples
 #'
 #' \dontrun{
-#' my_subset = daymet_tile_offset(mystack, offset = 264)
+#' my_subset = daymet_gridded_offset(mystack, offset = 264)
 #' }
 
 # create subset of layers to calculate phenology model output on
-daymet_tile_offset = function(data, offset = 264){
+daymet_grid_offset = function(data, offset = 264){
 
   # sanity check
   if(raster::nlayers(data) != 730){
@@ -29,8 +29,8 @@ daymet_tile_offset = function(data, offset = 264){
   layer_doy = rep(1:365,2)
 
   # final layer selection
-  layer_selection = which((layer_year == 1 & layer_doy >= 244) |
-                            (layer_year == 2 & layer_doy < 244))
+  layer_selection = which((layer_year == 1 & layer_doy >= offset) |
+                            (layer_year == 2 & layer_doy < offset))
 
   # subset the data and assign correct
   # layer names, for clarity
