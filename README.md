@@ -73,7 +73,7 @@ download_daymet(site = "Oak Ridge National Laboratories",
 </tbody>
 </table>
 
-Batch mode uses similar parameters but you provide a comma separated file with site names and latitude longitude which are sequentially downloaded. Format of the comma separated file is as such: site name, latitude, longitude.
+Batch mode uses similar parameters but you provide a comma separated file with site names and latitude longitude which are sequentially downloaded. The format of the comma separated file is as such: site name, latitude, longitude.
 
 ``` r
 download_daymet_batch(file_location = 'my_sites.csv',
@@ -178,7 +178,7 @@ Keep in mind that the bounding box is defined by the minimum (square) bounding b
 Reference
 ---------
 
-Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2018 [An integrated phenology modelling framework in R: Phenology modelling with phenor. Methods in Ecology & Evolution](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12970/full), 1-10.
+Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2018 [An integrated phenology modelling framework in R: Phenology modelling with phenor. Methods in Ecology & Evolution](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12970/full),9:1-10.
 
 Acknowledgements
 ----------------
