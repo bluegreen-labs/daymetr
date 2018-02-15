@@ -22,10 +22,8 @@ test_that("pixel location download check",{
 test_that("tile download checks",{
   
   # download the data
-  df = try(download_daymet(start = 1980,
-                           end = 1980,
-                           internal = TRUE,
-                           quiet = TRUE))
+  df = try(download_daymet_tiles(path = tempdir(),
+                                 param = "tmin"))
   
   # check if no error occured
   expect_true(!inherits(df,"try-error"))
@@ -35,11 +33,42 @@ test_that("tile download checks",{
 test_that("freefrom gridded download (ncss) checks",{
   
   # download the data
-  df = try(download_daymet(start = 1980,
-                           end = 1980,
-                           internal = TRUE,
-                           quiet = TRUE))
+  df_daily = try(download_daymet_ncss(param = "tmin",
+                                frequency = "daily",
+                                path = tempdir()))
+  
+  # download the data
+  df_monthly = try(download_daymet_ncss(param = "tmin",
+                                      frequency = "monthly",
+                                      path = tempdir()))
+
+  # download the data
+  df_annual = try(download_daymet_ncss(param = "tmin",
+                                        frequency = "annual",
+                                        path = tempdir()))
+  
+  # see if any of the runs failed
+  check = any(!inherits(df_daily,"try-error") |
+              !inherits(df_monthly,"try-error") |
+              !inherits(df_annual,"try-error"))
   
   # check if no error occured
-  expect_true(!inherits(df,"try-error"))
+  expect_true(check)
 })
+
+# check the calculation of a mean values
+test_that("freefrom gridded download (ncss) checks",{
+  
+  # download the data
+  try(download_daymet_ncss(param = c("tmin","tmax"),
+                           frequency = "monthly",
+                           path = tempdir()))
+  
+  tmean = try(daymet_grid_tmean(path = tempdir(),
+                                product = "monavg",
+                                year = 1988))
+  
+  # check if no error occured
+  expect_true(!inherits(tmean,"try-error"))
+})
+
