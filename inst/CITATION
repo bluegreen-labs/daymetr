@@ -17,5 +17,5 @@ citEntry(entry = "Article",
            paste("Hufkens et al. (2018).",
                  "An integrated phenology modelling framework in R:",
                  "modelling vegetation phenology with phenor",
-                 "Methods in Ecology & Evolution, x(x), 1-10.")
+                 "Methods in Ecology & Evolution, 9(2), 1-10.")
 )
