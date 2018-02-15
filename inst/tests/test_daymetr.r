@@ -66,7 +66,7 @@ test_that("freefrom gridded download (ncss) checks",{
   
   tmean = try(daymet_grid_tmean(path = tempdir(),
                                 product = "monavg",
-                                year = 1988))
+                                year = 1980))
   
   # check if no error occured
   expect_true(!inherits(tmean,"try-error"))
