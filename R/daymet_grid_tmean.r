@@ -35,19 +35,16 @@
 #'                           internal = TRUE)
 #' }
 
-daymet_grid_tmean = function(path='.',
-                        product = NULL,
-                        year = NULL,
-                        internal = FALSE){
-
-  # reproject to lat-lon
-  latlon = sp::CRS("+init=epsg:4326")
-
+daymet_grid_tmean = function(path ='.',
+                             product = NULL,
+                             year = NULL,
+                             internal = FALSE){
+  
   # exit on missing tile
   if ( is.null(product) | is.null(year) ) {
     stop('No tile or year provided ...')
   }
-
+  
   # depending on the input query find the necessary data files
   if(!is.na(as.numeric(product))){
     # list all files
@@ -66,14 +63,14 @@ daymet_grid_tmean = function(path='.',
   }
   
   # load everything into a raster stack
-  minmax_stack = raster::stack(tmin, tmax)
-
+  minmax_stack = suppressWarnings(raster::stack(tmin, tmax))
+  
   # list layers
-  layers = rep(1:(raster::nlayers(minmax_stack)/2),2)
-
+  l = rep(1:(raster::nlayers(minmax_stack)/2),2)
+  
   # calculate layer mean, but back in tmean stack
   tmean_stack = raster::stackApply(minmax_stack,
-                                   indices = layers,
+                                   indices = l,
                                    fun = mean,
                                    na.rm = TRUE)
 
