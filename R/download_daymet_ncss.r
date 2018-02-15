@@ -31,14 +31,14 @@
 #' # function.
 #' 
 #' # Download a subset of a / multiple tiles.
-#' download_daymet_ncss(location = c(36.61,-85.37, 33.57, -81.29),
+#' download_daymet_ncss(location = c(34, -82, 33.75, -81.75),
 #'                       start = 1980,
 #'                       end = 1980,
 #'                       param = "tmin",
 #'                       path = "a_directory")
 #' }
 
-download_daymet_ncss = function(location = c(36.61, -85.37, 33.57, -81.29),
+download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
                                  start = 1980,
                                  end = 1980,
                                  param = "tmin",
