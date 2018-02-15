@@ -14,6 +14,7 @@ Depends:
 Imports:
     sp,
     raster,
+    ncdf4,
     httr,
     testthat,
     tools
