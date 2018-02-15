@@ -14,7 +14,8 @@ Depends:
 Imports:
     sp,
     raster,
-    httr
+    httr,
+    testthat
 License: AGPL-3
 LazyData: true
 ByteCompile: true

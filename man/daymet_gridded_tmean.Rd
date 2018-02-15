@@ -13,12 +13,12 @@ daymet_gridded_tmean(path = ".", product = NULL, year = NULL,
 \arguments{
 \item{path}{full path location of the daymet tiles}
 
+\item{product}{which tile to process}
+
 \item{year}{which year to process}
 
 \item{internal}{TRUE / FALSE (if FALSE, write the output to file)
 using the Daymet file format protocol.}
-
-\item{tile}{which tile to process}
 }
 \description{
 Averages tmax and tmin 'Daymet' gridded products into
