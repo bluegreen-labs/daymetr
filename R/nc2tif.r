@@ -35,7 +35,8 @@ nc2tif <- function(path = ".",
   
   #list all .nc files in a directory
   files <- list.files(path = path,
-                      pattern = "\\.nc$")
+                      pattern = "\\.nc$",
+                      full.names = TRUE)
   
   # loop through files
   lapply(files, function(i){
@@ -50,7 +51,6 @@ nc2tif <- function(path = ".",
     raster::writeRaster(data,
                         filename = tools::file_path_sans_ext(i),
                         format = "GTiff",
-                        overwrite = overwrite,
-                        progress = "text")
+                        overwrite = overwrite)
   })
 }
