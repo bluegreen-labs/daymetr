@@ -17,8 +17,13 @@ Imports:
     ncdf4,
     httr,
     testthat,
-    tools
+    tools,
+    utils
 License: AGPL-3
 LazyData: true
 ByteCompile: true
 RoxygenNote: 6.0.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
