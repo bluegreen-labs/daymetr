@@ -97,7 +97,7 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
   year_range = seq(start,end,by=1)
 
   # check the parameters we want to download
-  if (param[1] == "ALL"){
+  if (grepl("ALL", toupper(param))){
     param = c('vp','tmin','tmax','swe','srad','prcp','dayl')
   }
 
@@ -121,7 +121,7 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
         # download daymet tiles using httr
         status = try(httr::GET(url = url,
                                httr::write_disk(path = daymet_file,
-                                                overwrite = FALSE),
+                                                overwrite = TRUE),
                                httr::progress()),
                      silent = TRUE)
         
