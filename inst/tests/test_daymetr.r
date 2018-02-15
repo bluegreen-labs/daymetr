@@ -18,15 +18,23 @@ test_that("pixel location download check",{
   expect_true(!inherits(df,"try-error"))
 })
 
-# check single tile download
-test_that("tile download checks",{
+# check single tile download and conversion to geotiff
+test_that("tile download and format conversion checks",{
   
   # download the data
   df = try(download_daymet_tiles(path = tempdir(),
                                  param = "tmin"))
   
+  # check conversion to geotiff
+  df_tif = try(nc2tif(path = tempdir(),
+                      overwrite = TRUE))
+  
+  # see if any of the runs failed
+  check = !inherits(df,"try-error") &
+          !inherits(df_tif,"try-error")
+  
   # check if no error occured
-  expect_true(!inherits(df,"try-error"))
+  expect_true(check)
 })
 
 # freeform gridded data download check
