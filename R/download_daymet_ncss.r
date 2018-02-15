@@ -12,6 +12,7 @@
 #' @param frequency frequency of the data requested (default = "daily", other
 #' options are "monthly" or "annual".
 #' @param path directory where to store the downloaded data (default = ".")
+#' @param silent suppress the verbose output
 #' @return netCDF data file of an area circumscribed by the location bounding
 #' box
 #' @keywords daymet, climate data
@@ -43,7 +44,8 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
                                  end = 1980,
                                  param = "tmin",
                                  frequency = "daily",
-                                 path = "."){
+                                 path = ".",
+                                 silent = FALSE){
   
   # base url path
   base_url = "https://thredds.daac.ornl.gov/thredds/ncss/ornldaac"
@@ -87,13 +89,15 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
   
   # check the parameters we want to download in case of
   # ALL list those
-  if (param == "ALL"){
-      param = c('vp','tmin','tmax','swe','srad','prcp','dayl')
+  if (any(grepl("ALL", toupper(param)))) {
+    param = c('vp','tmin','tmax','swe','srad','prcp','dayl')
   }
 
   # provide some feedback
-  cat('Creating a subset of the Daymet data
-      be patient, this might take a while!\n')
+  if(!silent){
+    cat('Creating a subset of the Daymet data
+        be patient, this might take a while!\n')
+  }
   
   for ( i in year_range ){
     for ( j in param ){
@@ -135,18 +139,30 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
       )
       
       # provide some feedback
-      cat(paste0('Downloading DAYMET subset: ',
-                'year: ',i,
-                '; product: ',j,
-                '\n'))
+      if(!silent){
+        cat(paste0('\nDownloading DAYMET subset: ',
+                  'year: ',i,
+                  '; product: ',j,
+                  '\n'))
+      }
       
       # download data, force binary data mode
-      status = try(httr::GET(url = url,
-                             query = query,
-                            httr::write_disk(path = daymet_file,
-                                             overwrite = TRUE),
-                            httr::progress()),
+      if(silent){
+        status = try(utils::capture.output(
+          httr::GET(url = url,
+                    query = query,
+                    httr::write_disk(path = daymet_file, overwrite = TRUE)),
+                  file = "NUL"),
                   silent = TRUE)
+      
+      } else {
+        status = try(httr::GET(url = url,
+                               query = query,
+                               httr::write_disk(path = daymet_file,
+                                                overwrite = TRUE),
+                               httr::progress()),
+                     silent = TRUE)
+      }
       
       # error / stop on 400 error
       if(inherits(status,"try-error")){

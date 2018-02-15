@@ -5,7 +5,7 @@
 \title{Function to batch download gridded 'Daymet' data tiles}
 \usage{
 download_daymet_tiles(location = c(35.6737, -86.3968), tiles = NULL,
-  start = 1980, end = 1980, path = ".", param = "ALL")
+  start = 1980, end = 1980, path = ".", param = "ALL", silent = FALSE)
 }
 \arguments{
 \item{location}{location of a point c(lat, lon) or a bounding box defined
@@ -25,6 +25,8 @@ minimum and maximum temperature (tmin,tmax), snow water equivalent (swe),
 solar radiation (srad), precipitation (prcp) , day length (dayl).
 The default setting is ALL, this will download all the previously mentioned
 climate variables.}
+
+\item{silent}{suppress the verbose output}
 }
 \value{
 downloads netCDF tiles as defined by the Daymet tile grid
