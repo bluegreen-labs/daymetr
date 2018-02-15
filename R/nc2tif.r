@@ -11,11 +11,27 @@
 #' @param overwrite a logical controlling whether all 
 #' files will be written, or whether files will not be 
 #' written in the event that there is already a .tif of 
-#' that file.
-
+#' that file. (default = TRUE)
+#' @return Converted geotiff files of all netCDF data in the provided
+#' directory (path).
+#' @keywords Daymet, climate data, gridded data, netCDF, conversion
+#' @export
+#' @examples
+#'
+#' \dontrun{
+#' 
+#'  # The below command converts all netCDF data in
+#'  # the provided path to geotiff files. Existing
+#'  # files will be overwritten. If set to FALSE,
+#'  # files will not be overwritten but the algorithm
+#'  # will fail (stop) on such occurences.
+#'  nc2tif(path = "path_with_daymet_netcdf_files",
+#'  overwrite = TRUE)
+#'  
+#'}
 
 nc2tif <- function(path = ".",
-                   overwrite = FALSE){
+                   overwrite = TRUE){
   
   #list all .nc files in a directory
   files <- list.files(path=path,
