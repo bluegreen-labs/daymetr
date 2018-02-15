@@ -29,13 +29,13 @@
 #' # the result to the R workspace (internal = TRUE)
 #' # If internal = FALSE, a file tmean_11935_1980.tif
 #' # is written into the source path (path_with_daymet_tiles)
-#' tmean = daymet_gridded_tmean(path = "path_with_daymet_tiles",
+#' tmean = daymet_grid_tmean(path = "path_with_daymet_tiles",
 #'                           tile = 11935,
 #'                           year = 1980,
 #'                           internal = TRUE)
 #' }
 
-daymet_gridded_tmean = function(path='.',
+daymet_grid_tmean = function(path='.',
                         product = NULL,
                         year = NULL,
                         internal = FALSE){
