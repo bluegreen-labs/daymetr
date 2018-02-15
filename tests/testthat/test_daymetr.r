@@ -73,7 +73,7 @@ test_that("freefrom gridded download (ncss) checks",{
                            path = tempdir()))
   
   try(download_daymet_tiles(path = tempdir(),
-                                 param = c("tmin","tmax")))
+                            param = c("tmin","tmax")))
   
   # run the function which calculates mean temperature
   # for a gridded daymet product
