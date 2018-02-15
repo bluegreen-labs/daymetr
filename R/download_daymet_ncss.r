@@ -151,8 +151,7 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
         status = try(utils::capture.output(
           httr::GET(url = url,
                     query = query,
-                    httr::write_disk(path = daymet_file, overwrite = TRUE)),
-                  file = "NUL"),
+                    httr::write_disk(path = daymet_file, overwrite = TRUE))),
                   silent = TRUE)
       
       } else {

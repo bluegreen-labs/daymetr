@@ -125,8 +125,7 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
           status = try(utils::capture.output(
             httr::GET(url = url,
                       query = query,
-                      httr::write_disk(path = daymet_file, overwrite = TRUE)),
-                      file = "NUL"),
+                      httr::write_disk(path = daymet_file, overwrite = TRUE))),
             silent = TRUE)
           
         } else {
