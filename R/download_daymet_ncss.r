@@ -39,8 +39,8 @@
 #' }
 
 download_daymet_ncss = function(location = c(36.61, -85.37, 33.57, -81.29),
-                                 start = 1988,
-                                 end = 1988,
+                                 start = 1980,
+                                 end = 1980,
                                  param = "tmin",
                                  frequency = "daily",
                                  path = "."){
