@@ -48,9 +48,9 @@ test_that("freefrom gridded download (ncss) checks",{
                                         path = tempdir()))
   
   # see if any of the runs failed
-  check = any(!inherits(df_daily,"try-error") |
-              !inherits(df_monthly,"try-error") |
-              !inherits(df_annual,"try-error"))
+  check = !inherits(df_daily,"try-error") &
+          !inherits(df_monthly,"try-error") &
+          !inherits(df_annual,"try-error")
   
   # check if no error occured
   expect_true(check)
@@ -64,11 +64,23 @@ test_that("freefrom gridded download (ncss) checks",{
                            frequency = "monthly",
                            path = tempdir()))
   
-  tmean = try(daymet_grid_tmean(path = tempdir(),
+  try(download_daymet_tiles(path = tempdir(),
+                                 param = c("tmin","tmax")))
+  
+  # run the function which calculates mean temperature
+  # for a gridded daymet product
+  tmean_ncss = try(daymet_grid_tmean(path = tempdir(),
                                 product = "monavg",
                                 year = 1980))
+
+  tmean_tile = try(daymet_grid_tmean(path = tempdir(),
+                                     product = 11207,
+                                     year = 1980))
+  
+  # see if any of the runs failed
+  check = !inherits(tmean_ncss,"try-error") & !inherits(tmean_tile,"try-error")
   
   # check if no error occured
-  expect_true(!inherits(tmean,"try-error"))
+  expect_true(check)
 })
 
