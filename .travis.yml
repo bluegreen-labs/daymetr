@@ -11,3 +11,4 @@ addons:
     packages:
       - libgdal-dev
       - libproj-dev
+      - libnetcdf-dev
