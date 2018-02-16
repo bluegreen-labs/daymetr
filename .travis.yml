@@ -3,35 +3,16 @@ dist: trusty
 group: deprecated-2017Q4
 
 before_install:
-  - sudo apt-get install libproj-dev libgeos++-dev netcdf-bin libnetcdf-dev
-  - export CURWD=`pwd`
-  - cd
-  - wget http://download.osgeo.org/gdal/2.1.0/gdal-2.1.0.tar.gz
-  - tar zxf gdal-2.1.0.tar.gz
-  - cd gdal-2.1.0
-  - ./configure
-  - make
-  - sudo make install
-  - cd
-  - wget http://download.osgeo.org/proj/proj-4.9.2.tar.gz
-  - tar zxvf proj-4.9.2.tar.gz
-  - cd proj-4.9.2
-  - ./configure
-  - make
-  - sudo make install
-  - sudo ldconfig
-  - cd $CURWD
+  - sudo apt-get install netcdf-bin libnetcdf-dev
 
 language: r
+cache: packages
+
 r:
   - release
   - devel
 
-sudo: required
-
-warnings_are_errors: true
+warnings_are_errors: false
 
 r_packages:
   - devtools
-  - rgdal
-  - sp
