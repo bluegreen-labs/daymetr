@@ -20,6 +20,7 @@ before_install:
 
 r_packages:
   - devtools
+  - ncdf4
 
 notifications:
   email:
