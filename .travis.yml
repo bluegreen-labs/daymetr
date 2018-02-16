@@ -1,14 +1,14 @@
 language: R
 sudo: required
 cache: packages
+warnings_are_errors: false
 
-os:
-  - linux
-  - osx
-  
-addons:
-  apt:
-    packages:
-      - libgdal-dev
-      - libproj-dev
-      - libnetcdf-dev
+before_install:
+    - sudo apt-get install --yes udunits-bin libproj-dev libgeos-dev libgdal-dev libgdal1-dev libudunits2-dev libnetcdf-dev
+
+r:
+  - release
+  - devel
+
+r_packages:
+  - devtools
