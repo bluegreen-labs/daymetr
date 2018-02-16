@@ -3,7 +3,7 @@ dist: trusty
 group: deprecated-2017Q4
 
 before_install:
-  - sudo apt-get install netcdf-bin libnetcdf-dev
+  - sudo apt-get install netcdf-bin libnetcdf-dev libgdal1-dev libproj-dev
 
 language: r
 cache: packages
@@ -16,3 +16,4 @@ warnings_are_errors: false
 
 r_packages:
   - devtools
+  - rgdal
