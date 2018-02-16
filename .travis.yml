@@ -8,7 +8,7 @@ matrix:
     include:
         - os: linux
           r: release
-          dist: trusty # 14.04
+          dist: trusty
         - os: linux
           r: devel
           dist: trusty
@@ -20,9 +20,3 @@ before_install:
 
 r_packages:
   - devtools
-  - ncdf4
-
-notifications:
-  email:
-    on_success: change
-    on_failure: change
