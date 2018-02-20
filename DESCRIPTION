@@ -14,8 +14,7 @@ Depends:
 Imports:
     sp,
     raster,
-    httr,
-    ncdf4
+    httr
 License: AGPL-3
 LazyData: true
 ByteCompile: true
