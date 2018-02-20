@@ -4,8 +4,9 @@
 \alias{download_daymet_ncss}
 \title{Function to geographically subset 'Daymet' regions exceeding tile limits}
 \usage{
-download_daymet_ncss(location = c(36.61, -85.37, 33.57, -81.29),
-  start = 1988, end = 1988, param = "tmin", path = "~")
+download_daymet_ncss(location = c(34, -82, 33.75, -81.75), start = 1980,
+  end = 1980, param = "tmin", frequency = "daily", path = ".",
+  silent = FALSE)
 }
 \arguments{
 \item{location}{location of a bounding box c(lat, lon, lat, lon) defined
@@ -21,7 +22,12 @@ solar radiation (srad), precipitation (prcp) , day length (dayl).
 The default setting is ALL, this will download all the previously mentioned
 climate variables.}
 
-\item{path}{directory where to store the downloaded data}
+\item{frequency}{frequency of the data requested (default = "daily", other
+options are "monthly" or "annual".}
+
+\item{path}{directory where to store the downloaded data (default = ".")}
+
+\item{silent}{suppress the verbose output}
 }
 \value{
 netCDF data file of an area circumscribed by the location bounding
@@ -45,7 +51,7 @@ Function to geographically subset 'Daymet' regions exceeding tile limits
 # function.
 
 # Download a subset of a / multiple tiles.
-download_daymet_ncss(location = c(36.61,-85.37, 33.57, -81.29),
+download_daymet_ncss(location = c(34, -82, 33.75, -81.75),
                       start = 1980,
                       end = 1980,
                       param = "tmin",

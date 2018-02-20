@@ -15,8 +15,12 @@ Imports:
     sp,
     raster,
     httr,
-    ncdf4
+	ncdf4
 License: AGPL-3
 LazyData: true
 ByteCompile: true
 RoxygenNote: 6.0.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

@@ -12,6 +12,7 @@
 #' solar radiation (srad), precipitation (prcp) , day length (dayl).
 #' The default setting is ALL, this will download all the previously mentioned
 #' climate variables.
+#' @param silent suppress the verbose output
 #' @return downloads netCDF tiles as defined by the Daymet tile grid
 #' @keywords daymet, climate data
 #' @export
@@ -29,10 +30,11 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
                                  start = 1980,
                                  end = 1980,
                                  path = ".",
-                                 param = "ALL"){
+                                 param = "ALL",
+                                 silent = FALSE){
   
-  # set server path
-  server = "https://thredds.daac.ornl.gov/thredds/fileServer/ornldaac/1328/tiles"
+  # set url path
+  base_url = "https://thredds.daac.ornl.gov/thredds/fileServer/ornldaac/1328/tiles"
   
   # grab the projection string. This is a LCC projection.
   # (lazy load the tile_outlines)
@@ -97,7 +99,7 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
   year_range = seq(start,end,by=1)
 
   # check the parameters we want to download
-  if (param[1] == "ALL"){
+  if (any(grepl("ALL", toupper(param)))) {
     param = c('vp','tmin','tmax','swe','srad','prcp','dayl')
   }
 
@@ -107,23 +109,31 @@ download_daymet_tiles = function(location = c(35.6737, -86.3968),
       for ( k in param ){
         
         # create download string / url  
-        download_string = sprintf("%s/%s/%s_%s/%s.nc",server,i,j,i,k)
+        url = sprintf("%s/%s/%s_%s/%s.nc",base_url,i,j,i,k)
                 
         # create filename for the output file
         daymet_file = paste0(path,"/",k,"_",i,"_",j,".nc")
         
         # provide some feedback
-        cat(paste0('Downloading DAYMET data for tile: ',j,
+        cat(paste0('\nDownloading DAYMET data for tile: ',j,
                   '; year: ',i,
                   '; product: ',k,
                   '\n'))
         
-        # download daymet tiles using httr
-        status = try(httr::GET(url = download_string,
-                               httr::write_disk(path = daymet_file,
-                                                overwrite = FALSE),
-                               httr::progress()),
-                     silent = TRUE)
+        # download data, force binary data mode
+        if(silent){
+          status = try(utils::capture.output(
+            httr::GET(url = url,
+                      httr::write_disk(path = daymet_file, overwrite = TRUE))),
+            silent = TRUE)
+          
+        } else {
+          status = try(httr::GET(url = url,
+                                 httr::write_disk(path = daymet_file,
+                                                  overwrite = TRUE),
+                                 httr::progress()),
+                       silent = TRUE)
+        }
         
         # error / stop on 400 error
         if(inherits(status,"try-error")){

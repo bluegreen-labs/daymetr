@@ -1,24 +1,39 @@
-#' Converts .nc files in a given directory to .tif,
-#' and preserves the naming conventions of the files that
-#' are converted.
+#' Converts .nc files in a given directory to .tif.
 #' 
 #' Conversion to .tif may simplify workflows if the data
 #' that has been downloaded is to be handled in other
 #' software (e.g. QGIS).
 #' 
 #' @param path a character string showing the path to the 
-#' directory containing Daymet .nc files. 
+#' directory containing Daymet .nc files
 #' @param file a character string containing the name if one
-#' or more .nc files to be written to .tif.
+#' or more .nc files to be written to .tif.#' 
 #' @param overwrite a logical controlling whether all 
-#' files will be written, or whether files for which a 
-#' .tif version exists will be skipped. Note that this works
-#' based on file name and not contents.
+#' files will be written, or whether files will not be 
+#' written in the event that there is already a .tif of 
+#' that file. (default = TRUE)
+#' @return Converted geotiff files of all netCDF data in the provided
+#' directory (path).
+#' @keywords Daymet, climate data, gridded data, netCDF, conversion
+#' @export
+#' @examples
+#'
+#' \dontrun{
+#' 
+#'  # The below command converts all netCDF data in
+#'  # the provided path to geotiff files. Existing
+#'  # files will be overwritten. If set to FALSE,
+#'  # files will not be overwritten.
+#'  nc2tif(path = "path_with_daymet_netcdf_files",
+#'  overwrite = TRUE)
+#'  
+#'}
 
-
-nc2tif <- function(path = ".",file = FALSE, overwrite = FALSE){
-
-if(file == FALSE){
+nc2tif <- function(path = ".",
+                   file = FALSE,
+                   overwrite = TRUE){
+  
+  if(file == FALSE){
     #make a vector of all .nc files in the directory
     files <- list.files(path=path,
                         pattern="\\.nc$")

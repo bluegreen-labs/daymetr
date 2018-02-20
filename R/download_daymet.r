@@ -19,17 +19,13 @@
 #' @examples
 #'
 #' \dontrun{
-#' # The following commands Daymet data
-#' # for the location provided by a set
-#' # of lat, lon coordinates. In addition,
-#' # the start year is specified, with the
-#' # end year left blank (downloading all
-#' # available data from the start year.
-#' 
-#' daymet_data = download_daymet("testsite_name",
+#' # The following commands download and process Daymet data
+#' # for 10 years of the >30 year of data available since 1980.
+#' daymet_data <- download_daymet("testsite_name",
 #'                 lat = 36.0133,
 #'                 lon = -84.2625,
 #'                 start = 2000,
+#'                 end = 2010,
 #'                 internal = TRUE)
 #'
 #' # We can now quickly calculate and plot
@@ -38,30 +34,46 @@
 #' # alter this format as to keep compatibility
 #' # with other ways of acquiring Daymet data.
 #' 
-#' # list headers
+#' # list headers of the nested list
+#' # this includes information on the site
+#' # location etc. The true climate data is stored
+#' # in the "data" part of the nested list.
+#' # In this case it can be accessed through
+#' # daymet_data$data. Other attributes include
+#' # for example the tile location (daymet_data$tile),
+#' # the altitude (daymet_data$altitude), etc.
 #' str(daymet_data)
 #' 
-#' # calculate the mean daily temperature
-#' mean_daily_temperature = by(daymet_data,
-#'                             INDICES = daymet_data$doy,
-#'                             function(x){
-#'                              mean(x$tmax.. + x$tmin)/2)
-#'                             })
-#'                 
+#' # load the tidyverse (install if necessary)
+#' library(tidyverse)
+#' 
+#' # Calculate the mean temperature from min
+#' # max temperatures and convert the year and doy
+#' # to a proper date format.
+#' daymet_data$data <- daymet_data$data %>%
+#'  mutate(tmean = (tmax..deg.c. + tmin..deg.c.)/2,
+#'         date = as.Date(paste(year, yday, sep = "-"), "%Y-%j"))
+#' 
+#' # show a simple graph of the mean temperature
+#' plot(daymet_data$data$date,
+#'      daymet_data$data$tmean,
+#'      xlab = "Date",
+#'      ylab = "mean temperature")
+#'  
 #'}
 
 download_daymet = function(site = "Daymet",
                             lat = 36.0133,
                             lon = -84.2625,
                             start = 2000,
-                            end = as.numeric(format(Sys.time(), "%Y")) - 1,
+                            end = as.numeric(format(Sys.time(), "%Y")) - 2,
                             path = ".",
                             internal = TRUE,
                             quiet = FALSE,
                             force = FALSE){
 
-  # define API server, might change so put it on top
-  server = "https://daymet.ornl.gov/data/send/saveData"
+  # define API url, might change so put it on top
+  url = "https://daymet.ornl.gov/data/send/saveData"
   
   # force the max year to be the current year or
   # current year - 1 (conservative)
@@ -105,7 +117,7 @@ download_daymet = function(site = "Daymet",
   }
 
   # try to download the data
-  error = try(httr::content(httr::GET(url = server,
+  error = try(httr::content(httr::GET(url = url,
                                       query = query,
                                       httr::write_disk(path = daymet_tmp_file, 
                                                        overwrite = TRUE)),
