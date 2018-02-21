@@ -22,10 +22,25 @@ test_that("pixel location download check",{
 test_that("tile download and format conversion checks",{
   
   # download the data
-  df = try(download_daymet_tiles(path = tempdir(),
-                                 param = "tmin"))
+  try(download_daymet_ncss(param = "tmin",
+                           frequency = "daily",
+                           path = tempdir(),
+                           silent = TRUE))
   
-  # check conversion to geotiff
+  # download the data
+  try(download_daymet_ncss(param = "tmin",
+                           frequency = "monthly",
+                           path = tempdir(),
+                           silent = TRUE))
+  
+  # download the data
+  try(download_daymet_ncss(param = "tmin",
+                           frequency = "annual",
+                           path = tempdir(),
+                           silent = TRUE))
+  
+  # check conversion to geotiff of all
+  # data types (daily, monthly, annual)
   df_tif = try(nc2tif(path = tempdir(),
                       overwrite = TRUE))
   
@@ -86,7 +101,8 @@ test_that("freefrom gridded download (ncss) checks",{
                                      year = 1980))
   
   # see if any of the runs failed
-  check = !inherits(tmean_ncss,"try-error") & !inherits(tmean_tile,"try-error")
+  check = !inherits(tmean_ncss,"try-error") &
+    !inherits(tmean_tile,"try-error")
   
   # check if no error occured
   expect_true(check)
