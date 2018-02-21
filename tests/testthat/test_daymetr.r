@@ -59,19 +59,19 @@ test_that("freefrom gridded download (ncss) checks",{
   df_daily = try(download_daymet_ncss(param = "tmin",
                                       frequency = "daily",
                                       path = tempdir(),
-                                      quiet = TRUE))
+                                      silent = TRUE))
   
   # download the data
   df_monthly = try(download_daymet_ncss(param = "tmin",
                                         frequency = "monthly",
                                         path = tempdir(),
-                                        quiet = TRUE))
+                                        silent = TRUE))
 
   # download the data
   df_annual = try(download_daymet_ncss(param = "tmin",
                                        frequency = "annual",
                                        path = tempdir(),
-                                       quiet = TRUE))
+                                       silent = TRUE))
   
   # see if any of the runs failed
   check = !inherits(df_daily,"try-error") &
@@ -89,11 +89,11 @@ test_that("freefrom gridded download (ncss) checks",{
   try(download_daymet_ncss(param = c("tmin","tmax"),
                            frequency = "monthly",
                            path = tempdir(),
-                           quiet = TRUE))
+                           silent = TRUE))
   
   try(download_daymet_tiles(path = tempdir(),
                             param = c("tmin","tmax"),
-                            quiet = TRUE))
+                            silent = TRUE))
   
   # run the function which calculates mean temperature
   # for a gridded daymet product
