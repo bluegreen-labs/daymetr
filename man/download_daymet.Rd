@@ -6,7 +6,7 @@
 \usage{
 download_daymet(site = "Daymet", lat = 36.0133, lon = -84.2625,
   start = 2000, end = as.numeric(format(Sys.time(), "\%Y")) - 2,
-  path = ".", internal = TRUE, quiet = FALSE, force = FALSE)
+  path = ".", internal = TRUE, silent = FALSE, force = FALSE)
 }
 \arguments{
 \item{site}{the site name.}
@@ -26,7 +26,7 @@ the current working directory (default = ".")}
 \code{FALSE} puts the downloaded data into the current working directory
 (default = \code{FALSE})}
 
-\item{quiet}{\code{TRUE} or \code{FALSE} (default), to provide verbose output}
+\item{silent}{\code{TRUE} or \code{FALSE} (default), to provide verbose output}
 
 \item{force}{\code{TRUE} or \code{FALSE} (default), override the conservative end year setting}
 }

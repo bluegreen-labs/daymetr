@@ -10,7 +10,7 @@
 #' @param internal \code{TRUE} or \code{FALSE}, if \code{TRUE} returns a list to the R workspace if
 #' \code{FALSE} puts the downloaded data into the current working directory
 #' (default = \code{FALSE})
-#' @param quiet \code{TRUE} or \code{FALSE} (default), to provide verbose output
+#' @param silent \code{TRUE} or \code{FALSE} (default), to provide verbose output
 #' @param force \code{TRUE} or \code{FALSE} (default), override the conservative end year setting
 #' @return Daymet data for a point location, returned to the R workspace or
 #' written to disk as a csv file.
@@ -69,7 +69,7 @@ download_daymet = function(site = "Daymet",
                             end = as.numeric(format(Sys.time(), "%Y")) - 2,
                             path = ".",
                             internal = TRUE,
-                            quiet = FALSE,
+                            silent = FALSE,
                             force = FALSE){
 
   # define API url, might change so put it on top
@@ -109,7 +109,7 @@ download_daymet = function(site = "Daymet",
   daymet_tmp_file = sprintf("%s/%s_%s_%s.csv", tempdir(), site, start, end)
   
   # provide verbose feedback
-  if (!quiet){
+  if (!silent){
     cat(paste('Downloading DAYMET data for: ',site,
               ' at ',lat,
               '/',lon,
@@ -164,7 +164,7 @@ download_daymet = function(site = "Daymet",
   }
 
   # feedback
-  if (!quiet) {
+  if (!silent) {
     cat('Done !\n')
   }
 
@@ -222,7 +222,7 @@ download_daymet = function(site = "Daymet",
         message("Output path == tempdir(), file not copied or removed!")
       }
       # some feedback
-      if (!quiet) {
+      if (!silent) {
         cat('File written to disk !\n')
       }
     }
