@@ -48,7 +48,7 @@ nc2tif <- function(path = ".",
   
   #removing written files from write list if overwrite=FALSE
   if(!overwrite){
-    tifs <- list.files(path=path, pattern="\\.tif$")
+    tifs <- list.files(path=path, pattern="\\.tif$", full.names=TRUE)
     files <- files[!tools::file_path_sans_ext(files) 
                    %in% tools::file_path_sans_ext(tifs)]
     cat("\nSkipping",length(tifs),"existing files.")
