@@ -31,7 +31,7 @@
 
 nc2tif <- function(path = ".",
                    file = FALSE,
-                   overwrite = TRUE){
+                   overwrite = FALSE){
   
   if(file == FALSE){
     #make a vector of all .nc files in the directory
