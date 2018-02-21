@@ -73,11 +73,11 @@ nc2tif <- function(path = ".",
     
     if(!any(grep(pattern="annttl|annavg",i))){
       #if i is daily or monthly data use raster::brick
-      data <- raster::brick(i)
+      data <- suppressWarnings(raster::brick(i))
         
     }else{
       #if i is annual summary data use raster::raster
-      data <- raster::raster(i)
+      data <- suppressWarnings(raster::raster(i))
     }
 
     #write the file
