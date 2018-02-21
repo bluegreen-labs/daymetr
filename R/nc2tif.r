@@ -39,7 +39,8 @@ nc2tif <- function(path = ".",
   if(is.null(file)){
     #make a vector of all .nc files in the directory
     files <- list.files(path=path,
-                        pattern="\\.nc$")
+                        pattern="\\.nc$",
+                        full.names=TRUE)
   }else{
     #make a vector of specified files
     files <- file
