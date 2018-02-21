@@ -14,8 +14,12 @@ Depends:
 Imports:
     sp,
     raster,
+    rgdal,
+    ncdf4,
     httr,
-	ncdf4
+    testthat,
+    tools,
+    utils
 License: AGPL-3
 LazyData: true
 ByteCompile: true
