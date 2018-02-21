@@ -22,21 +22,16 @@ test_that("pixel location download check",{
 test_that("tile download and format conversion checks",{
   
   # download the data
-  df = try(download_daymet_tiles(path = getwd(),
+  df = try(download_daymet_tiles(path = tempdir(),
                                  param = "tmin"))
   
   # check conversion to geotiff
-  df_tif = try(nc2tif(path = getwd(),
+  df_tif = try(nc2tif(path = tempdir(),
                       overwrite = TRUE))
   
   # see if any of the runs failed
   check = !inherits(df,"try-error") &
           !inherits(df_tif,"try-error")
-  
-  #remove test files
-  file.remove("tmin_1980_11207.nc",
-              "tmin_1980_11207.tif",
-              "tmin_1980_11207.tif.aux.xml")
   
   # check if no error occured
   expect_true(check)

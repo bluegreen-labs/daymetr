@@ -2,9 +2,9 @@
 % Please edit documentation in R/nc2tif.r
 \name{nc2tif}
 \alias{nc2tif}
-\title{Converts .nc files to .tif}
+\title{Converts .nc files in a given directory to .tif.}
 \usage{
-nc2tif(path = ".", file = FALSE, overwrite = FALSE)
+nc2tif(path = ".", file = NULL, overwrite = FALSE)
 }
 \arguments{
 \item{path}{a character string showing the path to the 
@@ -16,7 +16,7 @@ of one or more files to be converted (optional)}
 \item{overwrite}{a logical controlling whether all 
 files will be written, or whether files will not be 
 written in the event that there is already a .tif of 
-that file. (default = FALSE)}
+that file. (default = NULL)}
 }
 \value{
 Converted geotiff files of all netCDF data in the provided

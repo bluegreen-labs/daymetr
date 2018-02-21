@@ -11,7 +11,7 @@
 #' @param overwrite a logical controlling whether all 
 #' files will be written, or whether files will not be 
 #' written in the event that there is already a .tif of 
-#' that file. (default = FALSE)
+#' that file. (default = NULL)
 #' @return Converted geotiff files of all netCDF data in the provided
 #' directory (path).
 #' @keywords Daymet, climate data, gridded data, netCDF, conversion
@@ -30,10 +30,13 @@
 #'}
 
 nc2tif <- function(path = ".",
-                   file = FALSE,
-                   overwrite = FALSE){
+                    file = NULL,
+                    overwrite = FALSE){
+
+  #providing initial feedback
+  cat("nc2tif is working. Be patient, this may take a while...\n")
   
-  if(file == FALSE){
+  if(is.null(file)){
     #make a vector of all .nc files in the directory
     files <- list.files(path=path,
                         pattern="\\.nc$")
@@ -42,70 +45,46 @@ nc2tif <- function(path = ".",
     files <- file
   }
   
+  #removing written files from write list if overwrite=FALSE
+  if(!overwrite){
+    tifs <- list.files(path=path, pattern="\\.tif$")
+    files <- files[!tools::file_path_sans_ext(files) 
+                   %in% tools::file_path_sans_ext(tifs)]
+    cat("\nSkipping",length(tifs),"existing files.")
+  }else{
+    files <- files
+  }
+  
   #load ncdf for raster functions
   loadNamespace('ncdf4')
   
-  #make a vector of existing .tif files
-  tifs <- list.files(path=path,
-                     pattern="\\.tif$")
-  tifs <- tools::file_path_sans_ext(tifs)
+  #create progress tracker to provide feedback during writing
+  k <- 0
   
-  #begin looping through files vector
+  #begin looping through files
   for(i in files){
     
-    if (overwrite == FALSE){
-      
-      if(tools::file_path_sans_ext(i) %in% tifs == TRUE){
-        #skip writing .nc files where there is an existing .tif file
-        cat("Skipping ",tools::file_path_sans_ext(i),"\n",
-            "File already exists\n")
+    #modify progress count
+    k <- k+1
+    
+    #provide feedback
+    cat("\nWriting",tools::file_path_sans_ext(i),
+        "\nfile",k,"of",length(files),"\n")
+    
+    if(!any(grep(pattern="annttl|annavg",i))){
+      #if i is daily or monthly data use raster::brick
+      data <- raster::brick(i)
         
-      }else{
-        #else write the tif file
-        
-        if(any(grep(pattern="annttl|annavg",i)) == FALSE){
-          #if i is daily or monthly data use raster::brick
-          data <- raster::brick(i)
-          
-        }else{
-          #if i is annual summary data use raster::raster
-          data <- raster::raster(i)
-        }
-        
-        #provide feedback
-        cat("Writing",
-            tools::file_path_sans_ext(i),
-            ".tif\nBe patient, this may take a while\n")
-        
-        #write the file
-        raster::writeRaster(data,
-                            filename=tools::file_path_sans_ext(i),
-                            format="GTiff",
-                            overwrite=TRUE,
-                            progress="text")
-      }
     }else{
-      
-      if(any(grep(pattern="annttl|annavg",i)) == FALSE){
-        #if i is daily or monthly data use raster::brick
-        data <- raster::brick(i)
-        
-      }else{
-        #if i is annual summary data use raster::raster
-        data <- raster::raster(i)
-      }
-      
-      #provide feedback
-      cat("Writing",
-          tools::file_path_sans_ext(i),
-          ".tif\nBe patient, this may take a while\n")
-      
-      #write the file
-      raster::writeRaster(data,
-                          filename=tools::file_path_sans_ext(i),
-                          format="GTiff",
-                          overwrite=TRUE,
-                          progress="text")
+      #if i is annual summary data use raster::raster
+      data <- raster::raster(i)
     }
+
+    #write the file
+    raster::writeRaster(data,
+                        filename=tools::file_path_sans_ext(i),
+                        format="GTiff",
+                        overwrite=TRUE,
+                        progress="text")
   }
 }
