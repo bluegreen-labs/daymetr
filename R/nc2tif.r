@@ -1,4 +1,4 @@
-#' Converts .nc files to .tif
+#' Converts .nc files in a given directory to .tif.
 #' 
 #' Conversion to .tif may simplify workflows if the data
 #' that has been downloaded is to be handled in other
@@ -29,7 +29,9 @@
 #'  
 #'}
 
-nc2tif <- function(path = ".",file = FALSE, overwrite = FALSE){
+nc2tif <- function(path = ".",
+                   file = FALSE,
+                   overwrite = TRUE){
   
   if(file == FALSE){
     #make a vector of all .nc files in the directory
