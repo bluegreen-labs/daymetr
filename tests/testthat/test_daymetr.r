@@ -12,7 +12,7 @@ test_that("pixel location download check",{
   df = try(download_daymet(start = 1980,
                            end = 1980,
                            internal = TRUE,
-                           quiet = TRUE))
+                           silent = TRUE))
   
   # check if no error occured
   expect_true(!inherits(df,"try-error"))
