@@ -127,8 +127,6 @@ test_that("check offset routine",{
           !inherits(offset_check,"try-error") &
           inherits(offset_check_corrupt, "try-error") # no ! reversal
   
-  print(check)
-  
   # check if no error occured
   expect_true(check)
 })
