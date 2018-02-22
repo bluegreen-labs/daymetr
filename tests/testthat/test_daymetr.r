@@ -5,7 +5,8 @@
 # are still ok, and if overall the functions
 # don't act up.
 
-# standard pixel extraction test
+# standard pixel extraction test both single
+# location and batch processing
 test_that("pixel location download check",{
   
   # download the data
@@ -20,9 +21,30 @@ test_that("pixel location download check",{
                                  internal = TRUE,
                                  silent = TRUE))
   
+  # create demo locations
+  locations = data.frame(site = c("site1", "site2"),
+                         lat = rep(36.0133, 2),
+                         lon = rep(-84.2625, 2))
+  
+  # write csv to file
+  write.table(locations, paste0(tempdir(),"/locations.csv"),
+              sep = ",",
+              col.names = TRUE,
+              row.names = FALSE,
+              quote = FALSE)
+  
+  # download out of range data
+  df_batch = try(download_daymet_batch(file_location = paste0(tempdir(),
+                                                              "/locations.csv"),
+                                       start = 1980,
+                                       end = 1980,
+                                       internal = TRUE,
+                                       silent = TRUE))
+  
   # see if any of the runs failed
   check = !inherits(df,"try-error") &
-          inherits(df_range,"try-error")
+          inherits(df_range,"try-error") &
+          !inherits(df_batch, "try-error")
   
   # check if no error occured
   expect_true(check)
