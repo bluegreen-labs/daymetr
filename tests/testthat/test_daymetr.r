@@ -14,8 +14,18 @@ test_that("pixel location download check",{
                            internal = TRUE,
                            silent = TRUE))
   
+  # download out of range data
+  df_range = try(download_daymet(start = 1970,
+                                 end = 1980,
+                                 internal = TRUE,
+                                 silent = TRUE))
+  
+  # see if any of the runs failed
+  check = !inherits(df,"try-error") &
+          inherits(df_range,"try-error")
+  
   # check if no error occured
-  expect_true(!inherits(df,"try-error"))
+  expect_true(check)
 })
 
 # check single tile download and conversion to geotiff
@@ -41,13 +51,19 @@ test_that("tile download and format conversion checks",{
   
   # check conversion to geotiff of all
   # data types (daily, monthly, annual)
+  df_tif_overwrite = try(nc2tif(path = tempdir(),
+                                overwrite = TRUE))
+  
+  # check conversion to geotiff of all
+  # data types (daily, monthly, annual)
   df_tif = try(nc2tif(path = tempdir(),
-                      overwrite = TRUE))
+                      overwrite = FALSE))
   
   # see if any of the runs failed
-  check = !inherits(df,"try-error") &
-          !inherits(df_tif,"try-error")
-  
+  check = !inherits(df, "try-error") &
+          !inherits(df_tif, "try-error") &
+          !inherits(df_tif_overwrite, "try-error")
+
   # check if no error occured
   expect_true(check)
 })
@@ -77,6 +93,41 @@ test_that("freefrom gridded download (ncss) checks",{
   check = !inherits(df_daily,"try-error") &
           !inherits(df_monthly,"try-error") &
           !inherits(df_annual,"try-error")
+  
+  # check if no error occured
+  expect_true(check)
+})
+
+
+# grid offset routine
+test_that("check offset routine",{
+  
+  # download the data
+  df_daily = try(download_daymet_ncss(param = "tmin",
+                                      frequency = "daily",
+                                      path = tempdir(), 
+                                      start = 1981,
+                                      end = 1982,
+                                      silent = TRUE))
+  
+  # create a stack of the downloaded data
+  st = raster::stack(paste(tempdir(),
+                           c("tmin_daily_1981_ncss.nc",
+                             "tmin_daily_1982_ncss.nc"),
+                           sep = "/"))
+  
+  # correct offset
+  offset_check = try(daymet_grid_offset(st))
+  
+  # corrupted offset
+  offset_check_corrupt = try(daymet_grid_offset(raster::dropLayer(st, 1)))
+  
+  # see if any of the runs failed
+  check = !inherits(df_daily,"try-error") &
+          !inherits(offset_check,"try-error") &
+          inherits(offset_check_corrupt, "try-error") # no ! reversal
+  
+  print(check)
   
   # check if no error occured
   expect_true(check)
