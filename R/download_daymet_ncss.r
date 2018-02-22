@@ -133,7 +133,7 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
         "east" = location[4],
         "south" = location[3],
         "time_start" = paste0(start, "-01-01T12:00:00Z"),
-        "time_end" = paste0(end, "-12-30T12:00:00Z"),
+        "time_end" = paste0(end, "-12-31T12:00:00Z"),
         "timeStride" = 1,
         "accept" = "netcdf"
       )
