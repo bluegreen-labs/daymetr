@@ -4,13 +4,13 @@
 \alias{nc2tif}
 \title{Converts .nc files in a given directory to .tif.}
 \usage{
-nc2tif(path = ".", file = NULL, overwrite = FALSE, silent = FALSE)
+nc2tif(path = ".", files = NULL, overwrite = FALSE, silent = FALSE)
 }
 \arguments{
 \item{path}{a character string showing the path to the 
 directory containing Daymet .nc files}
 
-\item{file}{a character vector containing the name
+\item{files}{a character vector containing the name
 of one or more files to be converted (optional)}
 
 \item{overwrite}{a logical controlling whether all 
