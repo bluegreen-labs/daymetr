@@ -6,7 +6,7 @@
 #' 
 #' @param path a character string showing the path to the 
 #' directory containing Daymet .nc files
-#' @param file a character vector containing the name
+#' @param files a character vector containing the name
 #' of one or more files to be converted (optional)
 #' @param overwrite a logical controlling whether all 
 #' files will be written, or whether files will not be 
@@ -42,36 +42,38 @@
 #'}
 
 nc2tif <- function(path = ".",
-                   file = NULL,
+                   files = NULL,
                    overwrite = FALSE,
                    silent = FALSE){
 
   # providing initial feedback
   cat("nc2tif is working. Be patient, this may take a while...\n")
   
-  if(is.null(file)){
+  # if no file is provide read data
+  # from provided path
+  if(is.null(files)){
     # make a vector of all .nc files in the directory
     files <- list.files(path=path,
                         pattern="\\.nc$",
                         full.names=TRUE)
-  }else{
-    # make a vector of specified files
-    files <- file
   }
   
   # removing written files from write list if overwrite=FALSE
   if(!overwrite){
+    
+    # list all tif files
     tifs <- list.files(path=path,
                        pattern="\\.tif$",
                        full.names=TRUE)
+    
+    # remove all previously processed tif files
     files <- files[!tools::file_path_sans_ext(files) 
                    %in% tools::file_path_sans_ext(tifs)]
-    # feedback
+    
     if (!silent){
+      # list how many files were skipped
       cat("\nSkipping",length(tifs),"existing files.")
     }
-  }else{
-    files <- files
   }
   
   # create progress tracker to 
@@ -82,7 +84,7 @@ nc2tif <- function(path = ".",
   for(i in files){
     
     # modify progress count
-    k <- k+1
+    k <- k + 1
     
     if (!silent){
       # provide feedback
