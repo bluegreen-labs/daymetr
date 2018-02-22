@@ -15,6 +15,13 @@ test_that("pixel location download check",{
                            internal = TRUE,
                            silent = TRUE))
   
+  # download verbose and external
+  df_ext = try(download_daymet(start = 1980,
+                           end = 1980,
+                           internal = FALSE,
+                           path = tempdir(),
+                           silent = FALSE))
+  
   # download out of range data
   df_range = try(download_daymet(start = 1970,
                                  end = 1980,
@@ -43,12 +50,46 @@ test_that("pixel location download check",{
   
   # see if any of the runs failed
   check = !inherits(df,"try-error") &
+          !inherits(df,"try-error") &
           inherits(df_range,"try-error") &
-          !inherits(df_batch, "try-error")
+          !inherits(df_ext, "try-error")
+          
+  # check if no error occured
+  expect_true(check)
+})
+
+# bounding box tile downloads
+test_that("download tiles by bounding box",{
+  
+  # download out of range data
+  df_bbox = try(download_daymet_tiles(location = c(35.6737,
+                                                   -86.3968,
+                                                   35.6736,
+                                                   -86.3967),
+                                      start = 1980,
+                                      end = 1980,
+                                      param = "tmin",
+                                      path = tempdir(),
+                                      silent = TRUE))
+  
+  # download out of range data
+  df_bbox_corrupt = try(download_daymet_tiles(location = c(35.6737,
+                                                           -86.3968,
+                                                           35.6737),
+                                              start = 1980,
+                                              end = 1980,
+                                              param = "tmin",
+                                              path = tempdir(),
+                                              silent = TRUE))
+  
+  # see if any of the runs failed
+  check = !inherits(df_bbox,"try-error") &
+          inherits(df_bbox_corrupt,"try-error")
   
   # check if no error occured
   expect_true(check)
 })
+
 
 # check single tile download and conversion to geotiff
 test_that("tile download and format conversion checks",{
@@ -119,7 +160,6 @@ test_that("freefrom gridded download (ncss) checks",{
   # check if no error occured
   expect_true(check)
 })
-
 
 # grid offset routine
 test_that("check offset routine",{
