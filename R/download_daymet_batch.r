@@ -7,6 +7,7 @@
 #' @param end end of the range of years over which to download data
 #' @param internal assign or FALSE, load data into workspace or save to disc
 #' @param force TRUE or FALSE, override the conservative end year setting
+#' @param silent suppress the verbose output (default = FALSE)
 #' @return Daymet data for point locations as a nested list or
 #' data written to csv files
 #' @keywords DAYMET, climate data
@@ -28,7 +29,8 @@ download_daymet_batch <- function(file_location = NULL,
                                   start = 1980,
                                   end = as.numeric(format(Sys.time(), "%Y"))-1,
                                   internal = TRUE,
-                                  force = FALSE){
+                                  force = FALSE,
+                                  silent = FALSE){
 
   # check if the file exists
   if(!file.exists(file_location) || is.null(file_location)){
@@ -51,7 +53,8 @@ download_daymet_batch <- function(file_location = NULL,
       start = start,
       end = end,
       internal = internal,
-      force = force
+      force = force,
+      silent = silent
     ),
     silent = FALSE)
   })
