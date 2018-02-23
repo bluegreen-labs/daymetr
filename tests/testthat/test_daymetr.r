@@ -90,6 +90,11 @@ test_that("download tiles by bounding box",{
                                               path = tempdir(),
                                               silent = TRUE))
   
+  # verbose output for debugging Travis CI issues
+  print(df_bbox)
+  print(df_tile_nr)
+  print(df_bbox_corrupt)
+  
   # see if any of the runs failed
   check = !inherits(df_bbox, "try-error") &
           !inherits(df_tile_nr, "try-error") &
