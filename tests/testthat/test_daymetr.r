@@ -49,10 +49,10 @@ test_that("pixel location download check",{
                                        silent = TRUE))
   
   # see if any of the runs failed
-  check = !inherits(df,"try-error") &
-          !inherits(df,"try-error") &
+  check = !inherits(df, "try-error") &
           inherits(df_range,"try-error") &
-          !inherits(df_ext, "try-error")
+          !inherits(df_ext, "try-error") &
+          !inherits(df_batch, "try-error")
           
   # check if no error occured
   expect_true(check)
@@ -91,9 +91,9 @@ test_that("download tiles by bounding box",{
                                               silent = TRUE))
   
   # see if any of the runs failed
-  check = !inherits(df_bbox,"try-error") &
-          !inherits(df_tile_nr,"try-error") &
-          inherits(df_bbox_corrupt,"try-error")
+  check = !inherits(df_bbox, "try-error") &
+          !inherits(df_tile_nr, "try-error") &
+          inherits(df_bbox_corrupt, "try-error")
   
   # check if no error occured
   expect_true(check)
@@ -162,9 +162,9 @@ test_that("freefrom gridded download (ncss) checks",{
                                        silent = TRUE))
   
   # see if any of the runs failed
-  check = !inherits(df_daily,"try-error") &
-          !inherits(df_monthly,"try-error") &
-          !inherits(df_annual,"try-error")
+  check = !inherits(df_daily, "try-error") &
+          !inherits(df_monthly, "try-error") &
+          !inherits(df_annual, "try-error")
   
   # check if no error occured
   expect_true(check)
@@ -226,8 +226,8 @@ test_that("freefrom gridded download (ncss) checks",{
                                      year = 1980))
   
   # see if any of the runs failed
-  check = !inherits(tmean_ncss,"try-error") &
-    !inherits(tmean_tile,"try-error")
+  check = !inherits(tmean_ncss, "try-error") &
+          !inherits(tmean_tile, "try-error")
   
   # check if no error occured
   expect_true(check)
