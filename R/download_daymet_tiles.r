@@ -114,12 +114,14 @@ download_daymet_tiles = function(location = c(18.9103, -114.6109),
         # create filename for the output file
         daymet_file = paste0(path,"/",k,"_",i,"_",j,".nc")
         
-        # provide some feedback
-        cat(paste0('\nDownloading DAYMET data for tile: ',j,
-                  '; year: ',i,
-                  '; product: ',k,
-                  '\n'))
-        
+        # provide some feedback if required
+        if(!silent){
+          cat(paste0('\nDownloading DAYMET data for tile: ',j,
+                    '; year: ',i,
+                    '; product: ',k,
+                    '\n'))
+        }
+          
         # download data, force binary data mode
         if(silent){
           status = try(utils::capture.output(
