@@ -17,6 +17,13 @@ test_that("pixel location download check",{
                                path = tempdir(),
                                silent = FALSE))
   
+  # download verbose and external (not to tempdir())
+  df_ext_home = try(download_daymet(start = 1980,
+                               end = 1980,
+                               internal = FALSE,
+                               path = "~",
+                               silent = FALSE))
+  
   # download out of range data
   df_range = try(download_daymet(start = 1970,
                                  end = 1980,
@@ -45,9 +52,10 @@ test_that("pixel location download check",{
   
   # see if any of the runs failed
   check = !inherits(df, "try-error") &
-    inherits(df_range,"try-error") &
-    !inherits(df_ext, "try-error") &
-    !inherits(df_batch, "try-error")
+          inherits(df_range,"try-error") &
+          !inherits(df_ext, "try-error") &
+          !inherits(df_ext_home, "try-error") &
+          !inherits(df_batch, "try-error")
   
   # check if no error occured
   expect_true(check)
