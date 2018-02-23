@@ -15,7 +15,7 @@ test_that("download tiles by bounding box",{
                                       silent = FALSE))
   
   # download by tile number for all data
-  df_tile_nr = try(download_daymet_tiles(tiles = 9753,
+  df_tile = try(download_daymet_tiles(tiles = 9753,
                                          start = 1980,
                                          end = 1980,
                                          param = "ALL",
@@ -32,10 +32,14 @@ test_that("download tiles by bounding box",{
                                               path = tempdir(),
                                               silent = FALSE))
   
+  print(!inherits(df_bbox, "try-error"))
+  print(!inherits(df_tile, "try-error"))
+  print(inherits(df_bbox_corrupt, "try-error"))
+  
   # see if any of the runs failed
   check = !inherits(df_bbox, "try-error") &
-    !inherits(df_tile_nr, "try-error") &
-    inherits(df_bbox_corrupt, "try-error")
+          !inherits(df_tile, "try-error") &
+          inherits(df_bbox_corrupt, "try-error")
   
   # check if no error occured
   expect_true(check)
