@@ -30,6 +30,11 @@ test_that("pixel location download check",{
                                  internal = TRUE,
                                  silent = TRUE))
   
+  df_range_max = try(download_daymet(start = 1980,
+                                     end = 2100,
+                                     internal = TRUE,
+                                     silent = TRUE))
+  
   # create demo locations
   locations = data.frame(site = c("site1", "site2"),
                          lat = rep(36.0133, 2),
@@ -53,6 +58,7 @@ test_that("pixel location download check",{
   # see if any of the runs failed
   check = !inherits(df, "try-error") &
           inherits(df_range,"try-error") &
+          inherits(df_range_max,"try-error") &
           !inherits(df_ext, "try-error") &
           !inherits(df_ext_home, "try-error") &
           !inherits(df_batch, "try-error")
