@@ -88,9 +88,13 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
   year_range = seq(start, end, by = 1)
   
   # check the parameters we want to download in case of
-  # ALL list those
+  # ALL list all available parameters for each frequency
   if (any(grepl("ALL", toupper(param)))) {
-    param = c('vp','tmin','tmax','swe','srad','prcp','dayl')
+    if (tolower(frequency) == "daily"){
+      param = c('vp','tmin','tmax','swe','srad','prcp','dayl')
+    } else {
+      param = c('vp','tmin','tmax','prcp')
+    }
   }
 
   # provide some feedback
