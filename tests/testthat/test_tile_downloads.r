@@ -3,6 +3,14 @@
 # bounding box tile downloads
 test_that("download tiles by bounding box",{
   
+  # download by tile number for all data
+  df_tile = try(download_daymet_tiles(tiles = 9753,
+                                         start = 1980,
+                                         end = 1980,
+                                         param = "ALL",
+                                         path = tempdir(),
+                                         silent = TRUE))
+  
   # download out of range data
   df_bbox = try(download_daymet_tiles(location = c(18.9103,
                                                    -114.6109,
@@ -14,14 +22,6 @@ test_that("download tiles by bounding box",{
                                       path = tempdir(),
                                       silent = FALSE))
   
-  # download by tile number for all data
-  df_tile = try(download_daymet_tiles(tiles = 9753,
-                                         start = 1980,
-                                         end = 1980,
-                                         param = "ALL",
-                                         path = tempdir(),
-                                         silent = FALSE))
-  
   # download out of range data
   df_bbox_corrupt = try(download_daymet_tiles(location = c(18.9103,
                                                            -114.6109,
@@ -32,8 +32,9 @@ test_that("download tiles by bounding box",{
                                               path = tempdir(),
                                               silent = FALSE))
   
-  print(!inherits(df_bbox, "try-error"))
+  # feedback for debugging
   print(!inherits(df_tile, "try-error"))
+  print(!inherits(df_bbox, "try-error"))
   print(inherits(df_bbox_corrupt, "try-error"))
   
   # see if any of the runs failed

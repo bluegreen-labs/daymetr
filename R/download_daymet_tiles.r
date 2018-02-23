@@ -43,6 +43,7 @@ download_daymet_tiles = function(location = c(18.9103, -114.6109),
   # override tile selection if tiles are specified on the command line
   if (!is.null(tiles)){
     tile_selection = as.vector(unlist(tiles))
+    
   } else if ( length(location) == 2 ){
     
     # create coordinate pairs, with original coordinate  system
@@ -63,17 +64,21 @@ download_daymet_tiles = function(location = c(18.9103, -114.6109),
     # tiles object to deterrmine tiles to download
     rect_corners = cbind(c(location[2],rep(location[4],2),location[2]),
                          c(rep(location[3],2),rep(location[1],2)))
+    
     ROI = sp::SpatialPolygons(list(sp::Polygons(list(sp::Polygon(list(rect_corners))),"bb")),
                               proj4string = projection)
     
     # extract unique tiles overlapping the rectangular ROI
-    tile_selection = unique(sp::over(ROI,daymetr::tile_outlines, returnList = TRUE)[[1]]$TileID)
+    tile_selection = unique(sp::over(ROI,
+                                     daymetr::tile_outlines,
+                                     returnList = TRUE)[[1]]$TileID)
     
     # check tile selection
     if (is.null(tile_selection)){
       stop("Your defined range is outside DAYMET coverage,
                check your coordinate values!")
     }
+    
   } else {
     stop("check the coordinates: specifiy a single location,\n
              top-left bottom-right or provide a tile selection \n")
@@ -96,7 +101,7 @@ download_daymet_tiles = function(location = c(18.9103, -114.6109),
   }
   
   # if the year range is valid, create a string of valid years
-  year_range = seq(start,end,by=1)
+  year_range = seq(start, end, by=1)
 
   # check the parameters we want to download
   if (any(grepl("ALL", toupper(param)))) {
