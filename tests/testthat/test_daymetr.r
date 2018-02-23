@@ -62,20 +62,28 @@ test_that("pixel location download check",{
 test_that("download tiles by bounding box",{
   
   # download out of range data
-  df_bbox = try(download_daymet_tiles(location = c(35.6737,
-                                                   -86.3968,
-                                                   35.6736,
-                                                   -86.3967),
+  df_bbox = try(download_daymet_tiles(location = c(18.9103,
+                                                   -114.6109,
+                                                   18.6703,
+                                                   -114.2181),
                                       start = 1980,
                                       end = 1980,
                                       param = "tmin",
                                       path = tempdir(),
                                       silent = TRUE))
   
+  # download by tile number for all data
+  df_tile_nr = try(download_daymet_tiles(tiles = 9753,
+                                      start = 1980,
+                                      end = 1980,
+                                      param = "ALL",
+                                      path = tempdir(),
+                                      silent = TRUE))
+  
   # download out of range data
-  df_bbox_corrupt = try(download_daymet_tiles(location = c(35.6737,
-                                                           -86.3968,
-                                                           35.6737),
+  df_bbox_corrupt = try(download_daymet_tiles(location = c(18.9103,
+                                                           -114.6109,
+                                                           18.6703),
                                               start = 1980,
                                               end = 1980,
                                               param = "tmin",
@@ -84,6 +92,7 @@ test_that("download tiles by bounding box",{
   
   # see if any of the runs failed
   check = !inherits(df_bbox,"try-error") &
+          !inherits(df_tile_nr,"try-error") &
           inherits(df_bbox_corrupt,"try-error")
   
   # check if no error occured
@@ -213,7 +222,7 @@ test_that("freefrom gridded download (ncss) checks",{
                                 year = 1980))
 
   tmean_tile = try(daymet_grid_tmean(path = tempdir(),
-                                     product = 11207,
+                                     product = 9753,
                                      year = 1980))
   
   # see if any of the runs failed

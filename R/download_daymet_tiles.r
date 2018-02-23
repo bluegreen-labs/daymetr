@@ -19,13 +19,13 @@
 #' @examples
 #' 
 #' \dontrun{
-#' download_daymet_tiles(location = c(35.6737,-86.3968),
+#' download_daymet_tiles(location = c(18.9103, -114.6109),
 #'                       start = 1980,
 #'                       end = 1980,
 #'                       param = "ALL")
 #' }
 
-download_daymet_tiles = function(location = c(35.6737, -86.3968),
+download_daymet_tiles = function(location = c(18.9103, -114.6109),
                                  tiles = NULL,
                                  start = 1980,
                                  end = 1980,
