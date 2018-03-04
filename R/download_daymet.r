@@ -156,13 +156,6 @@ download_daymet = function(site = "Daymet",
     }
   }
 
-  # new download.file behaviour deletes files if they are empty 0 bytes
-  # so testing for the presence of the file works now
-  if (inherits(error,"try-error")){
-    stop("Your requested data is outside DAYMET (temporal) coverage,
-         the file is empty --> check coordinates and start/end years!")
-  }
-
   # feedback
   if (!silent) {
     cat('Done !\n')
