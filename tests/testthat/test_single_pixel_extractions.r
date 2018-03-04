@@ -54,7 +54,7 @@ test_that("pixel location download check",{
               row.names = FALSE,
               quote = FALSE)
   
-  # download out of range data
+  # download data
   df_batch = try(download_daymet_batch(file_location = paste0(tempdir(),
                                                               "/locations.csv"),
                                        start = 1980,
