@@ -41,7 +41,28 @@ location, as specified by a batch file.
 # in a structured list in an R variable. If FALSE, the data
 # is written to disk.
 
-download_daymet_batch(file_location = "yourlocations.csv")
+# create demo locations (two sites)
+locations = data.frame(site = c("site1", "site2"),
+                      lat = rep(36.0133, 2),
+                      lon = rep(-84.2625, 2))
+
+# write data to csv file
+write.table(locations, paste0(tempdir(),"/locations.csv"),
+           sep = ",",
+           col.names = TRUE,
+           row.names = FALSE,
+           quote = FALSE)
+
+# download data, will return nested list of daymet data
+df_batch = download_daymet_batch(file_location = paste0(tempdir(),
+                                                        "/locations.csv"),
+                                    start = 1980,
+                                    end = 1980,
+                                    internal = TRUE,
+                                    silent = TRUE)
+
+#' # For other practical examples consult the included
+# vignette. 
 }
 }
 \keyword{DAYMET,}

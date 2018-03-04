@@ -30,12 +30,14 @@
 #'
 #' # We can now quickly calculate and plot
 #' # daily mean temperature. Also, take note of
-#' # the weird format of the header. I do not
-#' # alter this format as to keep compatibility
-#' # with other ways of acquiring Daymet data.
+#' # the weird format of the header. This format 
+#' # is not altered as to keep compatibility
+#' # with other ways of acquiring Daymet data
+#' # through the ORNL DAAC website.
 #' 
-#' # list headers of the nested list
-#' # this includes information on the site
+#' # The below command lists headers of 
+#' # the downloaded nested list.
+#' # This data includes information on the site
 #' # location etc. The true climate data is stored
 #' # in the "data" part of the nested list.
 #' # In this case it can be accessed through
@@ -45,6 +47,7 @@
 #' str(daymet_data)
 #' 
 #' # load the tidyverse (install if necessary)
+#' if(!require(tidyverse)){install.package(tidyverse)}
 #' library(tidyverse)
 #' 
 #' # Calculate the mean temperature from min
@@ -60,6 +63,8 @@
 #'      xlab = "Date",
 #'      ylab = "mean temperature")
 #'  
+#' # For other practical examples consult the included
+#' # vignette. 
 #'}
 
 download_daymet = function(site = "Daymet",

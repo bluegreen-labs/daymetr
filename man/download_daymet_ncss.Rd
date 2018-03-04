@@ -50,12 +50,16 @@ Function to geographically subset 'Daymet' regions exceeding tile limits
 # To download larger areas use the download_daymet_tiles()
 # function.
 
-# Download a subset of a / multiple tiles.
+# Download a subset of a / multiple tiles
+# into your current working directory.
 download_daymet_ncss(location = c(34, -82, 33.75, -81.75),
                       start = 1980,
                       end = 1980,
                       param = "tmin",
-                      path = "a_directory")
+                      path = getwd())
+                      
+# For other practical examples consult the included
+# vignette. 
 }
 }
 \keyword{climate}

@@ -37,10 +37,14 @@ Function to batch download gridded 'Daymet' data tiles
 \examples{
 
 \dontrun{
+Download a single tile of minimum temperature
 download_daymet_tiles(location = c(18.9103, -114.6109),
                       start = 1980,
                       end = 1980,
-                      param = "ALL")
+                      param = "tmin")
+                      
+# For other practical examples consult the included
+# vignette. 
 }
 }
 \keyword{climate}
