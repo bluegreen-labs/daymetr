@@ -69,6 +69,14 @@ test_that("pixel location download check",{
                                        end = 1980,
                                        internal = TRUE,
                                        silent = TRUE))
+  
+  # download data
+  df_batch_error = try(download_daymet_batch(file_location = "error.csv",
+                                       start = 1980,
+                                       end = 1980,
+                                       internal = TRUE,
+                                       silent = TRUE))
+  
   # see if any of the runs failed
   check = !inherits(df, "try-error") &
           !inherits(df_force, "try-error") &
@@ -77,7 +85,8 @@ test_that("pixel location download check",{
           inherits(df_range_loc,"try-error") &
           !inherits(df_ext, "try-error") &
           !inherits(df_ext_home, "try-error") &
-          !inherits(df_batch, "try-error")
+          !inherits(df_batch, "try-error") &
+          inherits(df_batch_error, "try-error")
   
   # check if no error occured
   expect_true(check)
