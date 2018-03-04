@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 # load the library
 library(daymetr)
 library(ncdf4)
+library(raster)
+library(sp)
 
 # load tile outlines
 tile_outlines
