@@ -10,6 +10,14 @@ test_that("pixel location download check",{
                            internal = TRUE,
                            silent = TRUE))
   
+  # download the data, force out of range max_year
+  # but do not call it
+  df_force = try(download_daymet(start = 1980,
+                           end = 1980,
+                           internal = TRUE,
+                           silent = TRUE,
+                           force = TRUE))
+  
   # download verbose and external
   df_ext = try(download_daymet(start = 1980,
                                end = 1980,
@@ -63,6 +71,7 @@ test_that("pixel location download check",{
                                        silent = TRUE))
   # see if any of the runs failed
   check = !inherits(df, "try-error") &
+          !inherits(df_force, "try-error") &
           inherits(df_range,"try-error") &
           inherits(df_range_max,"try-error") &
           inherits(df_range_loc,"try-error") &
