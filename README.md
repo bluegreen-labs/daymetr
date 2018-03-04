@@ -70,10 +70,22 @@ download_daymet(site = "Oak Ridge National Laboratories",
 <td>internal</td>
 <td>logical, TRUE or FALSE, if true data is imported into R workspace otherwise it is downloaded into the current working directory</td>
 </tr>
+<tr class="odd">
+<td>path</td>
+<td>path where to store the data when not used internally, defaults to the current working directory</td>
+</tr>
+<tr class="even">
+<td>force</td>
+<td>force &quot;out of temporal range&quot; downloads</td>
+</tr>
+<tr class="odd">
+<td>silent</td>
+<td>suppress the verbose output</td>
+</tr>
 </tbody>
 </table>
 
-Batch mode uses similar parameters but you provide a comma separated file with site names and latitude longitude which are sequentially downloaded. The format of the comma separated file is as such: site name, latitude, longitude.
+Batch mode uses similar parameters but you provide a comma separated file with site names and latitude longitude which are sequentially downloaded. The format of the comma separated file is: site name, latitude, longitude.
 
 ``` r
 download_daymet_batch(file_location = 'my_sites.csv',
@@ -128,6 +140,14 @@ download_daymet_tiles(location = c(36.0133,-84.2625),
 <td>param</td>
 <td>climate variable you want to download vapour pressure (vp), minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), solar radiation (srad), precipitation (prcp) , day length (dayl). The default setting is ALL, this will download all the previously mentioned climate variables.</td>
 </tr>
+<tr class="even">
+<td>path</td>
+<td>path where to store the data when not used internally, defaults to the current working directory</td>
+</tr>
+<tr class="odd">
+<td>silent</td>
+<td>suppress the verbose output</td>
+</tr>
 </tbody>
 </table>
 
@@ -169,6 +189,14 @@ download_daymet_ncss(location = c(36.61,-85.37,33.57,-81.29),
 <tr class="even">
 <td>param</td>
 <td>climate variable you want to download vapour pressure (vp), minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), solar radiation (srad), precipitation (prcp) , day length (dayl). The default setting is ALL, this will download all the previously mentioned climate variables.</td>
+</tr>
+<tr class="odd">
+<td>path</td>
+<td>path where to store the data when not used internally, defaults to the current working directory</td>
+</tr>
+<tr class="even">
+<td>silent</td>
+<td>suppress the verbose output</td>
 </tr>
 </tbody>
 </table>
