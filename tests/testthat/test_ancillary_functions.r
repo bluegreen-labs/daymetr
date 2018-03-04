@@ -33,7 +33,7 @@ test_that("check offset routine",{
 })
 
 # check the calculation of a mean values
-test_that("freefrom gridded download (ncss) checks",{
+test_that("tmean grid checks",{
   
   # download the data
   try(download_daymet_ncss(param = c("tmin","tmax"),
@@ -55,9 +55,25 @@ test_that("freefrom gridded download (ncss) checks",{
                                      product = 9753,
                                      year = 1980))
   
+  tmean_no_year = try(daymet_grid_tmean(path = tempdir(),
+                                     product = 9753,
+                                     year = NULL))
+  
+  # remove one file of the temperature pair (tmin)
+  file.remove(list.files(tempdir(),
+                         "*tmin*",
+                         full.names = TRUE))
+  
+  # try to do a tmean composite again (will fail)
+  tmean_missing_data = try(daymet_grid_tmean(path = tempdir(),
+                                                  product = "monavg",
+                                                  year = 1980))
+  
   # see if any of the runs failed
   check = !inherits(tmean_ncss, "try-error") &
-    !inherits(tmean_tile, "try-error")
+          inherits(tmean_no_year,"try-error") &
+          inherits(tmean_missing_data,"try-error") &
+          !inherits(tmean_tile, "try-error")
   
   # check if no error occured
   expect_true(check)
