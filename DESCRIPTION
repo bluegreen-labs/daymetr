@@ -18,7 +18,6 @@ Imports:
     rgdal,
     ncdf4,
     httr,
-    testthat,
     tools,
     utils
 License: AGPL-3
@@ -27,5 +26,7 @@ ByteCompile: true
 RoxygenNote: 6.0.1
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    covr,
+    testthat
 VignetteBuilder: knitr
