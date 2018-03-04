@@ -78,7 +78,7 @@ download_daymet_tiles = function(location = c(18.9103, -114.6109),
                                      returnList = TRUE)[[1]]$TileID)
     
     # check tile selection
-    if (is.null(tile_selection)){
+    if (!length(tile_selection)){
       stop("Your defined range is outside DAYMET coverage,
                check your coordinate values!")
     }
