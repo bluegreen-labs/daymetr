@@ -51,6 +51,11 @@ test_that("tmean grid checks",{
                                      product = "monavg",
                                      year = 1980))
   
+  tmean_ncss_internal = try(daymet_grid_tmean(path = tempdir(),
+                                     product = "monavg",
+                                     year = 1980,
+                                     internal = TRUE))
+  
   tmean_tile = try(daymet_grid_tmean(path = tempdir(),
                                      product = 9753,
                                      year = 1980))
@@ -71,6 +76,7 @@ test_that("tmean grid checks",{
   
   # see if any of the runs failed
   check = !inherits(tmean_ncss, "try-error") &
+          !inherits(tmean_ncss_internal, "try-error") &
           inherits(tmean_no_year,"try-error") &
           inherits(tmean_missing_data,"try-error") &
           !inherits(tmean_tile, "try-error")
