@@ -5,7 +5,7 @@
 #' software (e.g. QGIS).
 #' 
 #' @param path a character string showing the path to the 
-#' directory containing Daymet .nc files
+#' directory containing Daymet .nc files (default = tempdir())
 #' @param files a character vector containing the name
 #' of one or more files to be converted (optional)
 #' @param overwrite a logical controlling whether all 
@@ -26,11 +26,11 @@
 #'  # files will be overwritten. If set to FALSE,
 #'  # files will not be overwritten.
 #'  
-#'    # download the data
-#'    download_daymet_ncss(param = "tmin",
-#'                         frequency = "annual",
-#'                         path = tempdir(),
-#'                         silent = TRUE))
+#'  # download the data
+#'  download_daymet_ncss(param = "tmin",
+#'                       frequency = "annual",
+#'                       path = tempdir(),
+#'                       silent = TRUE))
 #'  
 #'  # convert files from nc to tif
 #'  nc2tif(path = tempdir(),
@@ -41,11 +41,16 @@
 #'  
 #'}
 
-nc2tif <- function(path = ".",
+nc2tif <- function(path = tempdir(),
                    files = NULL,
                    overwrite = FALSE,
                    silent = FALSE){
 
+  # CRAN file policy
+  if (identical(path, tempdir())){
+    message("Using default path tempdir() ...")
+  }
+  
   # providing initial feedback
   cat("nc2tif is working. Be patient, this may take a while...\n")
   

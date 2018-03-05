@@ -5,8 +5,8 @@
 #' @param lon longitude (decimal degrees)
 #' @param start start of the range of years over which to download data
 #' @param end end of the range of years over which to download data
-#' @param path set path where to save the data if internal = FALSE, default is 
-#' the current working directory (default = ".")
+#' @param path set path where to save the data
+#' if internal = FALSE (default = NULL)
 #' @param internal \code{TRUE} or \code{FALSE}, if \code{TRUE} returns a list to the R workspace if
 #' \code{FALSE} puts the downloaded data into the current working directory
 #' (default = \code{FALSE})
@@ -72,11 +72,16 @@ download_daymet = function(site = "Daymet",
                             lon = -84.2625,
                             start = 2000,
                             end = as.numeric(format(Sys.time(), "%Y")) - 2,
-                            path = ".",
+                            path = tempdir(),
                             internal = TRUE,
                             silent = FALSE,
                             force = FALSE){
 
+  # CRAN file policy
+  if (identical(path, tempdir())){
+    message("NOTE: data is stored in tempdir() ...")
+  }
+  
   # define API url, might change so put it on top
   url = "https://daymet.ornl.gov/data/send/saveData"
   

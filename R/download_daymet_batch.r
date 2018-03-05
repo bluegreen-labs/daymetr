@@ -8,6 +8,8 @@
 #' @param internal assign or FALSE, load data into workspace or save to disc
 #' @param force TRUE or FALSE, override the conservative end year setting
 #' @param silent suppress the verbose output (default = FALSE)
+#' @param path set path where to save the data
+#' if internal = FALSE (default = tempdir())
 #' @return Daymet data for point locations as a nested list or
 #' data written to csv files
 #' @keywords DAYMET, climate data
@@ -51,8 +53,14 @@ download_daymet_batch <- function(file_location = NULL,
                                   end = as.numeric(format(Sys.time(), "%Y"))-1,
                                   internal = TRUE,
                                   force = FALSE,
-                                  silent = FALSE){
+                                  silent = FALSE,
+                                  path = tempdir()){
 
+  # CRAN file policy
+  if (identical(path, tempdir())){
+    message("NOTE: data is stored in tempdir() ...")
+  }
+  
   # check if the file exists
   if(!file.exists(file_location) || is.null(file_location)){
     stop("file not provided or does not exist, please check the file path!")
@@ -75,7 +83,8 @@ download_daymet_batch <- function(file_location = NULL,
       end = end,
       internal = internal,
       force = force,
-      silent = silent
+      silent = silent,
+      path = path
     ),
     silent = FALSE)
   })

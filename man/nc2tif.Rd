@@ -4,11 +4,12 @@
 \alias{nc2tif}
 \title{Converts .nc files in a given directory to .tif.}
 \usage{
-nc2tif(path = ".", files = NULL, overwrite = FALSE, silent = FALSE)
+nc2tif(path = tempdir(), files = NULL, overwrite = FALSE,
+  silent = FALSE)
 }
 \arguments{
 \item{path}{a character string showing the path to the 
-directory containing Daymet .nc files}
+directory containing Daymet .nc files (default = tempdir())}
 
 \item{files}{a character vector containing the name
 of one or more files to be converted (optional)}
@@ -38,11 +39,11 @@ software (e.g. QGIS).
  # files will be overwritten. If set to FALSE,
  # files will not be overwritten.
  
-   # download the data
-   download_daymet_ncss(param = "tmin",
-                        frequency = "annual",
-                        path = tempdir(),
-                        silent = TRUE))
+ # download the data
+ download_daymet_ncss(param = "tmin",
+                      frequency = "annual",
+                      path = tempdir(),
+                      silent = TRUE))
  
  # convert files from nc to tif
  nc2tif(path = tempdir(),

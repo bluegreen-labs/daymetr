@@ -5,8 +5,7 @@
 #' @param tiles which tiles to download, overrides geographic constraints
 #' @param start start of the range of years over which to download data
 #' @param end end of the range of years over which to download data
-#' @param path where should the downloaded tiles be stored, defaults to the
-#' current working directory (default = ".")
+#' @param path where should the downloaded tiles be stored (default = tempdir())
 #' @param param climate variable you want to download vapour pressure (vp), 
 #' minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), 
 #' solar radiation (srad), precipitation (prcp) , day length (dayl).
@@ -33,9 +32,14 @@ download_daymet_tiles = function(location = c(18.9103, -114.6109),
                                  tiles = NULL,
                                  start = 1980,
                                  end = 1980,
-                                 path = ".",
+                                 path = tempdir(),
                                  param = "ALL",
                                  silent = FALSE){
+  
+  # CRAN file policy
+  if (identical(path, tempdir())){
+    message("NOTE: data is stored in tempdir() ...")
+  }
   
   # set url path
   base_url = "https://thredds.daac.ornl.gov/thredds/fileServer/ornldaac/1328/tiles"

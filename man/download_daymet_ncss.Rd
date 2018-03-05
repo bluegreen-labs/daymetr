@@ -5,7 +5,7 @@
 \title{Function to geographically subset 'Daymet' regions exceeding tile limits}
 \usage{
 download_daymet_ncss(location = c(34, -82, 33.75, -81.75), start = 1980,
-  end = 1980, param = "tmin", frequency = "daily", path = ".",
+  end = 1980, param = "tmin", frequency = "daily", path = tempdir(),
   silent = FALSE)
 }
 \arguments{
@@ -25,7 +25,7 @@ climate variables.}
 \item{frequency}{frequency of the data requested (default = "daily", other
 options are "monthly" or "annual".}
 
-\item{path}{directory where to store the downloaded data (default = ".")}
+\item{path}{directory where to store the downloaded data (default = tempdir())}
 
 \item{silent}{suppress the verbose output}
 }
@@ -56,7 +56,7 @@ download_daymet_ncss(location = c(34, -82, 33.75, -81.75),
                       start = 1980,
                       end = 1980,
                       param = "tmin",
-                      path = getwd())
+                      path = tempdir())
                       
 # For other practical examples consult the included
 # vignette. 

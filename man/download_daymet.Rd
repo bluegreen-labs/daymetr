@@ -6,7 +6,7 @@
 \usage{
 download_daymet(site = "Daymet", lat = 36.0133, lon = -84.2625,
   start = 2000, end = as.numeric(format(Sys.time(), "\%Y")) - 2,
-  path = ".", internal = TRUE, silent = FALSE, force = FALSE)
+  path = tempdir(), internal = TRUE, silent = FALSE, force = FALSE)
 }
 \arguments{
 \item{site}{the site name.}
@@ -19,8 +19,8 @@ download_daymet(site = "Daymet", lat = 36.0133, lon = -84.2625,
 
 \item{end}{end of the range of years over which to download data}
 
-\item{path}{set path where to save the data if internal = FALSE, default is 
-the current working directory (default = ".")}
+\item{path}{set path where to save the data
+if internal = FALSE (default = NULL)}
 
 \item{internal}{\code{TRUE} or \code{FALSE}, if \code{TRUE} returns a list to the R workspace if
 \code{FALSE} puts the downloaded data into the current working directory

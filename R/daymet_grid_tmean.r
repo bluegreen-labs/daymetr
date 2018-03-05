@@ -3,7 +3,7 @@
 #' for easy post processing and modelling. Optionally a raster object
 #' is returned to the current workspace.
 #'
-#' @param path full path location of the daymet tiles
+#' @param path full path location of the daymet tiles (default = tempdir())
 #' @param product which tile to process
 #' @param year which year to process
 #' @param internal TRUE / FALSE (if FALSE, write the output to file)
@@ -23,22 +23,27 @@
 #'                       start = 1980,
 #'                       end = 1980,
 #'                       param = c("tmin","tmax"),
-#'                       path = "path_with_daymet_tiles")
+#'                       path = tempdir())
 #' 
 #' # calculate the mean temperature and export
 #' # the result to the R workspace (internal = TRUE)
 #' # If internal = FALSE, a file tmean_11935_1980.tif
 #' # is written into the source path (path_with_daymet_tiles)
-#' tmean = daymet_grid_tmean(path = "path_with_daymet_tiles",
+#' tmean = daymet_grid_tmean(path = tempdir(),
 #'                           tile = 11935,
 #'                           year = 1980,
 #'                           internal = TRUE)
 #' }
 
-daymet_grid_tmean = function(path ='.',
+daymet_grid_tmean = function(path = tempdir(),
                              product = NULL,
                              year = NULL,
                              internal = FALSE){
+  
+  # CRAN file policy
+  if (identical(path, tempdir())){
+    message("Using default path tempdir() ...")
+  }
   
   # exit on missing tile
   if ( is.null(product) | is.null(year) ) {
@@ -59,7 +64,7 @@ daymet_grid_tmean = function(path ='.',
   
   # check if both files exist, if not stop
   if(any(!file.exists(tmin) | !file.exists(tmax))){
-    stop('missing files ...')
+    stop('missing files, or non existing directory ...')
   }
   
   # load everything into a raster stack

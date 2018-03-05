@@ -7,7 +7,7 @@ location, as specified by a batch file.}
 \usage{
 download_daymet_batch(file_location = NULL, start = 1980,
   end = as.numeric(format(Sys.time(), "\%Y")) - 1, internal = TRUE,
-  force = FALSE, silent = FALSE)
+  force = FALSE, silent = FALSE, path = tempdir())
 }
 \arguments{
 \item{file_location}{file with several site locations and coordinates
@@ -22,6 +22,9 @@ in a comma delimited format: site, latitude, longitude}
 \item{force}{TRUE or FALSE, override the conservative end year setting}
 
 \item{silent}{suppress the verbose output (default = FALSE)}
+
+\item{path}{set path where to save the data
+if internal = FALSE (default = tempdir())}
 }
 \value{
 Daymet data for point locations as a nested list or

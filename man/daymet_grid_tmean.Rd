@@ -7,11 +7,11 @@ a single mean daily temperature (tmean) gridded output (geotiff)
 for easy post processing and modelling. Optionally a raster object
 is returned to the current workspace.}
 \usage{
-daymet_grid_tmean(path = ".", product = NULL, year = NULL,
+daymet_grid_tmean(path = tempdir(), product = NULL, year = NULL,
   internal = FALSE)
 }
 \arguments{
-\item{path}{full path location of the daymet tiles}
+\item{path}{full path location of the daymet tiles (default = tempdir())}
 
 \item{product}{which tile to process}
 
@@ -39,13 +39,13 @@ download_daymet_tiles(tiles = 11935,
                       start = 1980,
                       end = 1980,
                       param = c("tmin","tmax"),
-                      path = "path_with_daymet_tiles")
+                      path = tempdir())
 
 # calculate the mean temperature and export
 # the result to the R workspace (internal = TRUE)
 # If internal = FALSE, a file tmean_11935_1980.tif
 # is written into the source path (path_with_daymet_tiles)
-tmean = daymet_grid_tmean(path = "path_with_daymet_tiles",
+tmean = daymet_grid_tmean(path = tempdir(),
                           tile = 11935,
                           year = 1980,
                           internal = TRUE)

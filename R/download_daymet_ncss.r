@@ -11,7 +11,7 @@
 #' climate variables.
 #' @param frequency frequency of the data requested (default = "daily", other
 #' options are "monthly" or "annual".
-#' @param path directory where to store the downloaded data (default = ".")
+#' @param path directory where to store the downloaded data (default = tempdir())
 #' @param silent suppress the verbose output
 #' @return netCDF data file of an area circumscribed by the location bounding
 #' box
@@ -37,7 +37,7 @@
 #'                       start = 1980,
 #'                       end = 1980,
 #'                       param = "tmin",
-#'                       path = getwd())
+#'                       path = tempdir())
 #'                       
 #' # For other practical examples consult the included
 #' # vignette. 
@@ -48,8 +48,12 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
                                  end = 1980,
                                  param = "tmin",
                                  frequency = "daily",
-                                 path = ".",
+                                 path = tempdir(),
                                  silent = FALSE){
+  # CRAN file policy
+  if (identical(path, tempdir())){
+    message("NOTE: data is stored in tempdir() ...")
+  }
   
   # base url path
   base_url = "https://thredds.daac.ornl.gov/thredds/ncss/ornldaac"
