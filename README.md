@@ -10,12 +10,31 @@ A programmatic interface to the [Daymet web services](http://daymet.ornl.gov). A
 Installation
 ------------
 
-To install the toolbox in R run the following commands in a R terminal
+### stable release
+
+To install the current stable release use a CRAN repository:
 
 ``` r
-if(!require(devtools)){install.package(devtools)}
+install.packages("daymetr")
+library("daymetr")
+```
+
+### development release
+
+To install the development releases of the package run the following commands:
+
+``` r
+if(!require(devtools)){install.package("devtools")}
 devtools::install_github("khufkens/daymetr")
-library(daymetr)
+library("daymetr")
+```
+
+Vignettes are not rendered by default, if you want to include additional documentation please use:
+
+``` r
+if(!require(devtools)){install.package("devtools")}
+devtools::install_github("khufkens/daymetr", build_vignettes = TRUE)
+library("daymetr")
 ```
 
 Use
