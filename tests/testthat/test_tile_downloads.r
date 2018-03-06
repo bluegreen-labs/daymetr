@@ -9,7 +9,8 @@ test_that("download tiles by bounding box",{
                                          end = 1980,
                                          param = "ALL",
                                          path = tempdir(),
-                                         silent = FALSE))
+                                         silent = FALSE,
+                                         force = TRUE))
   
   df_min_year = try(download_daymet_tiles(tiles = 9753,
                                       start = 1970,

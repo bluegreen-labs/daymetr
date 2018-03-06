@@ -7,7 +7,8 @@ test_that("freefrom gridded download (ncss) checks",{
   df_daily = try(download_daymet_ncss(param = "tmin",
                                       frequency = "daily",
                                       path = tempdir(),
-                                      silent = TRUE))
+                                      silent = TRUE,
+                                      force = TRUE))
   
   # download monthly data, bad location
   df_monthly_loc = try(download_daymet_ncss(location = c(34, -82, 33.75),
