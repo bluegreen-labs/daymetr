@@ -28,7 +28,8 @@ if internal = FALSE (default = NULL)}
 
 \item{silent}{\code{TRUE} or \code{FALSE} (default), to provide verbose output}
 
-\item{force}{\code{TRUE} or \code{FALSE} (default), override the conservative end year setting}
+\item{force}{\code{TRUE} or \code{FALSE} (default),
+override the conservative end year setting}
 }
 \value{
 Daymet data for a point location, returned to the R workspace or

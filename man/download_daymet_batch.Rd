@@ -19,7 +19,8 @@ in a comma delimited format: site, latitude, longitude}
 
 \item{internal}{assign or FALSE, load data into workspace or save to disc}
 
-\item{force}{TRUE or FALSE, override the conservative end year setting}
+\item{force}{\code{TRUE} or \code{FALSE} (default),
+override the conservative end year setting}
 
 \item{silent}{suppress the verbose output (default = FALSE)}
 

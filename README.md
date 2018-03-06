@@ -64,7 +64,7 @@ download_daymet(site = "Oak Ridge National Laboratories",
 </tr>
 <tr class="odd">
 <td>end</td>
-<td>end year of the time series (current year - 2 years / for safety, tweak this check to reflect the currently available data)</td>
+<td>end year of the time series (current year - 2 years, use force = TRUE to override)</td>
 </tr>
 <tr class="even">
 <td>internal</td>
@@ -134,7 +134,7 @@ download_daymet_tiles(location = c(36.0133,-84.2625),
 </tr>
 <tr class="even">
 <td>end</td>
-<td>end year of the time series (current year - 2 years / for safety, tweak this check to reflect the currently available data)</td>
+<td>end year of the time series (current year - 2 years, use force = TRUE to override)</td>
 </tr>
 <tr class="odd">
 <td>param</td>
@@ -184,7 +184,7 @@ download_daymet_ncss(location = c(36.61,-85.37,33.57,-81.29),
 </tr>
 <tr class="odd">
 <td>end</td>
-<td>end year of the time series (current year - 2 years / for safety, tweak this check to reflect the currently available data)</td>
+<td>end year of the time series (current year - 2 years, use force = TRUE to override)</td>
 </tr>
 <tr class="even">
 <td>param</td>
@@ -206,7 +206,7 @@ Keep in mind that the bounding box is defined by the minimum (square) bounding b
 Reference
 ---------
 
-Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2018 [An integrated phenology modelling framework in R: Phenology modelling with phenor. Methods in Ecology & Evolution](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12970/full), 9:1-10.
+Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2018 [An integrated phenology modelling framework in R: Phenology modelling with phenor. Methods in Ecology & Evolution](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12970/full), 9: 1-10.
 
 Acknowledgements
 ----------------

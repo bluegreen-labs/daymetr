@@ -13,6 +13,8 @@
 #' options are "monthly" or "annual".
 #' @param path directory where to store the downloaded data (default = tempdir())
 #' @param silent suppress the verbose output
+#' @param force \code{TRUE} or \code{FALSE} (default),
+#' override the conservative end year setting
 #' @return netCDF data file of an area circumscribed by the location bounding
 #' box
 #' @keywords daymet, climate data
@@ -49,7 +51,8 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
                                  param = "tmin",
                                  frequency = "daily",
                                  path = tempdir(),
-                                 silent = FALSE){
+                                 silent = FALSE,
+                                 force = FALSE){
   # CRAN file policy
   if (identical(path, tempdir())){
     message("NOTE: data is stored in tempdir() ...")
@@ -76,9 +79,13 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
     stop("check coordinates format: top-left / bottom-right c(lat,lon,lat,lon)")
   }
   
-  # calculate the end of the range of years to download
-  # conservative setting based upon the current date - 1 year
-  max_year = as.numeric(format(Sys.time(), "%Y")) - 1
+  # force the max year to be the current year or
+  # current year - 1 (conservative)
+  if (!force){
+    max_year = as.numeric(format(Sys.time(), "%Y")) - 1
+  } else {
+    max_year = as.numeric(format(Sys.time(), "%Y"))
+  }
   
   # check validaty of the range of years to download
   # I'm not sure when new data is released so this might be a

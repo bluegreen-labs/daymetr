@@ -6,7 +6,7 @@
 \usage{
 download_daymet_ncss(location = c(34, -82, 33.75, -81.75), start = 1980,
   end = 1980, param = "tmin", frequency = "daily", path = tempdir(),
-  silent = FALSE)
+  silent = FALSE, force = FALSE)
 }
 \arguments{
 \item{location}{location of a bounding box c(lat, lon, lat, lon) defined
@@ -28,6 +28,9 @@ options are "monthly" or "annual".}
 \item{path}{directory where to store the downloaded data (default = tempdir())}
 
 \item{silent}{suppress the verbose output}
+
+\item{force}{\code{TRUE} or \code{FALSE} (default),
+override the conservative end year setting}
 }
 \value{
 netCDF data file of an area circumscribed by the location bounding

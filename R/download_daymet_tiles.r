@@ -12,6 +12,8 @@
 #' The default setting is ALL, this will download all the previously mentioned
 #' climate variables.
 #' @param silent suppress the verbose output
+#' @param force \code{TRUE} or \code{FALSE} (default),
+#' override the conservative end year setting
 #' @return downloads netCDF tiles as defined by the Daymet tile grid
 #' @keywords daymet, climate data
 #' @export
@@ -34,7 +36,8 @@ download_daymet_tiles = function(location = c(18.9103, -114.6109),
                                  end = 1980,
                                  path = tempdir(),
                                  param = "ALL",
-                                 silent = FALSE){
+                                 silent = FALSE,
+                                 force = FALSE){
   
   # CRAN file policy
   if (identical(path, tempdir())){
@@ -92,9 +95,13 @@ download_daymet_tiles = function(location = c(18.9103, -114.6109),
              top-left bottom-right or provide a tile selection \n")
   }
   
-  # calculate the end of the range of years to download
-  # conservative setting based upon the current date - 1 year
-  max_year = as.numeric(format(Sys.time(), "%Y")) - 1
+  # force the max year to be the current year or
+  # current year - 1 (conservative)
+  if (!force){
+    max_year = as.numeric(format(Sys.time(), "%Y")) - 1
+  } else {
+    max_year = as.numeric(format(Sys.time(), "%Y"))
+  }
   
   # check validaty of the range of years to download
   # I'm not sure when new data is released so this might be a

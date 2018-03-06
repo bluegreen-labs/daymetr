@@ -6,7 +6,8 @@
 #' @param start start of the range of years over which to download data
 #' @param end end of the range of years over which to download data
 #' @param internal assign or FALSE, load data into workspace or save to disc
-#' @param force TRUE or FALSE, override the conservative end year setting
+#' @param force \code{TRUE} or \code{FALSE} (default),
+#' override the conservative end year setting
 #' @param silent suppress the verbose output (default = FALSE)
 #' @param path set path where to save the data
 #' if internal = FALSE (default = tempdir())

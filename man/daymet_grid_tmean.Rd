@@ -17,7 +17,8 @@ daymet_grid_tmean(path = tempdir(), product = NULL, year = NULL,
 
 \item{year}{which year to process}
 
-\item{internal}{TRUE / FALSE (if FALSE, write the output to file)
+\item{internal}{\code{TRUE} / \code{FALSE} (if \code{FALSE},
+write the output to file)
 using the Daymet file format protocol.}
 }
 \description{

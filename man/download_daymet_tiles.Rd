@@ -6,7 +6,7 @@
 \usage{
 download_daymet_tiles(location = c(18.9103, -114.6109), tiles = NULL,
   start = 1980, end = 1980, path = tempdir(), param = "ALL",
-  silent = FALSE)
+  silent = FALSE, force = FALSE)
 }
 \arguments{
 \item{location}{location of a point c(lat, lon) or a bounding box defined
@@ -27,6 +27,9 @@ The default setting is ALL, this will download all the previously mentioned
 climate variables.}
 
 \item{silent}{suppress the verbose output}
+
+\item{force}{\code{TRUE} or \code{FALSE} (default),
+override the conservative end year setting}
 }
 \value{
 downloads netCDF tiles as defined by the Daymet tile grid

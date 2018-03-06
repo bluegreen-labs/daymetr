@@ -11,7 +11,8 @@
 #' \code{FALSE} puts the downloaded data into the current working directory
 #' (default = \code{FALSE})
 #' @param silent \code{TRUE} or \code{FALSE} (default), to provide verbose output
-#' @param force \code{TRUE} or \code{FALSE} (default), override the conservative end year setting
+#' @param force \code{TRUE} or \code{FALSE} (default),
+#' override the conservative end year setting
 #' @return Daymet data for a point location, returned to the R workspace or
 #' written to disk as a csv file.
 #' @keywords Daymet, climate data, single pixel

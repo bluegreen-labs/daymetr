@@ -50,7 +50,7 @@ site	      | site name
 lat           | latitude of the site
 lon           | longitude of the site
 start      | start year of the time series (data start in 1980)
-end        | end year of the time series (current year - 2 years / for safety, tweak this check to reflect the currently available data)
+end        | end year of the time series (current year - 2 years, use force = TRUE to override)
 internal      | logical, TRUE or FALSE, if true data is imported into R workspace otherwise it is downloaded into the current working directory
 path | path where to store the data when not used internally, defaults to the current working directory
 force | force "out of temporal range" downloads
@@ -84,7 +84,7 @@ Parameter     | Description
 location	      | vector with a point location c(lat,lon) or top left / bottom right pair c(lat,lon,lat,lon)
 tiles          | vector with tile numbers if location point or top left / bottom right pair is not provided
 start      | start year of the time series (data start in 1980)
-end        | end year of the time series (current year - 2 years / for safety, tweak this check to reflect the currently available data)
+end        | end year of the time series (current year - 2 years, use force = TRUE to override)
 param         | climate variable you want to download vapour pressure (vp), minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), solar radiation (srad), precipitation (prcp) , day length (dayl). The default setting is ALL, this will download all the previously mentioned climate variables.
 path | path where to store the data when not used internally, defaults to the current working directory
 silent | suppress the verbose output
@@ -104,7 +104,7 @@ Parameter     | Description
 ------------- | ------------------------------ 	
 location	      | bounding box extent defined as top left / bottom right pair c(lat,lon,lat,lon)
 start      | start year of the time series (data start in 1980)
-end        | end year of the time series (current year - 2 years / for safety, tweak this check to reflect the currently available data)
+end        | end year of the time series (current year - 2 years, use force = TRUE to override)
 param         | climate variable you want to download vapour pressure (vp), minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), solar radiation (srad), precipitation (prcp) , day length (dayl). The default setting is ALL, this will download all the previously mentioned climate variables.
 path | path where to store the data when not used internally, defaults to the current working directory
 silent | suppress the verbose output
@@ -114,7 +114,7 @@ Keep in mind that the bounding box is defined by the minimum (square) bounding b
 
 ## Reference
 
-Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2018 [An integrated phenology modelling framework in R: Phenology modelling with phenor. Methods in Ecology & Evolution](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12970/full), 9:1-10.
+Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2018 [An integrated phenology modelling framework in R: Phenology modelling with phenor. Methods in Ecology & Evolution](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12970/full), 9: 1-10.
 
 ## Acknowledgements
 
