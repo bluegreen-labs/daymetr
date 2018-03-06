@@ -6,7 +6,8 @@
 #' @param path full path location of the daymet tiles (default = tempdir())
 #' @param product which tile to process
 #' @param year which year to process
-#' @param internal TRUE / FALSE (if FALSE, write the output to file)
+#' @param internal \code{TRUE} / \code{FALSE} (if \code{FALSE},
+#' write the output to file)
 #' using the Daymet file format protocol.
 #' @keywords modelling, mean daily temperature
 #' @export
