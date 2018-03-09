@@ -56,11 +56,6 @@ download_daymet_batch <- function(file_location = NULL,
                                   force = FALSE,
                                   silent = FALSE,
                                   path = tempdir()){
-
-  # CRAN file policy
-  if (identical(path, tempdir())){
-    message("NOTE: data is stored in tempdir() ...")
-  }
   
   # check if the file exists
   if(!file.exists(file_location) || is.null(file_location)){
@@ -68,7 +63,7 @@ download_daymet_batch <- function(file_location = NULL,
   }
   
   # read table with sites and coordinates
-  locations = utils::read.table(file_location, sep=',')
+  locations = utils::read.table(file_location, sep = ',')
 
   # loop over all lines in the file return
   # nested list
