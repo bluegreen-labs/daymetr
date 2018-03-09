@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
 
 [![Build Status](https://travis-ci.org/khufkens/daymetr.svg?branch=master)](https://travis-ci.org/khufkens/daymetr)
 [![codecov](https://codecov.io/gh/khufkens/daymetr/branch/master/graph/badge.svg)](https://codecov.io/gh/khufkens/daymetr)
+[![](http://cranlogs.r-pkg.org/badges/daymetr)](http://cran.rstudio.com/web/packages/daymetr/index.html)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.437886.svg)](https://doi.org/10.5281/zenodo.437886)
 
 # daymetr
