@@ -79,7 +79,7 @@ download_daymet = function(site = "Daymet",
                             force = FALSE){
 
   # CRAN file policy
-  if (identical(path, tempdir())){
+  if (!silent & !internal & identical(path, tempdir())){
     message("NOTE: data is stored in tempdir() ...")
   }
   
@@ -224,10 +224,6 @@ download_daymet = function(site = "Daymet",
         file.remove(daymet_tmp_file)
       } else {
         message("Output path == tempdir(), file not copied or removed!")
-      }
-      # some feedback
-      if (!silent) {
-        cat('File written to disk !\n')
       }
     }
 }
