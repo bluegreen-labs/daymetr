@@ -91,7 +91,7 @@ download_daymet(site = "Oak Ridge National Laboratories",
 </tr>
 <tr class="odd">
 <td>path</td>
-<td>path where to store the data when not used internally, defaults to the current working directory</td>
+<td>path where to store the data when not used internally, defaults to tempdir()</td>
 </tr>
 <tr class="even">
 <td>force</td>
@@ -161,7 +161,7 @@ download_daymet_tiles(location = c(36.0133,-84.2625),
 </tr>
 <tr class="even">
 <td>path</td>
-<td>path where to store the data when not used internally, defaults to the current working directory</td>
+<td>path where to store the data, defaults to tempdir()</td>
 </tr>
 <tr class="odd">
 <td>silent</td>
@@ -211,7 +211,7 @@ download_daymet_ncss(location = c(36.61,-85.37,33.57,-81.29),
 </tr>
 <tr class="odd">
 <td>path</td>
-<td>path where to store the data when not used internally, defaults to the current working directory</td>
+<td>path where to store the data, defaults to tempdir()</td>
 </tr>
 <tr class="even">
 <td>silent</td>
