@@ -6,7 +6,7 @@
 \usage{
 download_daymet(site = "Daymet", lat = 36.0133, lon = -84.2625,
   start = 2000, end = as.numeric(format(Sys.time(), "\%Y")) - 2,
-  path = ".", internal = TRUE, quiet = FALSE, force = FALSE)
+  path = tempdir(), internal = TRUE, silent = FALSE, force = FALSE)
 }
 \arguments{
 \item{site}{the site name.}
@@ -19,16 +19,17 @@ download_daymet(site = "Daymet", lat = 36.0133, lon = -84.2625,
 
 \item{end}{end of the range of years over which to download data}
 
-\item{path}{set path where to save the data if internal = FALSE, default is 
-the current working directory (default = ".")}
+\item{path}{set path where to save the data
+if internal = FALSE (default = NULL)}
 
 \item{internal}{\code{TRUE} or \code{FALSE}, if \code{TRUE} returns a list to the R workspace if
 \code{FALSE} puts the downloaded data into the current working directory
 (default = \code{FALSE})}
 
-\item{quiet}{\code{TRUE} or \code{FALSE} (default), to provide verbose output}
+\item{silent}{\code{TRUE} or \code{FALSE} (default), to provide verbose output}
 
-\item{force}{\code{TRUE} or \code{FALSE} (default), override the conservative end year setting}
+\item{force}{\code{TRUE} or \code{FALSE} (default),
+override the conservative end year setting}
 }
 \value{
 Daymet data for a point location, returned to the R workspace or
@@ -51,12 +52,14 @@ daymet_data <- download_daymet("testsite_name",
 
 # We can now quickly calculate and plot
 # daily mean temperature. Also, take note of
-# the weird format of the header. I do not
-# alter this format as to keep compatibility
-# with other ways of acquiring Daymet data.
+# the weird format of the header. This format 
+# is not altered as to keep compatibility
+# with other ways of acquiring Daymet data
+# through the ORNL DAAC website.
 
-# list headers of the nested list
-# this includes information on the site
+# The below command lists headers of 
+# the downloaded nested list.
+# This data includes information on the site
 # location etc. The true climate data is stored
 # in the "data" part of the nested list.
 # In this case it can be accessed through
@@ -66,6 +69,7 @@ daymet_data <- download_daymet("testsite_name",
 str(daymet_data)
 
 # load the tidyverse (install if necessary)
+if(!require(tidyverse)){install.package(tidyverse)}
 library(tidyverse)
 
 # Calculate the mean temperature from min
@@ -81,6 +85,8 @@ plot(daymet_data$data$date,
      xlab = "Date",
      ylab = "mean temperature")
  
+# For other practical examples consult the included
+# vignette. 
 }
 }
 \keyword{Daymet,}

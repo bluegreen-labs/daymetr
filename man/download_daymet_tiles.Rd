@@ -4,8 +4,9 @@
 \alias{download_daymet_tiles}
 \title{Function to batch download gridded 'Daymet' data tiles}
 \usage{
-download_daymet_tiles(location = c(35.6737, -86.3968), tiles = NULL,
-  start = 1980, end = 1980, path = ".", param = "ALL", silent = FALSE)
+download_daymet_tiles(location = c(18.9103, -114.6109), tiles = NULL,
+  start = 1980, end = 1980, path = tempdir(), param = "ALL",
+  silent = FALSE, force = FALSE)
 }
 \arguments{
 \item{location}{location of a point c(lat, lon) or a bounding box defined
@@ -17,8 +18,7 @@ by a top left and bottom-right coordinates c(lat, lon, lat, lon)}
 
 \item{end}{end of the range of years over which to download data}
 
-\item{path}{where should the downloaded tiles be stored, defaults to the
-current working directory (default = ".")}
+\item{path}{where should the downloaded tiles be stored (default = tempdir())}
 
 \item{param}{climate variable you want to download vapour pressure (vp), 
 minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), 
@@ -27,6 +27,9 @@ The default setting is ALL, this will download all the previously mentioned
 climate variables.}
 
 \item{silent}{suppress the verbose output}
+
+\item{force}{\code{TRUE} or \code{FALSE} (default),
+override the conservative end year setting}
 }
 \value{
 downloads netCDF tiles as defined by the Daymet tile grid
@@ -37,10 +40,14 @@ Function to batch download gridded 'Daymet' data tiles
 \examples{
 
 \dontrun{
-download_daymet_tiles(location = c(35.6737,-86.3968),
+Download a single tile of minimum temperature
+download_daymet_tiles(location = c(18.9103, -114.6109),
                       start = 1980,
                       end = 1980,
-                      param = "ALL")
+                      param = "tmin")
+                      
+# For other practical examples consult the included
+# vignette. 
 }
 }
 \keyword{climate}

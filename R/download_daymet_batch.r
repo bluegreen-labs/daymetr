@@ -6,7 +6,11 @@
 #' @param start start of the range of years over which to download data
 #' @param end end of the range of years over which to download data
 #' @param internal assign or FALSE, load data into workspace or save to disc
-#' @param force TRUE or FALSE, override the conservative end year setting
+#' @param force \code{TRUE} or \code{FALSE} (default),
+#' override the conservative end year setting
+#' @param silent suppress the verbose output (default = FALSE)
+#' @param path set path where to save the data
+#' if internal = FALSE (default = tempdir())
 #' @return Daymet data for point locations as a nested list or
 #' data written to csv files
 #' @keywords DAYMET, climate data
@@ -21,22 +25,45 @@
 #' # in a structured list in an R variable. If FALSE, the data
 #' # is written to disk.
 #' 
-#' download_daymet_batch(file_location = "yourlocations.csv")
+#' # create demo locations (two sites)
+#' locations = data.frame(site = c("site1", "site2"),
+#'                       lat = rep(36.0133, 2),
+#'                       lon = rep(-84.2625, 2))
+#'
+#' # write data to csv file
+#' write.table(locations, paste0(tempdir(),"/locations.csv"),
+#'            sep = ",",
+#'            col.names = TRUE,
+#'            row.names = FALSE,
+#'            quote = FALSE)
+#'
+#' # download data, will return nested list of daymet data
+#' df_batch = download_daymet_batch(file_location = paste0(tempdir(),
+#'                                                         "/locations.csv"),
+#'                                     start = 1980,
+#'                                     end = 1980,
+#'                                     internal = TRUE,
+#'                                     silent = TRUE)
+#' 
+#' #' # For other practical examples consult the included
+#' # vignette. 
 #' }
 
 download_daymet_batch <- function(file_location = NULL,
                                   start = 1980,
                                   end = as.numeric(format(Sys.time(), "%Y"))-1,
                                   internal = TRUE,
-                                  force = FALSE){
-
+                                  force = FALSE,
+                                  silent = FALSE,
+                                  path = tempdir()){
+  
   # check if the file exists
   if(!file.exists(file_location) || is.null(file_location)){
     stop("file not provided or does not exist, please check the file path!")
   }
   
   # read table with sites and coordinates
-  locations = utils::read.table(file_location, sep=',')
+  locations = utils::read.table(file_location, sep = ',')
 
   # loop over all lines in the file return
   # nested list
@@ -51,7 +78,9 @@ download_daymet_batch <- function(file_location = NULL,
       start = start,
       end = end,
       internal = internal,
-      force = force
+      force = force,
+      silent = silent,
+      path = path
     ),
     silent = FALSE)
   })

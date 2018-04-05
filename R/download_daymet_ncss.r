@@ -11,8 +11,10 @@
 #' climate variables.
 #' @param frequency frequency of the data requested (default = "daily", other
 #' options are "monthly" or "annual".
-#' @param path directory where to store the downloaded data (default = ".")
+#' @param path directory where to store the downloaded data (default = tempdir())
 #' @param silent suppress the verbose output
+#' @param force \code{TRUE} or \code{FALSE} (default),
+#' override the conservative end year setting
 #' @return netCDF data file of an area circumscribed by the location bounding
 #' box
 #' @keywords daymet, climate data
@@ -31,12 +33,16 @@
 #' # To download larger areas use the download_daymet_tiles()
 #' # function.
 #' 
-#' # Download a subset of a / multiple tiles.
+#' # Download a subset of a / multiple tiles
+#' # into your current working directory.
 #' download_daymet_ncss(location = c(34, -82, 33.75, -81.75),
 #'                       start = 1980,
 #'                       end = 1980,
 #'                       param = "tmin",
-#'                       path = "a_directory")
+#'                       path = tempdir())
+#'                       
+#' # For other practical examples consult the included
+#' # vignette. 
 #' }
 
 download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
@@ -44,8 +50,13 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
                                  end = 1980,
                                  param = "tmin",
                                  frequency = "daily",
-                                 path = ".",
-                                 silent = FALSE){
+                                 path = tempdir(),
+                                 silent = FALSE,
+                                 force = FALSE){
+  # CRAN file policy
+  if (identical(path, tempdir())){
+    message("NOTE: data is stored in tempdir() ...")
+  }
   
   # base url path
   base_url = "https://thredds.daac.ornl.gov/thredds/ncss/ornldaac"
@@ -68,9 +79,13 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
     stop("check coordinates format: top-left / bottom-right c(lat,lon,lat,lon)")
   }
   
-  # calculate the end of the range of years to download
-  # conservative setting based upon the current date - 1 year
-  max_year = as.numeric(format(Sys.time(), "%Y")) - 1
+  # force the max year to be the current year or
+  # current year - 1 (conservative)
+  if (!force){
+    max_year = as.numeric(format(Sys.time(), "%Y")) - 1
+  } else {
+    max_year = as.numeric(format(Sys.time(), "%Y"))
+  }
   
   # check validaty of the range of years to download
   # I'm not sure when new data is released so this might be a
@@ -88,9 +103,13 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
   year_range = seq(start, end, by = 1)
   
   # check the parameters we want to download in case of
-  # ALL list those
+  # ALL list all available parameters for each frequency
   if (any(grepl("ALL", toupper(param)))) {
-    param = c('vp','tmin','tmax','swe','srad','prcp','dayl')
+    if (tolower(frequency) == "daily"){
+      param = c('vp','tmin','tmax','swe','srad','prcp','dayl')
+    } else {
+      param = c('vp','tmin','tmax','prcp')
+    }
   }
 
   # provide some feedback
@@ -133,7 +152,7 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
         "east" = location[4],
         "south" = location[3],
         "time_start" = paste0(start, "-01-01T12:00:00Z"),
-        "time_end" = paste0(end, "-12-30T12:00:00Z"),
+        "time_end" = paste0(end, "-12-31T12:00:00Z"),
         "timeStride" = 1,
         "accept" = "netcdf"
       )

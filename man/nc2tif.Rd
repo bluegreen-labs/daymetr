@@ -4,19 +4,22 @@
 \alias{nc2tif}
 \title{Converts .nc files in a given directory to .tif.}
 \usage{
-nc2tif(path = ".", file = NULL, overwrite = FALSE)
+nc2tif(path = tempdir(), files = NULL, overwrite = FALSE,
+  silent = FALSE)
 }
 \arguments{
 \item{path}{a character string showing the path to the 
-directory containing Daymet .nc files}
+directory containing Daymet .nc files (default = tempdir())}
 
-\item{file}{a character vector containing the name
+\item{files}{a character vector containing the name
 of one or more files to be converted (optional)}
 
 \item{overwrite}{a logical controlling whether all 
 files will be written, or whether files will not be 
 written in the event that there is already a .tif of 
 that file. (default = NULL)}
+
+\item{silent}{limit verbose output (default = FALSE)}
 }
 \value{
 Converted geotiff files of all netCDF data in the provided
@@ -35,8 +38,19 @@ software (e.g. QGIS).
  # the provided path to geotiff files. Existing
  # files will be overwritten. If set to FALSE,
  # files will not be overwritten.
- nc2tif(path = "path_with_daymet_netcdf_files",
+ 
+ # download the data
+ download_daymet_ncss(param = "tmin",
+                      frequency = "annual",
+                      path = tempdir(),
+                      silent = TRUE))
+ 
+ # convert files from nc to tif
+ nc2tif(path = tempdir(),
  overwrite = TRUE)
+ 
+ # print converted files
+ print(list.files(tempdir(), "*.tif"))
  
 }
 }

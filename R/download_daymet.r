@@ -5,13 +5,14 @@
 #' @param lon longitude (decimal degrees)
 #' @param start start of the range of years over which to download data
 #' @param end end of the range of years over which to download data
-#' @param path set path where to save the data if internal = FALSE, default is 
-#' the current working directory (default = ".")
+#' @param path set path where to save the data
+#' if internal = FALSE (default = NULL)
 #' @param internal \code{TRUE} or \code{FALSE}, if \code{TRUE} returns a list to the R workspace if
 #' \code{FALSE} puts the downloaded data into the current working directory
 #' (default = \code{FALSE})
-#' @param quiet \code{TRUE} or \code{FALSE} (default), to provide verbose output
-#' @param force \code{TRUE} or \code{FALSE} (default), override the conservative end year setting
+#' @param silent \code{TRUE} or \code{FALSE} (default), to provide verbose output
+#' @param force \code{TRUE} or \code{FALSE} (default),
+#' override the conservative end year setting
 #' @return Daymet data for a point location, returned to the R workspace or
 #' written to disk as a csv file.
 #' @keywords Daymet, climate data, single pixel
@@ -30,12 +31,14 @@
 #'
 #' # We can now quickly calculate and plot
 #' # daily mean temperature. Also, take note of
-#' # the weird format of the header. I do not
-#' # alter this format as to keep compatibility
-#' # with other ways of acquiring Daymet data.
+#' # the weird format of the header. This format 
+#' # is not altered as to keep compatibility
+#' # with other ways of acquiring Daymet data
+#' # through the ORNL DAAC website.
 #' 
-#' # list headers of the nested list
-#' # this includes information on the site
+#' # The below command lists headers of 
+#' # the downloaded nested list.
+#' # This data includes information on the site
 #' # location etc. The true climate data is stored
 #' # in the "data" part of the nested list.
 #' # In this case it can be accessed through
@@ -45,6 +48,7 @@
 #' str(daymet_data)
 #' 
 #' # load the tidyverse (install if necessary)
+#' if(!require(tidyverse)){install.package(tidyverse)}
 #' library(tidyverse)
 #' 
 #' # Calculate the mean temperature from min
@@ -60,6 +64,8 @@
 #'      xlab = "Date",
 #'      ylab = "mean temperature")
 #'  
+#' # For other practical examples consult the included
+#' # vignette. 
 #'}
 
 download_daymet = function(site = "Daymet",
@@ -67,11 +73,16 @@ download_daymet = function(site = "Daymet",
                             lon = -84.2625,
                             start = 2000,
                             end = as.numeric(format(Sys.time(), "%Y")) - 2,
-                            path = ".",
+                            path = tempdir(),
                             internal = TRUE,
-                            quiet = FALSE,
+                            silent = FALSE,
                             force = FALSE){
 
+  # CRAN file policy
+  if (!silent & !internal & identical(path, tempdir())){
+    message("NOTE: data is stored in tempdir() ...")
+  }
+  
   # define API url, might change so put it on top
   url = "https://daymet.ornl.gov/data/send/saveData"
   
@@ -109,7 +120,7 @@ download_daymet = function(site = "Daymet",
   daymet_tmp_file = sprintf("%s/%s_%s_%s.csv", tempdir(), site, start, end)
   
   # provide verbose feedback
-  if (!quiet){
+  if (!silent){
     cat(paste('Downloading DAYMET data for: ',site,
               ' at ',lat,
               '/',lon,
@@ -156,15 +167,8 @@ download_daymet = function(site = "Daymet",
     }
   }
 
-  # new download.file behaviour deletes files if they are empty 0 bytes
-  # so testing for the presence of the file works now
-  if (inherits(error,"try-error")){
-    stop("Your requested data is outside DAYMET (temporal) coverage,
-         the file is empty --> check coordinates and start/end years!")
-  }
-
   # feedback
-  if (!quiet) {
+  if (!silent) {
     cat('Done !\n')
   }
 
@@ -220,10 +224,6 @@ download_daymet = function(site = "Daymet",
         file.remove(daymet_tmp_file)
       } else {
         message("Output path == tempdir(), file not copied or removed!")
-      }
-      # some feedback
-      if (!quiet) {
-        cat('File written to disk !\n')
       }
     }
 }

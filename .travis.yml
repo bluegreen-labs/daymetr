@@ -1,7 +1,7 @@
 language: R
 sudo: required
 cache: packages
-warnings_are_errors: false
+warnings_are_errors: true
 
 before_install:
     - sudo apt-get install --yes udunits-bin libudunits2-dev
@@ -13,3 +13,7 @@ r:
 
 r_packages:
   - devtools
+  - covr
+
+after_success:
+- Rscript -e 'covr::codecov()'

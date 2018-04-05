@@ -1,6 +1,6 @@
 Package: daymetr
 Title: Interface to the 'Daymet' Web Services
-Version: 1.2
+Version: 1.3.1
 Authors@R: person("Hufkens","Koen",
 		  email="koen.hufkens@gmail.com",
 		  role=c("aut", "cre"))
@@ -10,14 +10,14 @@ Description: Programmatic interface to the 'Daymet' web services
     Routines for both single pixel data downloads and
     gridded (netCDF) data are provided.
 Depends:
-    R (>= 3.2.5)
+    R (>= 3.4.0)
 Imports:
     sp,
+    rgeos,
     raster,
     rgdal,
     ncdf4,
     httr,
-    testthat,
     tools,
     utils
 License: AGPL-3
@@ -26,5 +26,7 @@ ByteCompile: true
 RoxygenNote: 6.0.1
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    covr,
+    testthat
 VignetteBuilder: knitr
