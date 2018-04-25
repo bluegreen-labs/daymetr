@@ -179,20 +179,20 @@ download_daymet = function(site = "Daymet",
     # read ancillary data from downloaded file header
     # this includes, tile nr and altitude
     tile = as.numeric(scan(daymet_tmp_file,
-                           skip = 2,
+                           skip = 4,
                            nlines = 1,
                            what = character(),
                            quiet = TRUE)[2])
 
     alt = as.numeric(scan(daymet_tmp_file,
-                          skip = 3,nlines = 1,
+                          skip = 5,nlines = 1,
                           what = character(),
                           quiet = TRUE)[2])
 
     # read in the real climate data
     data = utils::read.table(daymet_tmp_file,
                       sep = ',',
-                      skip = 7,
+                      skip = 8,
                       header = TRUE)
 
     # put all data in a list

@@ -73,8 +73,8 @@ The package maintains the original data header names in order to provide a trans
 ```{r fig.width = 7, fig.height=3}
 # simple graph of Daymet data
 par(mar=c(4,4,1,1))
-plot(as.Date(paste(df$data$year,
-                   df$data$yday,
+plot(as.Date(paste(df$data$YEAR,
+                   df$data$DAY,
                    sep = "-"),
              "%Y-%j"),
      df$data$tmax..deg.c.,
