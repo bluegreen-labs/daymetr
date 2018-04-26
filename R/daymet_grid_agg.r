@@ -1,65 +1,54 @@
 #' Aggregate daily Daymet data
 #'
-#' @description Aggregates daily Daymet data by time to create 
-#' convenient datasets for data exploration or modelling.
+#' Aggregates daily Daymet data by time interval to create 
+#' convenient seasonal datasets for data exploration or modelling.
 #'
 #' @param file character The name of the file to be processed. 
 #' Use daily Daymet data.
 #' @param int Interval to aggregate by. Options are "monthly", 
-#' "seasonal" or "annual".
-#' @param FUN Function to be used to aggregate data. Genertic R 
+#' "seasonal" or "annual". Seasons are defined as the astronomical seasons
+#' between solstices and equinoxes (default = "seasonal")
+#' @param fun Function to be used to aggregate data. Genertic R 
 #' functions can be used. "mean" and "sum" are suggested. na.rm 
-#' = TRUE by default.
+#' = TRUE by default. (default = "mean")
 #' @param internal logical If FALSE, write the output to a tif 
 #' file using the Daymet file format protocol.
-#' @param output_directory vector (optional) A path to a 
-#' directory where output files should be written. Used only if 
-#' internal = FALSE.
-#' 
+#' @param path path to a directory where output files should be written.
+#' Used only if internal = FALSE (default = tempdir())
+#' @return aggregated daily Daymet data as a tiff file written
+#' to disk or a raster stack when data is returned to the workspace.
 #' @keywords daymet, climate data
-#' 
-#' @example
+#' @export
+#' @examples
 #' 
 #'  \dontrun{
 #'  # This code calculates the average minimum temperature by 
-#'  # season for a subset region. In this example the data has 
-#'  # already been downloaded using the download_daymet_ncss
-#'  # function.
+#'  # season for a subset region.
 #'  
-#'  # First, set the working directory as the directory 
-#'  # containing the file to be aggregated.
-#'  setwd(tempdir())
-#'  
-#'  # Next, specify the name of the file.
-#'  data_file <- "tmin_daily_1980_ncss.nc"
-#'  
+#'  # download default ncss tiled subset for 1980
+#'  # (daily tmin values only)
+#'  download_daymet_ncss()
+#'      
 #'  # Finally, run the function
-#'  daymet_grid_agg(file = data_file,
-#'                  int = "annual",
+#'  daymet_grid_agg(file = paste0(tempdir(),"/tmin_daily_1980_ncss.nc"),
+#'                  int = "seasonal",
 #'                  fun = "mean")
-#'  
-#'  # If you wish to write the aggregated result into a separate 
-#'  # directory then specify the path to that directory, then pass 
-#'  # that directory to the function.
-#'  out_dir <- "c:/.../results/"
-#' 
-#'  daymet_grid_agg(file = data_file,
-#'                  int = "annual",
-#'                  fun = "mean", 
-#'                  output_directory = out_dir)
-#' 
 #'  }
 
 daymet_grid_agg = function(file = NULL,
-                           int = NULL,
-                           FUN = NULL,
+                           int = "seasonal",
+                           fun = "mean",
                            internal = FALSE,
-                           output_directory = NULL){
+                           path = tempdir()){
   
-  # stop on missing parameters
-  if (is.null(file)|is.null(int)|is.null(FUN)) {
-    stop('One or more parameters are missing. 
-         Please specify all parameters.')
+  # stop on missing files
+  if (is.null(file) ){
+    stop('File not provided...')
+  }
+  
+  # check if the file exists and is a daily file
+  if (!file.exists(file) | !grepl(utils::glob2rx("*_daily_*.nc"), file) ){
+    stop('File does not exist...')
   }
   
   # get file extension
@@ -96,13 +85,14 @@ daymet_grid_agg = function(file = NULL,
     ind <- as.numeric(substring(dates,1,4))
   }
   if (int == 'seasonal'){
+    
     # set standard season change-over dates for the relevant year
     spring_equinox <- as.Date(sprintf("%s.03.20", yr), format = "%Y.%m.%d")
     summer_solstice <- as.Date(sprintf("%s.06.21", yr), format = "%Y.%m.%d")
     fall_equinox <- as.Date(sprintf("%s.09.22", yr), format = "%Y.%m.%d")
     winter_solstice <- as.Date(sprintf("%s.12.21", yr), format = "%Y.%m.%d")
-    year_start <- as.Date(sprintf("%s.01.01", yr), format = "%Y.%m.%d")
-    year_end <- as.Date(sprintf("%s.12.30", yr), format = "%Y.%m.%d")
+    #year_start <- as.Date(sprintf("%s.01.01", yr), format = "%Y.%m.%d")
+    #year_end <- as.Date(sprintf("%s.12.30", yr), format = "%Y.%m.%d")
     year_start <- utils::head(dates, n = 1)
     year_end <- utils::tail(dates, n = 1)
     
@@ -137,21 +127,17 @@ daymet_grid_agg = function(file = NULL,
   # aggregate bands by int using base R function aggregate
   result <- raster::stackApply(x = data,
                                indices = ind,
-                               fun = FUN,
+                               fun = fun,
                                na.rm = TRUE)
   
   # return all data to raster, either as a geotiff or as a local object
   if (internal == FALSE){
+    
     # create output file name
-    input_file <- tools::file_path_sans_ext(file)
+    input_file <- tools::file_path_sans_ext(basename(file))
     param <- strsplit(input_file, "_")[[1]][1]
     year <- strsplit(input_file, "_")[[1]][3]
-    output_file <- sprintf('%s_agg_%s_%s%s.tif', param, year, int, FUN)
-    
-    # setting output directory if specified
-    if (!is.null(output_directory)){
-      output_file <- paste0(output_directory, output_file)
-    }
+    output_file <- sprintf('%s/%s_agg_%s_%s%s.tif',path, param, year, int, fun)
     
     # write raster object to file
     raster::writeRaster(x = result,

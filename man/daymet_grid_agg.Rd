@@ -4,30 +4,50 @@
 \alias{daymet_grid_agg}
 \title{Aggregate daily Daymet data}
 \usage{
-daymet_grid_agg(file = NULL, int = NULL, FUN = NULL, internal = FALSE,
-  output_directory = NULL)
+daymet_grid_agg(file = NULL, int = "seasonal", fun = "mean",
+  internal = FALSE, path = tempdir())
 }
 \arguments{
 \item{file}{character The name of the file to be processed. 
 Use daily Daymet data.}
 
 \item{int}{Interval to aggregate by. Options are "monthly", 
-"seasonal" or "annual".}
+"seasonal" or "annual". Seasons are defined as the astronomical seasons
+between solstices and equinoxes (default = "seasonal")}
 
-\item{FUN}{Function to be used to aggregate data. Genertic R 
+\item{fun}{Function to be used to aggregate data. Genertic R 
 functions can be used. "mean" and "sum" are suggested. na.rm 
-= TRUE by default.}
+= TRUE by default. (default = "mean")}
 
 \item{internal}{logical If FALSE, write the output to a tif 
 file using the Daymet file format protocol.}
 
-\item{output_directory}{vector (optional) A path to a 
-directory where output files should be written. Used only if 
-internal = FALSE.}
+\item{path}{path to a directory where output files should be written.
+Used only if internal = FALSE (default = tempdir())}
+}
+\value{
+aggregated daily Daymet data as a tiff file written
+to disk or a raster stack when data is returned to the workspace.
 }
 \description{
-Aggregates daily Daymet data by time to create 
-convenient datasets for data exploration or modelling.
+Aggregates daily Daymet data by time interval to create 
+convenient seasonal datasets for data exploration or modelling.
+}
+\examples{
+
+ \dontrun{
+ # This code calculates the average minimum temperature by 
+ # season for a subset region.
+ 
+ # download default ncss tiled subset for 1980
+ # (daily tmin values only)
+ download_daymet_ncss()
+     
+ # Finally, run the function
+ daymet_grid_agg(file = paste0(tempdir(),"/tmin_daily_1980_ncss.nc"),
+                 int = "seasonal",
+                 fun = "mean")
+ }
 }
 \keyword{climate}
 \keyword{data}
