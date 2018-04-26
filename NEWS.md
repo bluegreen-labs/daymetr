@@ -1,4 +1,18 @@
-# daymetr 1.3
+# daymetr 1.3.2
+
+* Move to new API base url
+* Simplified download commands + error trapping
+* Simplified the extraction of header meta-data
+* new function to aggregate gridded data: daymet_grid_agg()
+* robust header detection until # prefix is in place
+* new function to read in single pixel data: read_daymet() 
+
+# daymetr 1.3.1
+
+* Formal CRAN submission
+* additional documentation
+
+# daymetr 1.3.0
 
 * Added vignettes as additional documentation
 * Included support for monthly and average products in NCSS (netcdf) downloads
@@ -15,6 +29,7 @@
 
 * Added a `NEWS.md` file to track changes to the package
 * Added NCSS subset support
+
 # daymetr 1.1
 
 * Migration to Daymet V3
