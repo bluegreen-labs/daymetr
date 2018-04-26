@@ -25,8 +25,8 @@ header data and critical file name information.
 # with defaults, outputting a data frame
 # with smoothed values, overwriting the original
 
- # download the data
- download_daymet(site = "Daymet",
+# download the data
+download_daymet(site = "Daymet",
                  start = 1980,
                  end = 1980,
                  internal = FALSE,
@@ -36,7 +36,7 @@ header data and critical file name information.
 df = read_daymet(paste0(tempdir(),"/Daymet_1980_1980.csv"))
 
 # print data structure
-print(summary(df))
+print(str(df))
 }
 }
 \keyword{Daymet}

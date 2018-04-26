@@ -8,8 +8,8 @@ daymet_grid_agg(file = NULL, int = "seasonal", fun = "mean",
   internal = FALSE, path = tempdir())
 }
 \arguments{
-\item{file}{character The name of the file to be processed. 
-Use daily Daymet data.}
+\item{file}{The name of the file to be processed. Use daily gridded
+Daymet data.}
 
 \item{int}{Interval to aggregate by. Options are "monthly", 
 "seasonal" or "annual". Seasons are defined as the astronomical seasons
@@ -40,7 +40,7 @@ convenient seasonal datasets for data exploration or modelling.
  # season for a subset region.
  
  # download default ncss tiled subset for 1980
- # (daily tmin values only)
+ # (daily tmin values only), works on tiles as well
  download_daymet_ncss()
      
  # Finally, run the function
