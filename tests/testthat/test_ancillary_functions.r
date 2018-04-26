@@ -154,7 +154,7 @@ test_that("tile aagregation checks",{
   
   # seasonal aggregation non daily
   df_agg_monthly = try(daymet_grid_agg(file = paste0(tempdir(),
-                               "/tmin_monthly_1980_ncss.nc"),
+                               "/tmin_monavg_1980_ncss.nc"),
                                int = "seasonal",
                                fun = "mean"))
   
