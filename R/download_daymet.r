@@ -185,7 +185,8 @@ download_daymet = function(site = "Daymet",
                            quiet = TRUE)[2])
 
     alt = as.numeric(scan(daymet_tmp_file,
-                          skip = 5,nlines = 1,
+                          skip = 5,
+                          nlines = 1,
                           what = character(),
                           quiet = TRUE)[2])
 
