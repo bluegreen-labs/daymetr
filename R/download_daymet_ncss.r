@@ -132,14 +132,14 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
         url = sprintf("%s/daymet_v3_%s_%s_%s_na.nc4", base_url, j, prefix, i)
         
         # create filename for the output file
-        daymet_file = paste0(path,"/",j,"_",prefix,"_",i,"_ncss.nc")
+        daymet_file = file.path(path, paste0(j,"_",prefix,"_",i,"_ncss.nc"))
         
       } else {
         # create url string (varies per product / year)
         url = sprintf("%s/%s/daymet_v3_%s_%s_na.nc4", base_url, i, j, i)
         
         # create filename for the output file
-        daymet_file = paste0(path,"/",j,"_daily_",i,"_ncss.nc")
+        daymet_file = file.path(path,paste0(j,"_daily_",i,"_ncss.nc"))
       }
       
       # formulate query to pass to httr           
