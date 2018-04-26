@@ -9,24 +9,6 @@ test_that("freefrom gridded download (ncss) checks",{
                                       path = tempdir(),
                                       silent = TRUE,
                                       force = TRUE))
-  # seasonal aggregation
-  df_agg_internal = try(daymet_grid_agg(file = paste0(tempdir(),
-                                                      "/tmin_daily_1980_ncss.nc"),
-                                        int = "seasonal",
-                                        fun = "mean",
-                                        internal = TRUE))
-  
-  # seasonal aggregation
-  df_agg = try(daymet_grid_agg(file = paste0(tempdir(),
-                                            "/tmin_daily_1980_ncss.nc"),
-                                int = "seasonal",
-                                fun = "mean"))
-  
-  # seasonal aggregation missing file
-  df_agg_file_missing = try(daymet_grid_agg(fun = "mean"))
-  
-  # seasonal aggregation non existing file
-  df_agg_file_exists = try(daymet_grid_agg(file = "test.nc", fun = "mean"))
   
   # download monthly data, bad location
   df_monthly_loc = try(download_daymet_ncss(location = c(34, -82, 33.75),
@@ -74,10 +56,6 @@ test_that("freefrom gridded download (ncss) checks",{
   
   # see if any of the runs failed
   check = !inherits(df_daily, "try-error") &
-          !inherits(df_agg, "try-error") &
-          inherits(df_agg_file_exists, "try-error") &
-          inherits(df_agg_file_missing, "try-error") &
-          !inherits(df_agg_internal, "try-error") &
           !inherits(df_monthly, "try-error") &
           inherits(df_monthly_loc, "try-error") &
           !inherits(df_annual, "try-error") &
