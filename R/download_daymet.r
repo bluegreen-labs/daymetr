@@ -80,11 +80,11 @@ download_daymet = function(site = "Daymet",
 
   # CRAN file policy
   if (!silent & !internal & identical(path, tempdir())){
-    message("NOTE: data is stored in tempdir() ...")
+    message("NOTE: by default data is stored in tempdir() ...")
   }
   
   # define API url, might change so put it on top
-  url = "https://daymet.ornl.gov/data/send/saveData"
+  url = "https://daymet.ornl.gov/single-pixel/api/data"
   
   # force the max year to be the current year or
   # current year - 1 (conservative)
@@ -112,12 +112,21 @@ download_daymet = function(site = "Daymet",
   # construct the query to be served to the server
   query = list("lat" = lat,
                "lon" = lon,
-               "measuredParams" = "tmax,tmin,dayl,prcp,srad,swe,vp",
-               "year"=year_range)
+               "vars" = "tmax,tmin,dayl,prcp,srad,swe,vp",
+               "year" = year_range)
   
-  # create filename for the output files
-  daymet_file = sprintf("%s/%s_%s_%s.csv", path, site, start, end)
-  daymet_tmp_file = sprintf("%s/%s_%s_%s.csv", tempdir(), site, start, end)
+  # create filenames for the output files
+  daymet_file = file.path(normalizePath(path),
+                              sprintf("%s_%s_%s.csv",
+                                      site,
+                                      start,
+                                      end))
+  
+  daymet_tmp_file = file.path(normalizePath(tempdir()),
+                              sprintf("%s_%s_%s.csv",
+                                        site,
+                                        start,
+                                        end))
   
   # provide verbose feedback
   if (!silent){
@@ -128,103 +137,49 @@ download_daymet = function(site = "Daymet",
   }
 
   # try to download the data
-  error = try(httr::content(httr::GET(url = url,
-                                      query = query,
-                                      httr::write_disk(path = daymet_tmp_file, 
-                                                       overwrite = TRUE)),
-                         "text",
-                         encoding = "UTF-8"),
-               silent = TRUE)
+  error = try(httr::GET(url = url,
+                    query = query,
+                    httr::write_disk(path = daymet_tmp_file, overwrite = TRUE)))
 
-  # use grepl to trap timeout errors (VPN / firewall issues or server down)
-  if (any(grepl("Timeout", error))){
+  # trap errors on download, return a general error statement
+  # with the most common causes
+  if (httr::http_error(error) | inherits(error, "try-error")){
     file.remove(daymet_tmp_file)
-    stop("Your request timed out, the servers are too busy
-          or more likely you are behind a firewall or VPN
-          which impedes daymetr traffic!
-          [Try again on a later date, or on a direct connection]")
-  }
-
-  # double error check on the validity of the files
-  # Daymet stopped giving errors on out of geographic range requests
-  # these are not trapped anymore with the usual routine
-  # below, until further notice this patch is in place
-  if(file.exists(daymet_tmp_file)){
-    error = try(utils::read.table(daymet_tmp_file, header = T, sep = ','),
-                silent = TRUE)
-    if (inherits(error,"try-error")){
-      file.remove(daymet_tmp_file)
       stop("Your requested data is outside DAYMET (temporal) coverage,
-         the file is empty --> check coordinates and start/end years!")
-    }
-
-    # use grepl instead of grep, returns logical any()
-    # ensures one argument is returned
-    if (any(grepl("HTTP Status 500", error))){
-      file.remove(daymet_tmp_file)
-      stop("Your requested data is outside DAYMET (temporal) coverage,
-         the file is empty --> check coordinates and start/end years!")
-    }
+            or the server can't be reached. Check your the connection to the
+            server or the coordinates and start/end years!")
   }
-
+  
   # feedback
   if (!silent) {
     cat('Done !\n')
   }
-
+  
   # if internal is FALSE just copy the temporary
   # file over to the destination path, if TRUE
   # return data to the R workspace
   if (internal) {
-    # read ancillary data from downloaded file header
-    # this includes, tile nr and altitude
-    tile = as.numeric(scan(daymet_tmp_file,
-                           skip = 4,
-                           nlines = 1,
-                           what = character(),
-                           quiet = TRUE)[2])
-
-    alt = as.numeric(scan(daymet_tmp_file,
-                          skip = 5,
-                          nlines = 1,
-                          what = character(),
-                          quiet = TRUE)[2])
-
-    # read in the real climate data
-    data = utils::read.table(daymet_tmp_file,
-                      sep = ',',
-                      skip = 8,
-                      header = TRUE)
-
-    # put all data in a list
-    tmp_struct = list(site,
-                      lat,
-                      lon,
-                      alt,
-                      tile,
-                      data)
-
-    # name all list variables appropriately
-    names(tmp_struct) = c('site',
-                          'lattitude',
-                          'longitude',
-                          'altitude',
-                          'tile',
-                          'data')
-
+    
+    # read in a daymet single pixel data file
+    tmp_struct = read_daymet(daymet_tmp_file,
+                             site = site)
+    
     # return the temporary data structure (nested list)
     return(tmp_struct)
     
+  } else {
+    
+    # Copy data from temporary file to final location
+    # and delete original, with an exception for tempdir() location.
+    # The latter to facilitate package integration.
+    if (!identical(daymet_tmp_file, daymet_file)) {
+      file.copy(daymet_tmp_file,
+                daymet_file,
+                overwrite = TRUE,
+                copy.mode = FALSE)
+      invisible(file.remove(daymet_tmp_file))
     } else {
-      # Copy data from temporary file to final location
-      # and delete original, with an exception for tempdir() location.
-      # The latter to facilitate package integration.
-      if (!identical(normalizePath(daymet_tmp_file), normalizePath(daymet_file))) {
-        file.copy(daymet_tmp_file, daymet_file, overwrite = TRUE,
-                  copy.mode = FALSE)
-        file.remove(daymet_tmp_file)
-      } else {
-        message("Output path == tempdir(), file not copied or removed!")
-      }
+      message("Output path == tempdir(), file not copied or removed!")
     }
+  }
 }
