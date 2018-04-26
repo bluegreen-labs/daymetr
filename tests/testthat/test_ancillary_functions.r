@@ -95,7 +95,6 @@ test_that("tile download and format conversion checks",{
                            silent = TRUE))
   
   # download the data
-  
   try(download_daymet_ncss(param = "tmin",
                            frequency = "monthly",
                            path = tempdir(),
@@ -125,4 +124,56 @@ test_that("tile download and format conversion checks",{
   expect_true(check)
 })
 
+# check aggregation
+test_that("tile aagregation checks",{
+  
+  # download the data
+  try(download_daymet_ncss(param = "tmin",
+                           frequency = "daily",
+                           path = tempdir(),
+                           silent = TRUE))
+  
+  # download the data
+  try(download_daymet_ncss(param = "tmin",
+                           frequency = "monthly",
+                           path = tempdir(),
+                           silent = TRUE))
+  
+  # seasonal aggregation
+  df_agg_internal = try(daymet_grid_agg(file = paste0(tempdir(),
+                                        "/tmin_daily_1980_ncss.nc"),
+                                        int = "seasonal",
+                                        fun = "mean",
+                                        internal = TRUE))
+  
+  # seasonal aggregation
+  df_agg = try(daymet_grid_agg(file = paste0(tempdir(),
+                               "/tmin_daily_1980_ncss.nc"),
+                               int = "seasonal",
+                               fun = "mean"))
+  
+  # seasonal aggregation non daily
+  df_agg_monthly = try(daymet_grid_agg(file = paste0(tempdir(),
+                               "/tmin_monthly_1980_ncss.nc"),
+                               int = "seasonal",
+                               fun = "mean"))
+  
+  # seasonal aggregation missing file
+  df_agg_file_missing = try(daymet_grid_agg(fun = "mean"))
+  
+  # seasonal aggregation non existing file
+  df_agg_file_exists = try(daymet_grid_agg(file = "test.nc",
+                                           fun = "mean"))
+  
+  # see if any of the runs failed
+  check = !inherits(df_agg_internal, "try-error") &
+          !inherits(df_agg, "try-error") &
+          !inherits(df_agg, "try-error") &
+          inherits(df_agg_monthly, "try-error") &
+          inherits(df_agg_file_missing, "try-error") &
+          inherits(df_agg_file_exists, "try-error")
+  
+  # check if no error occured
+  expect_true(check)
+})
 
