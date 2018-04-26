@@ -139,4 +139,4 @@ Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2018 [An integr
 
 ## Acknowledgements
 
-This project was is supported by the National Science Foundation’s Macro-system Biology Program (awards EF-1065029 and EF-1702697).
+This project was supported by the National Science Foundation’s Macro-system Biology Program (awards EF-1065029 and EF-1702697).
