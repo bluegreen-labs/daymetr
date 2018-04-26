@@ -3,8 +3,8 @@
 #' Aggregates daily Daymet data by time interval to create 
 #' convenient seasonal datasets for data exploration or modelling.
 #'
-#' @param file character The name of the file to be processed. 
-#' Use daily Daymet data.
+#' @param file The name of the file to be processed. Use daily gridded
+#' Daymet data.
 #' @param int Interval to aggregate by. Options are "monthly", 
 #' "seasonal" or "annual". Seasons are defined as the astronomical seasons
 #' between solstices and equinoxes (default = "seasonal")
@@ -26,7 +26,7 @@
 #'  # season for a subset region.
 #'  
 #'  # download default ncss tiled subset for 1980
-#'  # (daily tmin values only)
+#'  # (daily tmin values only), works on tiles as well
 #'  download_daymet_ncss()
 #'      
 #'  # Finally, run the function
@@ -47,7 +47,7 @@ daymet_grid_agg = function(file = NULL,
   }
   
   # check if the file exists and is a daily file
-  if (!file.exists(file) | !grepl(utils::glob2rx("*_daily_*.nc"), file) ){
+  if (!file.exists(file) ){
     stop('File does not exist...')
   }
   
@@ -56,6 +56,11 @@ daymet_grid_agg = function(file = NULL,
   
   # load data into a raster brick
   data <- suppressWarnings(raster::brick(file))
+  
+  # check if the data is daily or not
+  if (raster::nlayers(data) < 365){
+    stop("Provided data isn't at a daily time step...")
+  }
   
   # extract time variable from data and covert to date format
   if (ext == 'tif' | ext == 'nc'){
@@ -91,8 +96,6 @@ daymet_grid_agg = function(file = NULL,
     summer_solstice <- as.Date(sprintf("%s.06.21", yr), format = "%Y.%m.%d")
     fall_equinox <- as.Date(sprintf("%s.09.22", yr), format = "%Y.%m.%d")
     winter_solstice <- as.Date(sprintf("%s.12.21", yr), format = "%Y.%m.%d")
-    #year_start <- as.Date(sprintf("%s.01.01", yr), format = "%Y.%m.%d")
-    #year_end <- as.Date(sprintf("%s.12.30", yr), format = "%Y.%m.%d")
     year_start <- utils::head(dates, n = 1)
     year_end <- utils::tail(dates, n = 1)
     
@@ -137,7 +140,8 @@ daymet_grid_agg = function(file = NULL,
     input_file <- tools::file_path_sans_ext(basename(file))
     param <- strsplit(input_file, "_")[[1]][1]
     year <- strsplit(input_file, "_")[[1]][3]
-    output_file <- sprintf('%s/%s_agg_%s_%s%s.tif',path, param, year, int, fun)
+    output_file <- file.path(normalizePath(path),
+                             sprintf('%s_agg_%s_%s%s.tif', param, year, int, fun))
     
     # write raster object to file
     raster::writeRaster(x = result,
