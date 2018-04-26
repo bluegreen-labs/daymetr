@@ -25,21 +25,16 @@ test_that("pixel location download check",{
                                path = tempdir(),
                                silent = FALSE))
   
-  # download verbose and external (not to tempdir())
+  # create new directory
+  new_dir = file.path(tempdir(),"test")
+  dir.create(new_dir)
+  
+  # download verbose and check copy
   df_ext_home = try(download_daymet(start = 1980,
                                end = 1980,
                                internal = FALSE,
-                               path = "~",
+                               path = new_dir,
                                silent = FALSE))
-  
-  # remove file in home directory after successful download
-  # CRAN policy seems to apply to unit tests not run by users
-  # as well
-  if(!inherits(df_ext_home,"try-error")){
-    file.remove(list.files("~",
-                           "*.csv",
-                           full.names = TRUE))
-  }
   
   # download out of range data (space and time)
   df_range = try(download_daymet(start = 1970,
