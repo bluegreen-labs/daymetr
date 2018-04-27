@@ -52,26 +52,41 @@ read_daymet <- function(file = NULL,
   # year and yday
   table_cols = grep("year,yday", header)
   
-  # header is defined as everything before the
-  header = tolower(header[1:(table_cols-1)])
+  # warning / stop if key data table header elements are not found
+  if (length(table_cols) == 0){
+    stop("Key table header elements are missing, Daymet format change?")
+  }
   
-  # read ancillary data from downloaded file header
-  # this includes, tile nr and altitude
-  tile = as.numeric(strsplit(header[grep("tile", header)], ":")[[1]][2])
-  alt = as.numeric(gsub("meters",
-                        "",
-                        strsplit(header[grep("elevation", header)],
-                                 ":")[[1]][2]))
-  
-  # get the line with the coordinates
-  coordinates = header[grep("latitude", header)]
-  
-  # get geographic location using regular expressions
-  loc = gregexpr("[-+]*[0-9,.]+", coordinates)
-  loc_start = unlist(loc)
-  loc_end = loc_start + attr(loc[[1]],"match.length")
-  lat = as.numeric(substring(coordinates, loc_start[1], loc_end[1]))
-  lon = as.numeric(substring(coordinates, loc_start[2], loc_end[2]))
+  # if no header is present skip extraction of meta-data, fill with NULL
+  if (table_cols > 1){
+      
+    # header is defined as everything before the
+    header = tolower(header[1:(table_cols-1)])
+    
+    # read ancillary data from downloaded file header
+    # this includes, tile nr and altitude etc. use gregexpr()
+    # and regmatches to extract relevant data
+    tile = as.numeric(regmatches(header[grep("tile:", header)],
+                                 gregexpr("[-+]*[0-9,.]+",
+                                          header[grep("tile:", header)])))
+    alt = as.numeric(regmatches(header[grep("elevation:", header)],
+                                gregexpr("[-+]*[0-9,.]+",
+                                         header[grep("elevation:", header)])))
+    
+    # assumes 2 elements in a row, with the first being latitude the second
+    # being longitude
+    coordinates = as.numeric(unlist(regmatches(header[grep("latitude:", header)],
+                                gregexpr("[-+]*[0-9,.]+",
+                                         header[grep("latitude:", header)]))))
+    lat = coordinates[1]
+    lon = coordinates[2]
+    
+  } else {
+    tile = NULL
+    alt = NULL
+    lat = NULL
+    lon = NULL
+  }
   
   # read in the real climate data
   data = utils::read.table(file,
