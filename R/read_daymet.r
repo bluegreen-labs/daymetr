@@ -46,8 +46,14 @@ read_daymet <- function(file = NULL,
   # change in the future with a few lines this then does not break
   # the script
   header = try(readLines(file, n = 30), silent = TRUE)
-  header_break = grep("^$", header)
-  header = tolower(header[1:header_break])
+  
+  # get the location of the true table header
+  # based upon the two fields which will always be there
+  # year and yday
+  table_cols = grep("year,yday", header)
+  
+  # header is defined as everything before the
+  header = tolower(header[1:(table_cols-1)])
   
   # read ancillary data from downloaded file header
   # this includes, tile nr and altitude
@@ -57,14 +63,20 @@ read_daymet <- function(file = NULL,
                         strsplit(header[grep("elevation", header)],
                                  ":")[[1]][2]))
   
-  # geographic location
-  lat = strsplit(header[grep("latitude", header)]," ")[[1]][2]
-  lon = strsplit(header[grep("latitude", header)]," ")[[1]][4]
+  # get the line with the coordinates
+  coordinates = header[grep("latitude", header)]
+  
+  # get geographic location using regular expressions
+  loc = gregexpr("[-+]*[0-9,.]+", coordinates)
+  loc_start = unlist(loc)
+  loc_end = loc_start + attr(loc[[1]],"match.length")
+  lat = as.numeric(substring(coordinates, loc_start[1], loc_end[1]))
+  lon = as.numeric(substring(coordinates, loc_start[2], loc_end[2]))
   
   # read in the real climate data
   data = utils::read.table(file,
                            sep = ',',
-                           skip = header_break,
+                           skip = (table_cols - 1),
                            header = TRUE)
   
   # put all data in a list
