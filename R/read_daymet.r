@@ -57,7 +57,7 @@ read_daymet <- function(file = NULL,
     stop("Key table header elements are missing, Daymet format change?")
   }
   
-  # if no header is present skip extraction of meta-data, fill with NULL
+  # if no header is present (table_cols == 1) skip extraction of meta-data
   if (table_cols > 1){
       
     # header is defined as everything before the
