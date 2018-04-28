@@ -2,7 +2,7 @@
 % Please edit documentation in R/calc_nd.r
 \name{calc_nd}
 \alias{calc_nd}
-\title{Count days meeting set criteria for gridded Daymet data}
+\title{Count days meeting set criteria (for gridded Daymet data)}
 \usage{
 calc_nd(file = NULL, start_day = 0, end_day = 365, criteria = NULL,
   value = NULL, internal = FALSE, path = tempdir())
@@ -45,7 +45,9 @@ such as Growing Degree Days (tmin > 0), or days with precipitation
 # using default settings (data written to tempdir())
 download_daymet_ncss()
 
-# read in the Daymet file
+# pead in the Daymet file and report back the number
+# of days in a year with a minimum temperature lower
+# than 15 degrees C
 r = calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
             criteria = "<",
             value = 15,

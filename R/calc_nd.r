@@ -1,4 +1,4 @@
-#' Count days meeting set criteria for gridded Daymet data
+#' Count days meeting set criteria (for gridded Daymet data)
 #'
 #' Function to count the number of days in a given time period
 #' that meet a given set of criteria. This can be used to extract indices 
@@ -29,7 +29,9 @@
 #' # using default settings (data written to tempdir())
 #' download_daymet_ncss()
 #' 
-#' # read in the Daymet file
+#' # pead in the Daymet file and report back the number
+#' # of days in a year with a minimum temperature lower
+#' # than 15 degrees C
 #' r = calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
 #'             criteria = "<",
 #'             value = 15,
