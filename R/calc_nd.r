@@ -6,9 +6,9 @@
 #' (prcp != 0).
 #' 
 #' @param file path of a file containing the daily gridded Daymet data
-#' @param start_day numeric day-of-year at which counting should begin. 
+#' @param start_doy numeric day-of-year at which counting should begin. 
 #' (default = 1)
-#' @param end_day numeric day of year at which counting should end. 
+#' @param end_doy numeric day of year at which counting should end. 
 #' (default = 365)
 #' @param criteria logical expression (">=",">","<=","<","==", "!=") to evaluate
 #' @param value the value that the criteria is evaluated against
@@ -44,8 +44,8 @@
 #' }
 
 calc_nd <- function(file = NULL,
-                    start_day = 1,
-                    end_day = 365,
+                    start_doy = 1,
+                    end_doy = 365,
                     criteria = NULL,
                     value = NULL,
                     internal = FALSE,
@@ -57,8 +57,9 @@ calc_nd <- function(file = NULL,
   }
   
   # sanity checks
-  if (end_day < start_day){
-    stop('Start day is later than end day of date range.')
+  if (end_doy < start_doy){
+    stop('Start day-of-year (doy) is later than the end doy,
+         check doy values!')
   }
   
   if ( !(criteria %in% c(">=",">","<=","<","==", "!=")) ){
@@ -68,7 +69,7 @@ calc_nd <- function(file = NULL,
   
   # load desired bands from file
   data <- suppressWarnings(raster::stack(file,
-                                         bands = c(start_day:end_day)))
+                                         bands = c(start_doy:end_doy)))
   
   # use a binary operator to identify pixels that meet the criteria
   sel <- raster::overlay(x = data,

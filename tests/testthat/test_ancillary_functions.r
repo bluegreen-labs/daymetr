@@ -222,23 +222,23 @@ test_that("calc_nd checks",{
   int = try(calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
               criteria = "<",
               value = 15,
-              start_day = 40,
-              end_day = 80,
+              start_doy = 40,
+              end_doy = 80,
               internal = FALSE))
   
   # criteria fail
   crit = try(calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
                     criteria = "a",
                     value = 15,
-                    start_day = 40,
-                    end_day = 80,
+                    start_doy = 40,
+                    end_doy = 80,
                     internal = TRUE))
   
   doy = try(calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
                     criteria = "<",
                     value = 15,
-                    start_day = 100,
-                    end_day = 80,
+                    start_doy = 100,
+                    end_doy = 80,
                     internal = TRUE))
   
   # see if any of the runs failed

@@ -4,16 +4,16 @@
 \alias{calc_nd}
 \title{Count days meeting set criteria (for gridded Daymet data file)}
 \usage{
-calc_nd(file = NULL, start_day = 1, end_day = 365, criteria = NULL,
+calc_nd(file = NULL, start_doy = 1, end_doy = 365, criteria = NULL,
   value = NULL, internal = FALSE, path = tempdir())
 }
 \arguments{
 \item{file}{path of a file containing the daily gridded Daymet data}
 
-\item{start_day}{numeric day-of-year at which counting should begin. 
+\item{start_doy}{numeric day-of-year at which counting should begin. 
 (default = 1)}
 
-\item{end_day}{numeric day of year at which counting should end. 
+\item{end_doy}{numeric day of year at which counting should end. 
 (default = 365)}
 
 \item{criteria}{logical expression (">=",">","<=","<","==", "!=") to evaluate}
