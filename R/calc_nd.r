@@ -1,14 +1,14 @@
-#' Count days meeting set criteria (for gridded Daymet data)
+#' Count days meeting set criteria (for gridded Daymet data file)
 #'
 #' Function to count the number of days in a given time period
 #' that meet a given set of criteria. This can be used to extract indices 
 #' such as Growing Degree Days (tmin > 0), or days with precipitation 
 #' (prcp != 0).
 #' 
-#' @param data path of a file containing the daily gridded Daymet data
-#' @param start numeric day-of-year at which counting should begin. 
+#' @param file path of a file containing the daily gridded Daymet data
+#' @param start_day numeric day-of-year at which counting should begin. 
 #' (default = 1)
-#' @param end numeric day of year at which counting should end. 
+#' @param end_day numeric day of year at which counting should end. 
 #' (default = 365)
 #' @param criteria logical expression (">=",">","<=","<","==", "!=") to evaluate
 #' @param value the value that the criteria is evaluated against
@@ -44,7 +44,7 @@
 #' }
 
 calc_nd <- function(file = NULL,
-                    start_day = 0,
+                    start_day = 1,
                     end_day = 365,
                     criteria = NULL,
                     value = NULL,
@@ -54,6 +54,16 @@ calc_nd <- function(file = NULL,
   # perform input checks
   if(is.null(file) | is.null(criteria) | is.null(value)){
     stop('Please specify file, criteria and value.')
+  }
+  
+  # sanity checks
+  if (end_day < start_day){
+    stop('Start day is later than end day of date range.')
+  }
+  
+  if ( !(criteria %in% c(">=",">","<=","<","==", "!=")) ){
+    stop('Not a logical criteria. Please select a logical statement
+         such as ">=",">","<=","<","==", "!=".')
   }
   
   # load desired bands from file

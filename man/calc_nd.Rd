@@ -2,12 +2,20 @@
 % Please edit documentation in R/calc_nd.r
 \name{calc_nd}
 \alias{calc_nd}
-\title{Count days meeting set criteria (for gridded Daymet data)}
+\title{Count days meeting set criteria (for gridded Daymet data file)}
 \usage{
-calc_nd(file = NULL, start_day = 0, end_day = 365, criteria = NULL,
+calc_nd(file = NULL, start_day = 1, end_day = 365, criteria = NULL,
   value = NULL, internal = FALSE, path = tempdir())
 }
 \arguments{
+\item{file}{path of a file containing the daily gridded Daymet data}
+
+\item{start_day}{numeric day-of-year at which counting should begin. 
+(default = 1)}
+
+\item{end_day}{numeric day of year at which counting should end. 
+(default = 365)}
+
 \item{criteria}{logical expression (">=",">","<=","<","==", "!=") to evaluate}
 
 \item{value}{the value that the criteria is evaluated against}
@@ -16,14 +24,6 @@ calc_nd(file = NULL, start_day = 0, end_day = 365, criteria = NULL,
 (\code{FALSE}) (default = \code{FALSE})}
 
 \item{path}{path to which to write data to disk (default = tempdir())}
-
-\item{data}{path of a file containing the daily gridded Daymet data}
-
-\item{start}{numeric day-of-year at which counting should begin. 
-(default = 1)}
-
-\item{end}{numeric day of year at which counting should end. 
-(default = 365)}
 }
 \value{
 A raster object in the R workspace or a file on disk with summary

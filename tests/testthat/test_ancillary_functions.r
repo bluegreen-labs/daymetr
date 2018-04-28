@@ -218,14 +218,34 @@ test_that("calc_nd checks",{
               value = 15,
               internal = TRUE)
   
+  # internal processing
   int = try(calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
               criteria = "<",
               value = 15,
+              start_day = 40,
+              end_day = 80,
               internal = FALSE))
+  
+  # criteria fail
+  crit = try(calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
+                    criteria = "a",
+                    value = 15,
+                    start_day = 40,
+                    end_day = 80,
+                    internal = TRUE))
+  
+  doy = try(calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
+                    criteria = "<",
+                    value = 15,
+                    start_day = 100,
+                    end_day = 80,
+                    internal = TRUE))
   
   # see if any of the runs failed
   check = !inherits(int, "try-error") &
-    attr(class(r),"package") == "raster"
+          inherits(crit, "try-error") &
+          inherits(doy, "try-error") &
+          attr(class(r),"package") == "raster"
   
   # check if no error occured
   expect_true(check)
