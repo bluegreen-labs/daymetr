@@ -27,7 +27,9 @@ calc_nd(file = NULL, start_day = 0, end_day = 365, criteria = NULL,
 }
 \value{
 A raster object in the R workspace or a file on disk with summary
-statistics for every pixel which meet the predefined criteria.
+statistics for every pixel which meet the predefined criteria. Output files
+if written to file will be named nd_YYYY.tif (with YYYY the year of the
+processed tile or ncss netCDF file).
 }
 \description{
 Function to count the number of days in a given time period
@@ -45,7 +47,7 @@ such as Growing Degree Days (tmin > 0), or days with precipitation
 # using default settings (data written to tempdir())
 download_daymet_ncss()
 
-# pead in the Daymet file and report back the number
+# read in the Daymet file and report back the number
 # of days in a year with a minimum temperature lower
 # than 15 degrees C
 r = calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),

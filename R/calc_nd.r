@@ -16,7 +16,9 @@
 #' (\code{FALSE}) (default = \code{FALSE})
 #' @param path path to which to write data to disk (default = tempdir())
 #' @return A raster object in the R workspace or a file on disk with summary
-#' statistics for every pixel which meet the predefined criteria.
+#' statistics for every pixel which meet the predefined criteria. Output files
+#' if written to file will be named nd_YYYY.tif (with YYYY the year of the
+#' processed tile or ncss netCDF file).
 #' @keywords gridded time series, Daymet, summary
 #' @export
 #' @examples
@@ -29,7 +31,7 @@
 #' # using default settings (data written to tempdir())
 #' download_daymet_ncss()
 #' 
-#' # pead in the Daymet file and report back the number
+#' # read in the Daymet file and report back the number
 #' # of days in a year with a minimum temperature lower
 #' # than 15 degrees C
 #' r = calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
@@ -69,9 +71,11 @@ calc_nd <- function(file = NULL,
   
   # return all data to raster, either as a geotiff or as a local object
   if (internal == FALSE){
+    
     # create output file name
-    year <- strsplit(input_file, "_")[[1]][3]
-    output_file <- file.path(path, output_file)
+    year <- strsplit(file, "_")[[1]][3]
+    output_file <- file.path(path,
+                             sprintf('nd_%s.tif',year))
     
     # write result to file
     raster::writeRaster(result,

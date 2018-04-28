@@ -202,3 +202,31 @@ test_that("read_daymet checks of meta-data",{
   # check if no error occured
   expect_true(check)
 })
+
+# calc_nd checks
+test_that("calc_nd checks",{
+  
+  # download daily gridded data
+  # using default settings (data written to tempdir())
+  download_daymet_ncss()
+  
+  # read in the Daymet file and report back the number
+  # of days in a year with a minimum temperature lower
+  # than 15 degrees C
+  r = calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
+              criteria = "<",
+              value = 15,
+              internal = TRUE)
+  
+  int = try(calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
+              criteria = "<",
+              value = 15,
+              internal = FALSE))
+  
+  # see if any of the runs failed
+  check = !inherits(int, "try-error") &
+    attr(class(r),"package") == "raster"
+  
+  # check if no error occured
+  expect_true(check)
+})
