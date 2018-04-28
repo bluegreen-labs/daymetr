@@ -1,3 +1,8 @@
+# daymetr 1.3.3
+
+* future proofed the read_daymet() function, to make things worry free
+* new addition of a function by calc_nd() to calculate nr. days which adhere to certain conditions
+
 # daymetr 1.3.2
 
 * Move to new API base url
