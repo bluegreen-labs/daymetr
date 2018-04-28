@@ -1,4 +1,4 @@
-#' Count days meeting set criteria (for gridded Daymet data file)
+#' Count days meeting set criteria (for gridded Daymet data files)
 #'
 #' Function to count the number of days in a given time period
 #' that meet a given set of criteria. This can be used to extract indices 
@@ -24,9 +24,6 @@
 #' @examples
 #'
 #' \dontrun{
-#' # with defaults, outputting a data frame
-#' # with smoothed values, overwriting the original
-#'
 #' # download daily gridded data
 #' # using default settings (data written to tempdir())
 #' download_daymet_ncss()

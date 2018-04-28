@@ -2,7 +2,7 @@
 % Please edit documentation in R/calc_nd.r
 \name{calc_nd}
 \alias{calc_nd}
-\title{Count days meeting set criteria (for gridded Daymet data file)}
+\title{Count days meeting set criteria (for gridded Daymet data files)}
 \usage{
 calc_nd(file = NULL, start_doy = 1, end_doy = 365, criteria = NULL,
   value = NULL, internal = FALSE, path = tempdir())
@@ -40,9 +40,6 @@ such as Growing Degree Days (tmin > 0), or days with precipitation
 \examples{
 
 \dontrun{
-# with defaults, outputting a data frame
-# with smoothed values, overwriting the original
-
 # download daily gridded data
 # using default settings (data written to tempdir())
 download_daymet_ncss()
