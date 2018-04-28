@@ -177,3 +177,28 @@ test_that("tile aagregation checks",{
   expect_true(check)
 })
 
+# test read_daymet header formatting
+test_that("read_daymet checks of meta-data",{
+  
+  # download verbose and external
+  download_daymet(start = 1980,
+                  end = 1980,
+                  internal = FALSE,
+                  path = tempdir(),
+                  silent = TRUE)
+  
+  # read in the Daymet file
+  df = try(read_daymet(paste0(tempdir(),"/Daymet_1980_1980.csv")))
+  
+  # check tile and coordinates
+  tile = is.numeric(df$tile)
+  lat = is.numeric(df$latitude)
+  lon = is.numeric(df$altitude)
+  alt = is.numeric(df$altitude)
+  
+  # see if any of the runs failed
+  check = !inherits(df, "try-error") & tile & lat & lon & alt
+  
+  # check if no error occured
+  expect_true(check)
+})
