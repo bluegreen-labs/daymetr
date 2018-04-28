@@ -69,18 +69,20 @@ read_daymet <- function(file = NULL,
     tile = as.numeric(regmatches(header[grep("tile:", header)],
                                  gregexpr("[-+]*[0-9,.]+",
                                           header[grep("tile:", header)])))
+    
     alt = as.numeric(regmatches(header[grep("elevation:", header)],
                                 gregexpr("[-+]*[0-9,.]+",
                                          header[grep("elevation:", header)])))
     
-    # assumes 2 elements in a row, with the first being latitude the second
-    # being longitude
-    coordinates = as.numeric(unlist(regmatches(header[grep("latitude:", header)],
-                                gregexpr("[-+]*[0-9,.]+",
-                                         header[grep("latitude:", header)]))))
-    lat = coordinates[1]
-    lon = coordinates[2]
+    lat = as.numeric(unlist(regmatches(header[grep("latitude:", header)],
+                                       gregexpr("(?<=latitude: )[-+]*[0-9,.]+",
+                                                header[grep("latitude:", header)],
+                                                perl = TRUE))))
     
+    lon = as.numeric(unlist(regmatches(header[grep("longitude:", header)],
+                                       gregexpr("(?<=longitude: )[-+]*[0-9,.]+",
+                                                header[grep("longitude:", header)],
+                                                perl = TRUE))))
   } else {
     tile = NULL
     alt = NULL
