@@ -154,9 +154,30 @@ test_that("tile aagregation checks",{
   
   # seasonal aggregation non daily
   df_agg_monthly = try(daymet_grid_agg(file = paste0(tempdir(),
-                               "/tmin_monavg_1980_ncss.nc"),
+                               "/tmin_daily_1980_ncss.nc"),
+                               int = "monthly",
+                               fun = "mean"))
+  
+  # seasonal aggregation non daily
+  df_agg_annual = try(daymet_grid_agg(file = paste0(tempdir(),
+                                       "/tmin_daily_1980_ncss.nc"),
+                                       int = "annual",
+                                       fun = "mean"))
+  
+  # using a tif file (convert nc files first)
+  nc2tif(path = tempdir(), files = paste0(tempdir(),
+                                          "/tmin_daily_1980_ncss.nc"),
+         overwrite = TRUE)
+  df_agg_tif = try(daymet_grid_agg(file = paste0(tempdir(),
+                                             "/tmin_daily_1980_ncss.tif"),
                                int = "seasonal",
                                fun = "mean"))
+  
+  # non daily file, should skip / error
+  df_agg_non_daily = try(daymet_grid_agg(file = paste0(tempdir(),
+                                    "/tmin_monavg_1980_ncss.tif"),
+                                   int = "seasonal",
+                                   fun = "mean"))
   
   # seasonal aggregation missing file
   df_agg_file_missing = try(daymet_grid_agg(fun = "mean"))
@@ -168,10 +189,12 @@ test_that("tile aagregation checks",{
   # see if any of the runs failed
   check = !inherits(df_agg_internal, "try-error") &
           !inherits(df_agg, "try-error") &
-          !inherits(df_agg, "try-error") &
-          inherits(df_agg_monthly, "try-error") &
+          !inherits(df_agg_tif, "try-error") &
+          !inherits(df_agg_monthly, "try-error") &
+          !inherits(df_agg_annual, "try-error") &
           inherits(df_agg_file_missing, "try-error") &
-          inherits(df_agg_file_exists, "try-error")
+          inherits(df_agg_file_exists, "try-error") &
+          inherits(df_agg_non_daily, "try-error")
   
   # check if no error occured
   expect_true(check)
@@ -190,14 +213,39 @@ test_that("read_daymet checks of meta-data",{
   # read in the Daymet file
   df = try(read_daymet(paste0(tempdir(),"/Daymet_1980_1980.csv")))
   
-  # check tile and coordinates
+  # check read tile and coordinate info
   tile = is.numeric(df$tile)
   lat = is.numeric(df$latitude)
   lon = is.numeric(df$altitude)
   alt = is.numeric(df$altitude)
   
+  # drop header
+  write.table(df$data, file.path(tempdir(),"no_header.csv"),
+              sep = ",",
+              col.names = TRUE,
+              row.names = FALSE,
+              quote = FALSE)
+  
+  # read in headerless file
+  df_no_header = try(read_daymet(file.path(tempdir(),"no_header.csv")))
+  
+  # check if the no header read returns all null values
+  null_header = all(is.null(c(df_no_header$tile,
+                              df_no_header$latitude,
+                              df_no_header$longitude,
+                              df_no_header$altitude)))
+  
+  # file does note exist
+  df_missing = try(read_daymet(paste0(tempdir(),"/Daymet_1980_1981.csv")))
+  
+  # not provided
+  df_null = try(read_daymet())
+  
   # see if any of the runs failed
-  check = !inherits(df, "try-error") & tile & lat & lon & alt
+  check = !inherits(df, "try-error") &
+    inherits(df_missing, "try-error") &
+    inherits(df_null, "try-error") &
+    null_header & tile & lat & lon & alt
   
   # check if no error occured
   expect_true(check)
