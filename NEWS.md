@@ -2,6 +2,7 @@
 
 * future proofed the read_daymet() function, to make things worry free
 * new addition of a function by calc_nd() to calculate nr. days which adhere to certain conditions
+* additional platform checks using r-hub (tip by Colin Fay)
 
 # daymetr 1.3.2
 
