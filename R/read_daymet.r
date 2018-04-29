@@ -57,7 +57,8 @@ read_daymet <- function(file = NULL,
     stop("Key table header elements are missing, Daymet format change?")
   }
   
-  # if no header is present (table_cols == 1) skip extraction of meta-data
+  # if no header is present (table_cols == 1)
+  # skip extraction of meta-data
   if (table_cols > 1){
       
     # header is defined as everything before the
@@ -83,6 +84,13 @@ read_daymet <- function(file = NULL,
                                        gregexpr("(?<=longitude: )[-+]*[0-9,.]+",
                                                 header[grep("longitude:", header)],
                                                 perl = TRUE))))
+    
+    # check if all fields are correctly populated,
+    # if not stop and return nothing
+    if (length(c(lat,lon,tile,alt)) < 4 ){
+      stop("Key table header elements are missing, Daymet format change?")
+    }
+    
   } else {
     tile = NULL
     alt = NULL
