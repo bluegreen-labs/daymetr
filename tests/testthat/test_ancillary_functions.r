@@ -212,6 +212,8 @@ test_that("read_daymet checks of meta-data",{
   
   # read in the Daymet file
   df = try(read_daymet(paste0(tempdir(),"/Daymet_1980_1980.csv")))
+  df_skip_header = try(read_daymet(paste0(tempdir(),"/Daymet_1980_1980.csv"),
+                                   skip_header = TRUE))
   
   # check read tile and coordinate info
   tile = is.numeric(df$tile)
@@ -243,9 +245,10 @@ test_that("read_daymet checks of meta-data",{
   
   # see if any of the runs failed
   check = !inherits(df, "try-error") &
-    inherits(df_missing, "try-error") &
-    inherits(df_null, "try-error") &
-    null_header & tile & lat & lon & alt
+          !inherits(df_skip_header, "try-error") &
+          inherits(df_missing, "try-error") &
+          inherits(df_null, "try-error") &
+          null_header & tile & lat & lon & alt
   
   # check if no error occured
   expect_true(check)

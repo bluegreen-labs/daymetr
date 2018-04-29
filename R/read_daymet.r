@@ -5,6 +5,8 @@
 #' 
 #' @param file a Daymet Single Pixel data file
 #' @param site a sitename (default = \code{NULL})
+#' @param skip_header do not ingest header meta-data, logical \code{FALSE}
+#' or \code{TRUE} (default = \code{FALSE})
 #' @return A nested data structure including site meta-data, the full
 #' header and the data as a `data.frame()`.
 #' @keywords time series, Daymet
@@ -30,7 +32,8 @@
 #' }
 
 read_daymet <- function(file = NULL,
-                        site = NULL){
+                        site = NULL,
+                        skip_header = FALSE){
   
   # stop on missing files
   if (is.null(file) ){
@@ -90,8 +93,11 @@ read_daymet <- function(file = NULL,
     if (length(c(lat,lon,tile,alt)) < 4 ){
       stop("Key table header elements are missing, Daymet format change?")
     }
-    
-  } else {
+  } 
+  
+  # if no header is detected or desired skip
+  # and provide fill values
+  if (table_cols <= 1 | skip_header) {
     tile = NULL
     alt = NULL
     lat = NULL

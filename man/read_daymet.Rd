@@ -4,12 +4,15 @@
 \alias{read_daymet}
 \title{Read Single Pixel Daymet data}
 \usage{
-read_daymet(file = NULL, site = NULL)
+read_daymet(file = NULL, site = NULL, skip_header = FALSE)
 }
 \arguments{
 \item{file}{a Daymet Single Pixel data file}
 
 \item{site}{a sitename (default = \code{NULL})}
+
+\item{skip_header}{do not ingest header meta-data, logical \code{FALSE}
+or \code{TRUE} (default = \code{FALSE})}
 }
 \value{
 A nested data structure including site meta-data, the full
