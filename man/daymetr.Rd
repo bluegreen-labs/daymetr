@@ -16,7 +16,9 @@ Programmatic interface to the 'Daymet' web services (\url{https://daymet.ornl.go
 \code{\link{download_daymet_tiles}}\cr
 \code{\link{download_daymet_ncss}}\cr
 \code{\link{daymet_grid_tmean}}\cr
-\code{\link{daymet_grid_offset}}
+\code{\link{daymet_grid_offset}}\cr
+\code{\link{daymet_grid_agg}}\cr
+\code{\link{calc_nd}}
 }
 }
 
