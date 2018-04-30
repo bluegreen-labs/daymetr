@@ -1,7 +1,7 @@
 I have read and agree to the the CRAN policies at
 http://cran.r-project.org/web/packages/policies.html
 
-## test environments, local and r-hub
+## test environments, local, CI and r-hub
 
 - local OSX / Ubuntu 16.04 install on R 3.4.3
 - Ubuntu 14.04 on Travis-CI (devel / release)
