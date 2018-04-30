@@ -5,10 +5,8 @@ http://cran.r-project.org/web/packages/policies.html
 
 - local OSX / Ubuntu 16.04 install on R 3.4.3
 - Ubuntu 14.04 on Travis-CI (devel / release)
-- codecove.io code coverage at ~97%
-- Windows Server 2008 R2 SP1, R-release, 32/64 bit, i.e. check_on_windows()
-- Debian Linux, R-release, GCC, i.e. check_on_linux()
-- CentOS 6, stock R from EPEL
+- codecove.io code coverage at ~98%
+- r-hub release versions (windows, centos, debian, ubuntu, fedora)
 
 ## local / Travis CI R CMD check results
 
@@ -16,23 +14,16 @@ http://cran.r-project.org/web/packages/policies.html
 
 ## r-hub R CMD check results for:
 
-- Centos
-- Debian
-- Ubuntu
+- Windows Server 2008 R2 SP1, R-release, 32/64 bit
+- CentOS 6, stock R from EPEL
+- Ubuntu Linux 16.04 LTS, R-release, GCC
+- Debian Linux, R-release, GCC
 
-0 errors | 0 warnings | 1 note
-
-Namespaces in Imports field not imported from:
-  ‘ncdf4’ ‘rgdal’ ‘rgeos’
-
-Due to dependencies in the raster library which aren't enforced.
-[mentioned libraries aren't installed by default although used]
+0 errors | 0 warnings | 0 notes
 
 - Fedora
 
-resulted in
-
-0 errors | 1 warning | 1 note
+0 errors | 1 warning | 0 notes
 
 Due to the lack of an X11 device (on the docker environment?),
 which is then unable to start device PNG. This should not occur on a system
