@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Build Status](https://travis-ci.org/khufkens/daymetr.svg?branch=master)](https://travis-ci.org/khufkens/daymetr) [![codecov](https://codecov.io/gh/khufkens/daymetr/branch/master/graph/badge.svg)](https://codecov.io/gh/khufkens/daymetr) [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/daymetr)](https://cran.r-project.org/package=daymetr) ![CRAN\_Downloads](https://cranlogs.r-pkg.org/badges/grand-total/daymetr)
+[![Build Status](https://travis-ci.org/khufkens/daymetr.svg)](https://travis-ci.org/khufkens/daymetr) [![codecov](https://codecov.io/gh/khufkens/daymetr/branch/master/graph/badge.svg)](https://codecov.io/gh/khufkens/daymetr) [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/daymetr)](https://cran.r-project.org/package=daymetr) ![CRAN\_Downloads](https://cranlogs.r-pkg.org/badges/grand-total/daymetr)
 
 daymetr
 =======
