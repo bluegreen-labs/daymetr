@@ -1,5 +1,6 @@
 ---
-output: github_document
+output: 
+ github_document
 ---
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -44,7 +45,7 @@ library("daymetr")
 Vignettes are not rendered by default, if you want to include additional documentation please use:
 
 ```{r eval = FALSE}
-if(!require(devtools)){install.package("devtools")}
+if(!require(devtools)){install.packages("devtools")}
 devtools::install_github("khufkens/daymetr", build_vignettes = TRUE)
 library("daymetr")
 ```
@@ -126,6 +127,7 @@ location	      | bounding box extent defined as top left / bottom right pair c(l
 start      | start year of the time series (data start in 1980)
 end        | end year of the time series (current year - 2 years, use force = TRUE to override)
 param         | climate variable you want to download vapour pressure (vp), minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), solar radiation (srad), precipitation (prcp) , day length (dayl). The default setting is ALL, this will download all the previously mentioned climate variables.
+mosaic | tile mosaic to use, defaults to "na" for North America (use "pr" for Puerto Rico and "hi" for Hawaii)
 path | path where to store the data, defaults to tempdir()
 silent | suppress the verbose output
 
