@@ -11,6 +11,8 @@
 #' climate variables.
 #' @param frequency frequency of the data requested (default = "daily", other
 #' options are "monthly" or "annual".
+#' @param mosaic which tile mosiac to source from (na = Northern America, hi = 
+#' Hawaii, pr = Puerto Rico), defaults to "na".
 #' @param path directory where to store the downloaded data (default = tempdir())
 #' @param silent suppress the verbose output
 #' @param force \code{TRUE} or \code{FALSE} (default),
@@ -50,6 +52,7 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
                                  end = 1980,
                                  param = "tmin",
                                  frequency = "daily",
+                                 mosaic = "na",
                                  path = tempdir(),
                                  silent = FALSE,
                                  force = FALSE){
@@ -129,14 +132,14 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
         }
         
         # create url string (varies per product / year)
-        url = sprintf("%s/daymet_v3_%s_%s_%s_na.nc4", base_url, j, prefix, i)
+        url = sprintf("%s/daymet_v3_%s_%s_%s_%s.nc4", base_url, j, prefix, i, mosaic)
         
         # create filename for the output file
         daymet_file = file.path(path, paste0(j,"_",prefix,"_",i,"_ncss.nc"))
         
       } else {
         # create url string (varies per product / year)
-        url = sprintf("%s/%s/daymet_v3_%s_%s_na.nc4", base_url, i, j, i)
+        url = sprintf("%s/%s/daymet_v3_%s_%s_%s.nc4", base_url, i, j, i, mosaic)
         
         # create filename for the output file
         daymet_file = file.path(path,paste0(j,"_daily_",i,"_ncss.nc"))
