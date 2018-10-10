@@ -4,7 +4,7 @@
 #' is returned to the current workspace.
 #'
 #' @param path full path location of the daymet tiles (default = tempdir())
-#' @param product which tile to process
+#' @param product either a tile number or a ncss product name
 #' @param year which year to process
 #' @param internal \code{TRUE} / \code{FALSE} (if \code{FALSE},
 #' write the output to file)
