@@ -13,7 +13,7 @@ daymet_grid_tmean(path = tempdir(), product = NULL, year = NULL,
 \arguments{
 \item{path}{full path location of the daymet tiles (default = tempdir())}
 
-\item{product}{which tile to process}
+\item{product}{either a tile number or a ncss product name}
 
 \item{year}{which year to process}
 
