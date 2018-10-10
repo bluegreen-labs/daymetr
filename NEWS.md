@@ -1,3 +1,7 @@
+# daymetr 1.3.4
+
+* include Hawaii and Puerto Rico mosaics into the NCSS subset function
+
 # daymetr 1.3.3
 
 * future proofed the read_daymet() function, to make things worry free
