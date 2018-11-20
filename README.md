@@ -34,7 +34,7 @@ To install the development releases of the package run the following
 commands:
 
 ``` r
-if(!require(devtools)){install.package("devtools")}
+if(!require(devtools)){install.packages("devtools")}
 devtools::install_github("khufkens/daymetr")
 library("daymetr")
 ```
