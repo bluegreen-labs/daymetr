@@ -4,8 +4,8 @@
 \alias{calc_nd}
 \title{Count days meeting set criteria (for gridded Daymet data files)}
 \usage{
-calc_nd(file = NULL, start_doy = 1, end_doy = 365, criteria = NULL,
-  value = NULL, internal = FALSE, path = tempdir())
+calc_nd(file, start_doy = 1, end_doy = 365, criteria, value,
+  internal = FALSE, path = tempdir())
 }
 \arguments{
 \item{file}{path of a file containing the daily gridded Daymet data}

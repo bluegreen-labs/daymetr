@@ -4,7 +4,7 @@
 \alias{read_daymet}
 \title{Read Single Pixel Daymet data}
 \usage{
-read_daymet(file = NULL, site = NULL, skip_header = FALSE)
+read_daymet(file, site, skip_header = FALSE, simplify = TRUE)
 }
 \arguments{
 \item{file}{a Daymet Single Pixel data file}
@@ -13,14 +13,17 @@ read_daymet(file = NULL, site = NULL, skip_header = FALSE)
 
 \item{skip_header}{do not ingest header meta-data, logical \code{FALSE}
 or \code{TRUE} (default = \code{FALSE})}
+
+\item{simplify}{output tidy data (tibble), logical \code{FALSE}
+or \code{TRUE} (default = \code{TRUE})}
 }
 \value{
 A nested data structure including site meta-data, the full
 header and the data as a `data.frame()`.
 }
 \description{
-Reads Single Pixel Daymet data into a nested list, preserving
-header data and critical file name information.
+Reads Single Pixel Daymet data into a nested list or tibble,
+preserving header data and critical file name information.
 }
 \examples{
 

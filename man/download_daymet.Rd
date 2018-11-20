@@ -6,7 +6,8 @@
 \usage{
 download_daymet(site = "Daymet", lat = 36.0133, lon = -84.2625,
   start = 2000, end = as.numeric(format(Sys.time(), "\%Y")) - 2,
-  path = tempdir(), internal = TRUE, silent = FALSE, force = FALSE)
+  path = tempdir(), internal = TRUE, silent = FALSE, force = FALSE,
+  simplify = TRUE)
 }
 \arguments{
 \item{site}{the site name.}
@@ -30,6 +31,9 @@ if internal = FALSE (default = NULL)}
 
 \item{force}{\code{TRUE} or \code{FALSE} (default),
 override the conservative end year setting}
+
+\item{simplify}{output tidy data (tibble), logical \code{FALSE}
+or \code{TRUE} (default = \code{TRUE})}
 }
 \value{
 Daymet data for a point location, returned to the R workspace or

@@ -7,8 +7,7 @@ a single mean daily temperature (tmean) gridded output (geotiff)
 for easy post processing and modelling. Optionally a raster object
 is returned to the current workspace.}
 \usage{
-daymet_grid_tmean(path = tempdir(), product = NULL, year = NULL,
-  internal = FALSE)
+daymet_grid_tmean(path = tempdir(), product, year, internal = FALSE)
 }
 \arguments{
 \item{path}{full path location of the daymet tiles (default = tempdir())}

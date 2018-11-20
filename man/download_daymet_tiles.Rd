@@ -4,7 +4,7 @@
 \alias{download_daymet_tiles}
 \title{Function to batch download gridded 'Daymet' data tiles}
 \usage{
-download_daymet_tiles(location = c(18.9103, -114.6109), tiles = NULL,
+download_daymet_tiles(location = c(18.9103, -114.6109), tiles,
   start = 1980, end = 1980, path = tempdir(), param = "ALL",
   silent = FALSE, force = FALSE)
 }

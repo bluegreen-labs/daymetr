@@ -4,7 +4,7 @@
 \alias{daymet_grid_agg}
 \title{Aggregate daily Daymet data}
 \usage{
-daymet_grid_agg(file = NULL, int = "seasonal", fun = "mean",
+daymet_grid_agg(file, int = "seasonal", fun = "mean",
   internal = FALSE, path = tempdir())
 }
 \arguments{
