@@ -20,6 +20,8 @@ library(daymetr)
 library(ncdf4)
 library(raster)
 library(sp)
+library(dplyr)
+library(ggplot2)
 
 # load tile outlines
 tile_outlines
@@ -72,25 +74,23 @@ The package maintains the original data header names in order to provide a trans
 
 ```{r fig.width = 7, fig.height=3}
 # simple graph of Daymet data
-par(mar=c(4,4,1,1))
-plot(as.Date(paste(df$year,
-                   df$yday,
-                   sep = "-"),
-             "%Y-%j"),
-     df$tmax..deg.c.,
-     xlab = "Date",
-     ylab = expression("max. temperature (" * degree * "C)"),
-     type = "l",
-     col = "lightblue")
+df %>%
+  mutate(date = as.Date(paste(year, yday, sep = "-"), "%Y-%j")) %>%
+  filter(measurement == "tmax..deg.c.") %>%
+  ggplot() +
+  geom_line(aes(x = date, y = value)) +
+  facet_wrap(~ measurement, ncol = 2)
 ```
 
 You can further summarize the data frame by year / month or day using either the by(), aggregate() or tidyverse based mutate() or summarize() operations. The code below (not run) uses the tidyverse (ddplyr) syntax to calculate daily mean temperature values from the minimum and maximum values provided by Daymet.
 
 ```{r eval = FALSE}
 # code not run
-df$data <- df$data %>%
-  mutate(tmean = (tmax..deg.c. + tmin..deg.c.)/2,
-         date = as.Date(paste(year, yday, sep = "-"), "%Y-%j"))
+df %>%
+  mutate(date = as.Date(paste(year, yday, sep = "-"), "%Y-%j")) %>%
+  group_by(date) %>%
+  filter(measurement == "tmax..deg.c." | measurement == "tmin..deg.c.") %>%
+  summarize(mean_temp = mean(value))
 ```
 
 ### Gridded data downloads
