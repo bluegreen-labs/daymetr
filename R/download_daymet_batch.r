@@ -11,6 +11,8 @@
 #' @param silent suppress the verbose output (default = FALSE)
 #' @param path set path where to save the data
 #' if internal = FALSE (default = tempdir())
+#' @param simplify output tidy data (tibble), logical \code{FALSE}
+#' or \code{TRUE} (default = \code{TRUE})
 #' @return Daymet data for point locations as a nested list or
 #' data written to csv files
 #' @keywords DAYMET, climate data
@@ -45,17 +47,20 @@
 #'                                     internal = TRUE,
 #'                                     silent = TRUE)
 #' 
-#' #' # For other practical examples consult the included
+#' # For other practical examples consult the included
 #' # vignette. 
 #' }
 
-download_daymet_batch <- function(file_location = NULL,
-                                  start = 1980,
-                                  end = as.numeric(format(Sys.time(), "%Y"))-1,
-                                  internal = TRUE,
-                                  force = FALSE,
-                                  silent = FALSE,
-                                  path = tempdir()){
+download_daymet_batch <- function(
+  file_location = NULL,
+  start = 1980,
+  end = as.numeric(format(Sys.time(), "%Y"))-1,
+  internal = TRUE,
+  force = FALSE,
+  silent = FALSE,
+  path = tempdir(),
+  simplify = FALSE
+  ){
   
   # check if the file exists
   if(!file.exists(file_location) || is.null(file_location)){
@@ -67,10 +72,11 @@ download_daymet_batch <- function(file_location = NULL,
 
   # loop over all lines in the file return
   # nested list
-  apply(locations, 1, function(location){
-    site = as.character(location[1])
-    lat = as.numeric(location[2])
-    lon = as.numeric(location[3])
+  output <- apply(locations, 1, function(location) {
+    site <- as.character(location[1])
+    lat <- as.numeric(location[2])
+    lon <- as.numeric(location[3])
+    
     try(download_daymet(
       site = site,
       lat = lat,
@@ -80,8 +86,15 @@ download_daymet_batch <- function(file_location = NULL,
       internal = internal,
       force = force,
       silent = silent,
-      path = path
+      path = path,
+      simplify = simplify
     ),
     silent = FALSE)
   })
+  
+  # if the output is tidy, row bind to one big
+  # tibble
+  if (simplify){
+    output <- do.call("rbind", output)
+  }
 }

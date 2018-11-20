@@ -13,6 +13,8 @@
 #' @param silent \code{TRUE} or \code{FALSE} (default), to provide verbose output
 #' @param force \code{TRUE} or \code{FALSE} (default),
 #' override the conservative end year setting
+#' @param simplify output tidy data (tibble), logical \code{FALSE}
+#' or \code{TRUE} (default = \code{TRUE})
 #' @return Daymet data for a point location, returned to the R workspace or
 #' written to disk as a csv file.
 #' @keywords Daymet, climate data, single pixel
@@ -68,15 +70,18 @@
 #' # vignette. 
 #'}
 
-download_daymet = function(site = "Daymet",
-                            lat = 36.0133,
-                            lon = -84.2625,
-                            start = 2000,
-                            end = as.numeric(format(Sys.time(), "%Y")) - 2,
-                            path = tempdir(),
-                            internal = TRUE,
-                            silent = FALSE,
-                            force = FALSE){
+download_daymet = function(
+  site = "Daymet",
+  lat = 36.0133,
+  lon = -84.2625,
+  start = 2000,
+  end = as.numeric(format(Sys.time(), "%Y")) - 2,
+  path = tempdir(),
+  internal = TRUE,
+  silent = FALSE,
+  force = FALSE,
+  simplify = TRUE
+  ){
 
   # CRAN file policy
   if (!silent & !internal & identical(path, tempdir())){
@@ -84,14 +89,14 @@ download_daymet = function(site = "Daymet",
   }
   
   # define API url, might change so put it on top
-  url = "https://daymet.ornl.gov/single-pixel/api/data"
+  url <- "https://daymet.ornl.gov/single-pixel/api/data"
   
   # force the max year to be the current year or
   # current year - 1 (conservative)
   if (!force){
-    max_year = as.numeric(format(Sys.time(), "%Y")) - 1
+    max_year <- as.numeric(format(Sys.time(), "%Y")) - 1
   } else {
-    max_year = as.numeric(format(Sys.time(), "%Y"))
+    max_year <- as.numeric(format(Sys.time(), "%Y"))
   }
   
   # check validaty of the range of years to download
@@ -107,22 +112,22 @@ download_daymet = function(site = "Daymet",
   }
 
   # if the year range is valid, create a string of valid years
-  year_range = paste(seq(start, end, by = 1), collapse=",")
+  year_range <- paste(seq(start, end, by = 1), collapse=",")
  
   # construct the query to be served to the server
-  query = list("lat" = lat,
+  query <- list("lat" = lat,
                "lon" = lon,
                "vars" = "tmax,tmin,dayl,prcp,srad,swe,vp",
                "year" = year_range)
   
   # create filenames for the output files
-  daymet_file = file.path(normalizePath(path),
+  daymet_file <- file.path(normalizePath(path),
                               sprintf("%s_%s_%s.csv",
                                       site,
                                       start,
                                       end))
   
-  daymet_tmp_file = file.path(normalizePath(tempdir()),
+  daymet_tmp_file <- file.path(normalizePath(tempdir()),
                               sprintf("%s_%s_%s.csv",
                                         site,
                                         start,
@@ -137,13 +142,14 @@ download_daymet = function(site = "Daymet",
   }
 
   # try to download the data
-  error = try(httr::GET(url = url,
+  error <- httr::GET(url = url,
                     query = query,
-                    httr::write_disk(path = daymet_tmp_file, overwrite = TRUE)))
+                    httr::write_disk(path = daymet_tmp_file,
+                                     overwrite = TRUE))
 
   # trap errors on download, return a general error statement
   # with the most common causes
-  if (httr::http_error(error) | inherits(error, "try-error")){
+  if (httr::http_error(error)){
     file.remove(daymet_tmp_file)
       stop("Your requested data is outside DAYMET (temporal) coverage,
             or the server can't be reached. Check your the connection to the
@@ -161,8 +167,9 @@ download_daymet = function(site = "Daymet",
   if (internal) {
     
     # read in a daymet single pixel data file
-    tmp_struct = read_daymet(daymet_tmp_file,
-                             site = site)
+    tmp_struct <- read_daymet(daymet_tmp_file,
+                             site = site,
+                             simplify = simplify)
     
     # return the temporary data structure (nested list)
     return(tmp_struct)
