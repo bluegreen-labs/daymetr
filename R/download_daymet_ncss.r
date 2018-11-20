@@ -142,11 +142,11 @@ download_daymet_ncss = function(
       } else {
         # create url string (varies per product / year)
         url <- sprintf("%s/%s/daymet_v3_%s_%s_%s.nc4", base_url, i, j, i, mosaic)
-        
+
         # create filename for the output file
         daymet_file <- file.path(path,paste0(j,"_daily_",i,"_ncss.nc"))
       }
-      
+            
       # formulate query to pass to httr
       query <- list(
         "var" = "lat",
@@ -172,12 +172,10 @@ download_daymet_ncss = function(
       
       # download data, force binary data mode
       if(silent){
-        status <- utils::capture.output(
-          httr::GET(url = url,
+        status <- httr::GET(url = url,
                     query = query,
                     httr::write_disk(path = daymet_file,
-                                     overwrite = TRUE)))
-      
+                                     overwrite = TRUE))
       } else {
         status <- httr::GET(url = url,
                                query = query,
