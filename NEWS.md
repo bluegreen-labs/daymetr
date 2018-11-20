@@ -1,6 +1,9 @@
-# daymetr 1.3.4
+# daymetr 1.4
 
 * include Hawaii and Puerto Rico mosaics into the NCSS subset function
+* switch from nested list structure to a tidy data frame (tibble) as a default
+* changed = to <-
+* use http_error() instead of try() wrappers
 
 # daymetr 1.3.3
 
