@@ -159,7 +159,13 @@ download_daymet_ncss(location = c(34, -82, 33.75, -81.75),
                      silent = TRUE)
 
 # read in the downloaded data
-r = raster::stack(paste0(tempdir(),"/tmin_monavg_1980_ncss.nc"))
+r <- raster::stack(paste0(tempdir(),"/tmin_monavg_1980_ncss.nc"))
+
+# to set the correct projection use
+raster::projection(r) <- "+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +a=6378137 +b=6356752.314706705 +units=m +no_defs"
+
+# reproject to lat lon
+r <- raster::projectRaster(r, crs = "+init=epsg:4326")
 
 # plot the monthly mean minimum temperature for 1980
 plot(r)
