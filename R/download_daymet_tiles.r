@@ -30,14 +30,16 @@
 #' # vignette. 
 #' }
 
-download_daymet_tiles = function(location = c(18.9103, -114.6109),
-                                 tiles = NULL,
-                                 start = 1980,
-                                 end = 1980,
-                                 path = tempdir(),
-                                 param = "ALL",
-                                 silent = FALSE,
-                                 force = FALSE){
+download_daymet_tiles = function(
+  location = c(18.9103, -114.6109),
+  tiles,
+  start = 1980,
+  end = 1980,
+  path = tempdir(),
+  param = "ALL",
+  silent = FALSE,
+  force = FALSE
+  ){
   
   # CRAN file policy
   if (identical(path, tempdir())){
@@ -52,9 +54,8 @@ download_daymet_tiles = function(location = c(18.9103, -114.6109),
   projection = sp::CRS(sp::proj4string(daymetr::tile_outlines))
   
   # override tile selection if tiles are specified on the command line
-  if (!is.null(tiles)){
+  if (!missing(tiles)){
     tile_selection = as.vector(unlist(tiles))
-    
   } else if ( length(location) == 2 ){
     
     # create coordinate pairs, with original coordinate  system
@@ -73,14 +74,14 @@ download_daymet_tiles = function(location = c(18.9103, -114.6109),
     
     # define a polygon to which will be intersected with the 
     # tiles object to deterrmine tiles to download
-    rect_corners = cbind(c(location[2],rep(location[4],2),location[2]),
+    rect_corners <- cbind(c(location[2],rep(location[4],2),location[2]),
                          c(rep(location[3],2),rep(location[1],2)))
     
-    ROI = sp::SpatialPolygons(list(sp::Polygons(list(sp::Polygon(list(rect_corners))),"bb")),
+    ROI <- sp::SpatialPolygons(list(sp::Polygons(list(sp::Polygon(list(rect_corners))),"bb")),
                               proj4string = projection)
     
     # extract unique tiles overlapping the rectangular ROI
-    tile_selection = unique(sp::over(ROI,
+    tile_selection <- unique(sp::over(ROI,
                                      daymetr::tile_outlines,
                                      returnList = TRUE)[[1]]$TileID)
     
@@ -98,9 +99,9 @@ download_daymet_tiles = function(location = c(18.9103, -114.6109),
   # force the max year to be the current year or
   # current year - 1 (conservative)
   if (!force){
-    max_year = as.numeric(format(Sys.time(), "%Y")) - 1
+    max_year <- as.numeric(format(Sys.time(), "%Y")) - 1
   } else {
-    max_year = as.numeric(format(Sys.time(), "%Y"))
+    max_year <- as.numeric(format(Sys.time(), "%Y"))
   }
   
   # check validaty of the range of years to download
@@ -116,11 +117,11 @@ download_daymet_tiles = function(location = c(18.9103, -114.6109),
   }
   
   # if the year range is valid, create a string of valid years
-  year_range = seq(start, end, by=1)
+  year_range <- seq(start, end, by=1)
 
   # check the parameters we want to download
   if (any(grepl("ALL", toupper(param)))) {
-    param = c('vp','tmin','tmax','swe','srad','prcp','dayl')
+    param <- c('vp','tmin','tmax','swe','srad','prcp','dayl')
   }
 
   # loop over years, tiles and parameters
@@ -129,10 +130,10 @@ download_daymet_tiles = function(location = c(18.9103, -114.6109),
       for ( k in param ){
         
         # create download string / url  
-        url = sprintf("%s/%s/%s_%s/%s.nc",base_url,i,j,i,k)
+        url <- sprintf("%s/%s/%s_%s/%s.nc",base_url,i,j,i,k)
                 
         # create filename for the output file
-        daymet_file = paste0(path,"/",k,"_",i,"_",j,".nc")
+        daymet_file <- paste0(path,"/",k,"_",i,"_",j,".nc")
         
         # provide some feedback if required
         if(!silent){
@@ -144,14 +145,14 @@ download_daymet_tiles = function(location = c(18.9103, -114.6109),
           
         # download data, force binary data mode
         if(silent){
-          status = try(utils::capture.output(
+          status <- try(utils::capture.output(
             httr::GET(url = url,
                       httr::write_disk(path = daymet_file,
                                        overwrite = TRUE))),
             silent = TRUE)
           
         } else {
-          status = try(httr::GET(url = url,
+          status <- try(httr::GET(url = url,
                                  httr::write_disk(path = daymet_file,
                                                   overwrite = TRUE),
                                  httr::progress()),

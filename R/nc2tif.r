@@ -41,10 +41,12 @@
 #'  
 #'}
 
-nc2tif <- function(path = tempdir(),
-                   files = NULL,
-                   overwrite = FALSE,
-                   silent = FALSE){
+nc2tif <- function(
+  path = tempdir(),
+  files = NULL,
+  overwrite = FALSE,
+  silent = FALSE
+  ){
 
   # CRAN file policy
   if (identical(path, tempdir())){

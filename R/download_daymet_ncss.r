@@ -47,34 +47,36 @@
 #' # vignette. 
 #' }
 
-download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
-                                 start = 1980,
-                                 end = 1980,
-                                 param = "tmin",
-                                 frequency = "daily",
-                                 mosaic = "na",
-                                 path = tempdir(),
-                                 silent = FALSE,
-                                 force = FALSE){
+download_daymet_ncss = function(
+  location = c(34, -82, 33.75, -81.75),
+  start = 1980,
+  end = 1980,
+  param = "tmin",
+  frequency = "daily",
+  mosaic = "na",
+  path = tempdir(),
+  silent = FALSE,
+  force = FALSE
+  ){
   # CRAN file policy
   if (identical(path, tempdir())){
     message("NOTE: data is stored in tempdir() ...")
   }
   
   # base url path
-  base_url = "https://thredds.daac.ornl.gov/thredds/ncss/ornldaac"
+  base_url <- "https://thredds.daac.ornl.gov/thredds/ncss/ornldaac"
   
   # remove capitals from frequency
-  frequency = tolower(frequency)
+  frequency <- tolower(frequency)
   
   # set final url path depending on the frequency of the
   # data requested
   if(frequency == "monthly"){
-    base_url = sprintf("%s/%s", base_url, 1345)
+    base_url <- sprintf("%s/%s", base_url, 1345)
   } else if (frequency == "annual"){
-    base_url = sprintf("%s/%s", base_url, 1343)
+    base_url <- sprintf("%s/%s", base_url, 1343)
   } else {
-    base_url = sprintf("%s/%s", base_url, 1328)
+    base_url <- sprintf("%s/%s", base_url, 1328)
   }
   
   # check if there are enough coordinates specified
@@ -85,9 +87,9 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
   # force the max year to be the current year or
   # current year - 1 (conservative)
   if (!force){
-    max_year = as.numeric(format(Sys.time(), "%Y")) - 1
+    max_year <- as.numeric(format(Sys.time(), "%Y")) - 1
   } else {
-    max_year = as.numeric(format(Sys.time(), "%Y"))
+    max_year <- as.numeric(format(Sys.time(), "%Y"))
   }
   
   # check validaty of the range of years to download
@@ -103,15 +105,15 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
   }
   
   # if the year range is valid, create a string of valid years
-  year_range = seq(start, end, by = 1)
+  year_range <- seq(start, end, by = 1)
   
   # check the parameters we want to download in case of
   # ALL list all available parameters for each frequency
   if (any(grepl("ALL", toupper(param)))) {
     if (tolower(frequency) == "daily"){
-      param = c('vp','tmin','tmax','swe','srad','prcp','dayl')
+      param <- c('vp','tmin','tmax','swe','srad','prcp','dayl')
     } else {
-      param = c('vp','tmin','tmax','prcp')
+      param <- c('vp','tmin','tmax','prcp')
     }
   }
 
@@ -126,27 +128,27 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
       
       if (frequency != "daily"){
         if (j != "prcp"){
-          prefix = paste0(substr(frequency,1,3),"avg")
+          prefix <- paste0(substr(frequency,1,3),"avg")
         } else {
-          prefix = paste0(substr(frequency,1,3),"ttl")
+          prefix <- paste0(substr(frequency,1,3),"ttl")
         }
         
         # create url string (varies per product / year)
-        url = sprintf("%s/daymet_v3_%s_%s_%s_%s.nc4", base_url, j, prefix, i, mosaic)
+        url <- sprintf("%s/daymet_v3_%s_%s_%s_%s.nc4", base_url, j, prefix, i, mosaic)
         
         # create filename for the output file
-        daymet_file = file.path(path, paste0(j,"_",prefix,"_",i,"_ncss.nc"))
+        daymet_file <- file.path(path, paste0(j,"_",prefix,"_",i,"_ncss.nc"))
         
       } else {
         # create url string (varies per product / year)
-        url = sprintf("%s/%s/daymet_v3_%s_%s_%s.nc4", base_url, i, j, i, mosaic)
+        url <- sprintf("%s/%s/daymet_v3_%s_%s_%s.nc4", base_url, i, j, i, mosaic)
         
         # create filename for the output file
-        daymet_file = file.path(path,paste0(j,"_daily_",i,"_ncss.nc"))
+        daymet_file <- file.path(path,paste0(j,"_daily_",i,"_ncss.nc"))
       }
       
-      # formulate query to pass to httr           
-      query = list(
+      # formulate query to pass to httr
+      query <- list(
         "var" = "lat",
         "var" = "lon",
         "var" = j,
@@ -170,23 +172,22 @@ download_daymet_ncss = function(location = c(34, -82, 33.75, -81.75),
       
       # download data, force binary data mode
       if(silent){
-        status = try(utils::capture.output(
+        status <- utils::capture.output(
           httr::GET(url = url,
                     query = query,
-                    httr::write_disk(path = daymet_file, overwrite = TRUE))),
-                  silent = TRUE)
+                    httr::write_disk(path = daymet_file,
+                                     overwrite = TRUE)))
       
       } else {
-        status = try(httr::GET(url = url,
+        status <- httr::GET(url = url,
                                query = query,
                                httr::write_disk(path = daymet_file,
                                                 overwrite = TRUE),
-                               httr::progress()),
-                     silent = TRUE)
+                               httr::progress())
       }
       
       # error / stop on 400 error
-      if(inherits(status,"try-error")){
+      if(httr::http_error(status)){
         stop("Requested coverage exceeds 6GB file size limit!")
       }
     }
