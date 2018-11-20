@@ -36,10 +36,12 @@
 #'                           internal = TRUE)
 #' }
 
-daymet_grid_tmean = function(path = tempdir(),
-                             product = NULL,
-                             year = NULL,
-                             internal = FALSE){
+daymet_grid_tmean = function(
+  path = tempdir(),
+  product,
+  year,
+  internal = FALSE
+  ){
   
   # CRAN file policy
   if (identical(path, tempdir())){
@@ -47,20 +49,20 @@ daymet_grid_tmean = function(path = tempdir(),
   }
   
   # exit on missing tile
-  if ( is.null(product) | is.null(year) ) {
+  if ( missing(product) | missing(year) ) {
     stop('No tile or year provided ...')
   }
   
   # depending on the input query find the necessary data files
   if(!is.na(as.numeric(product))){
     # list all files
-    tmin = sprintf('%s/tmin_%s_%s.nc',path, year, product)
-    tmax = sprintf('%s/tmax_%s_%s.nc',path, year, product)
-    output_file = sprintf('%s/tmean_%s_%s.tif', path, year, product)
+    tmin <- sprintf('%s/tmin_%s_%s.nc',path, year, product)
+    tmax <- sprintf('%s/tmax_%s_%s.nc',path, year, product)
+    output_file <- sprintf('%s/tmean_%s_%s.tif', path, year, product)
   } else {
-    tmin = sprintf('%s/tmin_%s_%s_ncss.nc',path, product, year)
-    tmax = sprintf('%s/tmax_%s_%s_ncss.nc',path, product, year)
-    output_file = sprintf('%s/tmean_%s_%s_ncss.tif', path, product, year)
+    tmin <- sprintf('%s/tmin_%s_%s_ncss.nc',path, product, year)
+    tmax <- sprintf('%s/tmax_%s_%s_ncss.nc',path, product, year)
+    output_file <- sprintf('%s/tmean_%s_%s_ncss.tif', path, product, year)
   }
   
   # check if both files exist, if not stop
@@ -69,13 +71,13 @@ daymet_grid_tmean = function(path = tempdir(),
   }
   
   # load everything into a raster stack
-  minmax_stack = suppressWarnings(raster::stack(tmin, tmax))
+  minmax_stack <- suppressWarnings(raster::stack(tmin, tmax))
   
   # list layers
-  l = rep(1:(raster::nlayers(minmax_stack)/2),2)
+  l <- rep(1:(raster::nlayers(minmax_stack)/2),2)
   
   # calculate layer mean, but back in tmean stack
-  tmean_stack = raster::stackApply(minmax_stack,
+  tmean_stack <- raster::stackApply(minmax_stack,
                                    indices = l,
                                    fun = mean,
                                    na.rm = TRUE)

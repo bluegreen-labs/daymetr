@@ -35,14 +35,16 @@
 #'                  fun = "mean")
 #'  }
 
-daymet_grid_agg = function(file = NULL,
-                           int = "seasonal",
-                           fun = "mean",
-                           internal = FALSE,
-                           path = tempdir()){
+daymet_grid_agg = function(
+  file,
+  int = "seasonal",
+  fun = "mean",
+  internal = FALSE,
+  path = tempdir()
+  ){
   
   # stop on missing files
-  if (is.null(file) ){
+  if (missing(file) ){
     stop('File not provided...')
   }
   

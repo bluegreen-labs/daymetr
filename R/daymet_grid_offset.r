@@ -25,17 +25,17 @@ daymet_grid_offset = function(data, offset = 264){
   # mainly there are 730 layers per above, which are ordered
   # sequantially 1:365 (days) x 2, this avoids dealing with
   # extracting info from layer names
-  layer_year = sort(rep(1:2,365))
-  layer_doy = rep(1:365,2)
+  layer_year <- sort(rep(1:2,365))
+  layer_doy <- rep(1:365,2)
 
   # final layer selection
-  layer_selection = which((layer_year == 1 & layer_doy >= offset) |
+  layer_selection <- which((layer_year == 1 & layer_doy >= offset) |
                             (layer_year == 2 & layer_doy < offset))
 
   # subset the data and assign correct
   # layer names, for clarity
   s = raster::subset(data, layer_selection)
-  names(s) = layer_doy[layer_selection]
+  names(s) <- layer_doy[layer_selection]
 
   # final subset for phenology modelling
   return(s)
