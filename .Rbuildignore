@@ -7,4 +7,5 @@
 ^cran-comments\.md$
 ^CONDUCT\.md$
 ^NEWS\.md$
+^docs$
 ^LICENSE$
