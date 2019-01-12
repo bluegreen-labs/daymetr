@@ -148,7 +148,7 @@ download_daymet_tiles(tiles = 11207,
 
 Queries to the NCSS data follow a similar syntax as those for the tiled data. However, you are restricted to using location based bounding boxes to extract gridded data subsets. In addition to the daily data the ncss subsets also include pre-processed summary values, e.g. mean monthly minimum and maximum temperatures or total monthly precipitation.
 
-```{r, fig.width = 7, fig.height = 7}
+```{r, eval = FALSE, fig.width = 7, fig.height = 7}
 # download monthly
 download_daymet_ncss(location = c(34, -82, 33.75, -81.75),
                      start = 1980,
@@ -175,7 +175,7 @@ The above figure shows nicely how you can query a small subset of the Daymet dat
 
 Below we search in the temporary directory of R for the downloaded monthly minimum and maximum temperature ncss files for the year 1980 (see paramteres specified) and calculate the mean monthly temperature for this year. The resulting plot, obviously, reports consistently higher values than the ones in the graph above.
 
-```{r, fig.width = 7, fig.height = 7}
+```{r, eval = FALSE, fig.width = 7, fig.height = 7}
 
 # plot the monthly mean minimum temperature for 1980
 r_tmean = daymet_grid_tmean(path = tempdir(),

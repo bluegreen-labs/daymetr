@@ -45,6 +45,11 @@ read_daymet <- function(
     stop('File not provided...')
   }
   
+  if (missing(site)){
+    site <- "tmp"
+    message("Sitename set to default - tmp")
+  }
+  
   # check if the file exists and is a daily file
   if (!file.exists(file) ){
     stop('File does not exist...')
@@ -61,14 +66,13 @@ read_daymet <- function(
   table_cols <- grep("year,yday", header)
   
   # warning / stop if key data table header elements are not found
-  if (length(table_cols) == 0){
-    stop("Key table header elements are missing, Daymet format change?")
-  }
-  
-  # if no header is present (table_cols == 1)
-  # skip extraction of meta-data
+  if (length(table_cols) == 0 || skip_header){
+    message("Key table header elements are missing, Daymet format change?")
+    message("Using NA fill values.")
+  }  
+    
   if (table_cols > 1){
-      
+    
     # header is defined as everything before the
     header <- tolower(header[1:(table_cols-1)])
     
@@ -77,32 +81,31 @@ read_daymet <- function(
     # and regmatches to extract relevant data
     tile <- as.numeric(regmatches(header[grep("tile:", header)],
                                  gregexpr("[-+]*[0-9,.]+",
-                                          header[grep("tile:", header)])))
+                                 header[grep("tile:", header)])))
     
     alt <- as.numeric(regmatches(header[grep("elevation:", header)],
                                 gregexpr("[-+]*[0-9,.]+",
-                                         header[grep("elevation:", header)])))
+                                header[grep("elevation:", header)])))
     
     lat <- as.numeric(unlist(regmatches(header[grep("latitude:", header)],
-                                       gregexpr("(?<=latitude: )[-+]*[0-9,.]+",
-                                                header[grep("latitude:", header)],
-                                                perl = TRUE))))
+                                  gregexpr("(?<=latitude: )[-+]*[0-9,.]+",
+                                  header[grep("latitude:", header)],
+                                  perl = TRUE))))
     
     lon <- as.numeric(unlist(regmatches(header[grep("longitude:", header)],
-                                       gregexpr("(?<=longitude: )[-+]*[0-9,.]+",
-                                                header[grep("longitude:", header)],
-                                                perl = TRUE))))
+                                 gregexpr("(?<=longitude: )[-+]*[0-9,.]+",
+                                 header[grep("longitude:", header)],
+                                 perl = TRUE))))
     
     # check if all fields are correctly populated,
     # if not stop and return nothing
     if (length(c(lat,lon,tile,alt)) < 4 ){
       stop("Key table header elements are missing, Daymet format change?")
     }
-  } 
+  }
   
-  # if no header is detected or desired skip
-  # and provide fill values
-  if (table_cols <= 1 | skip_header) {
+
+  if(skip_header){
     tile <- NA
     alt <- NA
     lat <- NA
@@ -127,6 +130,7 @@ read_daymet <- function(
     
     output <- tibble::tibble(
       site = site,
+      tile = tile,
       latitude = lat,
       longitude = lon,
       altitude = alt,
@@ -139,6 +143,7 @@ read_daymet <- function(
     
     # put all data in a list for a non-tidy output
     output <- list('site' = site,
+                   'tile' = tile,
                   'latitude' = lat,
                   'longitude' = lon,
                   'altitude' = alt,

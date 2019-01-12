@@ -119,7 +119,7 @@ download_daymet_ncss = function(
 
   # provide some feedback
   if(!silent){
-    cat('Creating a subset of the Daymet data
+    message('Creating a subset of the Daymet data
         be patient, this might take a while!\n')
   }
   
@@ -164,7 +164,7 @@ download_daymet_ncss = function(
       
       # provide some feedback
       if(!silent){
-        cat(paste0('\nDownloading DAYMET subset: ',
+        message(paste0('\nDownloading DAYMET subset: ',
                   'year: ',i,
                   '; product: ',j,
                   '\n'))

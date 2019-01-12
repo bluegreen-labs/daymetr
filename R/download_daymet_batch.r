@@ -54,7 +54,7 @@
 download_daymet_batch <- function(
   file_location = NULL,
   start = 1980,
-  end = as.numeric(format(Sys.time(), "%Y"))-1,
+  end = as.numeric(format(Sys.time(), "%Y")) - 1,
   internal = TRUE,
   force = FALSE,
   silent = FALSE,
@@ -68,7 +68,9 @@ download_daymet_batch <- function(
   }
   
   # read table with sites and coordinates
-  locations = utils::read.table(file_location, sep = ',')
+  locations = utils::read.table(file_location,
+                                sep = ',',
+                                header = TRUE)
 
   # loop over all lines in the file return
   # nested list
@@ -93,8 +95,12 @@ download_daymet_batch <- function(
   })
   
   # if the output is tidy, row bind to one big
-  # tibble
+  # tibble otherwise return a nested list
   if (simplify){
     output <- do.call("rbind", output)
+  }
+  
+  if(internal){
+    return(output)
   }
 }

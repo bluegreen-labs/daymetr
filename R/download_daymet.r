@@ -135,7 +135,7 @@ download_daymet = function(
   
   # provide verbose feedback
   if (!silent){
-    cat(paste('Downloading DAYMET data for: ',site,
+    message(paste('Downloading DAYMET data for: ',site,
               ' at ',lat,
               '/',lon,
               ' latitude/longitude !\n',sep=''))
@@ -158,7 +158,7 @@ download_daymet = function(
   
   # feedback
   if (!silent) {
-    cat('Done !\n')
+    message('Done !\n')
   }
   
   # if internal is FALSE just copy the temporary

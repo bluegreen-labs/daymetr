@@ -1,25 +1,22 @@
-# Daymetr unit tests
-
-# standard pixel extraction test both single
-# location and batch processing
+context("test single pixel downloads")
 test_that("pixel location download check",{
   
   # download the data
-  df = try(download_daymet(start = 1980,
+  expect_output(str(download_daymet(start = 1980,
                            end = 1980,
                            internal = TRUE,
-                           silent = TRUE))
+                           silent = TRUE)))
   
   # download the data, force out of range max_year
   # but do not call it
-  df_force = try(download_daymet(start = 1980,
+  expect_output(str(download_daymet(start = 1980,
                            end = 1980,
                            internal = TRUE,
                            silent = TRUE,
-                           force = TRUE))
+                           force = TRUE)))
   
   # download verbose and external
-  df_ext = try(download_daymet(start = 1980,
+  expect_message(download_daymet(start = 1980,
                                end = 1980,
                                internal = FALSE,
                                path = tempdir(),
@@ -30,24 +27,24 @@ test_that("pixel location download check",{
   dir.create(new_dir)
   
   # download verbose and check copy
-  df_ext_home = try(download_daymet(start = 1980,
+  expect_message(download_daymet(start = 1980,
                                end = 1980,
                                internal = FALSE,
                                path = new_dir,
                                silent = FALSE))
   
   # download out of range data (space and time)
-  df_range = try(download_daymet(start = 1970,
+  expect_error(download_daymet(start = 1970,
                                  end = 1980,
                                  internal = TRUE,
                                  silent = TRUE))
   
-  df_range_max = try(download_daymet(start = 1980,
+  expect_error(download_daymet(start = 1980,
                                      end = 2100,
                                      internal = TRUE,
                                      silent = TRUE))
   
-  df_range_loc = try(download_daymet(start = 1980,
+  expect_error(download_daymet(start = 1980,
                                      end = 1980,
                                      internal = TRUE,
                                      silent = TRUE,
@@ -67,31 +64,17 @@ test_that("pixel location download check",{
               quote = FALSE)
   
   # download data
-  df_batch = try(download_daymet_batch(file_location = paste0(tempdir(),
-                                                              "/locations.csv"),
-                                       start = 1980,
-                                       end = 1980,
-                                       internal = TRUE,
-                                       silent = TRUE))
+  expect_message(download_daymet_batch(
+    file_location = paste0(tempdir(),"/locations.csv"),
+    start = 1980,
+    end = 1980,
+    internal = TRUE,
+    silent = FALSE))
   
   # download data
-  df_batch_error = try(download_daymet_batch(file_location = "error.csv",
+  expect_error(download_daymet_batch(file_location = "error.csv",
                                        start = 1980,
                                        end = 1980,
                                        internal = TRUE,
                                        silent = TRUE))
-  
-  # see if any of the runs failed
-  check = !inherits(df, "try-error") &
-          !inherits(df_force, "try-error") &
-          inherits(df_range,"try-error") &
-          inherits(df_range_max,"try-error") &
-          inherits(df_range_loc,"try-error") &
-          !inherits(df_ext, "try-error") &
-          !inherits(df_ext_home, "try-error") &
-          !inherits(df_batch, "try-error") &
-          inherits(df_batch_error, "try-error")
-  
-  # check if no error occured
-  expect_true(check)
 })
