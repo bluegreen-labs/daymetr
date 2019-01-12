@@ -10,7 +10,7 @@ Description: Programmatic interface to the 'Daymet' web services
     Routines for both single pixel data downloads and
     gridded (netCDF) data are provided.
 Depends:
-    R (>= 3.4.0)
+    R (>= 3.4)
 Imports:
     sp,
     raster,
