@@ -29,17 +29,18 @@ tile_outlines
 ```
 A programmatic interface to the [Daymet web services](http://daymet.ornl.gov). Allows for easy downloads of Daymet climate data directly to your R workspace or your computer. Routines for both single pixel data downloads and gridded (netCDF) data are provided. Below you find a number of worked example on mostly smaller datasets to illustrate the utility of the package.
 
-### Downloading single pixel data
+## Downloading single pixel data
 
 A common application of daymet data is the extraction of local climate data, at a given location. This data will be extracted from a pixel within the gridded daymet dataset corresponding to a location provided in latitude / longitude format. You can download a dataset for a single location using the following format:
 
-```{r eval = TRUE}
+```{r eval = FALSE}
 df <- download_daymet(site = "Oak Ridge National Laboratories",
                 lat = 36.0133,
                 lon = -84.2625,
                 start = 2000,
                 end = 2010,
-                internal = TRUE)
+                internal = TRUE,
+                simplify = TRUE) # return tidy data !!
 ```
 
 With the *internal* parameter flag set to TRUE the data will be exported as a nested list to your terminal or a variable if assigned. If this parameter is set to FALSE the data will be written to a file on disk in your current working directory (i.e. getwd()). If you want to change the location where files are written to disk use the *path* parameter. For a full list of parameters see the table below.
@@ -65,6 +66,14 @@ param         | climate variable you want to download vapour pressure (vp), mini
 If only the first set of coordinates is provided the tile in which these reside is downloaded. If your region of interest falls outside the scope of the DAYMET data coverage a warning is issued. If both top left and bottom right coordinates are provided all tiles covering the region of interst are downloaded. I would caution against downloading too much data, as file sizes do add up. So be careful how you specify your region of interest.
 
 Data downloaded into the workspace, e.g. the **df** data frame in the above example, resides in a nested list. In addition to the climate data this list includes various meta-data parameters relevant to the query made, and at times helpful in subsequent analysis.
+
+
+```{r eval = TRUE, echo = FALSE, warning=FALSE, message=FALSE, error=FALSE}
+# load demo data in package
+df <- read_daymet(system.file(package = "daymetr","extdata/demo_data.csv"),
+                 simplify = TRUE)
+```
+
 
 ```{r eval = TRUE}
 str(df)
@@ -93,7 +102,7 @@ df %>%
   summarize(mean_temp = mean(value))
 ```
 
-### Gridded data downloads
+## Gridded data downloads
 
 For gridded data use either download_daymet_tiles() for individual tiles or download_daymet_ncss() for a netCDF subset which is not bound by tile limits (but restricted to a 6GB query size). Due to the (default) larger size of tiled data I'll demonstrate the use of the gridded data with a smaller dataset of monthly averaged data subset for a small (sub-tile sized) region. The below queries illustrate a variety of ways on how to download tile based data and subsets of the available data. You can query data based upon tile number, or a geographic location and required climate variables. A full description of the function parameter is provided in the table below.
 
@@ -107,9 +116,7 @@ path | location where to store the downloaded gridded data
 silent | suppress download progress
 param         | climate variable you want to download vapour pressure (vp), minimum and maximum temperature (tmin,tmax), snow water equivalent (swe), solar radiation (srad), precipitation (prcp) , day length (dayl). The default setting is ALL, this will download all the previously mentioned climate variables.
 
-```
-For the netCDF data subsets keep in mind that the bounding box is defined by the minimum (square) bounding box in a Lambert Conformal Conic (LCC) projection as defined by the provided geographic coordinates. In general the query area will be larger than the requested location. For more information I refer to Daymet documentation (https://daymet.ornl.gov/web_services.html) on the web service.
-```
+>For the netCDF data subsets keep in mind that the bounding box is defined by the minimum (square) bounding box in a Lambert Conformal Conic (LCC) projection as defined by the provided geographic coordinates. In general the query area will be larger than the requested location. For more information I refer to Daymet documentation (https://daymet.ornl.gov/web_services.html) on the web service.
 
 The daymet package also includes spatial polygon data frame outlining all the tiles in the Daymet repository (tile_outlines). This data can be used to extract all relevant tiles for an analysis by calculating the intersect between a geographic region of interest and this file.
 
@@ -119,7 +126,7 @@ The daymet package also includes spatial polygon data frame outlining all the ti
 plot(tile_outlines)
 ```
 
-#### *Querying tiled data*
+### *Querying tiled data*
 
 Below you will find some example of queries to the same tile (11207) using both geographic coordinates as well as the tile number. In the first function call **ALL** climate parameters are requested, while in the second function call only the minimum temperature (tmin) is queried.
 
@@ -144,7 +151,7 @@ download_daymet_tiles(tiles = 11207,
 
 ```
 
-#### *Querying netCDF subset (ncss) data*
+### *Querying netCDF subset (ncss) data*
 
 Queries to the NCSS data follow a similar syntax as those for the tiled data. However, you are restricted to using location based bounding boxes to extract gridded data subsets. In addition to the daily data the ncss subsets also include pre-processed summary values, e.g. mean monthly minimum and maximum temperatures or total monthly precipitation.
 

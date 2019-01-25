@@ -7,7 +7,7 @@
 download_daymet(site = "Daymet", lat = 36.0133, lon = -84.2625,
   start = 2000, end = as.numeric(format(Sys.time(), "\%Y")) - 2,
   path = tempdir(), internal = TRUE, silent = FALSE, force = FALSE,
-  simplify = TRUE)
+  simplify = FALSE)
 }
 \arguments{
 \item{site}{the site name.}

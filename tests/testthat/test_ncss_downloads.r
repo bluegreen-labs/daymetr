@@ -1,6 +1,6 @@
 context("test nccs routine")
 test_that("freefrom gridded download (ncss) checks",{
-  skip("ncss issues")
+  skip_if_not(daymet_running(ncss_server(catalog = TRUE)))
   
   # download daily data
   expect_message(download_daymet_ncss(param = "tmin",
@@ -43,9 +43,9 @@ test_that("freefrom gridded download (ncss) checks",{
   
   # download annual data for all data types
   expect_message(download_daymet_ncss(param = "ALL",
-                                           frequency = "annual",
-                                           path = tempdir(),
-                                           silent = FALSE))
+                                      frequency = "annual",
+                                      path = tempdir(),
+                                      silent = FALSE))
   
   # download the data
   expect_message(download_daymet_ncss(param = "ALL",

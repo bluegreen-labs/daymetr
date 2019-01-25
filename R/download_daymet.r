@@ -80,7 +80,7 @@ download_daymet = function(
   internal = TRUE,
   silent = FALSE,
   force = FALSE,
-  simplify = TRUE
+  simplify = FALSE
   ){
 
   # CRAN file policy
@@ -89,7 +89,7 @@ download_daymet = function(
   }
   
   # define API url, might change so put it on top
-  url <- "https://daymet.ornl.gov/single-pixel/api/data"
+  url <- server()
   
   # force the max year to be the current year or
   # current year - 1 (conservative)

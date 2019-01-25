@@ -11,8 +11,8 @@
 #' climate variables.
 #' @param frequency frequency of the data requested (default = "daily", other
 #' options are "monthly" or "annual".
-#' @param mosaic which tile mosiac to source from (na = Northern America, hi = 
-#' Hawaii, pr = Puerto Rico), defaults to "na".
+#' @param mosaic which tile mosiac to source from (na = Northern America,
+#' hi = Hawaii, pr = Puerto Rico), defaults to "na".
 #' @param path directory where to store the downloaded data (default = tempdir())
 #' @param silent suppress the verbose output
 #' @param force \code{TRUE} or \code{FALSE} (default),
@@ -63,21 +63,8 @@ download_daymet_ncss = function(
     message("NOTE: data is stored in tempdir() ...")
   }
   
-  # base url path
-  base_url <- "https://thredds.daac.ornl.gov/thredds/ncss/ornldaac"
-  
   # remove capitals from frequency
   frequency <- tolower(frequency)
-  
-  # set final url path depending on the frequency of the
-  # data requested
-  if(frequency == "monthly"){
-    base_url <- sprintf("%s/%s", base_url, 1345)
-  } else if (frequency == "annual"){
-    base_url <- sprintf("%s/%s", base_url, 1343)
-  } else {
-    base_url <- sprintf("%s/%s", base_url, 1328)
-  }
   
   # check if there are enough coordinates specified
   if (length(location)!=4){
@@ -127,21 +114,32 @@ download_daymet_ncss = function(
     for ( j in param ){
       
       if (frequency != "daily"){
-        if (j != "prcp"){
-          prefix <- paste0(substr(frequency,1,3),"avg")
-        } else {
-          prefix <- paste0(substr(frequency,1,3),"ttl")
-        }
+        
+        prefix <- ifelse(j != "prcp",
+          paste0(substr(frequency,1,3),"avg"),
+          paste0(substr(frequency,1,3),"ttl"))
         
         # create url string (varies per product / year)
-        url <- sprintf("%s/daymet_v3_%s_%s_%s_%s.nc4", base_url, j, prefix, i, mosaic)
+        url <- sprintf("%s/daymet_v3_%s_%s_%s_%s.nc4",
+                       ncss_server(frequency = frequency),
+                       j, prefix, i, mosaic)
         
         # create filename for the output file
         daymet_file <- file.path(path, paste0(j,"_",prefix,"_",i,"_ncss.nc"))
         
       } else {
+        
+        # correction in naming conventions
+        if(mosaic == "hi"){
+          mosaic <- "hawaii"
+        } else if(mosaic == "pr"){
+          mosaic <- "puertorico"
+        }
+        
         # create url string (varies per product / year)
-        url <- sprintf("%s/%s/daymet_v3_%s_%s_%s.nc4", base_url, i, j, i, mosaic)
+        url <- sprintf("%s/%s/daymet_v3_%s_%s_%s.nc4",
+                       ncss_server(frequency = frequency),
+                       i, j, i, mosaic)
 
         # create filename for the output file
         daymet_file <- file.path(path,paste0(j,"_daily_",i,"_ncss.nc"))
@@ -186,7 +184,15 @@ download_daymet_ncss = function(
       
       # error / stop on 400 error
       if(httr::http_error(status)){
-        stop("Requested coverage exceeds 6GB file size limit!")
+        
+        # remove bad file
+        file.remove(daymet_file)
+        
+        # report error
+        stop("Requested data download failed!\ 
+             Common issues involve a mismatch between\ 
+             the location and the mosaic used or downloads\ 
+             exceeding 6GB in size.", call. = FALSE)
       }
     }
   }

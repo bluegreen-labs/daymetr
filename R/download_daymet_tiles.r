@@ -47,11 +47,11 @@ download_daymet_tiles = function(
   }
   
   # set url path
-  base_url = "https://thredds.daac.ornl.gov/thredds/fileServer/ornldaac/1328/tiles"
+  url <- tile_server()
   
   # grab the projection string. This is a LCC projection.
   # (lazy load the tile_outlines)
-  projection = sp::CRS(sp::proj4string(daymetr::tile_outlines))
+  projection <- sp::CRS(sp::proj4string(daymetr::tile_outlines))
   
   # override tile selection if tiles are specified on the command line
   if (!missing(tiles)){
@@ -59,10 +59,10 @@ download_daymet_tiles = function(
   } else if ( length(location) == 2 ){
     
     # create coordinate pairs, with original coordinate  system
-    location = sp::SpatialPoints(list(location[2],location[1]), projection)
+    location <- sp::SpatialPoints(list(location[2],location[1]), projection)
     
     # extract tile for this location
-    tile_selection = sp::over(location,daymetr::tile_outlines)$TileID
+    tile_selection <- sp::over(location,daymetr::tile_outlines)$TileID
     
     # do not continue if outside range
     if (is.na(tile_selection)){
@@ -72,12 +72,13 @@ download_daymet_tiles = function(
     
   } else if (length(location) == 4 ){
     
-    # define a polygon to which will be intersected with the 
+    # define a polygon which will be intersected with the 
     # tiles object to deterrmine tiles to download
     rect_corners <- cbind(c(location[2],rep(location[4],2),location[2]),
                          c(rep(location[3],2),rep(location[1],2)))
     
-    ROI <- sp::SpatialPolygons(list(sp::Polygons(list(sp::Polygon(list(rect_corners))),"bb")),
+    ROI <- sp::SpatialPolygons(
+      list(sp::Polygons(list(sp::Polygon(list(rect_corners))),"bb")),
                               proj4string = projection)
     
     # extract unique tiles overlapping the rectangular ROI
@@ -130,7 +131,7 @@ download_daymet_tiles = function(
       for ( k in param ){
         
         # create download string / url  
-        url <- sprintf("%s/%s/%s_%s/%s.nc",base_url,i,j,i,k)
+        url <- sprintf("%s/%s/%s_%s/%s.nc",url,i,j,i,k)
                 
         # create filename for the output file
         daymet_file <- paste0(path,"/",k,"_",i,"_",j,".nc")

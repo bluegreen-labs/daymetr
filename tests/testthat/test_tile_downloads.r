@@ -1,5 +1,7 @@
 context("test tile downloads")
 test_that("download tile",{
+  skip_if_not(daymet_running(tile_server()))
+  
   expect_message(download_daymet_tiles(
     tiles = 9753,
     start = 1980,

@@ -16,9 +16,6 @@
 #' @examples
 #'
 #' \dontrun{
-#' # with defaults, outputting a data frame
-#' # with smoothed values, overwriting the original
-#'
 #' # download the data
 #' download_daymet(site = "Daymet",
 #'                  start = 1980,

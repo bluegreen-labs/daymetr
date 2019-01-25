@@ -25,8 +25,8 @@ climate variables.}
 \item{frequency}{frequency of the data requested (default = "daily", other
 options are "monthly" or "annual".}
 
-\item{mosaic}{which tile mosiac to source from (na = Northern America, hi = 
-Hawaii, pr = Puerto Rico), defaults to "na".}
+\item{mosaic}{which tile mosiac to source from (na = Northern America,
+hi = Hawaii, pr = Puerto Rico), defaults to "na".}
 
 \item{path}{directory where to store the downloaded data (default = tempdir())}
 

@@ -1,8 +1,5 @@
 # daymetr 1.4
 
-* NCSS subsets still miss a projection (previously resolved I think)
-* NCSS checks are disabled, but functions still remain
-* tiled data still processes correctly
 * include Hawaii and Puerto Rico mosaics into the NCSS subset function
 * switch from nested list structure to a tidy data frame (tibble) as a default
 * changed = to <-
