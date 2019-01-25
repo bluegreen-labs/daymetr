@@ -14,7 +14,7 @@
 #' }
 
 # create subset of layers to calculate phenology model output on
-daymet_grid_offset = function(data, offset = 264){
+daymet_grid_offset <- function(data, offset = 264){
 
   # sanity check
   if(raster::nlayers(data) != 730){
@@ -34,7 +34,7 @@ daymet_grid_offset = function(data, offset = 264){
 
   # subset the data and assign correct
   # layer names, for clarity
-  s = raster::subset(data, layer_selection)
+  s <- raster::subset(data, layer_selection)
   names(s) <- layer_doy[layer_selection]
 
   # final subset for phenology modelling

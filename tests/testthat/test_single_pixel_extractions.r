@@ -24,7 +24,7 @@ test_that("pixel location download check",{
                                silent = FALSE))
   
   # create new directory
-  new_dir = file.path(tempdir(),"test")
+  new_dir <- file.path(tempdir(),"test")
   dir.create(new_dir)
   
   # download verbose and check copy
@@ -53,7 +53,7 @@ test_that("pixel location download check",{
                                      lon = 0))
   
   # create demo locations
-  locations = data.frame(site = c("site1", "site2"),
+  locations <- data.frame(site = c("site1", "site2"),
                          lat = rep(36.0133, 2),
                          lon = rep(-84.2625, 2))
   

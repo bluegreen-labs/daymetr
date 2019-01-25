@@ -1,6 +1,3 @@
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 [![Build
 Status](https://travis-ci.org/khufkens/daymetr.svg)](https://travis-ci.org/khufkens/daymetr)
 [![codecov](https://codecov.io/gh/khufkens/daymetr/branch/master/graph/badge.svg)](https://codecov.io/gh/khufkens/daymetr)

@@ -70,7 +70,7 @@
 #' # vignette. 
 #'}
 
-download_daymet = function(
+download_daymet <- function(
   site = "Daymet",
   lat = 36.0133,
   lon = -84.2625,

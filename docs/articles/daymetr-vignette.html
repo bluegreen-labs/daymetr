@@ -61,7 +61,14 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/khufkens/daymetr">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -78,7 +85,7 @@
             
             <h4 class="date">2019-01-25</h4>
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/khufkens/daymetr/blob/master/vignettes/daymetr-vignette.Rmd"><code>vignettes/daymetr-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>daymetr-vignette.Rmd</code></div>
 
     </div>
@@ -254,30 +261,30 @@
 <a class="sourceLine" id="cb8-5" data-line-number="5">                     <span class="dt">frequency =</span> <span class="st">"monthly"</span>,</a>
 <a class="sourceLine" id="cb8-6" data-line-number="6">                     <span class="dt">param =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"tmin"</span>,<span class="st">"tmax"</span>),</a>
 <a class="sourceLine" id="cb8-7" data-line-number="7">                     <span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>(),</a>
-<a class="sourceLine" id="cb8-8" data-line-number="8">                     <span class="dt">silent =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb8-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co"># read in the downloaded data</span></a>
-<a class="sourceLine" id="cb8-11" data-line-number="11">r &lt;-<span class="st"> </span>raster<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/stack">stack</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>(),<span class="st">"/tmin_monavg_1980_ncss.nc"</span>))</a>
-<a class="sourceLine" id="cb8-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co"># to set the correct projection use</span></a>
-<a class="sourceLine" id="cb8-14" data-line-number="14">raster<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/projection">projection</a></span>(r) &lt;-<span class="st"> "+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +a=6378137 +b=6356752.314706705 +units=m +no_defs"</span></a>
-<a class="sourceLine" id="cb8-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb8-16" data-line-number="16"><span class="co"># reproject to lat lon</span></a>
-<a class="sourceLine" id="cb8-17" data-line-number="17">r &lt;-<span class="st"> </span>raster<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/projectRaster">projectRaster</a></span>(r, <span class="dt">crs =</span> <span class="st">"+init=epsg:4326"</span>)</a>
-<a class="sourceLine" id="cb8-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb8-19" data-line-number="19"><span class="co"># plot the monthly mean minimum temperature for 1980</span></a>
-<a class="sourceLine" id="cb8-20" data-line-number="20"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(r)</a></code></pre></div>
+<a class="sourceLine" id="cb8-8" data-line-number="8">                     <span class="dt">silent =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>The above figure shows nicely how you can query a small subset of the Daymet data. However, a common climate variable, the mean temperature is not provided. As such you may calculate these values using the daymet_grid_tmean() function. This function calculates the mean temperature for a given tile / or ncss subset provided that matching minimum and maximum netCDF files can be found in the same directory.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># read in the demo data from the package for speed</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">r &lt;-<span class="st"> </span>raster<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/stack">stack</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="dt">package =</span> <span class="st">"daymetr"</span>,<span class="st">"extdata/tmin_monavg_1980_ncss.nc"</span>))</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co"># to set the correct projection use</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">raster<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/projection">projection</a></span>(r) &lt;-<span class="st"> "+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +a=6378137 +b=6356752.314706705 +units=m +no_defs"</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co"># reproject to lat lon</span></a>
+<a class="sourceLine" id="cb9-8" data-line-number="8">r &lt;-<span class="st"> </span>raster<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/projectRaster">projectRaster</a></span>(r, <span class="dt">crs =</span> <span class="st">"+init=epsg:4326"</span>)</a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co"># plot the monthly mean minimum temperature for 1980</span></a>
+<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(r)</a></code></pre></div>
+<p><img src="daymetr-vignette_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
 <p>Below we search in the temporary directory of R for the downloaded monthly minimum and maximum temperature ncss files for the year 1980 (see paramteres specified) and calculate the mean monthly temperature for this year. The resulting plot, obviously, reports consistently higher values than the ones in the graph above.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co"># plot the monthly mean minimum temperature for 1980</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">r_tmean =<span class="st"> </span><span class="kw"><a href="../reference/daymet_grid_tmean.html">daymet_grid_tmean</a></span>(<span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>(),</a>
-<a class="sourceLine" id="cb9-4" data-line-number="4">                            <span class="dt">product =</span> <span class="st">"monavg"</span>,</a>
-<a class="sourceLine" id="cb9-5" data-line-number="5">                            <span class="dt">year =</span> <span class="dv">1980</span>,</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6">                            <span class="dt">internal =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="co"># plot the mean temperature raster</span></a>
-<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(r_tmean)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># plot the monthly mean minimum temperature for 1980</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">r_tmean =<span class="st"> </span><span class="kw"><a href="../reference/daymet_grid_tmean.html">daymet_grid_tmean</a></span>(<span class="dt">path =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="dt">package =</span> <span class="st">"daymetr"</span>,<span class="st">"extdata"</span>),</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">                            <span class="dt">product =</span> <span class="st">"monavg"</span>,</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">                            <span class="dt">year =</span> <span class="dv">1980</span>,</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">                            <span class="dt">internal =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="co"># plot the mean temperature raster</span></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(r_tmean)</a></code></pre></div>
+<p><img src="daymetr-vignette_files/figure-html/unnamed-chunk-11-1.png" width="672"></p>
 <p>I hope the vignette provided you with an overview of the capabilities of the daymetr package. Please report all bugs or feature requests on the project’s github page. If you found the software useful in your work please use the below reference to cite the package.</p>
 </div>
 </div>

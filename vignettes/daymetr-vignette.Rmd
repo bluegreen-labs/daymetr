@@ -155,7 +155,7 @@ download_daymet_tiles(tiles = 11207,
 
 Queries to the NCSS data follow a similar syntax as those for the tiled data. However, you are restricted to using location based bounding boxes to extract gridded data subsets. In addition to the daily data the ncss subsets also include pre-processed summary values, e.g. mean monthly minimum and maximum temperatures or total monthly precipitation.
 
-```{r, eval = FALSE, fig.width = 7, fig.height = 7}
+```{r, eval = FALSE}
 # download monthly
 download_daymet_ncss(location = c(34, -82, 33.75, -81.75),
                      start = 1980,
@@ -164,9 +164,13 @@ download_daymet_ncss(location = c(34, -82, 33.75, -81.75),
                      param = c("tmin","tmax"),
                      path = tempdir(),
                      silent = TRUE)
+```
 
-# read in the downloaded data
-r <- raster::stack(paste0(tempdir(),"/tmin_monavg_1980_ncss.nc"))
+The above figure shows nicely how you can query a small subset of the Daymet data. However, a common climate variable, the mean temperature is not provided. As such you may calculate these values using the daymet_grid_tmean() function. This function calculates the mean temperature for a given tile / or ncss subset provided that matching minimum and maximum netCDF files can be found in the same directory.
+
+```{r , fig.width = 7, fig.height = 7, warning=FALSE, message=FALSE}
+# read in the demo data from the package for speed
+r <- raster::stack(system.file(package = "daymetr","extdata/tmin_monavg_1980_ncss.nc"))
 
 # to set the correct projection use
 raster::projection(r) <- "+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +a=6378137 +b=6356752.314706705 +units=m +no_defs"
@@ -178,14 +182,12 @@ r <- raster::projectRaster(r, crs = "+init=epsg:4326")
 plot(r)
 ```
 
-The above figure shows nicely how you can query a small subset of the Daymet data. However, a common climate variable, the mean temperature is not provided. As such you may calculate these values using the daymet_grid_tmean() function. This function calculates the mean temperature for a given tile / or ncss subset provided that matching minimum and maximum netCDF files can be found in the same directory.
 
 Below we search in the temporary directory of R for the downloaded monthly minimum and maximum temperature ncss files for the year 1980 (see paramteres specified) and calculate the mean monthly temperature for this year. The resulting plot, obviously, reports consistently higher values than the ones in the graph above.
 
-```{r, eval = FALSE, fig.width = 7, fig.height = 7}
-
+```{r, , fig.width = 7, fig.height = 7, warning=FALSE, message=FALSE}
 # plot the monthly mean minimum temperature for 1980
-r_tmean = daymet_grid_tmean(path = tempdir(),
+r_tmean = daymet_grid_tmean(path = system.file(package = "daymetr","extdata"),
                             product = "monavg",
                             year = 1980,
                             internal = TRUE)

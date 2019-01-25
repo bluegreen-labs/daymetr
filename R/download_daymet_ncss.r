@@ -47,7 +47,7 @@
 #' # vignette. 
 #' }
 
-download_daymet_ncss = function(
+download_daymet_ncss <- function(
   location = c(34, -82, 33.75, -81.75),
   start = 1980,
   end = 1980,

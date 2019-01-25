@@ -36,7 +36,7 @@
 #'                           internal = TRUE)
 #' }
 
-daymet_grid_tmean = function(
+daymet_grid_tmean <- function(
   path = tempdir(),
   product,
   year,

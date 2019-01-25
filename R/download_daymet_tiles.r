@@ -30,7 +30,7 @@
 #' # vignette. 
 #' }
 
-download_daymet_tiles = function(
+download_daymet_tiles <- function(
   location = c(18.9103, -114.6109),
   tiles,
   start = 1980,
@@ -55,7 +55,7 @@ download_daymet_tiles = function(
   
   # override tile selection if tiles are specified on the command line
   if (!missing(tiles)){
-    tile_selection = as.vector(unlist(tiles))
+    tile_selection <- as.vector(unlist(tiles))
   } else if ( length(location) == 2 ){
     
     # create coordinate pairs, with original coordinate  system

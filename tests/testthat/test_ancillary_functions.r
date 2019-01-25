@@ -4,7 +4,7 @@ test_that("check offset routine",{
   skip("ncss issues")
   
   # download the data
-  df_daily = try(download_daymet_ncss(param = "tmin",
+  df_daily <- try(download_daymet_ncss(param = "tmin",
                                       frequency = "daily",
                                       path = tempdir(), 
                                       start = 1981,
@@ -12,19 +12,19 @@ test_that("check offset routine",{
                                       silent = TRUE))
   
   # create a stack of the downloaded data
-  st = raster::stack(paste(tempdir(),
+  st <- raster::stack(paste(tempdir(),
                            c("tmin_daily_1981_ncss.nc",
                              "tmin_daily_1982_ncss.nc"),
                            sep = "/"))
   
   # correct offset
-  offset_check = try(daymet_grid_offset(st))
+  offset_check <- try(daymet_grid_offset(st))
   
   # corrupted offset
-  offset_check_corrupt = try(daymet_grid_offset(raster::dropLayer(st, 1)))
+  offset_check_corrupt <- try(daymet_grid_offset(raster::dropLayer(st, 1)))
   
   # see if any of the runs failed
-  check = !inherits(df_daily,"try-error") &
+  check <- !inherits(df_daily,"try-error") &
     !inherits(offset_check,"try-error") &
     inherits(offset_check_corrupt, "try-error") # no ! reversal
   

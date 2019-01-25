@@ -68,7 +68,7 @@ download_daymet_batch <- function(
   }
   
   # read table with sites and coordinates
-  locations = utils::read.table(file_location,
+  locations <- utils::read.table(file_location,
                                 sep = ',',
                                 header = TRUE)
 
