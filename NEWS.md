@@ -4,6 +4,9 @@
 * switch from nested list structure to a tidy data frame (tibble) as a default
 * changed = to <-
 * use http_error() instead of try() wrappers
+* trap server errors in unit checks
+* skip ancillary functions on CRAN (conflicts and issues)
+* code cov back to ~94% (local / Travis)
 
 # daymetr 1.3.3
 
