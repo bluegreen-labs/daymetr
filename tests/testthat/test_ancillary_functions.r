@@ -1,7 +1,7 @@
 context("test ancillary functions")
 
 test_that("check offset routine",{
-  skip("ncss issues")
+  skip_if_not(daymet_running(tile_server()))
   
   # download the data
   df_daily <- try(download_daymet_ncss(param = "tmin",
@@ -112,7 +112,7 @@ test_that("tile download and format conversion checks",{
 
 # check aggregation
 test_that("tile aggregation checks",{
-  skip("ncss issues")
+  skip_if_not(daymet_running(tile_server()))
   
   # download the data
   try(download_daymet_ncss(param = "tmin",
@@ -189,7 +189,7 @@ test_that("tile aggregation checks",{
 
 # test read_daymet header formatting
 test_that("read_daymet checks of meta-data",{
-  skip("ncss issues")
+  skip_if_not(daymet_running(tile_server()))
   
   # download verbose and external
   download_daymet(start = 1980,
@@ -230,7 +230,7 @@ test_that("read_daymet checks of meta-data",{
 
 # calc_nd checks
 test_that("calc_nd checks",{
-  skip("ncss issues")
+  skip_if_not(daymet_running(tile_server()))
   
   # download daily gridded data
   # using default settings (data written to tempdir())
