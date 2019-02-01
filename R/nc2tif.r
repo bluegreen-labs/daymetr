@@ -54,7 +54,7 @@ nc2tif <- function(
   }
   
   # providing initial feedback
-  cat("nc2tif is working. Be patient, this may take a while...\n")
+  message("nc2tif is working. Be patient, this may take a while...\n")
   
   # if no file is provide read data
   # from provided path
@@ -79,40 +79,29 @@ nc2tif <- function(
     
     if (!silent){
       # list how many files were skipped
-      cat("\nSkipping",length(tifs),"existing files.")
+      message("\nSkipping ",length(tifs)," existing files.")
     }
   }
-  
-  # create progress tracker to 
-  # provide feedback during writing
-  k <- 0
   
   # begin looping through files
-  for(i in files){
+  lapply(files, function(file){
     
-    # modify progress count
-    k <- k + 1
-    
-    if (!silent){
-      # provide feedback
-      cat("\nWriting",tools::file_path_sans_ext(i),
-          "\nfile",k,"of",length(files),"\n")
-    }
-  
-    if(!any(grep(pattern="annttl|annavg",i))){
-      # if i is daily or monthly data use raster::brick
-      data <- suppressWarnings(raster::brick(i))
-        
+    if(!any(grep(pattern="annttl|annavg", file))){
+      data <- try(raster::brick(file), silent = TRUE)
     }else{
-      # if i is annual summary data use raster::raster
-      data <- suppressWarnings(raster::raster(i))
+      data <- try(raster::raster(file), silent = TRUE)
     }
 
-    # write the file
+    if(inherits(data, "try-error")){
+      message("Conversion error...corrupt file?")
+    } else {
     raster::writeRaster(data,
-                        filename=tools::file_path_sans_ext(i),
-                        format="GTiff",
-                        overwrite=TRUE,
-                        progress="text")
-  }
+                        filename = tools::file_path_sans_ext(file),
+                        format = "GTiff",
+                        overwrite = TRUE)
+    }
+  })
+  
+  # return nothing
+  invisible()
 }
