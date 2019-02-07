@@ -2,10 +2,7 @@
 % Please edit documentation in R/daymet_grid_tmean.r
 \name{daymet_grid_tmean}
 \alias{daymet_grid_tmean}
-\title{Averages tmax and tmin 'Daymet' gridded products into
-a single mean daily temperature (tmean) gridded output (geotiff)
-for easy post processing and modelling. Optionally a raster object
-is returned to the current workspace.}
+\title{Averages tmax and tmin 'Daymet' gridded products}
 \usage{
 daymet_grid_tmean(path = tempdir(), product, year, internal = FALSE)
 }
@@ -21,10 +18,9 @@ write the output to file)
 using the Daymet file format protocol.}
 }
 \description{
-Averages tmax and tmin 'Daymet' gridded products into
-a single mean daily temperature (tmean) gridded output (geotiff)
-for easy post processing and modelling. Optionally a raster object
-is returned to the current workspace.
+Combines data into a single mean daily temperature (tmean) 
+gridded output (geotiff) for easy post processing and modelling. 
+Optionally a raster object is returned to the current workspace.
 }
 \examples{
 

@@ -1,7 +1,8 @@
-#' Averages tmax and tmin 'Daymet' gridded products into
-#' a single mean daily temperature (tmean) gridded output (geotiff)
-#' for easy post processing and modelling. Optionally a raster object
-#' is returned to the current workspace.
+#' Averages tmax and tmin 'Daymet' gridded products
+#' 
+#' Combines data into a single mean daily temperature (tmean) 
+#' gridded output (geotiff) for easy post processing and modelling. 
+#' Optionally a raster object is returned to the current workspace.
 #'
 #' @param path full path location of the daymet tiles (default = tempdir())
 #' @param product either a tile number or a ncss product name

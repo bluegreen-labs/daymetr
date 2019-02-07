@@ -2,7 +2,7 @@
 % Please edit documentation in R/calc_nd.r
 \name{calc_nd}
 \alias{calc_nd}
-\title{Count days meeting set criteria (for gridded Daymet data files)}
+\title{Count days meeting set criteria}
 \usage{
 calc_nd(file, start_doy = 1, end_doy = 365, criteria, value,
   internal = FALSE, path = tempdir())

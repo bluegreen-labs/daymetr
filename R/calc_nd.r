@@ -1,4 +1,4 @@
-#' Count days meeting set criteria (for gridded Daymet data files)
+#' Count days meeting set criteria
 #'
 #' Function to count the number of days in a given time period
 #' that meet a given set of criteria. This can be used to extract indices 

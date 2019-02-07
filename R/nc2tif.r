@@ -1,6 +1,6 @@
-#' Converts .nc files in a given directory to .tif.
+#' Converts netCDF (nc) files to geotiff
 #' 
-#' Conversion to .tif may simplify workflows if the data
+#' Conversion to .tif to simplify workflows if the data
 #' that has been downloaded is to be handled in other
 #' software (e.g. QGIS).
 #' 

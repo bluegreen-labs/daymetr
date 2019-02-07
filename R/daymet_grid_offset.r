@@ -1,3 +1,5 @@
+#' Returns a time shifted (offset) dataset
+#' 
 #' Returns an offset dataset with data running from offset DOY in year - 1 to
 #' offset DOY in the current year. Two years of data (730 data layers) are
 #' required for this function to work. The output serves as input for further

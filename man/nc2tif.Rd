@@ -2,7 +2,7 @@
 % Please edit documentation in R/nc2tif.r
 \name{nc2tif}
 \alias{nc2tif}
-\title{Converts .nc files in a given directory to .tif.}
+\title{Converts netCDF (nc) files to geotiff}
 \usage{
 nc2tif(path = tempdir(), files = NULL, overwrite = FALSE,
   silent = FALSE)
@@ -26,7 +26,7 @@ Converted geotiff files of all netCDF data in the provided
 directory (path).
 }
 \description{
-Conversion to .tif may simplify workflows if the data
+Conversion to .tif to simplify workflows if the data
 that has been downloaded is to be handled in other
 software (e.g. QGIS).
 }
