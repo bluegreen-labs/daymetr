@@ -188,7 +188,7 @@ processed tile or ncss netCDF file).</p>
 <span class='co'># read in the Daymet file and report back the number</span>
 <span class='co'># of days in a year with a minimum temperature lower</span>
 <span class='co'># than 15 degrees C</span>
-<span class='no'>r</span> <span class='kw'>=</span> <span class='fu'>calc_nd</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(),<span class='st'>"tmin_daily_1980_ncss.nc"</span>),
+<span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='fu'>calc_nd</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(),<span class='st'>"tmin_daily_1980_ncss.nc"</span>),
             <span class='kw'>criteria</span> <span class='kw'>=</span> <span class='st'>"&lt;"</span>,
             <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>15</span>,
             <span class='kw'>internal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)

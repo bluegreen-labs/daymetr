@@ -47,7 +47,7 @@ download_daymet_ncss()
 # read in the Daymet file and report back the number
 # of days in a year with a minimum temperature lower
 # than 15 degrees C
-r = calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
+r <- calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
             criteria = "<",
             value = 15,
             internal = TRUE)

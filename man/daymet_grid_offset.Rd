@@ -23,7 +23,7 @@ data processing and / or ecosystem modelling efforts.
 \examples{
 
 \dontrun{
-my_subset = daymet_gridded_offset(mystack, offset = 264)
+my_subset <- daymet_gridded_offset(mystack, offset = 264)
 }
 }
 \keyword{daily}

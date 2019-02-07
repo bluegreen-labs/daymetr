@@ -45,7 +45,7 @@ download_daymet_tiles(tiles = 11935,
 # the result to the R workspace (internal = TRUE)
 # If internal = FALSE, a file tmean_11935_1980.tif
 # is written into the source path (path_with_daymet_tiles)
-tmean = daymet_grid_tmean(path = tempdir(),
+tmean <- daymet_grid_tmean(path = tempdir(),
                           tile = 11935,
                           year = 1980,
                           internal = TRUE)

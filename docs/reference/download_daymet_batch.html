@@ -193,7 +193,7 @@ data written to csv files</p>
 <span class='co'># is written to disk.</span>
 
 <span class='co'># create demo locations (two sites)</span>
-<span class='no'>locations</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>site</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"site1"</span>, <span class='st'>"site2"</span>),
+<span class='no'>locations</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>site</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"site1"</span>, <span class='st'>"site2"</span>),
                       <span class='kw'>lat</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>36.0133</span>, <span class='fl'>2</span>),
                       <span class='kw'>lon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(-<span class='fl'>84.2625</span>, <span class='fl'>2</span>))
 
@@ -205,7 +205,7 @@ data written to csv files</p>
            <span class='kw'>quote</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># download data, will return nested list of daymet data</span>
-<span class='no'>df_batch</span> <span class='kw'>=</span> <span class='fu'>download_daymet_batch</span>(<span class='kw'>file_location</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(),
+<span class='no'>df_batch</span> <span class='kw'>&lt;-</span> <span class='fu'>download_daymet_batch</span>(<span class='kw'>file_location</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempdir</a></span>(),
                                                         <span class='st'>"/locations.csv"</span>),
                                     <span class='kw'>start</span> <span class='kw'>=</span> <span class='fl'>1980</span>,
                                     <span class='kw'>end</span> <span class='kw'>=</span> <span class='fl'>1980</span>,

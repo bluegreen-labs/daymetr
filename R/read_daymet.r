@@ -24,7 +24,7 @@
 #'                  silent = TRUE)
 #'
 #' # read in the Daymet file
-#' df = read_daymet(paste0(tempdir(),"/Daymet_1980_1980.csv"))
+#' df <- read_daymet(paste0(tempdir(),"/Daymet_1980_1980.csv"))
 #'
 #' # print data structure
 #' print(str(df))

@@ -50,7 +50,7 @@ location, as specified by a batch file.
 # is written to disk.
 
 # create demo locations (two sites)
-locations = data.frame(site = c("site1", "site2"),
+locations <- data.frame(site = c("site1", "site2"),
                       lat = rep(36.0133, 2),
                       lon = rep(-84.2625, 2))
 
@@ -62,7 +62,7 @@ write.table(locations, paste0(tempdir(),"/locations.csv"),
            quote = FALSE)
 
 # download data, will return nested list of daymet data
-df_batch = download_daymet_batch(file_location = paste0(tempdir(),
+df_batch <- download_daymet_batch(file_location = paste0(tempdir(),
                                                         "/locations.csv"),
                                     start = 1980,
                                     end = 1980,

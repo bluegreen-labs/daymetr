@@ -187,7 +187,7 @@ Below we search in the temporary directory of R for the downloaded monthly minim
 
 ```{r, , fig.width = 7, fig.height = 7, warning=FALSE, message=FALSE}
 # plot the monthly mean minimum temperature for 1980
-r_tmean = daymet_grid_tmean(path = system.file(package = "daymetr","extdata"),
+r_tmean <- daymet_grid_tmean(path = system.file(package = "daymetr","extdata"),
                             product = "monavg",
                             year = 1980,
                             internal = TRUE)

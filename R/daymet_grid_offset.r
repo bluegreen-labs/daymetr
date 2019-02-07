@@ -10,7 +10,7 @@
 #' @examples
 #'
 #' \dontrun{
-#' my_subset = daymet_gridded_offset(mystack, offset = 264)
+#' my_subset <- daymet_gridded_offset(mystack, offset = 264)
 #' }
 
 # create subset of layers to calculate phenology model output on
