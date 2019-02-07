@@ -35,4 +35,4 @@ Suggests:
     testthat
 VignetteBuilder: knitr
 URL: https://github.com/khufkens/daymetr
-BugReports: https://github.com/khufkens/ecmwfr/daymetr
+BugReports: https://github.com/khufkens/daymetr
