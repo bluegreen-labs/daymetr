@@ -161,4 +161,5 @@ Evolution](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12970/full),
 ## Acknowledgements
 
 This project was supported by the National Science Foundation’s
-Macro-system Biology Program (awards EF-1065029 and EF-1702697).
+Macro-system Biology Program (awards EF-1065029 and EF-1702697). Logo design elements are taken from the FontAwesome library according to [these terms](https://fontawesome.com/license), where the globe element was inverted and intersected.
+
