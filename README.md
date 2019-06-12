@@ -5,8 +5,6 @@ Status](https://travis-ci.org/khufkens/daymetr.svg)](https://travis-ci.org/khufk
 [![codecov](https://codecov.io/gh/khufkens/daymetr/branch/master/graph/badge.svg)](https://codecov.io/gh/khufkens/daymetr)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/daymetr)](https://cran.r-project.org/package=daymetr)
 ![CRAN\_Downloads](https://cranlogs.r-pkg.org/badges/grand-total/daymetr)
-<a href="https://www.buymeacoffee.com/H2wlgqCLO" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" height="21px" ></a>
-<a href="https://liberapay.com/khufkens/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg" height="21px"></a>
 
 A programmatic interface to the [Daymet web
 services](http://daymet.ornl.gov). Allows for easy downloads of Daymet
