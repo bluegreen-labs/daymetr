@@ -266,7 +266,7 @@
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># read in the demo data from the package for speed</span></a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">r &lt;-<span class="st"> </span>raster<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/stack">stack</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="dt">package =</span> <span class="st">"daymetr"</span>,<span class="st">"extdata/tmin_monavg_1980_ncss.nc"</span>))</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co"># to set the correct projection use</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co"># to set the correct projection</span></a>
 <a class="sourceLine" id="cb9-5" data-line-number="5">raster<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/projection">projection</a></span>(r) &lt;-<span class="st"> "+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +ellps=WGS84 +units=km +no_defs"</span></a>
 <a class="sourceLine" id="cb9-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co"># reproject to lat lon</span></a>
@@ -282,8 +282,15 @@
 <a class="sourceLine" id="cb10-4" data-line-number="4">                            <span class="dt">year =</span> <span class="dv">1980</span>,</a>
 <a class="sourceLine" id="cb10-5" data-line-number="5">                            <span class="dt">internal =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb10-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="co"># plot the mean temperature raster</span></a>
-<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(r_tmean)</a></code></pre></div>
+<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="co"># to set the correct projection</span></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8">raster<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/projection">projection</a></span>(r_tmean) &lt;-<span class="st"> "+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +ellps=WGS84 +units=km +no_defs"</span></a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="co"># reproject to lat lon</span></a>
+<a class="sourceLine" id="cb10-11" data-line-number="11">r_tmean &lt;-<span class="st"> </span>raster<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/projectRaster">projectRaster</a></span>(r_tmean, <span class="dt">crs =</span> <span class="st">"+init=epsg:4326"</span>)</a>
+<a class="sourceLine" id="cb10-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb10-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb10-14" data-line-number="14"><span class="co"># plot the mean temperature raster</span></a>
+<a class="sourceLine" id="cb10-15" data-line-number="15"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(r_tmean)</a></code></pre></div>
 <p><img src="daymetr-vignette_files/figure-html/unnamed-chunk-11-1.png" width="672"></p>
 <p>I hope the vignette provided you with an overview of the capabilities of the daymetr package. Please report all bugs or feature requests on the project’s github page. If you found the software useful in your work please use the below reference to cite the package.</p>
 </div>
