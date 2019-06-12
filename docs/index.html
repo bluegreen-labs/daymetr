@@ -83,11 +83,11 @@
       
       </header><div class="row">
   <div class="contents col-md-9">
-
-<p><a href="https://travis-ci.org/khufkens/daymetr"><img src="https://travis-ci.org/khufkens/daymetr.svg" alt="Build Status"></a> <a href="https://codecov.io/gh/khufkens/daymetr"><img src="https://codecov.io/gh/khufkens/daymetr/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://cran.r-project.org/package=daymetr"><img src="https://www.r-pkg.org/badges/version/daymetr" alt="CRAN_Status_Badge"></a> <img src="https://cranlogs.r-pkg.org/badges/grand-total/daymetr" alt="CRAN_Downloads"><a href="https://www.buymeacoffee.com/H2wlgqCLO" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" height="21px"></a> <a href="https://liberapay.com/khufkens/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg" height="21px"></a></p>
 <div id="daymetr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#daymetr" class="anchor"></a>daymetr</h1></div>
+<a href="#daymetr" class="anchor"></a>daymetr <a href="https://khufkens.github.io/daymetr/"><img src="daymetr-logo.png" align="right" height="139"></a>
+</h1></div>
+<p><a href="https://travis-ci.org/khufkens/daymetr"><img src="https://travis-ci.org/khufkens/daymetr.svg" alt="Build Status"></a> <a href="https://codecov.io/gh/khufkens/daymetr"><img src="https://codecov.io/gh/khufkens/daymetr/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://cran.r-project.org/package=daymetr"><img src="https://www.r-pkg.org/badges/version/daymetr" alt="CRAN_Status_Badge"></a> <img src="https://cranlogs.r-pkg.org/badges/grand-total/daymetr" alt="CRAN_Downloads"><a href="https://www.buymeacoffee.com/H2wlgqCLO" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" height="21px"></a> <a href="https://liberapay.com/khufkens/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg" height="21px"></a></p>
 <p>A programmatic interface to the <a href="http://daymet.ornl.gov">Daymet web services</a>. Allows for easy downloads of Daymet climate data directly to your R workspace or your computer. Routines for both single pixel data downloads and gridded (netCDF) data are provided. Please use the below references when using Daymet data and the package.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -96,20 +96,20 @@
 <h3 class="hasAnchor">
 <a href="#stable-release" class="anchor"></a>stable release</h3>
 <p>To install the current stable release use a CRAN repository:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"daymetr"</span>)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"daymetr"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"daymetr"</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"daymetr"</span>)</a></code></pre></div>
 </div>
 <div id="development-release" class="section level3">
 <h3 class="hasAnchor">
 <a href="#development-release" class="anchor"></a>development release</h3>
 <p>To install the development releases of the package run the following commands:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="cf">if</span>(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(devtools)){<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)}</a>
-<a class="sourceLine" id="cb2-2" title="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"khufkens/daymetr"</span>)</a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"daymetr"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="cf">if</span>(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(devtools)){<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)}</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"khufkens/daymetr"</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"daymetr"</span>)</a></code></pre></div>
 <p>Vignettes are not rendered by default, if you want to include additional documentation please use:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="cf">if</span>(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(devtools)){<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)}</a>
-<a class="sourceLine" id="cb3-2" title="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"khufkens/daymetr"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"daymetr"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="cf">if</span>(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(devtools)){<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)}</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"khufkens/daymetr"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"daymetr"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="use" class="section level2">
@@ -119,12 +119,12 @@
 <h3 class="hasAnchor">
 <a href="#single-pixel-location-download" class="anchor"></a>Single pixel location download</h3>
 <p>For a single site use the following format</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="reference/download_daymet.html">download_daymet</a></span>(<span class="dt">site =</span> <span class="st">"Oak Ridge National Laboratories"</span>,</a>
-<a class="sourceLine" id="cb4-2" title="2">                <span class="dt">lat =</span> <span class="fl">36.0133</span>,</a>
-<a class="sourceLine" id="cb4-3" title="3">                <span class="dt">lon =</span> <span class="fl">-84.2625</span>,</a>
-<a class="sourceLine" id="cb4-4" title="4">                <span class="dt">start =</span> <span class="dv">1980</span>,</a>
-<a class="sourceLine" id="cb4-5" title="5">                <span class="dt">end =</span> <span class="dv">2010</span>,</a>
-<a class="sourceLine" id="cb4-6" title="6">                <span class="dt">internal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="reference/download_daymet.html">download_daymet</a></span>(<span class="dt">site =</span> <span class="st">"Oak Ridge National Laboratories"</span>,</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">                <span class="dt">lat =</span> <span class="fl">36.0133</span>,</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">                <span class="dt">lon =</span> <span class="fl">-84.2625</span>,</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">                <span class="dt">start =</span> <span class="dv">1980</span>,</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">                <span class="dt">end =</span> <span class="dv">2010</span>,</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">                <span class="dt">internal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="6%">
@@ -174,10 +174,10 @@
 </tbody>
 </table>
 <p>Batch mode uses similar parameters but you provide a comma separated file with site names and latitude longitude which are sequentially downloaded. The format of the comma separated file is: site name, latitude, longitude.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="reference/download_daymet_batch.html">download_daymet_batch</a></span>(<span class="dt">file_location =</span> <span class="st">'my_sites.csv'</span>,</a>
-<a class="sourceLine" id="cb5-2" title="2">                      <span class="dt">start =</span> <span class="dv">1980</span>,</a>
-<a class="sourceLine" id="cb5-3" title="3">                      <span class="dt">end =</span> <span class="dv">2010</span>,</a>
-<a class="sourceLine" id="cb5-4" title="4">                      <span class="dt">internal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/download_daymet_batch.html">download_daymet_batch</a></span>(<span class="dt">file_location =</span> <span class="st">'my_sites.csv'</span>,</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">                      <span class="dt">start =</span> <span class="dv">1980</span>,</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">                      <span class="dt">end =</span> <span class="dv">2010</span>,</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">                      <span class="dt">internal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="gridded-data-downloads" class="section level3">
 <h3 class="hasAnchor">
@@ -187,11 +187,11 @@
 <h4 class="hasAnchor">
 <a href="#tiled-data" class="anchor"></a><em>Tiled data</em>
 </h4>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="reference/download_daymet_tiles.html">download_daymet_tiles</a></span>(<span class="dt">location =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">36.0133</span>,<span class="op">-</span><span class="fl">84.2625</span>),</a>
-<a class="sourceLine" id="cb6-2" title="2">                      <span class="dt">tiles =</span> <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb6-3" title="3">                      <span class="dt">start =</span> <span class="dv">1980</span>,</a>
-<a class="sourceLine" id="cb6-4" title="4">                      <span class="dt">end =</span> <span class="dv">2012</span>,</a>
-<a class="sourceLine" id="cb6-5" title="5">                      <span class="dt">param =</span> <span class="st">"ALL"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="reference/download_daymet_tiles.html">download_daymet_tiles</a></span>(<span class="dt">location =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">36.0133</span>,<span class="op">-</span><span class="fl">84.2625</span>),</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">                      <span class="dt">tiles =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">                      <span class="dt">start =</span> <span class="dv">1980</span>,</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">                      <span class="dt">end =</span> <span class="dv">2012</span>,</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">                      <span class="dt">param =</span> <span class="st">"ALL"</span>)</a></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="2%">
@@ -238,10 +238,10 @@
 <h4 class="hasAnchor">
 <a href="#netcdf-subset-ncss-data" class="anchor"></a><em>netCDF subset (ncss) data</em>
 </h4>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="reference/download_daymet_ncss.html">download_daymet_ncss</a></span>(<span class="dt">location =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">36.61</span>,<span class="op">-</span><span class="fl">85.37</span>,<span class="fl">33.57</span>,<span class="op">-</span><span class="fl">81.29</span>),</a>
-<a class="sourceLine" id="cb7-2" title="2">                     <span class="dt">start =</span> <span class="dv">1980</span>,</a>
-<a class="sourceLine" id="cb7-3" title="3">                     <span class="dt">end =</span> <span class="dv">1980</span>,</a>
-<a class="sourceLine" id="cb7-4" title="4">                     <span class="dt">param =</span> <span class="st">"tmin"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="reference/download_daymet_ncss.html">download_daymet_ncss</a></span>(<span class="dt">location =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">36.61</span>,<span class="op">-</span><span class="fl">85.37</span>,<span class="fl">33.57</span>,<span class="op">-</span><span class="fl">81.29</span>),</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">                     <span class="dt">start =</span> <span class="dv">1980</span>,</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">                     <span class="dt">end =</span> <span class="dv">1980</span>,</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">                     <span class="dt">param =</span> <span class="st">"tmin"</span>)</a></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="2%">
@@ -289,16 +289,15 @@
 <div id="reference" class="section level2">
 <h2 class="hasAnchor">
 <a href="#reference" class="anchor"></a>Reference</h2>
-<p>Thornton, P.E., M.M. Thornton, B.W. Mayer, Y. Wei, R. Devarakonda, R.S. Vose, and R.B. Cook. 2017. <a href="https://doi.org/10.3334/ORNLDAAC/1328">Daymet: Daily Surface Weather Data on a 1-km Grid for North America, Version 3.</a> ORNL DAAC, Oak Ridge, Tennessee, USA.</p>
 <p>Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2018 <a href="http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12970/full">An integrated phenology modelling framework in R: Phenology modelling with phenor. Methods in Ecology &amp; Evolution</a>, 9: 1-10.</p>
+<p>Thornton, P.E., M.M. Thornton, B.W. Mayer, Y. Wei, R. Devarakonda, R.S. Vose, and R.B. Cook. 2017. <a href="https://doi.org/10.3334/ORNLDAAC/1328">Daymet: Daily Surface Weather Data on a 1-km Grid for North America, Version 3.</a> ORNL DAAC, Oak Ridge, Tennessee, USA.</p>
 </div>
 <div id="acknowledgements" class="section level2">
 <h2 class="hasAnchor">
 <a href="#acknowledgements" class="anchor"></a>Acknowledgements</h2>
-<p>This project was supported by the National Science Foundation’s Macro-system Biology Program (awards EF-1065029 and EF-1702697).</p>
+<p>This project was supported by the National Science Foundation’s Macro-system Biology Program (awards EF-1065029 and EF-1702697). Logo design elements are taken from the FontAwesome library according to <a href="https://fontawesome.com/license">these terms</a>, where the globe element was inverted and intersected.</p>
 </div>
 </div>
-
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

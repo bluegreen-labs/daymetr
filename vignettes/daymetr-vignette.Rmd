@@ -173,7 +173,7 @@ The above figure shows nicely how you can query a small subset of the Daymet dat
 r <- raster::stack(system.file(package = "daymetr","extdata/tmin_monavg_1980_ncss.nc"))
 
 # to set the correct projection use
-raster::projection(r) <- "+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +a=6378137 +b=6356752.314706705 +units=km +no_defs"
+raster::projection(r) <- "+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +ellps=WGS84 +units=km +no_defs"
 
 # reproject to lat lon
 r <- raster::projectRaster(r, crs = "+init=epsg:4326")
