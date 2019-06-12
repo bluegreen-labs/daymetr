@@ -1,4 +1,4 @@
-# daymetr <a href='https://khufkens.github.io/daymetr/'><img src='daymetr-logo.png' align="right" height="139" /></a>
+# daymetr <a href='https://khufkens.github.io/daymetr/'><img src='https://raw.githubusercontent.com/khufkens/daymetr/master/daymetr-logo.png' align="right" height="139" /></a>
 
 [![Build
 Status](https://travis-ci.org/khufkens/daymetr.svg)](https://travis-ci.org/khufkens/daymetr)
