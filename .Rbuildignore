@@ -9,4 +9,4 @@
 ^NEWS\.md$
 ^docs$
 ^LICENSE$
-^.*-logo\\.
+^.*-logo\..*$
