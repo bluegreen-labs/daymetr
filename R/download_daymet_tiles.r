@@ -162,7 +162,7 @@ download_daymet_tiles <- function(
         
         # error / stop on 400 error
         if(inherits(status,"try-error")){
-          cat("download failed ... (check warning messages)")
+          message("download failed ... (check warning messages)")
         }
       }
     }
