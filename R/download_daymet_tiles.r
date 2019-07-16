@@ -47,7 +47,7 @@ download_daymet_tiles <- function(
   }
   
   # set url path
-  url <- tile_server()
+  server_path <- tile_server()
   
   # grab the projection string. This is a LCC projection.
   # (lazy load the tile_outlines)
@@ -131,19 +131,18 @@ download_daymet_tiles <- function(
       for ( k in param ){
         
         # create download string / url  
-        url <- sprintf("%s/%s/%s_%s/%s.nc",url,i,j,i,k)
-                
+        url <- sprintf("%s/%s/%s_%s/%s.nc",server_path,i,j,i,k)
+        
         # create filename for the output file
-        daymet_file <- paste0(path,"/",k,"_",i,"_",j,".nc")
+        daymet_file <- file.path(path, paste0(k,"_",i,"_",j,".nc"))
         
         # provide some feedback if required
         if(!silent){
-          cat(paste0('\nDownloading DAYMET data for tile: ',j,
+          message(paste0('\nDownloading DAYMET data for tile: ',j,
                     '; year: ',i,
-                    '; product: ',k,
-                    '\n'))
+                    '; product: ',k))
         }
-          
+        
         # download data, force binary data mode
         if(silent){
           status <- try(utils::capture.output(
@@ -154,8 +153,9 @@ download_daymet_tiles <- function(
           
         } else {
           status <- try(httr::GET(url = url,
-                                 httr::write_disk(path = daymet_file,
-                                                  overwrite = TRUE),
+                                 httr::write_disk(
+                                   path = daymet_file,
+                                   overwrite = TRUE),
                                  httr::progress()),
                        silent = TRUE)
         }
