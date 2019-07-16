@@ -54,11 +54,11 @@ test_that("tmean grid checks",{
                                      internal = TRUE))
   
   expect_error(daymet_grid_tmean(path = tempdir(),
-                                     product = 9753,
+                                     product = 0,
                                      year = 1980))
   
   expect_error(daymet_grid_tmean(path = tempdir(),
-                                     product = 9753,
+                                     product = 0,
                                      year = NULL))
   
   # remove one file of the temperature pair (tmin)
