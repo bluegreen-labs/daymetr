@@ -1,3 +1,8 @@
+# daymetr 1.5
+
+* fix bug in the tiles download function
+  - badly formatted url caused all tiles except the first to fail
+
 # daymetr 1.4
 
 * include Hawaii and Puerto Rico mosaics into the NCSS subset function
