@@ -54,9 +54,9 @@ software (e.g. QGIS).
  
 }
 }
-\keyword{Daymet,}
 \keyword{climate}
 \keyword{conversion}
 \keyword{data,}
+\keyword{daymet,}
 \keyword{gridded}
 \keyword{netCDF,}

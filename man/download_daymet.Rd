@@ -93,8 +93,8 @@ plot(daymet_data$data$date,
 # vignette. 
 }
 }
-\keyword{Daymet,}
 \keyword{climate}
 \keyword{data,}
+\keyword{daymet,}
 \keyword{pixel}
 \keyword{single}

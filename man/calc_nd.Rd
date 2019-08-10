@@ -56,7 +56,7 @@ r <- calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
 raster::plot(r)
 }
 }
-\keyword{Daymet,}
+\keyword{daymet,}
 \keyword{gridded}
 \keyword{series,}
 \keyword{summary}

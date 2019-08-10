@@ -73,6 +73,6 @@ df_batch <- download_daymet_batch(file_location = paste0(tempdir(),
 # vignette. 
 }
 }
-\keyword{DAYMET,}
 \keyword{climate}
 \keyword{data}
+\keyword{daymet,}

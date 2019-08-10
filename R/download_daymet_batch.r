@@ -15,7 +15,7 @@
 #' or \code{TRUE} (default = \code{TRUE})
 #' @return Daymet data for point locations as a nested list or
 #' data written to csv files
-#' @keywords DAYMET, climate data
+#' @keywords daymet, climate data
 #' @export
 #' @examples
 #'
