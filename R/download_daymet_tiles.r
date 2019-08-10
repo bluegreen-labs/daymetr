@@ -160,7 +160,7 @@ download_daymet_tiles <- function(
                        silent = TRUE)
         }
         
-        # error / stop on 400 error
+        # error message on 400 error
         if(inherits(status,"try-error")){
           message("download failed ... (check warning messages)")
         }
