@@ -1,4 +1,8 @@
-# daymetr 1.5
+# daymetr 1.4.2
+
+* better error trapping in single pixel downloads using http status codes
+
+# daymetr 1.4.1
 
 * fix bug in the tiles download function
   - badly formatted url caused all tiles except the first to fail
