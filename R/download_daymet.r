@@ -149,11 +149,17 @@ download_daymet <- function(
 
   # trap errors on download, return a general error statement
   # with the most common causes
-  if (httr::http_error(error)){
+  if (httr::status_code(error) == 400){
     file.remove(daymet_tmp_file)
-      stop("Your requested data is outside DAYMET spatial coverage.
+      stop("Your requested data is outside DAYMET spatial coverage.\n
             Check the requested coordinates.")
   }
+  
+  if (httr::status_code(error) > 400){
+    file.remove(daymet_tmp_file)
+    stop("The server is unreachable, check your connection.")
+  }
+  
   
   # feedback
   if (!silent) {
