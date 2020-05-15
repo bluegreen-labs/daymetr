@@ -142,19 +142,13 @@ larger than the requested location. For more information I refer to
 [Daymet documentation](https://daymet.ornl.gov/web_services.html) on the
 web service.
 
-## Reference
+## Citation
 
 Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2018
 [An integrated phenology modelling framework in R: Phenology modelling
 with phenor. Methods in Ecology &
 Evolution](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12970/full),
 9: 1-10.
-
-Thornton, P.E., M.M. Thornton, B.W. Mayer, Y. Wei, R. Devarakonda, R.S.
-Vose, and R.B. Cook. 2017. [Daymet: Daily Surface Weather Data on a 1-km
-Grid for North America,
-Version 3.](https://doi.org/10.3334/ORNLDAAC/1328) ORNL DAAC, Oak Ridge,
-Tennessee, USA.
 
 ## Acknowledgements
 
