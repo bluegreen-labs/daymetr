@@ -10,7 +10,7 @@ A programmatic interface to the [Daymet web
 services](http://daymet.ornl.gov). Allows for easy downloads of Daymet
 climate data directly to your R workspace or your computer. Routines for
 both single pixel data downloads and gridded (netCDF) data are provided.
-Please use the below references when using Daymet data and the package.
+Please use the below citation when using the package.
 
 ## Installation
 
