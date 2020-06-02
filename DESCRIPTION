@@ -1,9 +1,12 @@
 Package: daymetr
 Title: Interface to the 'Daymet' Web Services
 Version: 1.4.2
-Authors@R: person("Hufkens","Koen",
-		  email="koen.hufkens@gmail.com",
-		  role=c("aut", "cre"))
+Authors@R: c(person(
+               family = "Hufkens",
+               given = "Koen",
+               email = "koen.hufkens@gmail.com",
+               role = c("aut", "cre"),
+               comment = c(ORCID = "0000-0002-5070-8109")))
 Description: Programmatic interface to the 'Daymet' web services
     (<http://daymet.ornl.gov>). Allows for easy downloads of
     'Daymet' climate data directly to your R workspace or your computer.
