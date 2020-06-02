@@ -42,6 +42,3 @@ df <- read_daymet(paste0(tempdir(),"/Daymet_1980_1980.csv"))
 print(str(df))
 }
 }
-\keyword{daymet}
-\keyword{series,}
-\keyword{time}

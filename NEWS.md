@@ -1,6 +1,9 @@
 # daymetr 1.4.2
 
 * better error trapping in single pixel downloads using http status codes
+* migration to bluegreen-labs
+* R >= 3.6 requirement
+* removed faulty keywords
 
 # daymetr 1.4.1
 

@@ -15,7 +15,6 @@
 #' @param force \code{TRUE} or \code{FALSE} (default),
 #' override the conservative end year setting
 #' @return downloads netCDF tiles as defined by the Daymet tile grid
-#' @keywords daymet, climate data
 #' @export
 #' @examples
 #' 

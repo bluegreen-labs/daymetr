@@ -3,7 +3,6 @@
 \docType{package}
 \name{daymetr}
 \alias{daymetr}
-\alias{daymetr-package}
 \title{Interface to the 'Daymet' Web Services}
 \description{
 Programmatic interface to the 'Daymet' web services (\url{https://daymet.ornl.gov}). Allows for easy downloads of Daymet climate data directly to your R workspace or your computer. Routines for both single pixel data downloads and gridded (netCDF) data are provided.

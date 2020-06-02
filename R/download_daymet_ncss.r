@@ -19,7 +19,6 @@
 #' override the conservative end year setting
 #' @return netCDF data file of an area circumscribed by the location bounding
 #' box
-#' @keywords daymet, climate data
 #' @export
 #' @examples
 #' 

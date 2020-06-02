@@ -4,8 +4,7 @@
 \alias{nc2tif}
 \title{Converts netCDF (nc) files to geotiff}
 \usage{
-nc2tif(path = tempdir(), files = NULL, overwrite = FALSE,
-  silent = FALSE)
+nc2tif(path = tempdir(), files = NULL, overwrite = FALSE, silent = FALSE)
 }
 \arguments{
 \item{path}{a character string showing the path to the 
@@ -54,9 +53,3 @@ software (e.g. QGIS).
  
 }
 }
-\keyword{climate}
-\keyword{conversion}
-\keyword{data,}
-\keyword{daymet,}
-\keyword{gridded}
-\keyword{netCDF,}

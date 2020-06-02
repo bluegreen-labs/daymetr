@@ -47,7 +47,3 @@ tmean <- daymet_grid_tmean(path = tempdir(),
                           internal = TRUE)
 }
 }
-\keyword{daily}
-\keyword{mean}
-\keyword{modelling,}
-\keyword{temperature}

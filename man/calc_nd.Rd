@@ -4,8 +4,15 @@
 \alias{calc_nd}
 \title{Count days meeting set criteria}
 \usage{
-calc_nd(file, start_doy = 1, end_doy = 365, criteria, value,
-  internal = FALSE, path = tempdir())
+calc_nd(
+  file,
+  start_doy = 1,
+  end_doy = 365,
+  criteria,
+  value,
+  internal = FALSE,
+  path = tempdir()
+)
 }
 \arguments{
 \item{file}{path of a file containing the daily gridded Daymet data}
@@ -56,8 +63,3 @@ r <- calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
 raster::plot(r)
 }
 }
-\keyword{daymet,}
-\keyword{gridded}
-\keyword{series,}
-\keyword{summary}
-\keyword{time}

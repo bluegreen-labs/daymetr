@@ -1,8 +1,7 @@
-# daymetr <a href='https://khufkens.github.io/daymetr/'><img src='https://raw.githubusercontent.com/khufkens/daymetr/master/daymetr-logo.png' align="right" height="139" /></a>
+# daymetr <a href='https://bluegreen-labs.github.io/daymetr/'><img src='https://raw.githubusercontent.com/bluegreen-labs/daymetr/master/daymetr-logo.png' align="right" height="139" /></a>
 
-[![Build
-Status](https://travis-ci.org/khufkens/daymetr.svg)](https://travis-ci.org/khufkens/daymetr)
-[![codecov](https://codecov.io/gh/khufkens/daymetr/branch/master/graph/badge.svg)](https://codecov.io/gh/khufkens/daymetr)
+[![Build Status](https://travis-ci.com/bluegreen-labs/daymetr.svg?branch=master)](https://travis-ci.com/bluegreen-labs/daymetr)
+[![codecov](https://codecov.io/gh/bluegreen-labs/daymetr/branch/master/graph/badge.svg)](https://codecov.io/gh/bluegreen-labs/daymetr)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/daymetr)](https://cran.r-project.org/package=daymetr)
 ![CRAN\_Downloads](https://cranlogs.r-pkg.org/badges/grand-total/daymetr)
 
@@ -30,7 +29,7 @@ commands:
 
 ``` r
 if(!require(devtools)){install.packages("devtools")}
-devtools::install_github("khufkens/daymetr")
+devtools::install_github("bluegreen-labs/daymetr")
 library("daymetr")
 ```
 
@@ -39,7 +38,7 @@ documentation please use:
 
 ``` r
 if(!require(devtools)){install.packages("devtools")}
-devtools::install_github("khufkens/daymetr", build_vignettes = TRUE)
+devtools::install_github("bluegreen-labs/daymetr", build_vignettes = TRUE)
 library("daymetr")
 ```
 

@@ -4,9 +4,16 @@
 \alias{download_daymet_tiles}
 \title{Function to batch download gridded 'Daymet' data tiles}
 \usage{
-download_daymet_tiles(location = c(18.9103, -114.6109), tiles,
-  start = 1980, end = 1980, path = tempdir(), param = "ALL",
-  silent = FALSE, force = FALSE)
+download_daymet_tiles(
+  location = c(18.9103, -114.6109),
+  tiles,
+  start = 1980,
+  end = 1980,
+  path = tempdir(),
+  param = "ALL",
+  silent = FALSE,
+  force = FALSE
+)
 }
 \arguments{
 \item{location}{location of a point c(lat, lon) or a bounding box defined
@@ -50,6 +57,3 @@ download_daymet_tiles(location = c(18.9103, -114.6109),
 # vignette. 
 }
 }
-\keyword{climate}
-\keyword{data}
-\keyword{daymet,}

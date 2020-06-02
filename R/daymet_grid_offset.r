@@ -7,7 +7,6 @@
 #'
 #' @param data rasterStack or rasterBrick of 730 layers (2 consecutive years)
 #' @param offset offset of the time series in DOY (default = 264, sept 21)
-#' @keywords modelling, mean daily temperature
 #' @export
 #' @examples
 #'

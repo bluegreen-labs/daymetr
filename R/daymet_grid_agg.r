@@ -17,7 +17,6 @@
 #' Used only if internal = FALSE (default = tempdir())
 #' @return aggregated daily Daymet data as a tiff file written
 #' to disk or a raster stack when data is returned to the workspace.
-#' @keywords daymet, climate data
 #' @export
 #' @examples
 #' 

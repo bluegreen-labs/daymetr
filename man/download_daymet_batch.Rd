@@ -5,10 +5,16 @@
 \title{This function downloads 'Daymet' data for several single pixel
 location, as specified by a batch file.}
 \usage{
-download_daymet_batch(file_location = NULL, start = 1980,
-  end = as.numeric(format(Sys.time(), "\%Y")) - 1, internal = TRUE,
-  force = FALSE, silent = FALSE, path = tempdir(),
-  simplify = FALSE)
+download_daymet_batch(
+  file_location = NULL,
+  start = 1980,
+  end = as.numeric(format(Sys.time(), "\%Y")) - 1,
+  internal = TRUE,
+  force = FALSE,
+  silent = FALSE,
+  path = tempdir(),
+  simplify = FALSE
+)
 }
 \arguments{
 \item{file_location}{file with several site locations and coordinates
@@ -73,6 +79,3 @@ df_batch <- download_daymet_batch(file_location = paste0(tempdir(),
 # vignette. 
 }
 }
-\keyword{climate}
-\keyword{data}
-\keyword{daymet,}

@@ -4,9 +4,17 @@
 \alias{download_daymet_ncss}
 \title{Function to geographically subset 'Daymet' regions exceeding tile limits}
 \usage{
-download_daymet_ncss(location = c(34, -82, 33.75, -81.75),
-  start = 1980, end = 1980, param = "tmin", frequency = "daily",
-  mosaic = "na", path = tempdir(), silent = FALSE, force = FALSE)
+download_daymet_ncss(
+  location = c(34, -82, 33.75, -81.75),
+  start = 1980,
+  end = 1980,
+  param = "tmin",
+  frequency = "daily",
+  mosaic = "na",
+  path = tempdir(),
+  silent = FALSE,
+  force = FALSE
+)
 }
 \arguments{
 \item{location}{location of a bounding box c(lat, lon, lat, lon) defined
@@ -68,6 +76,3 @@ download_daymet_ncss(location = c(34, -82, 33.75, -81.75),
 # vignette. 
 }
 }
-\keyword{climate}
-\keyword{data}
-\keyword{daymet,}

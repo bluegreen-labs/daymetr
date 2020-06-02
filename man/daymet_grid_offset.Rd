@@ -23,7 +23,3 @@ data processing and / or ecosystem modelling efforts.
 my_subset <- daymet_gridded_offset(mystack, offset = 264)
 }
 }
-\keyword{daily}
-\keyword{mean}
-\keyword{modelling,}
-\keyword{temperature}

@@ -17,7 +17,6 @@
 #' or \code{TRUE} (default = \code{TRUE})
 #' @return Daymet data for a point location, returned to the R workspace or
 #' written to disk as a csv file.
-#' @keywords daymet, climate data, single pixel
 #' @export
 #' @examples
 #'

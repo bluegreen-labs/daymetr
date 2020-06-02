@@ -4,8 +4,13 @@
 \alias{daymet_grid_agg}
 \title{Aggregate daily Daymet data}
 \usage{
-daymet_grid_agg(file, int = "seasonal", fun = "mean",
-  internal = FALSE, path = tempdir())
+daymet_grid_agg(
+  file,
+  int = "seasonal",
+  fun = "mean",
+  internal = FALSE,
+  path = tempdir()
+)
 }
 \arguments{
 \item{file}{The name of the file to be processed. Use daily gridded
@@ -49,6 +54,3 @@ convenient seasonal datasets for data exploration or modelling.
                  fun = "mean")
  }
 }
-\keyword{climate}
-\keyword{data}
-\keyword{daymet,}

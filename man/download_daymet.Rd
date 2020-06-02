@@ -4,10 +4,18 @@
 \alias{download_daymet}
 \title{Function to download single location 'Daymet' data}
 \usage{
-download_daymet(site = "Daymet", lat = 36.0133, lon = -84.2625,
-  start = 2000, end = as.numeric(format(Sys.time(), "\%Y")) - 2,
-  path = tempdir(), internal = TRUE, silent = FALSE, force = FALSE,
-  simplify = FALSE)
+download_daymet(
+  site = "Daymet",
+  lat = 36.0133,
+  lon = -84.2625,
+  start = 2000,
+  end = as.numeric(format(Sys.time(), "\%Y")) - 2,
+  path = tempdir(),
+  internal = TRUE,
+  silent = FALSE,
+  force = FALSE,
+  simplify = FALSE
+)
 }
 \arguments{
 \item{site}{the site name.}
@@ -79,9 +87,9 @@ library(tidyverse)
 # Calculate the mean temperature from min
 # max temperatures and convert the year and doy
 # to a proper date format.
-daymet_data$data <- daymet_data$data \%>\%
+daymet_data$data <- daymet_data$data %>%
  mutate(tmean = (tmax..deg.c. + tmin..deg.c.)/2,
-        date = as.Date(paste(year, yday, sep = "-"), "\%Y-\%j"))
+        date = as.Date(paste(year, yday, sep = "-"), "%Y-%j"))
 
 # show a simple graph of the mean temperature
 plot(daymet_data$data$date,
@@ -93,8 +101,3 @@ plot(daymet_data$data$date,
 # vignette. 
 }
 }
-\keyword{climate}
-\keyword{data,}
-\keyword{daymet,}
-\keyword{pixel}
-\keyword{single}

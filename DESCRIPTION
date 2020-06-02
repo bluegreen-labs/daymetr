@@ -10,7 +10,7 @@ Description: Programmatic interface to the 'Daymet' web services
     Routines for both single pixel data downloads and
     gridded (netCDF) data are provided.
 Depends:
-    R (>= 3.4)
+    R (>= 3.6)
 Imports:
     sp,
     raster,
@@ -22,7 +22,7 @@ Imports:
 License: AGPL-3
 LazyData: true
 ByteCompile: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.0
 Suggests:
     ggplot2,
     dplyr,
@@ -34,5 +34,5 @@ Suggests:
     covr,
     testthat
 VignetteBuilder: knitr
-URL: https://github.com/khufkens/daymetr
-BugReports: https://github.com/khufkens/daymetr/issues
+URL: https://github.com/bluegreen-labs/daymetr
+BugReports: https://github.com/bluegreen-labs/daymetr/issues
