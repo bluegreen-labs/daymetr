@@ -148,14 +148,8 @@ daymet_grid_agg <- function(
     suppressWarnings(
       raster::writeRaster(x = result,
                           filename = output_file,
-<<<<<<< HEAD
-                          overwrite = TRUE)
-    )
-    
-=======
                           overwrite = TRUE)  
     )
->>>>>>> df89acadfd4be506929570c8975d6165edd2ea9b
   } else {
     # return to workspace
     return(result)
