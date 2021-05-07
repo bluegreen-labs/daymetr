@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 library(daymetr)
 library(ncdf4)
 library(raster)
-library(sp)
+library(sf)
 library(dplyr)
 library(ggplot2)
 
@@ -120,10 +120,12 @@ param         | climate variable you want to download vapour pressure (vp), mini
 
 The daymet package also includes spatial polygon data frame outlining all the tiles in the Daymet repository (tile_outlines). This data can be used to extract all relevant tiles for an analysis by calculating the intersect between a geographic region of interest and this file.
 
-```{r, fig.width = 7, fig.height = 7}
+```{r, eval = TRUE, fig.width = 7, fig.height = 7}
 # plot the tile outlines
 # roughly painting a picture of North America
-plot(tile_outlines)
+ggplot(tile_outlines)+ 
+  geom_sf() +
+  theme_void()
 ```
 
 ### *Querying tiled data*
