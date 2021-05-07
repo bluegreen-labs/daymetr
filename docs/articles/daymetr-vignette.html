@@ -5,20 +5,20 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>daymetr • daymetr</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="daymetr">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<title>daymetr functionality • daymetr</title>
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script><meta property="og:title" content="daymetr functionality">
+<meta property="og:description" content="daymetr">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">daymetr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5</span>
       </span>
     </div>
 
@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -54,7 +54,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/daymetr-vignette.html">daymetr</a>
+      <a href="../articles/daymetr-vignette.html">daymetr functionality</a>
     </li>
   </ul>
 </li>
@@ -64,8 +64,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/bluegreen-labs/daymetr">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/bluegreen-labs/daymetr/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -79,13 +79,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="daymetr-vignette_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>daymetr</h1>
+      <h1 data-toc-skip>daymetr functionality</h1>
                         <h4 class="author">Koen Hufkens</h4>
             
-            <h4 class="date">2020-06-02</h4>
+            <h4 class="date">2021-05-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/bluegreen-labs/daymetr/blob/master/vignettes/daymetr-vignette.Rmd"><code>vignettes/daymetr-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>daymetr-vignette.Rmd</code></div>
@@ -99,20 +99,22 @@
 <h2 class="hasAnchor">
 <a href="#downloading-single-pixel-data" class="anchor"></a>Downloading single pixel data</h2>
 <p>A common application of daymet data is the extraction of local climate data, at a given location. This data will be extracted from a pixel within the gridded daymet dataset corresponding to a location provided in latitude / longitude format. You can download a dataset for a single location using the following format:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/download_daymet.html">download_daymet</a></span>(<span class="dt">site =</span> <span class="st">"Oak Ridge National Laboratories"</span>,</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">                <span class="dt">lat =</span> <span class="fl">36.0133</span>,</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">                <span class="dt">lon =</span> <span class="fl">-84.2625</span>,</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">                <span class="dt">start =</span> <span class="dv">2000</span>,</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">                <span class="dt">end =</span> <span class="dv">2010</span>,</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">                <span class="dt">internal =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">                <span class="dt">simplify =</span> <span class="ot">TRUE</span>) <span class="co"># return tidy data !!</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/download_daymet.html">download_daymet</a></span><span class="op">(</span>site <span class="op">=</span> <span class="st">"Oak Ridge National Laboratories"</span>,
+                lat <span class="op">=</span> <span class="fl">36.0133</span>,
+                lon <span class="op">=</span> <span class="op">-</span><span class="fl">84.2625</span>,
+                start <span class="op">=</span> <span class="fl">2000</span>,
+                end <span class="op">=</span> <span class="fl">2010</span>,
+                internal <span class="op">=</span> <span class="cn">TRUE</span>,
+                simplify <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># return tidy data !!</span></code></pre></div>
 <p>With the <em>internal</em> parameter flag set to TRUE the data will be exported as a nested list to your terminal or a variable if assigned. If this parameter is set to FALSE the data will be written to a file on disk in your current working directory (i.e. getwd()). If you want to change the location where files are written to disk use the <em>path</em> parameter. For a full list of parameters see the table below.</p>
 <p>There also is a batch mode which uses similar parameters but you provide a comma separated file with site names and latitude longitude which are sequentially downloaded. The format of the comma separated file is as such: site name, latitude, longitude. This function is helpful when downloading large number of locations. Once more if the <strong>internal</strong> flag is set to true the data will be read in as a nested list of lists.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># code is not run</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="../reference/download_daymet_batch.html">download_daymet_batch</a></span>(<span class="dt">file_location =</span> <span class="st">'my_sites.csv'</span>,</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">                      <span class="dt">start =</span> <span class="dv">1980</span>,</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">                      <span class="dt">end =</span> <span class="dv">2010</span>,</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">                      <span class="dt">internal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># code is not run</span>
+<span class="fu"><a href="../reference/download_daymet_batch.html">download_daymet_batch</a></span><span class="op">(</span>file_location <span class="op">=</span> <span class="st">'my_sites.csv'</span>,
+                      start <span class="op">=</span> <span class="fl">1980</span>,
+                      end <span class="op">=</span> <span class="fl">2010</span>,
+                      internal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="17%">
@@ -147,33 +149,36 @@
 </table>
 <p>If only the first set of coordinates is provided the tile in which these reside is downloaded. If your region of interest falls outside the scope of the DAYMET data coverage a warning is issued. If both top left and bottom right coordinates are provided all tiles covering the region of interst are downloaded. I would caution against downloading too much data, as file sizes do add up. So be careful how you specify your region of interest.</p>
 <p>Data downloaded into the workspace, e.g. the <strong>df</strong> data frame in the above example, resides in a nested list. In addition to the climate data this list includes various meta-data parameters relevant to the query made, and at times helpful in subsequent analysis.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(df)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; tibble [28,105 × 9] (S3: tbl_df/tbl/data.frame)</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt;  $ site       : chr [1:28105] "tmp" "tmp" "tmp" "tmp" ...</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt;  $ tile       : num [1:28105] 11388 11388 11388 11388 11388 ...</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;  $ latitude   : num [1:28105] 36 36 36 36 36 ...</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;  $ longitude  : num [1:28105] -84.3 -84.3 -84.3 -84.3 -84.3 ...</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;  $ altitude   : num [1:28105] 279 279 279 279 279 279 279 279 279 279 ...</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt;  $ year       : num [1:28105] 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 ...</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt;  $ yday       : num [1:28105] 1 2 3 4 5 6 7 8 9 10 ...</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt;  $ measurement: chr [1:28105] "dayl..s." "dayl..s." "dayl..s." "dayl..s." ...</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt;  $ value      : num [1:28105] 34560 34560 34560 34560 34560 ...</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
+<span class="co">#&gt; tibble[,9] [28,105 × 9] (S3: tbl_df/tbl/data.frame)</span>
+<span class="co">#&gt;  $ site       : chr [1:28105] "tmp" "tmp" "tmp" "tmp" ...</span>
+<span class="co">#&gt;  $ tile       : num [1:28105] 11388 11388 11388 11388 11388 ...</span>
+<span class="co">#&gt;  $ latitude   : num [1:28105] 36 36 36 36 36 ...</span>
+<span class="co">#&gt;  $ longitude  : num [1:28105] -84.3 -84.3 -84.3 -84.3 -84.3 ...</span>
+<span class="co">#&gt;  $ altitude   : num [1:28105] 279 279 279 279 279 279 279 279 279 279 ...</span>
+<span class="co">#&gt;  $ year       : num [1:28105] 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 ...</span>
+<span class="co">#&gt;  $ yday       : num [1:28105] 1 2 3 4 5 6 7 8 9 10 ...</span>
+<span class="co">#&gt;  $ measurement: chr [1:28105] "dayl..s." "dayl..s." "dayl..s." "dayl..s." ...</span>
+<span class="co">#&gt;  $ value      : num [1:28105] 34560 34560 34560 34560 34560 ...</span></code></pre></div>
 <p>The package maintains the original data header names in order to provide a transparent way of dealing with both data downloaded through daymetr or directly from the Daymet website. You can access the climate data using the df$data sub-list. An example of a plot of 10 years of maximum temperature values is provided below.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># simple graph of Daymet data</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">df <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(year, yday, <span class="dt">sep =</span> <span class="st">"-"</span>), <span class="st">"%Y-%j"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(measurement <span class="op">==</span><span class="st"> "tmax..deg.c."</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> value)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>measurement, <span class="dt">ncol =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># simple graph of Daymet data</span>
+<span class="va">df</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">yday</span>, sep <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span>, <span class="st">"%Y-%j"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">measurement</span> <span class="op">==</span> <span class="st">"tmax..deg.c."</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">measurement</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <p><img src="daymetr-vignette_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
 <p>You can further summarize the data frame by year / month or day using either the by(), aggregate() or tidyverse based mutate() or summarize() operations. The code below (not run) uses the tidyverse (ddplyr) syntax to calculate daily mean temperature values from the minimum and maximum values provided by Daymet.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># code not run</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">df <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(year, yday, <span class="dt">sep =</span> <span class="st">"-"</span>), <span class="st">"%Y-%j"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(date) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(measurement <span class="op">==</span><span class="st"> "tmax..deg.c."</span> <span class="op">|</span><span class="st"> </span>measurement <span class="op">==</span><span class="st"> "tmin..deg.c."</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_temp =</span> <span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(value))</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># code not run</span>
+<span class="va">df</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">yday</span>, sep <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span>, <span class="st">"%Y-%j"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">group_by</span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">measurement</span> <span class="op">==</span> <span class="st">"tmax..deg.c."</span> <span class="op">|</span> <span class="va">measurement</span> <span class="op">==</span> <span class="st">"tmin..deg.c."</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">summarize</span><span class="op">(</span>mean_temp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="gridded-data-downloads" class="section level2">
 <h2 class="hasAnchor">
@@ -224,75 +229,84 @@
 <p>For the netCDF data subsets keep in mind that the bounding box is defined by the minimum (square) bounding box in a Lambert Conformal Conic (LCC) projection as defined by the provided geographic coordinates. In general the query area will be larger than the requested location. For more information I refer to Daymet documentation (<a href="https://daymet.ornl.gov/web_services.html" class="uri">https://daymet.ornl.gov/web_services.html</a>) on the web service.</p>
 </blockquote>
 <p>The daymet package also includes spatial polygon data frame outlining all the tiles in the Daymet repository (tile_outlines). This data can be used to extract all relevant tiles for an analysis by calculating the intersect between a geographic region of interest and this file.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># plot the tile outlines</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co"># roughly painting a picture of North America</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(tile_outlines)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># plot the tile outlines</span>
+<span class="co"># roughly painting a picture of North America</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">tile_outlines</span><span class="op">)</span><span class="op">+</span> 
+  <span class="fu">geom_sf</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_void</span><span class="op">(</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code></pre></div>
 <p><img src="daymetr-vignette_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
 <div id="querying-tiled-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#querying-tiled-data" class="anchor"></a><em>Querying tiled data</em>
 </h3>
 <p>Below you will find some example of queries to the same tile (11207) using both geographic coordinates as well as the tile number. In the first function call <strong>ALL</strong> climate parameters are requested, while in the second function call only the minimum temperature (tmin) is queried.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># code not run</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co"># Download tiled data for multiple years (1980 - 2012)</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co"># based upon a geographic location.</span></a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw"><a href="../reference/download_daymet_tiles.html">download_daymet_tiles</a></span>(<span class="dt">location =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">36.0133</span>,<span class="op">-</span><span class="fl">84.2625</span>),</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">                      <span class="dt">tiles =</span> <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7">                      <span class="dt">start =</span> <span class="dv">1980</span>,</a>
-<a class="sourceLine" id="cb7-8" data-line-number="8">                      <span class="dt">end =</span> <span class="dv">2012</span>,</a>
-<a class="sourceLine" id="cb7-9" data-line-number="9">                      <span class="dt">param =</span> <span class="st">"ALL"</span>)</a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co"># Download tiled data for multiple years (1980 - 2012)</span></a>
-<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co"># based upon a tile number (11207) restricted to the</span></a>
-<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co"># minimum temperature data only.</span></a>
-<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="kw"><a href="../reference/download_daymet_tiles.html">download_daymet_tiles</a></span>(<span class="dt">tiles =</span> <span class="dv">11207</span>,</a>
-<a class="sourceLine" id="cb7-15" data-line-number="15">                      <span class="dt">start =</span> <span class="dv">1980</span>,</a>
-<a class="sourceLine" id="cb7-16" data-line-number="16">                      <span class="dt">end =</span> <span class="dv">2012</span>,</a>
-<a class="sourceLine" id="cb7-17" data-line-number="17">                      <span class="dt">param =</span> <span class="st">"tmin"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># code not run</span>
+
+<span class="co"># Download tiled data for multiple years (1980 - 2012)</span>
+<span class="co"># based upon a geographic location.</span>
+<span class="fu"><a href="../reference/download_daymet_tiles.html">download_daymet_tiles</a></span><span class="op">(</span>location <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">36.0133</span>,<span class="op">-</span><span class="fl">84.2625</span><span class="op">)</span>,
+                      tiles <span class="op">=</span> <span class="cn">NULL</span>,
+                      start <span class="op">=</span> <span class="fl">1980</span>,
+                      end <span class="op">=</span> <span class="fl">2012</span>,
+                      param <span class="op">=</span> <span class="st">"ALL"</span><span class="op">)</span>
+
+<span class="co"># Download tiled data for multiple years (1980 - 2012)</span>
+<span class="co"># based upon a tile number (11207) restricted to the</span>
+<span class="co"># minimum temperature data only.</span>
+<span class="fu"><a href="../reference/download_daymet_tiles.html">download_daymet_tiles</a></span><span class="op">(</span>tiles <span class="op">=</span> <span class="fl">11207</span>,
+                      start <span class="op">=</span> <span class="fl">1980</span>,
+                      end <span class="op">=</span> <span class="fl">2012</span>,
+                      param <span class="op">=</span> <span class="st">"tmin"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="querying-netcdf-subset-ncss-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#querying-netcdf-subset-ncss-data" class="anchor"></a><em>Querying netCDF subset (ncss) data</em>
 </h3>
 <p>Queries to the NCSS data follow a similar syntax as those for the tiled data. However, you are restricted to using location based bounding boxes to extract gridded data subsets. In addition to the daily data the ncss subsets also include pre-processed summary values, e.g. mean monthly minimum and maximum temperatures or total monthly precipitation.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># download monthly</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw"><a href="../reference/download_daymet_ncss.html">download_daymet_ncss</a></span>(<span class="dt">location =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">34</span>, <span class="dv">-82</span>, <span class="fl">33.75</span>, <span class="fl">-81.75</span>),</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">                     <span class="dt">start =</span> <span class="dv">1980</span>,</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">                     <span class="dt">end =</span> <span class="dv">1980</span>,</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">                     <span class="dt">frequency =</span> <span class="st">"monthly"</span>,</a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">                     <span class="dt">param =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"tmin"</span>,<span class="st">"tmax"</span>),</a>
-<a class="sourceLine" id="cb8-7" data-line-number="7">                     <span class="dt">path =</span> <span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span>(),</a>
-<a class="sourceLine" id="cb8-8" data-line-number="8">                     <span class="dt">silent =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># download monthly</span>
+<span class="fu"><a href="../reference/download_daymet_ncss.html">download_daymet_ncss</a></span><span class="op">(</span>location <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">34</span>, <span class="op">-</span><span class="fl">82</span>, <span class="fl">33.75</span>, <span class="op">-</span><span class="fl">81.75</span><span class="op">)</span>,
+                     start <span class="op">=</span> <span class="fl">1980</span>,
+                     end <span class="op">=</span> <span class="fl">1980</span>,
+                     frequency <span class="op">=</span> <span class="st">"monthly"</span>,
+                     param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"tmin"</span>,<span class="st">"tmax"</span><span class="op">)</span>,
+                     path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>,
+                     silent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>The above figure shows nicely how you can query a small subset of the Daymet data. However, a common climate variable, the mean temperature is not provided. As such you may calculate these values using the daymet_grid_tmean() function. This function calculates the mean temperature for a given tile / or ncss subset provided that matching minimum and maximum netCDF files can be found in the same directory.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># read in the demo data from the package for speed</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">r &lt;-<span class="st"> </span>raster<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/stack.html">stack</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="dt">package =</span> <span class="st">"daymetr"</span>,<span class="st">"extdata/tmin_monavg_1980_ncss.nc"</span>))</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co"># to set the correct projection</span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5">raster<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/projection.html">projection</a></span>(r) &lt;-<span class="st"> "+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +ellps=WGS84 +units=km +no_defs"</span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co"># reproject to lat lon</span></a>
-<a class="sourceLine" id="cb9-8" data-line-number="8">r &lt;-<span class="st"> </span>raster<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/projectRaster.html">projectRaster</a></span>(r, <span class="dt">crs =</span> <span class="st">"+init=epsg:4326"</span>)</a>
-<a class="sourceLine" id="cb9-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co"># plot the monthly mean minimum temperature for 1980</span></a>
-<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(r)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># read in the demo data from the package for speed</span>
+<span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/stack.html">stack</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"daymetr"</span>,<span class="st">"extdata/tmin_monavg_1980_ncss.nc"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># to set the correct projection</span>
+<span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/projection.html">projection</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +ellps=WGS84 +units=km +no_defs"</span>
+
+<span class="co"># reproject to lat lon</span>
+<span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/projectRaster.html">projectRaster</a></span><span class="op">(</span><span class="va">r</span>, crs <span class="op">=</span> <span class="st">"+init=epsg:4326"</span><span class="op">)</span>
+
+<span class="co"># plot the monthly mean minimum temperature for 1980</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></code></pre></div>
 <p><img src="daymetr-vignette_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
 <p>Below we search in the temporary directory of R for the downloaded monthly minimum and maximum temperature ncss files for the year 1980 (see paramteres specified) and calculate the mean monthly temperature for this year. The resulting plot, obviously, reports consistently higher values than the ones in the graph above.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># plot the monthly mean minimum temperature for 1980</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">r_tmean &lt;-<span class="st"> </span><span class="kw"><a href="../reference/daymet_grid_tmean.html">daymet_grid_tmean</a></span>(<span class="dt">path =</span> <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="dt">package =</span> <span class="st">"daymetr"</span>,<span class="st">"extdata"</span>),</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">                            <span class="dt">product =</span> <span class="st">"monavg"</span>,</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">                            <span class="dt">year =</span> <span class="dv">1980</span>,</a>
-<a class="sourceLine" id="cb10-5" data-line-number="5">                            <span class="dt">internal =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb10-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="co"># to set the correct projection</span></a>
-<a class="sourceLine" id="cb10-8" data-line-number="8">raster<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/projection.html">projection</a></span>(r_tmean) &lt;-<span class="st"> "+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +ellps=WGS84 +units=km +no_defs"</span></a>
-<a class="sourceLine" id="cb10-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="co"># reproject to lat lon</span></a>
-<a class="sourceLine" id="cb10-11" data-line-number="11">r_tmean &lt;-<span class="st"> </span>raster<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/raster/man/projectRaster.html">projectRaster</a></span>(r_tmean, <span class="dt">crs =</span> <span class="st">"+init=epsg:4326"</span>)</a>
-<a class="sourceLine" id="cb10-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb10-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb10-14" data-line-number="14"><span class="co"># plot the mean temperature raster</span></a>
-<a class="sourceLine" id="cb10-15" data-line-number="15"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(r_tmean)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># plot the monthly mean minimum temperature for 1980</span>
+<span class="va">r_tmean</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/daymet_grid_tmean.html">daymet_grid_tmean</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"daymetr"</span>,<span class="st">"extdata"</span><span class="op">)</span>,
+                            product <span class="op">=</span> <span class="st">"monavg"</span>,
+                            year <span class="op">=</span> <span class="fl">1980</span>,
+                            internal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co"># to set the correct projection</span>
+<span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/projection.html">projection</a></span><span class="op">(</span><span class="va">r_tmean</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +ellps=WGS84 +units=km +no_defs"</span>
+
+<span class="co"># reproject to lat lon</span>
+<span class="va">r_tmean</span> <span class="op">&lt;-</span> <span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/projectRaster.html">projectRaster</a></span><span class="op">(</span><span class="va">r_tmean</span>, crs <span class="op">=</span> <span class="st">"+init=epsg:4326"</span><span class="op">)</span>
+
+
+<span class="co"># plot the mean temperature raster</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span><span class="op">(</span><span class="va">r_tmean</span><span class="op">)</span></code></pre></div>
 <p><img src="daymetr-vignette_files/figure-html/unnamed-chunk-11-1.png" width="672"></p>
 <p>I hope the vignette provided you with an overview of the capabilities of the daymetr package. Please report all bugs or feature requests on the project’s github page. If you found the software useful in your work please use the below reference to cite the package.</p>
 </div>
@@ -309,19 +323,11 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#downloading-single-pixel-data">Downloading single pixel data</a></li>
-      <li><a href="#gridded-data-downloads">Gridded data downloads</a></li>
-      <li><a href="#reference">Reference</a></li>
-      <li><a href="#acknowledgements">Acknowledgements</a></li>
-      </ul>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
 
@@ -332,7 +338,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

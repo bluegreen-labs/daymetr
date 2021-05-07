@@ -1,5 +1,5 @@
 ---
-title: "daymetr"
+title: "daymetr functionality"
 author: "Koen Hufkens"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -123,9 +123,11 @@ The daymet package also includes spatial polygon data frame outlining all the ti
 ```{r, eval = TRUE, fig.width = 7, fig.height = 7}
 # plot the tile outlines
 # roughly painting a picture of North America
-ggplot(tile_outlines)+ 
+p <- ggplot(tile_outlines)+ 
   geom_sf() +
   theme_void()
+
+print(p)
 ```
 
 ### *Querying tiled data*

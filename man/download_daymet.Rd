@@ -87,9 +87,9 @@ library(tidyverse)
 # Calculate the mean temperature from min
 # max temperatures and convert the year and doy
 # to a proper date format.
-daymet_data$data <- daymet_data$data %>%
+daymet_data$data <- daymet_data$data \%>\%
  mutate(tmean = (tmax..deg.c. + tmin..deg.c.)/2,
-        date = as.Date(paste(year, yday, sep = "-"), "%Y-%j"))
+        date = as.Date(paste(year, yday, sep = "-"), "\%Y-\%j"))
 
 # show a simple graph of the mean temperature
 plot(daymet_data$data$date,
