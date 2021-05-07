@@ -56,7 +56,7 @@ download_daymet_ncss <- function(
   path = tempdir(),
   silent = FALSE,
   force = FALSE
-  ){
+){
   # CRAN file policy
   if (identical(path, tempdir())){
     message("NOTE: data is stored in tempdir() ...")
@@ -102,7 +102,7 @@ download_daymet_ncss <- function(
       param <- c('vp','tmin','tmax','prcp')
     }
   }
-
+  
   # provide some feedback
   if(!silent){
     message('Creating a subset of the Daymet data
@@ -115,13 +115,13 @@ download_daymet_ncss <- function(
       if (frequency != "daily"){
         
         prefix <- ifelse(j != "prcp",
-          paste0(substr(frequency,1,3),"avg"),
-          paste0(substr(frequency,1,3),"ttl"))
+                         paste0(substr(frequency,1,3),"avg"),
+                         paste0(substr(frequency,1,3),"ttl"))
         
         # create url string (varies per product / year)
-        url <- sprintf("%s/daymet_v3_%s_%s_%s_%s.nc4",
+        url <- sprintf("%s/daymet_v4_%s_%s_%s_%s.nc",
                        ncss_server(frequency = frequency),
-                       j, prefix, i, mosaic)
+                       j, prefix, mosaic, i)
         
         # create filename for the output file
         daymet_file <- file.path(path, paste0(j,"_",prefix,"_",i,"_ncss.nc"))
@@ -136,14 +136,16 @@ download_daymet_ncss <- function(
         }
         
         # create url string (varies per product / year)
-        url <- sprintf("%s/%s/daymet_v3_%s_%s_%s.nc4",
+        url <- sprintf("%s/daymet_v4_daily_%s_%s_%s.nc",
                        ncss_server(frequency = frequency),
-                       i, j, i, mosaic)
-
+                       mosaic, j, i)
+        
+        message(url)
+        
         # create filename for the output file
         daymet_file <- file.path(path,paste0(j,"_daily_",i,"_ncss.nc"))
       }
-            
+      
       # formulate query to pass to httr
       query <- list(
         "var" = "lat",
@@ -162,23 +164,23 @@ download_daymet_ncss <- function(
       # provide some feedback
       if(!silent){
         message(paste0('\nDownloading DAYMET subset: ',
-                  'year: ',i,
-                  '; product: ',j,
-                  '\n'))
+                       'year: ',i,
+                       '; product: ',j,
+                       '\n'))
       }
       
       # download data, force binary data mode
       if(silent){
         status <- httr::GET(url = url,
-                    query = query,
-                    httr::write_disk(path = daymet_file,
-                                     overwrite = TRUE))
+                            query = query,
+                            httr::write_disk(path = daymet_file,
+                                             overwrite = TRUE))
       } else {
         status <- httr::GET(url = url,
-                               query = query,
-                               httr::write_disk(path = daymet_file,
-                                                overwrite = TRUE),
-                               httr::progress())
+                            query = query,
+                            httr::write_disk(path = daymet_file,
+                                             overwrite = TRUE),
+                            httr::progress())
       }
       
       # error / stop on 400 error
