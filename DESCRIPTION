@@ -33,6 +33,7 @@ Suggests:
     rgdal,
     ncdf4,
     knitr,
+    markdown,
     rmarkdown,
     covr,
     testthat
