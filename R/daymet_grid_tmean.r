@@ -54,7 +54,7 @@ daymet_grid_tmean <- function(
   }
   
   # depending on the input query find the necessary data files
-  if(!is.na(as.numeric(product))){
+  if(!is.character(product)){
     # list all files
     tmin <- sprintf('%s/tmin_%s_%s.nc',path, year, product)
     tmax <- sprintf('%s/tmax_%s_%s.nc',path, year, product)
