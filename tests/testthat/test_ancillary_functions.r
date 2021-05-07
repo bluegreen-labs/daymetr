@@ -15,10 +15,10 @@ test_that("check offset routine",{
                                       silent = TRUE))
   
   # create a stack of the downloaded data
-  st <- raster::stack(paste(tempdir(),
+  st <- suppressWarnings(raster::stack(paste(tempdir(),
                            c("tmin_daily_1981_ncss.nc",
                              "tmin_daily_1982_ncss.nc"),
-                           sep = "/"))
+                           sep = "/")))
   
   # correct offset
   expect_silent(daymet_grid_offset(st))
@@ -86,7 +86,7 @@ test_that("tile download and format conversion checks",{
   # check conversion to geotiff of all
   # data types (daily, monthly, annual)
   expect_message(nc2tif(path = tempdir(),
-                                overwrite = TRUE))
+                        overwrite = TRUE))
 })
 
 # check aggregation
