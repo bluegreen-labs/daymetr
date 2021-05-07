@@ -6,6 +6,7 @@
 * removed faulty keywords
 * migration to github actions instead of Travis CI
 * migration to v4 API endpoints
+* switch from sp to sf (GDAL3 / PROJ6)
 
 # daymetr 1.4.1
 
