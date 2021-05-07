@@ -85,9 +85,11 @@ daymet_grid_tmean <- function(
   # return all data to raster, either as a geotiff
   # or as a local object
   if (internal == FALSE){
+    suppressWarnings(
       raster::writeRaster(tmean_stack,
                           output_file,
                           overwrite = TRUE)
+    )
   } else {
     return(tmean_stack)
   }

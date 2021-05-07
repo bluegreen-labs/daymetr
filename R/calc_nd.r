@@ -87,9 +87,9 @@ calc_nd <- function(
                              sprintf('nd_%s.tif',year))
     
     # write result to file
-    raster::writeRaster(result,
+    suppressWarnings(raster::writeRaster(result,
                         output_file,
-                        overwrite = TRUE)
+                        overwrite = TRUE))
   } else {
     # return result
     return(result)

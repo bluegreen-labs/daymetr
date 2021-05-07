@@ -86,18 +86,20 @@ nc2tif <- function(
   lapply(files, function(file){
     
     if(!any(grep(pattern="annttl|annavg", file))){
-      data <- try(raster::brick(file), silent = TRUE)
+      data <- try(suppressWarnings(raster::brick(file), silent = TRUE))
     }else{
-      data <- try(raster::raster(file), silent = TRUE)
+      data <- try(suppressWarnings(raster::raster(file), silent = TRUE))
     }
 
     if(inherits(data, "try-error")){
       message("Conversion error...corrupt file?")
     } else {
-    raster::writeRaster(data,
-                        filename = tools::file_path_sans_ext(file),
-                        format = "GTiff",
-                        overwrite = TRUE)
+      suppressWarnings(
+        raster::writeRaster(data,
+                            filename = tools::file_path_sans_ext(file),
+                            format = "GTiff",
+                            overwrite = TRUE)    
+      )
     }
   })
   

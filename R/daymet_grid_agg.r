@@ -145,9 +145,11 @@ daymet_grid_agg <- function(
                           sprintf('%s_agg_%s_%s%s.tif', param, year, int, fun))
     
     # write raster object to file
-    raster::writeRaster(x = result,
-                        filename = output_file,
-                        overwrite = TRUE)
+    suppressWarnings(
+      raster::writeRaster(x = result,
+                          filename = output_file,
+                          overwrite = TRUE)  
+    )
   } else {
     # return to workspace
     return(result)
