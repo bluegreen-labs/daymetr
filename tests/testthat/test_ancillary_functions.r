@@ -209,17 +209,20 @@ test_that("calc_nd checks",{
   # read in the Daymet file and report back the number
   # of days in a year with a minimum temperature lower
   # than 15 degrees C
-  expect_output(str(calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
+  expect_output(str(calc_nd(
+              file = file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
               criteria = "<",
               value = 15,
               internal = TRUE)))
   
   # internal processing
-  expect_output(str(calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
+  expect_output(str(calc_nd(
+              file = file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
               criteria = "<",
               value = 15,
               start_doy = 40,
               end_doy = 80,
+              path = tempdir(),
               internal = FALSE)))
   
   # criteria fail
