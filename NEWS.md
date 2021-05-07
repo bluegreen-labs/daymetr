@@ -1,9 +1,11 @@
-# daymetr 1.4.2
+# daymetr 1.5
 
 * better error trapping in single pixel downloads using http status codes
-* migration to bluegreen-labs
+* migration to bluegreen-labs project page
 * R >= 3.6 requirement
 * removed faulty keywords
+* migration to github actions instead of Travis CI
+* migration to v4 API endpoints
 
 # daymetr 1.4.1
 
