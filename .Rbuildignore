@@ -10,3 +10,4 @@
 ^docs$
 ^LICENSE$
 ^.*-logo\..*$
+^\.github$

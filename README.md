@@ -1,6 +1,6 @@
 # daymetr <a href='https://bluegreen-labs.github.io/daymetr/'><img src='https://raw.githubusercontent.com/bluegreen-labs/daymetr/master/daymetr-logo.png' align="right" height="139" /></a>
 
-[![Build Status](https://travis-ci.com/bluegreen-labs/daymetr.svg?branch=master)](https://travis-ci.com/bluegreen-labs/daymetr)
+[![R-CMD-check](https://github.com/bluegreen-labs/daymetr/workflows/R-CMD-check/badge.svg)](https://github.com/bluegreen-labs/daymetr/actions)
 [![codecov](https://codecov.io/gh/bluegreen-labs/daymetr/branch/master/graph/badge.svg)](https://codecov.io/gh/bluegreen-labs/daymetr)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/daymetr)](https://cran.r-project.org/package=daymetr)
 ![CRAN\_Downloads](https://cranlogs.r-pkg.org/badges/grand-total/daymetr)
