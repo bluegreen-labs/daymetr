@@ -86,9 +86,9 @@ nc2tif <- function(
   lapply(files, function(file){
     
     if(!any(grep(pattern="annttl|annavg", file))){
-      data <- try(suppressWarnings(raster::brick(file), silent = TRUE))
+      data <- try(suppressWarnings(raster::brick(file)), silent = TRUE)
     }else{
-      data <- try(suppressWarnings(raster::raster(file), silent = TRUE))
+      data <- try(suppressWarnings(raster::raster(file)), silent = TRUE)
     }
 
     if(inherits(data, "try-error")){
