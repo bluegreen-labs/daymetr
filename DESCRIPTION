@@ -15,7 +15,7 @@ Description: Programmatic interface to the 'Daymet' web services
 Depends:
     R (>= 3.6)
 Imports:
-    sp,
+    sf,
     raster,
     httr,
     tidyr,
@@ -29,7 +29,6 @@ RoxygenNote: 7.0.0
 Suggests:
     ggplot2,
     dplyr,
-    rgeos,
     rgdal,
     ncdf4,
     knitr,
