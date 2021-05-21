@@ -1,6 +1,6 @@
 context("test ancillary functions")
 
-test_that("check offset routine",{
+test_that("check offset routine, file conversions",{
   skip_on_cran()
   
   # download the data
@@ -16,6 +16,12 @@ test_that("check offset routine",{
                            c("tmin_daily_1981_ncss.nc",
                              "tmin_daily_1982_ncss.nc"),
                            sep = "/")))
+  
+  # convert nc to tif
+  expect_message(nc2tif())
+  expect_silent(nc2tif(silent = TRUE))
+  expect_message(nc2tif())
+  expect_message(nc2tif(overwrite = TRUE))
   
   # correct offset
   expect_silent(daymet_grid_offset(st))

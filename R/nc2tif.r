@@ -48,13 +48,15 @@ nc2tif <- function(
   ){
 
   # CRAN file policy
-  if (identical(path, tempdir())){
+  if (identical(path, tempdir())  && !silent){
     message("Using default path tempdir() ...")
   }
   
-  # providing initial feedback
-  message("nc2tif is working. Be patient, this may take a while...\n")
-  
+  if(!silent){
+    # providing initial feedback
+    message("nc2tif is working. Be patient, this may take a while...\n")
+  }
+    
   # if no file is provide read data
   # from provided path
   if(is.null(files)){
