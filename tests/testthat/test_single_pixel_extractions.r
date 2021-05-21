@@ -1,6 +1,7 @@
 context("test single pixel downloads")
+
 test_that("pixel location download check",{
-  skip_if_not(daymet_running(server()))
+  skip_on_cran()
   
   # download the data
   expect_output(str(download_daymet(start = 1980,
