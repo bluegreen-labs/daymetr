@@ -4,7 +4,7 @@ server <- function(){
 }
 
 tile_server <- function(){
-  "https://thredds.daac.ornl.gov/thredds/fileServer/ornldaac/1328/tiles"
+  "https://thredds.daac.ornl.gov/thredds/fileServer/ornldaac/1840/tiles"
 }
 
 ncss_server <- function(frequency, catalog = FALSE){
