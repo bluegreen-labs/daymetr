@@ -13,7 +13,8 @@
 #' options are "monthly" or "annual".
 #' @param mosaic which tile mosiac to source from (na = Northern America,
 #' hi = Hawaii, pr = Puerto Rico), defaults to "na".
-#' @param path directory where to store the downloaded data (default = tempdir())
+#' @param path directory where to store the downloaded data 
+#'  (default = tempdir())
 #' @param silent suppress the verbose output
 #' @param force \code{TRUE} or \code{FALSE} (default),
 #' override the conservative end year setting

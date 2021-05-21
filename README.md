@@ -6,7 +6,7 @@
 ![CRAN\_Downloads](https://cranlogs.r-pkg.org/badges/grand-total/daymetr)
 
 A programmatic interface to the [Daymet web
-services](http://daymet.ornl.gov). Allows for easy downloads of Daymet
+services](https://daymet.ornl.gov). Allows for easy downloads of Daymet
 climate data directly to your R workspace or your computer. Routines for
 both single pixel data downloads and gridded (netCDF) data are provided.
 Please use the below citation when using the package.
@@ -146,7 +146,7 @@ web service.
 Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2018
 [An integrated phenology modelling framework in R: Phenology modelling
 with phenor. Methods in Ecology &
-Evolution](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12970/full),
+Evolution](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12970),
 9: 1-10.
 
 ## Acknowledgements

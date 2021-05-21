@@ -27,7 +27,7 @@ library(ggplot2)
 tile_outlines
 
 ```
-A programmatic interface to the [Daymet web services](http://daymet.ornl.gov). Allows for easy downloads of Daymet climate data directly to your R workspace or your computer. Routines for both single pixel data downloads and gridded (netCDF) data are provided. Below you find a number of worked example on mostly smaller datasets to illustrate the utility of the package.
+A programmatic interface to the [Daymet web services](https://daymet.ornl.gov). Allows for easy downloads of Daymet climate data directly to your R workspace or your computer. Routines for both single pixel data downloads and gridded (netCDF) data are provided. Below you find a number of worked example on mostly smaller datasets to illustrate the utility of the package.
 
 ## Downloading single pixel data
 
@@ -211,7 +211,7 @@ I hope the vignette provided you with an overview of the capabilities of the day
 
 ## Reference
 
-Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2018 [An integrated phenology modelling framework in R: Phenology modelling with phenor. Methods in Ecology & Evolution](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12970/full), 9:1-10.
+Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. (2018) An integrated phenology modelling framework in R: Phenology modelling with phenor. Methods in Ecology & Evolution, 9:1-10.
 
 ## Acknowledgements
 

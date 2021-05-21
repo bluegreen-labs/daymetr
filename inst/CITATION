@@ -12,7 +12,7 @@ citEntry(entry = "Article",
          year         = "2018",
          volume       = "9",
          pages        = "1-10",
-         doi          = "https://doi.org/10.1111/2041-210X.12970",
+         doi          = "10.1111/2041-210X.12970",
          textVersion  =
            paste("Hufkens et al. (2018).",
                  "An integrated phenology modelling framework in R:",
