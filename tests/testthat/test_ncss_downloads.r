@@ -2,7 +2,6 @@ context("test nccs routine")
 
 test_that("freefrom gridded download (ncss) checks",{
   skip_on_cran()
-  skip_if_not(capabilities("long.double"))
   
   # download daily data
   expect_message(download_daymet_ncss(param = "tmin",
