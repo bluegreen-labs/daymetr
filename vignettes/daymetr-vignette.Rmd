@@ -2,11 +2,16 @@
 title: "daymetr functionality"
 author: "Koen Hufkens"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    md_extensions: [ 
+      "-autolink_bare_uris" 
+    ]
 vignette: >
   %\VignetteIndexEntry{daymetr functionality}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  
 ---
 
 ```{r setup, include = FALSE}

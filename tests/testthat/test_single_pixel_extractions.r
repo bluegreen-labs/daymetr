@@ -2,6 +2,7 @@ context("test single pixel downloads")
 
 test_that("pixel location download check",{
   skip_on_cran()
+  skip_if_not(capabilities("long.double"))
   
   # download the data
   expect_output(str(download_daymet(start = 1980,

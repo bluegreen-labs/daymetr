@@ -2,6 +2,7 @@ context("test ancillary functions")
 
 test_that("check offset routine, file conversions",{
   skip_on_cran()
+  skip_if_not(capabilities("long.double"))
   
   # download the data
   expect_message(download_daymet_ncss(param = "tmin",
@@ -39,6 +40,7 @@ test_that("check server uptime",{
 # check the calculation of a mean values
 test_that("tmean grid checks",{
   skip_on_cran()
+  skip_if_not(capabilities("long.double"))
   
   # download the data
   expect_message(download_daymet_ncss(param = c("tmin","tmax"),
@@ -83,6 +85,7 @@ test_that("tmean grid checks",{
 # check conversion to geotiff
 test_that("tile download and format conversion checks",{
   skip_on_cran()
+  skip_if_not(capabilities("long.double"))
   
   # download the data
   expect_message(download_daymet_ncss(param = "tmin",
@@ -99,6 +102,7 @@ test_that("tile download and format conversion checks",{
 # check aggregation
 test_that("tile aggregation checks",{
   skip_on_cran()
+  skip_if_not(capabilities("long.double"))
   
   # download the data
   expect_message(download_daymet_ncss(param = "tmin",
@@ -164,6 +168,7 @@ test_that("tile aggregation checks",{
 # test read_daymet header formatting
 test_that("read_daymet checks of meta-data",{
   skip_on_cran()
+  skip_if_not(capabilities("long.double"))
   
   # download verbose and external
   download_daymet(start = 1980,
@@ -205,6 +210,7 @@ test_that("read_daymet checks of meta-data",{
 # calc_nd checks
 test_that("calc_nd checks",{
   skip_on_cran()
+  skip_if_not(capabilities("long.double"))
   
   # download daily gridded data
   # using default settings (data written to tempdir())

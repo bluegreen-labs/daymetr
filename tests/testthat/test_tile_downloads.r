@@ -2,6 +2,8 @@ context("test tile downloads")
 
 test_that("download tile",{
   skip_on_cran()
+  skip_if_not(capabilities("long.double"))
+  
   expect_message(download_daymet_tiles(
     tiles = 9753,
     start = 1980,
@@ -14,6 +16,8 @@ test_that("download tile",{
 
 test_that("bad start year",{
   skip_on_cran()
+  skip_if_not(capabilities("long.double"))
+  
   expect_error(download_daymet_tiles(
     tiles = 9753,
     start = 1970,
@@ -25,6 +29,8 @@ test_that("bad start year",{
 
 test_that("bad end year",{
   skip_on_cran()
+  skip_if_not(capabilities("long.double"))
+  
   expect_error(download_daymet_tiles(
     tiles = 9753,
     start = 1980,
@@ -36,6 +42,8 @@ test_that("bad end year",{
 
 test_that("download tiles by bounding box",{
   skip_on_cran()
+  skip_if_not(capabilities("long.double"))
+  
   expect_message(download_daymet_tiles(
     location = c(18.9103, -114.6109, 18.6703, -114.2181),
     start = 1980,
@@ -47,6 +55,8 @@ test_that("download tiles by bounding box",{
 
 test_that("missing coordinate value",{
   skip_on_cran()
+  skip_if_not(capabilities("long.double"))
+  
   expect_error(    download_daymet_tiles(
     location = c(18.9103,
                  -114.6109,
@@ -60,6 +70,8 @@ test_that("missing coordinate value",{
 
 test_that("out of range bbox coordinates",{
   skip_on_cran()
+  skip_if_not(capabilities("long.double"))
+  
   expect_error(download_daymet_tiles(
     location = c(0,0,0.1,0.1),
     start = 1980,
@@ -71,6 +83,8 @@ test_that("out of range bbox coordinates",{
 
 test_that("out of range coordinate pair",{
   skip_on_cran()
+  skip_if_not(capabilities("long.double"))
+  
   expect_error(download_daymet_tiles(
     location = c(0, 0),
     start = 1980,
