@@ -1,4 +1,4 @@
-# daymetr <a href='https://bluegreen-labs.github.io/daymetr/'><img src='https://raw.githubusercontent.com/bluegreen-labs/daymetr/master/daymetr-logo.png' align="right" height="139" /></a>
+# daymetr <a href='https://bluegreen-labs.github.io/daymetr/'><img src='https://raw.githubusercontent.com/bluegreen-labs/daymetr/master/logo.png' align="right" height="139" /></a>
 
 [![R-CMD-check](https://github.com/bluegreen-labs/daymetr/workflows/R-CMD-check/badge.svg)](https://github.com/bluegreen-labs/daymetr/actions)
 [![codecov](https://codecov.io/gh/bluegreen-labs/daymetr/branch/master/graph/badge.svg)](https://codecov.io/gh/bluegreen-labs/daymetr)

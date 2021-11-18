@@ -8,6 +8,13 @@
 
 <title>Function to download single location 'Daymet' data — download_daymet • daymetr</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -41,6 +48,7 @@
 
 <meta property="og:title" content="Function to download single location 'Daymet' data — download_daymet" />
 <meta property="og:description" content="Function to download single location 'Daymet' data" />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -242,7 +250,7 @@ written to disk as a csv file.</p>
         date <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>year</span>, <span class='va'>yday</span>, sep <span class='op'>=</span> <span class='st'>"-"</span><span class='op'>)</span>, <span class='st'>"%Y-%j"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># show a simple graph of the mean temperature</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span><span class='op'>(</span><span class='va'>daymet_data</span><span class='op'>$</span><span class='va'>data</span><span class='op'>$</span><span class='va'>date</span>,
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>daymet_data</span><span class='op'>$</span><span class='va'>data</span><span class='op'>$</span><span class='va'>date</span>,
      <span class='va'>daymet_data</span><span class='op'>$</span><span class='va'>data</span><span class='op'>$</span><span class='va'>tmean</span>,
      xlab <span class='op'>=</span> <span class='st'>"Date"</span>,
      ylab <span class='op'>=</span> <span class='st'>"mean temperature"</span><span class='op'>)</span>
@@ -262,7 +270,7 @@ written to disk as a csv file.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Koen Hufkens.</p>
+  <p>Developed by <a href='https://bluegreenlabs.org'>Koen Hufkens</a>.</p>
 </div>
 
 <div class="pkgdown">
