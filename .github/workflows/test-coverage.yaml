@@ -12,7 +12,7 @@ name: test-coverage
 
 jobs:
   test-coverage:
-    runs-on: macOS-latest
+    runs-on: macOS
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -37,7 +37,7 @@ jobs:
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
 
       - name: Install system dependencies on MacOS (X11, gdal)
-        if: runner.os == 'macOS-latest'
+        if: runner.os == 'macOS'
         run: |
           brew install --cask xquartz
           brew install pkg-config
