@@ -8,7 +8,7 @@ tile_server <- function(){
 }
 
 ncss_server <- function(frequency, catalog = FALSE){
-  url <- "https://thredds.daac.ornl.gov/thredds/ncss/ornldaac"
+  url <- "https://thredds.daac.ornl.gov/thredds/ncss/grid/ornldaac"
   
   if(catalog){
     return(file.path(url, "/1840/catalog.html"))
