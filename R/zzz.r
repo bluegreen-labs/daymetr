@@ -24,14 +24,3 @@ ncss_server <- function(frequency, catalog = FALSE){
     url <- sprintf("%s/%s", url, 1840)
   }
 }
-
-# check if server is reachable
-# returns bolean TRUE if so
-daymet_running <- function(url){
-  ct <- httr::GET(url)
-  if(ct$status_code > 400){
-    FALSE  
-  } else {
-    TRUE
-  }
-}

@@ -30,12 +30,6 @@ test_that("check offset routine, file conversions",{
   expect_error(daymet_grid_offset(raster::dropLayer(st, 1)))
 })
 
-test_that("check server uptime",{
-  expect_true(
-    daymetr:::daymet_running("https://thredds.daac.ornl.gov") 
-  )
-})
-
 # check the calculation of a mean values
 test_that("tmean grid checks",{
   skip_on_cran()
