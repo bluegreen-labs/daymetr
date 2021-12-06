@@ -63,6 +63,12 @@ download_daymet_ncss <- function(
     message("NOTE: data is stored in tempdir() ...")
   }
   
+  # set SSL verify config to ignore
+  # service is non critical (no encryption needed)
+  # assuming CA authority issues are ORNL issues
+  # not a man in the middle attack
+  httr::set_config(httr::config(ssl_verifypeer = 0L))
+  
   # remove capitals from frequency
   frequency <- tolower(frequency)
   
