@@ -1,3 +1,9 @@
+# daymetr 1.6
+
+* SSL CA override to deal with stale certificates at ORNL
+* new website layout
+* removed website ping function and check
+
 # daymetr 1.5
 
 * better error trapping in single pixel downloads using http status codes

@@ -43,7 +43,7 @@
         <a class="hidden-md hidden-lg" href="https://bluegreenlabs.org">
           <img src="https://bluegreenlabs.org/img/logo.png" id="hexlogo" alt="bluegreen labs"></a>
         <a class="navbar-brand" href="../index.html">
-           <i>daymetr <small>v1.5</small></i>
+           <i>daymetr <small>v1.6</small></i>
         </a>
       </div>
     </div>
@@ -112,7 +112,7 @@
 <table class="table">
 <colgroup><col width="5%"></colgroup>
 <tbody><tr class="odd">
-<td>title: “daymetr functionality” author: “Koen Hufkens” date: “2021-11-21” output: rmarkdown::html_vignette: md_extensions: [ “-autolink_bare_uris”] vignette: &gt; % % %</td>
+<td>title: “daymetr functionality” author: “Koen Hufkens” date: “2021-12-06” output: rmarkdown::html_vignette: md_extensions: [ “-autolink_bare_uris”] vignette: &gt; % % %</td>
 </tr></tbody>
 </table>
 <p>A programmatic interface to the <a href="https://daymet.ornl.gov">Daymet web services</a>. Allows for easy downloads of Daymet climate data directly to your R workspace or your computer. Routines for both single pixel data downloads and gridded (netCDF) data are provided. Below you find a number of worked example on mostly smaller datasets to illustrate the utility of the package.</p>
@@ -185,21 +185,21 @@
 <p>The package maintains the original data header names in order to provide a transparent way of dealing with both data downloaded through daymetr or directly from the Daymet website. You can access the climate data using the df$data sub-list. An example of a plot of 10 years of maximum temperature values is provided below.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># simple graph of Daymet data</span>
-<span class="va">df</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">yday</span>, sep <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span>, <span class="st">"%Y-%j"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">measurement</span> <span class="op">==</span> <span class="st">"tmax..deg.c."</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">measurement</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">yday</span>, sep <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span>, <span class="st">"%Y-%j"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">measurement</span> <span class="op">==</span> <span class="st">"tmax..deg.c."</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">date</span>, y <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">measurement</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <p><img src="daymetr-vignette_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
 <p>You can further summarize the data frame by year / month or day using either the by(), aggregate() or tidyverse based mutate() or summarize() operations. The code below (not run) uses the tidyverse (ddplyr) syntax to calculate daily mean temperature values from the minimum and maximum values provided by Daymet.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># code not run</span>
-<span class="va">df</span> <span class="op">%&gt;%</span>
-  <span class="fu">mutate</span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">yday</span>, sep <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span>, <span class="st">"%Y-%j"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">group_by</span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">measurement</span> <span class="op">==</span> <span class="st">"tmax..deg.c."</span> <span class="op">|</span> <span class="va">measurement</span> <span class="op">==</span> <span class="st">"tmin..deg.c."</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">summarize</span><span class="op">(</span>mean_temp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">yday</span>, sep <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span>, <span class="st">"%Y-%j"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">measurement</span> <span class="op">==</span> <span class="st">"tmax..deg.c."</span> <span class="op">|</span> <span class="va">measurement</span> <span class="op">==</span> <span class="st">"tmin..deg.c."</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_temp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="gridded-data-downloads" class="section level2">
 <h2 class="hasAnchor">
@@ -253,9 +253,9 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># plot the tile outlines</span>
 <span class="co"># roughly painting a picture of North America</span>
-<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">tile_outlines</span><span class="op">)</span><span class="op">+</span> 
-  <span class="fu">geom_sf</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme_void</span><span class="op">(</span><span class="op">)</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tile_outlines</span><span class="op">)</span><span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code></pre></div>
 <p><img src="daymetr-vignette_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
