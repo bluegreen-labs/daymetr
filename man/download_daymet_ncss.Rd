@@ -13,7 +13,8 @@ download_daymet_ncss(
   mosaic = "na",
   path = tempdir(),
   silent = FALSE,
-  force = FALSE
+  force = FALSE,
+  ssl = TRUE
 )
 }
 \arguments{
@@ -36,12 +37,16 @@ options are "monthly" or "annual".}
 \item{mosaic}{which tile mosiac to source from (na = Northern America,
 hi = Hawaii, pr = Puerto Rico), defaults to "na".}
 
-\item{path}{directory where to store the downloaded data (default = tempdir())}
+\item{path}{directory where to store the downloaded data 
+(default = tempdir())}
 
 \item{silent}{suppress the verbose output}
 
 \item{force}{\code{TRUE} or \code{FALSE} (default),
 override the conservative end year setting}
+
+\item{ssl}{\code{TRUE} (default) or \code{FALSE},
+override default SSL settings in case of CA issues}
 }
 \value{
 netCDF data file of an area circumscribed by the location bounding
