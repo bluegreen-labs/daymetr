@@ -28,6 +28,8 @@
 <meta name="twitter:card" content="summary">
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -42,12 +44,12 @@
       </button>
 
       <div class="navbar-brand-container">
-        <a class="hidden-sm hidden-xs" href="https://bluegreenlabs.org">
+        <a class="external-link hidden-sm hidden-xs" href="https://bluegreenlabs.org">
           <img src="https://bluegreenlabs.org/img/logo_text_small.png" id="hexlogo" alt="bluegreen labs"></a>
-        <a class="hidden-md hidden-lg" href="https://bluegreenlabs.org">
+        <a class="external-link hidden-md hidden-lg" href="https://bluegreenlabs.org">
           <img src="https://bluegreenlabs.org/img/logo.png" id="hexlogo" alt="bluegreen labs"></a>
         <a class="navbar-brand" href="index.html">
-           <i>daymetr <small>v1.6</small></i>
+           <i>daymetr <small>v1.7</small></i>
         </a>
       </div>
     </div>
@@ -55,16 +57,10 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -78,14 +74,8 @@
 <li>
   <a href="news/index.html">Changelog</a>
 </li>
-<li>
-  <a href="https://twitter.com/bluegreen_labs">
-    <span class="fab fa-twitter fa-lg"></span>
-     
-  </a>
-</li>
         <li>
-  <a href="https://github.com/bluegreen-labs/daymetr/">
+  <a href="https://github.com/bluegreen-labs/daymetr/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -102,52 +92,52 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="daymetr-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#daymetr-" class="anchor"></a>daymetr <a href="https://bluegreen-labs.github.io/daymetr/"><img src="https://raw.githubusercontent.com/bluegreen-labs/daymetr/master/logo.png" align="right" height="139"></a>
+<div class="section level1">
+<div class="page-header"><h1 id="daymetr-">daymetr <a href="https://bluegreen-labs.github.io/daymetr/" class="external-link"><img src="https://raw.githubusercontent.com/bluegreen-labs/daymetr/master/logo.png" align="right" height="139"></a>
+<a class="anchor" aria-label="anchor" href="#daymetr-"></a>
 </h1></div>
 
-<p>A programmatic interface to the <a href="https://daymet.ornl.gov">Daymet web services</a>. Allows for easy downloads of Daymet climate data directly to your R workspace or your computer. Routines for both single pixel data downloads and gridded (netCDF) data are provided. Please use the below citation when using the package.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<div id="stable-release" class="section level3">
-<h3 class="hasAnchor">
-<a href="#stable-release" class="anchor"></a>stable release</h3>
+<p>A programmatic interface to the <a href="https://daymet.ornl.gov" class="external-link">Daymet web services</a>. Allows for easy downloads of Daymet climate data directly to your R workspace or your computer. Routines for both single pixel data downloads and gridded (netCDF) data are provided. Please use the below citation when using the package.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<div class="section level3">
+<h3 id="stable-release">stable release<a class="anchor" aria-label="anchor" href="#stable-release"></a>
+</h3>
 <p>To install the current stable release use a CRAN repository:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"daymetr"</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/bluegreen-labs/daymetr">"daymetr"</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"daymetr"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/bluegreen-labs/daymetr" class="external-link">"daymetr"</a></span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="development-release" class="section level3">
-<h3 class="hasAnchor">
-<a href="#development-release" class="anchor"></a>development release</h3>
+<div class="section level3">
+<h3 id="development-release">development release<a class="anchor" aria-label="anchor" href="#development-release"></a>
+</h3>
 <p>To install the development releases of the package run the following commands:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span><span class="op">}</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"bluegreen-labs/daymetr"</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/bluegreen-labs/daymetr">"daymetr"</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"bluegreen-labs/daymetr"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/bluegreen-labs/daymetr" class="external-link">"daymetr"</a></span><span class="op">)</span></span></code></pre></div>
 <p>Vignettes are not rendered by default, if you want to include additional documentation please use:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span><span class="op">}</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"bluegreen-labs/daymetr"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/bluegreen-labs/daymetr">"daymetr"</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"bluegreen-labs/daymetr"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/bluegreen-labs/daymetr" class="external-link">"daymetr"</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="use" class="section level2">
-<h2 class="hasAnchor">
-<a href="#use" class="anchor"></a>Use</h2>
-<div id="single-pixel-location-download" class="section level3">
-<h3 class="hasAnchor">
-<a href="#single-pixel-location-download" class="anchor"></a>Single pixel location download</h3>
+<div class="section level2">
+<h2 id="use">Use<a class="anchor" aria-label="anchor" href="#use"></a>
+</h2>
+<div class="section level3">
+<h3 id="single-pixel-location-download">Single pixel location download<a class="anchor" aria-label="anchor" href="#single-pixel-location-download"></a>
+</h3>
 <p>For a single site use the following format</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/download_daymet.html">download_daymet</a></span><span class="op">(</span>site <span class="op">=</span> <span class="st">"Oak Ridge National Laboratories"</span>,
-                lat <span class="op">=</span> <span class="fl">36.0133</span>,
-                lon <span class="op">=</span> <span class="op">-</span><span class="fl">84.2625</span>,
-                start <span class="op">=</span> <span class="fl">1980</span>,
-                end <span class="op">=</span> <span class="fl">2010</span>,
-                internal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/download_daymet.html">download_daymet</a></span><span class="op">(</span>site <span class="op">=</span> <span class="st">"Oak Ridge National Laboratories"</span>,</span>
+<span>                lat <span class="op">=</span> <span class="fl">36.0133</span>,</span>
+<span>                lon <span class="op">=</span> <span class="op">-</span><span class="fl">84.2625</span>,</span>
+<span>                start <span class="op">=</span> <span class="fl">1980</span>,</span>
+<span>                end <span class="op">=</span> <span class="fl">2010</span>,</span>
+<span>                internal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="6%">
@@ -198,25 +188,25 @@
 </table>
 <p>Batch mode uses similar parameters but you provide a comma separated file with site names and latitude longitude which are sequentially downloaded. The format of the comma separated file is: site name, latitude, longitude.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/download_daymet_batch.html">download_daymet_batch</a></span><span class="op">(</span>file_location <span class="op">=</span> <span class="st">'my_sites.csv'</span>,
-                      start <span class="op">=</span> <span class="fl">1980</span>,
-                      end <span class="op">=</span> <span class="fl">2010</span>,
-                      internal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/download_daymet_batch.html">download_daymet_batch</a></span><span class="op">(</span>file_location <span class="op">=</span> <span class="st">'my_sites.csv'</span>,</span>
+<span>                      start <span class="op">=</span> <span class="fl">1980</span>,</span>
+<span>                      end <span class="op">=</span> <span class="fl">2010</span>,</span>
+<span>                      internal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="gridded-data-downloads" class="section level3">
-<h3 class="hasAnchor">
-<a href="#gridded-data-downloads" class="anchor"></a>Gridded data downloads</h3>
+<div class="section level3">
+<h3 id="gridded-data-downloads">Gridded data downloads<a class="anchor" aria-label="anchor" href="#gridded-data-downloads"></a>
+</h3>
 <p>For gridded data use either download_daymet_tiles() for individual tiles or download_daymet_ncss() for a netCDF subset which is not bound by tile limits (but restricted to a 6GB query size).</p>
-<div id="tiled-data" class="section level4">
-<h4 class="hasAnchor">
-<a href="#tiled-data" class="anchor"></a><em>Tiled data</em>
+<div class="section level4">
+<h4 id="tiled-data">
+<em>Tiled data</em><a class="anchor" aria-label="anchor" href="#tiled-data"></a>
 </h4>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/download_daymet_tiles.html">download_daymet_tiles</a></span><span class="op">(</span>location <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">36.0133</span>,<span class="op">-</span><span class="fl">84.2625</span><span class="op">)</span>,
-                      tiles <span class="op">=</span> <span class="cn">NULL</span>,
-                      start <span class="op">=</span> <span class="fl">1980</span>,
-                      end <span class="op">=</span> <span class="fl">2012</span>,
-                      param <span class="op">=</span> <span class="st">"ALL"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/download_daymet_tiles.html">download_daymet_tiles</a></span><span class="op">(</span>location <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">36.0133</span>,<span class="op">-</span><span class="fl">84.2625</span><span class="op">)</span>,</span>
+<span>                      tiles <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>                      start <span class="op">=</span> <span class="fl">1980</span>,</span>
+<span>                      end <span class="op">=</span> <span class="fl">2012</span>,</span>
+<span>                      param <span class="op">=</span> <span class="st">"ALL"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="2%">
@@ -259,15 +249,15 @@
 </table>
 <p>If only the first set of coordinates is provided the tile in which these reside is downloaded. If your region of interest falls outside the scope of the DAYMET data coverage a warning is issued. If both top left and bottom right coordinates are provided all tiles covering the region of interst are downloaded. I would caution against downloading too much data, as file sizes do add up. So be careful how you specify your region of interest.</p>
 </div>
-<div id="netcdf-subset-ncss-data" class="section level4">
-<h4 class="hasAnchor">
-<a href="#netcdf-subset-ncss-data" class="anchor"></a><em>netCDF subset (ncss) data</em>
+<div class="section level4">
+<h4 id="netcdf-subset-ncss-data">
+<em>netCDF subset (ncss) data</em><a class="anchor" aria-label="anchor" href="#netcdf-subset-ncss-data"></a>
 </h4>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/download_daymet_ncss.html">download_daymet_ncss</a></span><span class="op">(</span>location <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">36.61</span>,<span class="op">-</span><span class="fl">85.37</span>,<span class="fl">33.57</span>,<span class="op">-</span><span class="fl">81.29</span><span class="op">)</span>,
-                     start <span class="op">=</span> <span class="fl">1980</span>,
-                     end <span class="op">=</span> <span class="fl">1980</span>,
-                     param <span class="op">=</span> <span class="st">"tmin"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/download_daymet_ncss.html">download_daymet_ncss</a></span><span class="op">(</span>location <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">36.61</span>,<span class="op">-</span><span class="fl">85.37</span>,<span class="fl">33.57</span>,<span class="op">-</span><span class="fl">81.29</span><span class="op">)</span>,</span>
+<span>                     start <span class="op">=</span> <span class="fl">1980</span>,</span>
+<span>                     end <span class="op">=</span> <span class="fl">1980</span>,</span>
+<span>                     param <span class="op">=</span> <span class="st">"tmin"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="2%">
@@ -308,64 +298,66 @@
 </tr>
 </tbody>
 </table>
-<p>Keep in mind that the bounding box is defined by the minimum (square) bounding box in a Lambert Conformal Conic (LCC) projection as defined by the provided geographic coordinates. In general the query area will be larger than the requested location. For more information I refer to <a href="https://daymet.ornl.gov/web_services.html">Daymet documentation</a> on the web service.</p>
+<p>Keep in mind that the bounding box is defined by the minimum (square) bounding box in a Lambert Conformal Conic (LCC) projection as defined by the provided geographic coordinates. In general the query area will be larger than the requested location. For more information I refer to <a href="https://daymet.ornl.gov/web_services.html" class="external-link">Daymet documentation</a> on the web service.</p>
 </div>
 </div>
 </div>
-<div id="citation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#citation" class="anchor"></a>Citation</h2>
-<p>Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2018 <a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12970">An integrated phenology modelling framework in R: Phenology modelling with phenor. Methods in Ecology &amp; Evolution</a>, 9: 1-10.</p>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2018 <a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12970" class="external-link">An integrated phenology modelling framework in R: Phenology modelling with phenor. Methods in Ecology &amp; Evolution</a>, 9: 1-10.</p>
 </div>
-<div id="acknowledgements" class="section level2">
-<h2 class="hasAnchor">
-<a href="#acknowledgements" class="anchor"></a>Acknowledgements</h2>
-<p>This project was supported by the National Science Foundation’s Macro-system Biology Program (awards EF-1065029 and EF-1702697) and the Marie Skłodowska-Curie Action (H2020 grant 797668). Logo design elements are taken from the FontAwesome library according to <a href="https://fontawesome.com/license">these terms</a>, where the globe element was inverted and intersected.</p>
+<div class="section level2">
+<h2 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
+</h2>
+<p>This project was supported by the National Science Foundation’s Macro-system Biology Program (awards EF-1065029 and EF-1702697) and the Marie Skłodowska-Curie Action (H2020 grant 797668). Logo design elements are taken from the FontAwesome library according to <a href="https://fontawesome.com/license" class="external-link">these terms</a>, where the globe element was inverted and intersected.</p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=daymetr">https://​cloud.r-project.org/​package=daymetr</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/bluegreen-labs/daymetr/">https://​github.com/​bluegreen-labs/​daymetr/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/bluegreen-labs/daymetr/issues">https://​github.com/​bluegreen-labs/​daymetr/​issues</a>
-</li>
-</ul>
-</div>
-<div class="license">
-<h2>License</h2>
-<ul class="list-unstyled">
-<li><a href="https://www.r-project.org/Licenses/AGPL-3">AGPL-3</a></li>
-</ul>
-</div>
-<div class="citation">
-<h2>Citation</h2>
-<ul class="list-unstyled">
-<li><a href="authors.html">Citing daymetr</a></li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>
-<a href="https://bluegreenlabs.org">Koen Hufkens</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-5070-8109" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="https://cloud.r-project.org/package=daymetr" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/bluegreen-labs/daymetr/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/bluegreen-labs/daymetr/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/bluegreen-labs/daymetr/actions"><img src="https://github.com/bluegreen-labs/daymetr/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://codecov.io/gh/bluegreen-labs/daymetr"><img src="https://codecov.io/gh/bluegreen-labs/daymetr/branch/master/graph/badge.svg" alt="codecov"></a></li>
-<li><a href="https://cran.r-project.org/package=daymetr"><img src="https://www.r-pkg.org/badges/version/daymetr" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://www.r-project.org/Licenses/AGPL-3" class="external-link">AGPL-3</a></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing daymetr</a></li>
+</ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>
+<a href="https://bluegreenlabs.org" class="external-link">Koen Hufkens</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-5070-8109" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/bluegreen-labs/daymetr/actions" class="external-link"><img src="https://github.com/bluegreen-labs/daymetr/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://codecov.io/gh/bluegreen-labs/daymetr" class="external-link"><img src="https://codecov.io/gh/bluegreen-labs/daymetr/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://cran.r-project.org/package=daymetr" class="external-link"><img src="https://www.r-pkg.org/badges/version/daymetr" alt="CRAN_Status_Badge"></a></li>
+</ul>
+</div>
+
+  </div>
 </div>
 
 
@@ -375,11 +367,11 @@
             <div class="col-xs-10">
                 <div class="row">
                     <div class="col-md-4 col-xs-6">
-                        <a href="http://github.com/bluegreen-labs" target="_blank">
+                        <a href="http://github.com/bluegreen-labs" target="_blank" class="external-link">
                           <div class="icon fab fa-github"></div></a>
-                        <a href="https://bluegreenlabs.org/labs/" target="_blank">
+                        <a href="https://bluegreenlabs.org/labs/" target="_blank" class="external-link">
                           <div class="icon fa fa-flask"></div></a>
-                        <a href="http://twitter.com/bluegreen_labs" target="_blank">
+                        <a href="http://twitter.com/bluegreen_labs" target="_blank" class="external-link">
                           <div class="icon fab fa-twitter"></div></a>
                     </div>
                 </div>
@@ -387,17 +379,17 @@
                     <div class="col-md-2 col-sm-4">
                         <ul>
 <h5 class="bottom-2">About</h5>
-                            <li><a href="https://bluegreenlabs.org/#intro">BlueGreen Labs</a></li>
-                            <li><a href="https://bluegreenlabs.org/#people">Our Team</a></li>
-                            <li><a href="https://bluegreenlabs.org/#contact">Contact Us</a></li>
+                            <li><a href="https://bluegreenlabs.org/#intro" class="external-link">BlueGreen Labs</a></li>
+                            <li><a href="https://bluegreenlabs.org/#people" class="external-link">Our Team</a></li>
+                            <li><a href="https://bluegreenlabs.org/#contact" class="external-link">Contact Us</a></li>
                         </ul>
 </div>
                     <div class="col-md-2 col-sm-4">
                         <ul>
 <h5 class="bottom-2">Resources</h5>
-                            <li><a href="https://github.com/bluegreen-labs">Packages</a></li>
-                            <li><a href="https://bluegreenlabs.org/publication/">Publications</a></li>
-                            <li><a href="https://bluegreenlabs.org/post/">Blog</a></li>
+                            <li><a href="https://github.com/bluegreen-labs" class="external-link">Packages</a></li>
+                            <li><a href="https://bluegreenlabs.org/publication/" class="external-link">Publications</a></li>
+                            <li><a href="https://bluegreenlabs.org/post/" class="external-link">Blog</a></li>
                         </ul>
 </div>
 
@@ -413,6 +405,8 @@
 
   
 
+
+  
 
   </body>
 </html>

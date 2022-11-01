@@ -1,3 +1,7 @@
+# daymetr 1.7
+
+* API endpoint update with v4 release
+
 # daymetr 1.6
 
 * SSL CA override to deal with stale certificates at ORNL
