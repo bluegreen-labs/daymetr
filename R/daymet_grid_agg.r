@@ -29,9 +29,11 @@
 #'  download_daymet_ncss()
 #'      
 #'  # Finally, run the function
-#'  daymet_grid_agg(file = paste0(tempdir(),"/tmin_daily_1980_ncss.nc"),
-#'                  int = "seasonal",
-#'                  fun = "mean")
+#'  daymet_grid_agg(
+#'   file = file.path(tempdir(),"/tmin_daily_1980_ncss.nc"),
+#'   int = "seasonal",
+#'   fun = "mean"
+#'  )
 #'  }
 
 daymet_grid_agg <- function(
@@ -76,7 +78,7 @@ daymet_grid_agg <- function(
       dy <- as.numeric(as.vector(t(as.data.frame(strsplit(names(data),
                                                           "[.]"))[2,])))
       yr <- strsplit(names(data), "_")[[1]][3]
-      dates <- as.Date(x = dy, origin = sprintf('%s-01-01',yr))
+      dates <- as.Date(x = dy, origin = sprintf('%s-01-01', yr))
     }
   } else {
     stop('Unable to read dates.\n
