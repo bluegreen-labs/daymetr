@@ -4,18 +4,24 @@ test_that("check offset routine, file conversions",{
   skip_on_cran()
   
   # download the data
-  expect_message(download_daymet_ncss(param = "tmin",
-                                      frequency = "daily",
-                                      path = tempdir(), 
-                                      start = 1981,
-                                      end = 1982,
-                                      silent = TRUE))
+  expect_message(
+    download_daymet_ncss(
+      param = "tmin",
+      frequency = "daily",
+      path = tempdir(), 
+      start = 1981,
+      end = 1982,
+      silent = TRUE
+      )
+    )
   
   # create a stack of the downloaded data
-  st <- suppressWarnings(raster::stack(paste(tempdir(),
-                           c("tmin_daily_1981_ncss.nc",
-                             "tmin_daily_1982_ncss.nc"),
-                           sep = "/")))
+  st <- suppressWarnings(
+    raster::stack(
+      paste(tempdir(),
+            c("tmin_daily_1981_ncss.nc",
+              "tmin_daily_1982_ncss.nc"),
+            sep = "/")))
   
   # convert nc to tif
   expect_message(nc2tif())
@@ -107,42 +113,44 @@ test_that("tile aggregation checks",{
                            silent = TRUE))
   
   # seasonal aggregation
-  expect_silent(daymet_grid_agg(file = paste0(tempdir(),
+  expect_silent(daymet_grid_agg(file = file.path(tempdir(),
                                         "/tmin_daily_1980_ncss.nc"),
                                         int = "seasonal",
                                         fun = "mean",
                                         internal = TRUE))
   
   # seasonal aggregation
-  expect_silent(daymet_grid_agg(file = paste0(tempdir(),
+  expect_silent(daymet_grid_agg(file = file.path(tempdir(),
                                "/tmin_daily_1980_ncss.nc"),
                                int = "seasonal",
                                fun = "mean"))
   
   # seasonal aggregation non daily
-  expect_silent(daymet_grid_agg(file = paste0(tempdir(),
+  expect_silent(daymet_grid_agg(file = file.path(tempdir(),
                                "/tmin_daily_1980_ncss.nc"),
                                int = "monthly",
                                fun = "mean"))
   
   # seasonal aggregation non daily
-  expect_silent(daymet_grid_agg(file = paste0(tempdir(),
+  expect_silent(daymet_grid_agg(file = file.path(tempdir(),
                                        "/tmin_daily_1980_ncss.nc"),
                                        int = "annual",
                                        fun = "mean"))
   
   # using a tif file (convert nc files first)
-  nc2tif(path = tempdir(), files = paste0(tempdir(),
-                                          "/tmin_daily_1980_ncss.nc"),
-         overwrite = TRUE)
+  nc2tif(
+    path = tempdir(),
+    files = file.path(tempdir(),"/tmin_daily_1980_ncss.nc"),
+    overwrite = TRUE
+    )
   
-  expect_silent(daymet_grid_agg(file = paste0(tempdir(),
+  expect_silent(daymet_grid_agg(file = file.path(tempdir(),
                                              "/tmin_daily_1980_ncss.tif"),
                                int = "seasonal",
                                fun = "mean"))
   
   # non daily file, should skip / error
-  expect_error(daymet_grid_agg(file = paste0(tempdir(),
+  expect_error(daymet_grid_agg(file = file.path(tempdir(),
                                     "/tmin_monavg_1980_ncss.tif"),
                                    int = "seasonal",
                                    fun = "mean"))
@@ -166,10 +174,10 @@ test_that("read_daymet checks of meta-data",{
                   path = tempdir(),
                   silent = TRUE)
   
-  df <- read_daymet(paste0(tempdir(),"/Daymet_1980_1980.csv"),
+  df <- read_daymet(file.path(tempdir(),"/Daymet_1980_1980.csv"),
               simplify = FALSE)
   
-  expect_output(str(read_daymet(paste0(tempdir(),"/Daymet_1980_1980.csv"),
+  expect_output(str(read_daymet(file.path(tempdir(),"/Daymet_1980_1980.csv"),
                                    skip_header = TRUE)))
   
   # check read tile and coordinate info
@@ -190,7 +198,7 @@ test_that("read_daymet checks of meta-data",{
                                  skip_header = TRUE))
   
   # file does note exist
-  expect_error(read_daymet(paste0(tempdir(),"/Daymet_1980_1981.csv")))
+  expect_error(read_daymet(file.path(tempdir(),"/Daymet_1980_1981.csv")))
   
   # not provided
   expect_error(read_daymet())
