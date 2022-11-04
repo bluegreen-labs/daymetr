@@ -93,7 +93,7 @@
                         <h4 data-toc-skip class="author">Koen
 Hufkens</h4>
             
-            <h4 data-toc-skip class="date">2022-11-01</h4>
+            <h4 data-toc-skip class="date">2022-11-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/bluegreen-labs/daymetr/blob/HEAD/vignettes/daymetr-vignette.Rmd" class="external-link"><code>vignettes/daymetr-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>daymetr-vignette.Rmd</code></div>
@@ -369,34 +369,57 @@ temperature for a given tile / or ncss subset provided that matching
 minimum and maximum netCDF files can be found in the same directory.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># read in the demo data from the package for speed</span></span>
-<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/stack.html" class="external-link">stack</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"daymetr"</span>,<span class="st">"extdata/tmin_monavg_1980_ncss.nc"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/rast.html" class="external-link">rast</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"daymetr"</span>,<span class="st">"extdata/tmin_monavg_1980_ncss.nc"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span></span>
-<span><span class="co"># to set the correct projection</span></span>
-<span><span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/projection.html" class="external-link">projection</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +ellps=WGS84 +units=km +no_defs"</span></span>
+<span><span class="co"># set the correct projection</span></span>
+<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/project.html" class="external-link">project</a></span><span class="op">(</span></span>
+<span>    <span class="va">r</span>,</span>
+<span>    <span class="st">"+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +ellps=WGS84 +units=km +no_defs"</span></span>
+<span>  <span class="op">)</span></span>
 <span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span></code></pre></div>
+<p><img src="daymetr-vignette_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># reproject to lat lon</span></span>
-<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/projectRaster.html" class="external-link">projectRaster</a></span><span class="op">(</span><span class="va">r</span>, crs <span class="op">=</span> <span class="st">"+init=epsg:4326"</span><span class="op">)</span></span>
+<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/project.html" class="external-link">project</a></span><span class="op">(</span><span class="va">r</span>, <span class="st">"+init=epsg:4326"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># plot the monthly mean minimum temperature for 1980</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span></code></pre></div>
-<p><img src="daymetr-vignette_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
+<p><img src="daymetr-vignette_files/figure-html/unnamed-chunk-10-2.png" width="672"></p>
 <p>Below we search in the temporary directory of R for the downloaded
 monthly minimum and maximum temperature ncss files for the year 1980
 (see paramteres specified) and calculate the mean monthly temperature
 for this year. The resulting plot, obviously, reports consistently
 higher values than the ones in the graph above.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># plot the monthly mean minimum temperature for 1980</span></span>
-<span><span class="va">r_tmean</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/daymet_grid_tmean.html">daymet_grid_tmean</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"daymetr"</span>,<span class="st">"extdata"</span><span class="op">)</span>,</span>
-<span>                            product <span class="op">=</span> <span class="st">"monavg"</span>,</span>
-<span>                            year <span class="op">=</span> <span class="fl">1980</span>,</span>
-<span>                            internal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">r_tmean</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/daymet_grid_tmean.html">daymet_grid_tmean</a></span><span class="op">(</span></span>
+<span>  path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"daymetr"</span>,<span class="st">"extdata"</span><span class="op">)</span>,</span>
+<span>  product <span class="op">=</span> <span class="st">"monavg"</span>,</span>
+<span>  year <span class="op">=</span> <span class="fl">1980</span>,</span>
+<span>  internal <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="co"># to set the correct projection</span></span>
-<span><span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/projection.html" class="external-link">projection</a></span><span class="op">(</span><span class="va">r_tmean</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +ellps=WGS84 +units=km +no_defs"</span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/project.html" class="external-link">project</a></span><span class="op">(</span></span>
+<span>    <span class="va">r_tmean</span>, </span>
+<span>    <span class="st">"+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +ellps=WGS84 +units=km +no_defs"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; class       : SpatRaster </span></span>
+<span><span class="co">#&gt; dimensions  : 32, 28, 12  (nrow, ncol, nlyr)</span></span>
+<span><span class="co">#&gt; resolution  : 1, 1  (x, y)</span></span>
+<span><span class="co">#&gt; extent      : 1593.25, 1621.25, -757.5, -725.5  (xmin, xmax, ymin, ymax)</span></span>
+<span><span class="co">#&gt; coord. ref. : +proj=lcc +lat_0=42.5 +lon_0=-100 +lat_1=25 +lat_2=60 +x_0=0 +y_0=0 +ellps=WGS84 +units=km +no_defs </span></span>
+<span><span class="co">#&gt; source      : memory </span></span>
+<span><span class="co">#&gt; names       :       X1,       X2,        X3,       X4,       X5,       X6, ... </span></span>
+<span><span class="co">#&gt; min values  : 6.112903, 4.491379,  9.645162, 15.99167, 20.44355, 24.40833, ... </span></span>
+<span><span class="co">#&gt; max values  : 6.725806, 5.198276, 10.403226, 16.64167, 20.87097, 25.00833, ...</span></span>
 <span></span>
 <span><span class="co"># reproject to lat lon</span></span>
-<span><span class="va">r_tmean</span> <span class="op">&lt;-</span> <span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/projectRaster.html" class="external-link">projectRaster</a></span><span class="op">(</span><span class="va">r_tmean</span>, crs <span class="op">=</span> <span class="st">"+init=epsg:4326"</span><span class="op">)</span></span>
+<span><span class="va">r_tmean</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/project.html" class="external-link">project</a></span><span class="op">(</span><span class="va">r_tmean</span>, <span class="st">"+init=epsg:4326"</span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># plot the mean temperature raster</span></span>
