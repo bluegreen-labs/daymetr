@@ -79,7 +79,7 @@ download_daymet_ncss <- function(
   frequency <- tolower(frequency)
   
   # check if there are enough coordinates specified
-  if (length(location)!=4){
+  if (length(location) != 4){
     stop("check coordinates format: top-left / bottom-right c(lat,lon,lat,lon)")
   }
   
@@ -127,9 +127,11 @@ download_daymet_ncss <- function(
       
       if (frequency != "daily"){
         
-        prefix <- ifelse(j != "prcp",
-                         paste0(substr(frequency,1,3),"avg"),
-                         paste0(substr(frequency,1,3),"ttl"))
+        prefix <- ifelse(
+          j != "prcp",
+          paste0(substr(frequency,1,3),"avg"),
+          paste0(substr(frequency,1,3),"ttl")
+          )
         
         # create url string (varies per product / year)
         url <- sprintf("%s/daymet_v4_%s_%s_%s_%s.nc",

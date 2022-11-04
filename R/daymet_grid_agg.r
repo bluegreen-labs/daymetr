@@ -58,28 +58,17 @@ daymet_grid_agg <- function(
   ext <- tools::file_ext(file)
   
   # load data into a raster brick
-  data <- suppressWarnings(raster::brick(file))
+  data <- terra::rast(file)
   
   # check if the data is daily or not
-  if (raster::nlayers(data) < 365){
+  if (terra::nlyr(data) < 365){
     stop("Provided data isn't at a daily time step...")
   }
   
   # extract time variable from data and covert to date format
   if (ext == 'tif' | ext == 'nc'){
-    if (ext == 'nc'){ # extract dates from .nc file
-      dates <- as.Date(
-        sub(pattern = "X",
-            replacement = "",
-            x = names(data)),
-        format = "%Y.%m.%d")
-      yr <- strsplit(as.character(dates), "-")[[1]][1]
-    } else { # construct dates using order of bands and year from .tif file
-      dy <- as.numeric(as.vector(t(as.data.frame(strsplit(names(data),
-                                                          "[.]"))[2,])))
-      yr <- strsplit(names(data), "_")[[1]][3]
-      dates <- as.Date(x = dy, origin = sprintf('%s-01-01', yr))
-    }
+      dates <- as.Date(terra::time(data))
+      yr <- unique(format(dates, "%Y"))
   } else {
     stop('Unable to read dates.\n
          Files must be outputs from daymetr functions in tif or nc format.')
@@ -90,34 +79,48 @@ daymet_grid_agg <- function(
     ind <- months(dates)
   }
   if (int == 'annual'){
-    ind <- as.numeric(substring(dates,1,4))
+    ind <- as.numeric(format(dates, "%Y"))
   }
   if (int == 'seasonal'){
     
     # set standard season change-over dates for the relevant year
-    spring_equinox <- as.Date(sprintf("%s.03.20", yr), format = "%Y.%m.%d")
-    summer_solstice <- as.Date(sprintf("%s.06.21", yr), format = "%Y.%m.%d")
-    fall_equinox <- as.Date(sprintf("%s.09.22", yr), format = "%Y.%m.%d")
-    winter_solstice <- as.Date(sprintf("%s.12.21", yr), format = "%Y.%m.%d")
+    spring_equinox <- as.Date(sprintf("%s-03-20", yr))
+    summer_solstice <- as.Date(sprintf("%s-06-21", yr))
+    fall_equinox <- as.Date(sprintf("%s-09-22", yr))
+    winter_solstice <- as.Date(sprintf("%s-12-21", yr))
     year_start <- utils::head(dates, n = 1)
     year_end <- utils::tail(dates, n = 1)
     
     # create a date sequence for each season
-    winter_start <- seq(from = year_start,
-                        to = (spring_equinox - 1),
-                        by = "days")
-    spring <- seq(from = spring_equinox,
-                  to = (summer_solstice - 1),
-                  by = "days")
-    summer <- seq(from = summer_solstice,
-                  to = (fall_equinox - 1),
-                  by = "days")
-    fall <- seq(from = fall_equinox,
-                to = (winter_solstice - 1),
-                by = "days")
-    winter_end <- seq(from = winter_solstice,
-                      to = year_end,
-                      by = "days")
+    winter_start <- seq(
+      from = year_start,
+      to = (spring_equinox - 1),
+      by = "days"
+    )
+    
+    spring <- seq(
+      from = spring_equinox,
+      to = (summer_solstice - 1),
+      by = "days"
+    )
+    
+    summer <- seq(
+      from = summer_solstice,
+      to = (fall_equinox - 1),
+      by = "days"
+    )
+    
+    fall <- seq(
+      from = fall_equinox,
+      to = (winter_solstice - 1),
+      by = "days"
+    )
+    
+    winter_end <- seq(
+      from = winter_solstice,
+      to = year_end,
+      by = "days"
+    )
     
     # set season name as values of each date sequence
     winter_start_lab <- rep("winter", times = length(winter_start))
@@ -131,10 +134,12 @@ daymet_grid_agg <- function(
   }
   
   # aggregate bands by int using base R function aggregate
-  result <- raster::stackApply(x = data,
-                               indices = ind,
-                               fun = fun,
-                               na.rm = TRUE)
+  result <- terra::tapp(
+    x = data,
+    index = ind,
+    fun = fun,
+    na.rm = TRUE
+    )
   
   # return all data to raster, either as a geotiff or as a local object
   if (internal == FALSE){
@@ -142,15 +147,19 @@ daymet_grid_agg <- function(
     # create output file name
     input_file <- tools::file_path_sans_ext(basename(file))
     param <- strsplit(input_file, "_")[[1]][1]
-    year <- strsplit(input_file, "_")[[1]][3]
-    output_file <- file.path(normalizePath(path),
-                          sprintf('%s_agg_%s_%s%s.tif', param, year, int, fun))
+    
+    output_file <- file.path(
+      normalizePath(path),
+      sprintf('%s_agg_%s_%s%s.tif', param, yr, int, fun)
+    )
     
     # write raster object to file
     suppressWarnings(
-      raster::writeRaster(x = result,
-                          filename = output_file,
-                          overwrite = TRUE)  
+      terra::writeRaster(
+        x = result,
+        filename = output_file,
+        overwrite = TRUE
+        )
     )
   } else {
     # return to workspace

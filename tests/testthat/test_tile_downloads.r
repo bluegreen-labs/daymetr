@@ -1,4 +1,4 @@
-context("test tile downloads")
+context("Test tile downloads")
 
 test_that("download tile",{
   skip_on_cran()

@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 # load the library
 library(daymetr)
 library(ncdf4)
-library(raster)
+library(terra)
 library(sf)
 library(dplyr)
 library(ggplot2)
@@ -179,13 +179,20 @@ The above figure shows nicely how you can query a small subset of the Daymet dat
 
 ```{r , fig.width = 7, fig.height = 7, warning=FALSE, message=FALSE}
 # read in the demo data from the package for speed
-r <- raster::stack(system.file(package = "daymetr","extdata/tmin_monavg_1980_ncss.nc"))
+r <- terra::rast(
+  system.file(package = "daymetr","extdata/tmin_monavg_1980_ncss.nc")
+  )
 
-# to set the correct projection
-raster::projection(r) <- "+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +ellps=WGS84 +units=km +no_defs"
+# set the correct projection
+r <- terra::project(
+    r,
+    "+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +ellps=WGS84 +units=km +no_defs"
+  )
+
+plot(r)
 
 # reproject to lat lon
-r <- raster::projectRaster(r, crs = "+init=epsg:4326")
+r <- terra::project(r, "+init=epsg:4326")
 
 # plot the monthly mean minimum temperature for 1980
 plot(r)
@@ -196,16 +203,21 @@ Below we search in the temporary directory of R for the downloaded monthly minim
 
 ```{r, , fig.width = 7, fig.height = 7, warning=FALSE, message=FALSE}
 # plot the monthly mean minimum temperature for 1980
-r_tmean <- daymet_grid_tmean(path = system.file(package = "daymetr","extdata"),
-                            product = "monavg",
-                            year = 1980,
-                            internal = TRUE)
+r_tmean <- daymet_grid_tmean(
+  path = system.file(package = "daymetr","extdata"),
+  product = "monavg",
+  year = 1980,
+  internal = TRUE
+  )
 
 # to set the correct projection
-raster::projection(r_tmean) <- "+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +ellps=WGS84 +units=km +no_defs"
+terra::project(
+    r_tmean, 
+    "+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +ellps=WGS84 +units=km +no_defs"
+  )
 
 # reproject to lat lon
-r_tmean <- raster::projectRaster(r_tmean, crs = "+init=epsg:4326")
+r_tmean <- terra::project(r_tmean, "+init=epsg:4326")
 
 
 # plot the mean temperature raster

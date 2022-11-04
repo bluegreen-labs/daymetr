@@ -1,4 +1,4 @@
-context("test nccs routine")
+context("Test nccs routine")
 
 test_that("freefrom gridded download (ncss) checks",{
   skip_on_cran()

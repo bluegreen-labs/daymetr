@@ -18,7 +18,7 @@
 daymet_grid_offset <- function(data, offset = 264){
 
   # sanity check
-  if(raster::nlayers(data) != 730){
+  if(terra::nlyr(data) != 730){
     stop("Does not contain two years worth of data, check stack size...")
   }
 
@@ -35,7 +35,7 @@ daymet_grid_offset <- function(data, offset = 264){
 
   # subset the data and assign correct
   # layer names, for clarity
-  s <- raster::subset(data, layer_selection)
+  s <- terra::subset(data, layer_selection)
   names(s) <- layer_doy[layer_selection]
 
   # final subset for phenology modelling

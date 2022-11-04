@@ -50,7 +50,7 @@ download_daymet_tiles <- function(
   
   # grab the projection string. This is a LCC projection.
   # (lazy load the tile_outlines)
-  projection <- raster::projection(daymetr::tile_outlines)
+  projection <- sf::st_crs(daymetr::tile_outlines)
   
   # override tile selection if tiles are specified on the command line
   if (!missing(tiles)){

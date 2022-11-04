@@ -1,4 +1,4 @@
-context("test single pixel downloads")
+context("Test single pixel downloads")
 
 test_that("pixel location download check",{
   skip_on_cran()
