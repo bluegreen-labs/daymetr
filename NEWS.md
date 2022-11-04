@@ -1,6 +1,7 @@
 # daymetr 1.7
 
 * API endpoint update with v4 release
+* added ncdf4 as Import, raster doesn't sideload this by default - fails tests?
 
 # daymetr 1.6
 

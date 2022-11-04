@@ -17,6 +17,7 @@ Depends:
 Imports:
     sf,
     raster,
+    ncdf4,
     httr,
     tidyr,
     tibble,
@@ -30,7 +31,6 @@ Suggests:
     ggplot2,
     dplyr,
     rgdal,
-    ncdf4,
     knitr,
     markdown,
     rmarkdown,
