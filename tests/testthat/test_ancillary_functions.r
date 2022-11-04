@@ -101,41 +101,65 @@ test_that("tile aggregation checks",{
   skip_on_cran()
   
   # download the data
-  expect_message(download_daymet_ncss(param = "tmin",
-                           frequency = "daily",
-                           path = tempdir(),
-                           silent = TRUE))
+  expect_message(
+    download_daymet_ncss(
+      param = "tmin",
+      frequency = "daily",
+      path = tempdir(),
+      silent = TRUE
+      )
+    )
   
   # download the data
-  expect_message(download_daymet_ncss(param = "tmin",
-                           frequency = "monthly",
-                           path = tempdir(),
-                           silent = TRUE))
+  expect_message(
+    download_daymet_ncss(
+      param = "tmin",
+      frequency = "monthly",
+      path = tempdir(),
+      silent = TRUE
+      )
+    )
   
   # seasonal aggregation
-  expect_silent(daymet_grid_agg(file = file.path(tempdir(),
-                                        "/tmin_daily_1980_ncss.nc"),
-                                        int = "seasonal",
-                                        fun = "mean",
-                                        internal = TRUE))
+  expect_silent(
+    daymet_grid_agg(
+      file = file.path(tempdir(),
+                       "/tmin_daily_1980_ncss.nc"),
+      int = "seasonal",
+      fun = "mean",
+      internal = TRUE
+      )
+    )
   
   # seasonal aggregation
-  expect_silent(daymet_grid_agg(file = file.path(tempdir(),
-                               "/tmin_daily_1980_ncss.nc"),
-                               int = "seasonal",
-                               fun = "mean"))
+  expect_silent(
+    daymet_grid_agg(
+      file = file.path(tempdir(),
+                       "/tmin_daily_1980_ncss.nc"),
+      int = "seasonal",
+      fun = "mean"
+      )
+    )
   
   # seasonal aggregation non daily
-  expect_silent(daymet_grid_agg(file = file.path(tempdir(),
-                               "/tmin_daily_1980_ncss.nc"),
-                               int = "monthly",
-                               fun = "mean"))
+  expect_silent(
+    daymet_grid_agg(
+      file = file.path(tempdir(),
+                       "/tmin_daily_1980_ncss.nc"),
+      int = "monthly",
+      fun = "mean"
+      )
+    )
   
   # seasonal aggregation non daily
-  expect_silent(daymet_grid_agg(file = file.path(tempdir(),
-                                       "/tmin_daily_1980_ncss.nc"),
-                                       int = "annual",
-                                       fun = "mean"))
+  expect_silent(
+    daymet_grid_agg(
+      file = file.path(tempdir(),
+                       "/tmin_daily_1980_ncss.nc"),
+      int = "annual",
+      fun = "mean"
+      )
+    )
   
   # using a tif file (convert nc files first)
   nc2tif(
