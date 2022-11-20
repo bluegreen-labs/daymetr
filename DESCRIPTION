@@ -17,6 +17,7 @@ Depends:
 Imports:
     sf,
     terra,
+    ncdf4,
     httr,
     tidyr,
     tibble,
@@ -29,7 +30,6 @@ RoxygenNote: 7.1.1
 Suggests:
     ggplot2,
     dplyr,
-    ncdf4,
     rgdal,
     knitr,
     markdown,
