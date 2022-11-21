@@ -39,13 +39,15 @@ A programmatic interface to the [Daymet web services](https://daymet.ornl.gov). 
 A common application of daymet data is the extraction of local climate data, at a given location. This data will be extracted from a pixel within the gridded daymet dataset corresponding to a location provided in latitude / longitude format. You can download a dataset for a single location using the following format:
 
 ```{r eval = FALSE}
-df <- download_daymet(site = "Oak Ridge National Laboratories",
-                lat = 36.0133,
-                lon = -84.2625,
-                start = 2000,
-                end = 2010,
-                internal = TRUE,
-                simplify = TRUE) # return tidy data !!
+df <- download_daymet(
+  site = "Oak Ridge National Laboratories",
+  lat = 36.0133,
+  lon = -84.2625,
+  start = 2000,
+  end = 2010,
+  internal = TRUE,
+  simplify = TRUE # return tidy data !!
+  ) 
 ```
 
 With the *internal* parameter flag set to TRUE the data will be exported as a nested list to your terminal or a variable if assigned. If this parameter is set to FALSE the data will be written to a file on disk in your current working directory (i.e. getwd()). If you want to change the location where files are written to disk use the *path* parameter. For a full list of parameters see the table below.
@@ -54,10 +56,12 @@ There also is a batch mode which uses similar parameters but you provide a comma
 
 ```{r eval = FALSE}
 # code is not run
-download_daymet_batch(file_location = 'my_sites.csv',
-                      start = 1980,
-                      end = 2010,
-                      internal = TRUE)
+download_daymet_batch(
+  file_location = 'my_sites.csv',
+  start = 1980,
+  end = 2010,
+  internal = TRUE
+  )
 ```
 
 Parameter     | Description                      
@@ -75,8 +79,10 @@ Data downloaded into the workspace, e.g. the **df** data frame in the above exam
 
 ```{r eval = TRUE, echo = FALSE, warning=FALSE, message=FALSE, error=FALSE}
 # load demo data in package
-df <- read_daymet(system.file(package = "daymetr","extdata/demo_data.csv"),
-                 simplify = TRUE)
+df <- read_daymet(
+  system.file(package = "daymetr","extdata/demo_data.csv"),
+  simplify = TRUE
+  )
 ```
 
 
