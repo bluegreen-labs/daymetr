@@ -49,8 +49,10 @@ convenient seasonal datasets for data exploration or modelling.
  download_daymet_ncss()
      
  # Finally, run the function
- daymet_grid_agg(file = paste0(tempdir(),"/tmin_daily_1980_ncss.nc"),
-                 int = "seasonal",
-                 fun = "mean")
+ daymet_grid_agg(
+  file = file.path(tempdir(),"/tmin_daily_1980_ncss.nc"),
+  int = "seasonal",
+  fun = "mean"
+ )
  }
 }

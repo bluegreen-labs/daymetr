@@ -60,6 +60,6 @@ r <- calc_nd(file.path(tempdir(),"tmin_daily_1980_ncss.nc"),
             internal = TRUE)
             
 # plot the output
-raster::plot(r)
+terra::plot(r)
 }
 }

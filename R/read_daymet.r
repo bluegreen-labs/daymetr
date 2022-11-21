@@ -11,6 +11,7 @@
 #' or \code{TRUE} (default = \code{TRUE})
 #' @return A nested data structure including site meta-data, the full
 #' header and the data as a `data.frame()`.
+#' 
 #' @export
 #' @examples
 #'

@@ -19,6 +19,8 @@
 #' statistics for every pixel which meet the predefined criteria. Output files
 #' if written to file will be named nd_YYYY.tif (with YYYY the year of the
 #' processed tile or ncss netCDF file).
+#' 
+#' @import ncdf4
 #' @export
 #' @examples
 #'

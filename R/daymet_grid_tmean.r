@@ -10,6 +10,8 @@
 #' @param internal \code{TRUE} / \code{FALSE} (if \code{FALSE},
 #' write the output to file)
 #' using the Daymet file format protocol.
+#'
+#' @import ncdf4
 #' @export
 #' @examples
 #'

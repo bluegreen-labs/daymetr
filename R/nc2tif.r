@@ -15,6 +15,8 @@
 #' @param silent limit verbose output (default = FALSE)
 #' @return Converted geotiff files of all netCDF data in the provided
 #' directory (path).
+#' 
+#' @import ncdf4
 #' @export
 #' @examples
 #'
