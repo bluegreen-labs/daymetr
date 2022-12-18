@@ -30,7 +30,6 @@ RoxygenNote: 7.2.1
 Suggests:
     ggplot2,
     dplyr,
-    rgdal,
     knitr,
     markdown,
     rmarkdown,
