@@ -31,7 +31,7 @@
 #'  download_daymet_ncss(param = "tmin",
 #'                       frequency = "annual",
 #'                       path = tempdir(),
-#'                       silent = TRUE))
+#'                       silent = TRUE)
 #'  
 #'  # convert files from nc to tif
 #'  nc2tif(path = tempdir(),
@@ -47,7 +47,7 @@ nc2tif <- function(
   files = NULL,
   overwrite = FALSE,
   silent = FALSE
-  ){
+  ) {
 
   # CRAN file policy
   if (identical(path, tempdir())  && !silent){
