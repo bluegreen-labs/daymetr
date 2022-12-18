@@ -9,7 +9,7 @@ output:
     ]
 vignette: >
   %\VignetteIndexEntry{daymetr functionality}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
   
 ---
