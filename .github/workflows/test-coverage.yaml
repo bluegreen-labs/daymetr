@@ -12,7 +12,7 @@ name: test-coverage
 
 jobs:
   test-coverage:
-    runs-on: macOS-latest
+    runs-on: Windows-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -35,15 +35,6 @@ jobs:
           path: ${{ env.R_LIBS_USER }}
           key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
-
-      - name: Install system dependencies on MacOS (X11, gdal)
-        if: runner.os == 'macOS'
-        run: |
-          brew install --cask xquartz
-          brew install pkg-config
-          brew install proj
-          brew install gdal
-          brew install netcdf
 
       - name: Install dependencies
         run: |
