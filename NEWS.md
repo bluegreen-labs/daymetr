@@ -1,7 +1,7 @@
 # daymetr 1.7
 
 * API endpoint update with v4 release
-* move to terra
+* move to terra (removing raster dependencies)
 
 # daymetr 1.6
 
