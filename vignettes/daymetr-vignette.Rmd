@@ -179,6 +179,9 @@ download_daymet_ncss(location = c(34, -82, 33.75, -81.75),
                      param = c("tmin","tmax"),
                      path = tempdir(),
                      silent = TRUE)
+
+# convert nc files to geotiff
+nc2tif(tempdir())
 ```
 
 The above figure shows nicely how you can query a small subset of the Daymet data. However, a common climate variable, the mean temperature is not provided. As such you may calculate these values using the daymet_grid_tmean() function. This function calculates the mean temperature for a given tile / or ncss subset provided that matching minimum and maximum netCDF files can be found in the same directory.
@@ -186,7 +189,7 @@ The above figure shows nicely how you can query a small subset of the Daymet dat
 ```{r , fig.width = 7, fig.height = 7, warning=FALSE, message=FALSE}
 # read in the demo data from the package for speed
 r <- terra::rast(
-  system.file(package = "daymetr","extdata/tmin_monavg_1980_ncss.nc")
+  system.file(package = "daymetr","extdata/tmin_monavg_1980_ncss.tif")
   )
 
 # set the correct projection
@@ -204,10 +207,9 @@ r <- terra::project(r, "+init=epsg:4326")
 plot(r)
 ```
 
+Below we search in the temporary directory of R for the downloaded monthly minimum and maximum temperature ncss files for the year 1980 (see paramteres specified) and calculate the mean monthly temperature for this year.
 
-Below we search in the temporary directory of R for the downloaded monthly minimum and maximum temperature ncss files for the year 1980 (see paramteres specified) and calculate the mean monthly temperature for this year. The resulting plot, obviously, reports consistently higher values than the ones in the graph above.
-
-```{r, , fig.width = 7, fig.height = 7, warning=FALSE, message=FALSE}
+```{r, , fig.width = 7, fig.height = 7, warning=FALSE, message=FALSE, eval = FALSE}
 # plot the monthly mean minimum temperature for 1980
 r_tmean <- daymet_grid_tmean(
   path = system.file(package = "daymetr","extdata"),
@@ -215,19 +217,6 @@ r_tmean <- daymet_grid_tmean(
   year = 1980,
   internal = TRUE
   )
-
-# to set the correct projection
-terra::project(
-    r_tmean, 
-    "+proj=lcc +lat_1=25 +lat_2=60 +lat_0=42.5 +lon_0=-100 +x_0=0 +y_0=0 +ellps=WGS84 +units=km +no_defs"
-  )
-
-# reproject to lat lon
-r_tmean <- terra::project(r_tmean, "+init=epsg:4326")
-
-
-# plot the mean temperature raster
-plot(r_tmean)
 ```
 
 I hope the vignette provided you with an overview of the capabilities of the daymetr package. Please report all bugs or feature requests on the project's github page. If you found the software useful in your work please use the below reference to cite the package.
