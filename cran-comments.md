@@ -5,8 +5,8 @@ http://cran.r-project.org/web/packages/policies.html
 
 - local OSX / Ubuntu 22.04 install on R 4.2
 - Ubuntu 20.04 on github actions (devel / release)
-- MacOS (release) on github actions and rhub
-- windows (release) on rhub
+- windows (release) on github actions and rhub
+- MacOS (release) on rhub
 - noLD on rhub
 - codecove.io code coverage at ~95%
 
