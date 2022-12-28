@@ -7,9 +7,8 @@ http://cran.r-project.org/web/packages/policies.html
 - Ubuntu 20.04 on github actions (devel / release)
 - windows (release) on github actions and rhub
 - MacOS (release) on rhub
-- noLD on rhub
 - codecove.io code coverage at ~95%
 
-## local / Travis CI R CMD check results
+## local / github actions R CMD check results
 
 0 errors | 0 warnings | 0 notes
