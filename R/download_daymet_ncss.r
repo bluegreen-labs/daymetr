@@ -142,14 +142,7 @@ download_daymet_ncss <- function(
         daymet_file <- file.path(path, paste0(j,"_",prefix,"_",i,"_ncss.nc"))
         
       } else {
-        
-        # correction in naming conventions
-        if(mosaic == "hi"){
-          mosaic <- "hawaii"
-        } else if(mosaic == "pr"){
-          mosaic <- "puertorico"
-        }
-        
+               
         # create url string (varies per product / year)
         url <- sprintf("%s/daymet_v4_daily_%s_%s_%s.nc",
                        ncss_server(frequency = frequency),
