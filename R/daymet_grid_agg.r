@@ -134,12 +134,14 @@ daymet_grid_agg <- function(
   }
   
   # aggregate bands by int using base R function aggregate
-  result <- terra::tapp(
-    x = data,
-    index = ind,
-    fun = fun,
-    na.rm = TRUE
+  result <- suppressWarnings(
+    terra::tapp(
+      x = data,
+      index = ind,
+      fun = fun,
+      na.rm = TRUE
     )
+  )
   
   # return all data to raster, either as a geotiff or as a local object
   if (internal == FALSE){
