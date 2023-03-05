@@ -1,7 +1,7 @@
 # daymetr <a href='https://bluegreen-labs.github.io/daymetr/'><img src='https://raw.githubusercontent.com/bluegreen-labs/daymetr/master/logo.png' align="right" height="139" /></a>
 
 [![R-CMD-check](https://github.com/bluegreen-labs/daymetr/workflows/R-CMD-check/badge.svg)](https://github.com/bluegreen-labs/daymetr/actions)
-[![codecov](https://codecov.io/gh/bluegreen-labs/daymetr/branch/master/graph/badge.svg)](https://codecov.io/gh/bluegreen-labs/daymetr)
+[![codecov](https://codecov.io/gh/bluegreen-labs/daymetr/branch/master/graph/badge.svg)](https://app.codecov.io/gh/bluegreen-labs/daymetr)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/daymetr)](https://cran.r-project.org/package=daymetr)
 ![CRAN\_Downloads](https://cranlogs.r-pkg.org/badges/grand-total/daymetr)
 
@@ -144,10 +144,9 @@ web service.
 ## Citation
 
 Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2018
-[An integrated phenology modelling framework in R: Phenology modelling
+An integrated phenology modelling framework in R: Phenology modelling
 with phenor. Methods in Ecology &
-Evolution](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12970),
-9: 1-10.
+Evolution, 9: 1-10. https://doi.org/10.1111/2041-210X.12970
 
 ## Acknowledgements
 
