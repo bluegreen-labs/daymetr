@@ -1,3 +1,7 @@
+# daymetr 1.7.1
+
+* small change in latest API endpoint (for US islands hawaii etc)
+
 # daymetr 1.7
 
 * API endpoint update with v4 release
