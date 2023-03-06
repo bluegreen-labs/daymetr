@@ -108,7 +108,29 @@ directory (path).</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="co"># The below command converts all netCDF data in</span></span></span>
+<span class="r-in"><span> <span class="co"># the provided path to geotiff files. Existing</span></span></span>
+<span class="r-in"><span> <span class="co"># files will be overwritten. If set to FALSE,</span></span></span>
+<span class="r-in"><span> <span class="co"># files will not be overwritten.</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span> <span class="co"># download the data</span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="download_daymet_ncss.html">download_daymet_ncss</a></span><span class="op">(</span>param <span class="op">=</span> <span class="st">"tmin"</span>,</span></span>
+<span class="r-in"><span>                      frequency <span class="op">=</span> <span class="st">"annual"</span>,</span></span>
+<span class="r-in"><span>                      path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                      silent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span> <span class="co"># convert files from nc to tif</span></span></span>
+<span class="r-in"><span> <span class="fu">nc2tif</span><span class="op">(</span>path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span> <span class="co"># print converted files</span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"*.tif"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+</code></pre></div>
     </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
