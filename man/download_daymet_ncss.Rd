@@ -32,7 +32,7 @@ The default setting is ALL, this will download all the previously mentioned
 climate variables.}
 
 \item{frequency}{frequency of the data requested (default = "daily", other
-options are "monthly" or "annual".}
+options are "monthly" or "annual").}
 
 \item{mosaic}{which tile mosiac to source from (na = Northern America,
 hi = Hawaii, pr = Puerto Rico), defaults to "na".}

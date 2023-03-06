@@ -42,7 +42,7 @@ software (e.g. QGIS).
  download_daymet_ncss(param = "tmin",
                       frequency = "annual",
                       path = tempdir(),
-                      silent = TRUE))
+                      silent = TRUE)
  
  # convert files from nc to tif
  nc2tif(path = tempdir(),
