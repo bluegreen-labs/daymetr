@@ -1,6 +1,6 @@
 Dear CRAN team,
 
-This is a small update to {daymetr}, the interface to the ORNL
+This is a small (resubmission) update to {daymetr}, the interface to the ORNL
 digital active archive center API for querying DAYMET climate data.
 
 There was a small change in latest API endpoint, for US island
@@ -8,12 +8,19 @@ naming conventions. This needed a processing update. This has now been
 implemented and the package is fully functional again.
 
 Additional changes were made to the citation style to be in line with
-current CRAN policies.
+current CRAN policy. Issues do exist with macOS on the systems I use for
+testing. Thsi is due to either compilation errors or limited netcdf support
+on Github Actions and rhub (see log file link below).
+
+https://builder.r-hub.io/status/original/daymetr_1.7.1.tar.gz-02510e69bf5f4a11b0a37477619efd66
+
+Ignoring this is at your discretion, as these seem to be non package related
+issues (however hard to confirm given the use of VM state of libraries)
+
+--- 
 
 I have read and agree to the the CRAN policies at:
 http://cran.r-project.org/web/packages/policies.html
-
-See notes on issues with macOS.
 
 ## local, github actions and r-hub
 
@@ -22,16 +29,6 @@ See notes on issues with macOS.
 - windows (release) on github actions and rhub
 - MacOS (release) on rhub (FAILS, see notes below)
 - codecove.io code coverage at ~95%
-
-## Failure note for MacOS
-
-MacOS tests fail due to the compilation errors or limited netcdf support
-on Github Actions and rhub.
-
-(https://builder.r-hub.io/status/original/daymetr_1.7.1.tar.gz-02510e69bf5f4a11b0a37477619efd66)
-
-Ignoring this is at your discretion as I can't seem to resolve the issue,
-while the package otherwise functions.
 
 ## rhub / github actions R CMD check results
 
