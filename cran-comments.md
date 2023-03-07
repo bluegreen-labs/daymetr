@@ -13,6 +13,8 @@ current CRAN policies.
 I have read and agree to the the CRAN policies at:
 http://cran.r-project.org/web/packages/policies.html
 
+See notes on issues with macOS.
+
 ## local, github actions and r-hub
 
 - Ubuntu 22.04 install on R 4.2.2
@@ -23,12 +25,13 @@ http://cran.r-project.org/web/packages/policies.html
 
 ## Failure note for MacOS
 
-MacOS tests fail due to the compilation errors on both Github Actions
-and rhub. This seems to be an error with the recent terra release.
+MacOS tests fail due to the compilation errors or limited netcdf support
+on Github Actions and rhub.
 
 (https://builder.r-hub.io/status/original/daymetr_1.7.1.tar.gz-02510e69bf5f4a11b0a37477619efd66)
 
-Ignoring this is at your discretion.
+Ignoring this is at your discretion as I can't seem to resolve the issue,
+while the package otherwise functions.
 
 ## rhub / github actions R CMD check results
 
