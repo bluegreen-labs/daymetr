@@ -17,11 +17,13 @@
 #'
 #' \dontrun{
 #' # download the data
-#' download_daymet(site = "Daymet",
-#'                  start = 1980,
-#'                  end = 1980,
-#'                  internal = FALSE,
-#'                  silent = TRUE)
+#' download_daymet(
+#' site = "Daymet",
+#' start = 1980,
+#' end = 1980,
+#' internal = FALSE,
+#' silent = TRUE
+#' )
 #'
 #' # read in the Daymet file
 #' df <- read_daymet(paste0(tempdir(),"/Daymet_1980_1980.csv"))
@@ -100,7 +102,6 @@ read_daymet <- function(
       stop("Key table header elements are missing, Daymet format change?")
     }
   }
-  
 
   if(skip_header){
     tile <- NA
@@ -110,20 +111,24 @@ read_daymet <- function(
   }
   
   # read in the real climate data
-  data <- utils::read.table(file,
-                           sep = ',',
-                           skip = (table_cols - 1),
-                           header = TRUE)
+  data <- utils::read.table(
+    file,
+    sep = ',',
+    skip = (table_cols - 1),
+    header = TRUE
+  )
   
   # output data in a tidy or nested list format
   if(simplify){
     
     # convert data from long to wide format and
     # combine header info and data into a tibble
-    data <- tidyr::gather(data,
-                          "measurement",
-                          "value",
-                          3:ncol(data))
+    data <- tidyr::gather(
+      data,
+      "measurement",
+      "value",
+      3:ncol(data)
+    )
     
     output <- tibble::tibble(
       site = site,
@@ -139,14 +144,15 @@ read_daymet <- function(
   } else {
     
     # put all data in a list for a non-tidy output
-    output <- list('site' = site,
-                   'tile' = tile,
-                  'latitude' = lat,
-                  'longitude' = lon,
-                  'altitude' = alt,
-                  'tile' = tile,
-                  'data' = data)
-    
+    output <- list(
+      'site' = site,
+      'tile' = tile,
+      'latitude' = lat,
+      'longitude' = lon,
+      'altitude' = alt,
+      'tile' = tile,
+      'data' = data
+      )
     
     # set daymetr class
     class(output) <- "daymetr"
