@@ -5,6 +5,7 @@
 ^docs$
 ^data-raw$
 ^manuscript$
+^.*'NULL'
 
 # R-markdown files in the root folder.
 ^LICENSE$
