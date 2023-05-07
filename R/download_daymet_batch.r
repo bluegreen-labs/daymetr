@@ -11,7 +11,7 @@
 #' @param silent suppress the verbose output (default = FALSE)
 #' @param path set path where to save the data
 #' if internal = FALSE (default = tempdir())
-#' @param simplify output tidy data (tibble), logical \code{FALSE}
+#' @param simplify output data to a tibble, logical \code{FALSE}
 #' or \code{TRUE} (default = \code{TRUE})
 #' @return Daymet data for point locations as a nested list or
 #' data written to csv files
