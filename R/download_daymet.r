@@ -13,7 +13,7 @@
 #' @param silent \code{TRUE} or \code{FALSE} (default), to provide verbose output
 #' @param force \code{TRUE} or \code{FALSE} (default),
 #' override the conservative end year setting
-#' @param simplify output tidy data (tibble), logical \code{FALSE}
+#' @param simplify output data as a tibble, logical \code{FALSE}
 #' or \code{TRUE} (default = \code{TRUE})
 #' @return Daymet data for a point location, returned to the R workspace or
 #' written to disk as a csv file.
@@ -23,12 +23,14 @@
 #' \dontrun{
 #' # The following commands download and process Daymet data
 #' # for 10 years of the >30 year of data available since 1980.
-#' daymet_data <- download_daymet("testsite_name",
-#'                 lat = 36.0133,
-#'                 lon = -84.2625,
-#'                 start = 2000,
-#'                 end = 2010,
-#'                 internal = TRUE)
+#' daymet_data <- download_daymet(
+#' "testsite_name",
+#'  lat = 36.0133,
+#'  lon = -84.2625,
+#'  start = 2000,
+#'  end = 2010,
+#'  internal = TRUE
+#'  )
 #'
 #' # We can now quickly calculate and plot
 #' # daily mean temperature. Also, take note of
@@ -55,9 +57,11 @@
 #' # Calculate the mean temperature from min
 #' # max temperatures and convert the year and doy
 #' # to a proper date format.
-#' daymet_data$data <- daymet_data$data %>%
-#'  mutate(tmean = (tmax..deg.c. + tmin..deg.c.)/2,
-#'         date = as.Date(paste(year, yday, sep = "-"), "%Y-%j"))
+#' daymet_data$data <- daymet_data$data |>
+#'  mutate(
+#'  tmean = (tmax..deg.c. + tmin..deg.c.)/2,
+#'  date = as.Date(paste(year, yday, sep = "-"), "%Y-%j")
+#'  )
 #' 
 #' # show a simple graph of the mean temperature
 #' plot(daymet_data$data$date,
