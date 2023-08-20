@@ -29,11 +29,13 @@ preserving header data and critical file name information.
 
 \dontrun{
 # download the data
-download_daymet(site = "Daymet",
-                 start = 1980,
-                 end = 1980,
-                 internal = FALSE,
-                 silent = TRUE)
+download_daymet(
+site = "Daymet",
+start = 1980,
+end = 1980,
+internal = FALSE,
+silent = TRUE
+)
 
 # read in the Daymet file
 df <- read_daymet(paste0(tempdir(),"/Daymet_1980_1980.csv"))

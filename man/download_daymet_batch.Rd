@@ -34,7 +34,7 @@ override the conservative end year setting}
 \item{path}{set path where to save the data
 if internal = FALSE (default = tempdir())}
 
-\item{simplify}{output tidy data (tibble), logical \code{FALSE}
+\item{simplify}{output data to a tibble, logical \code{FALSE}
 or \code{TRUE} (default = \code{TRUE})}
 }
 \value{
