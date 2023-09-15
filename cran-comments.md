@@ -6,11 +6,14 @@ digital active archive center API for querying DAYMET climate data.
 There was a small change in latest API endpoint, for US island
 naming conventions. This needed a processing update. This has now been
 implemented and the package is fully functional again. This resubmission also
-addresses the issues on MacOS, but unit test on github actions and rhub
+addresses the issues on MacOS, unit test on github actions and rhub
 now pass.
 
 Additional changes were made to the citation style to be in line with
-current CRAN policy.
+current CRAN policy (citentry to bibentry conversion).
+
+Kind regards,
+Koen Hufkens
 
 --- 
 
