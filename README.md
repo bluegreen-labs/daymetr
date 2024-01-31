@@ -11,6 +11,14 @@ climate data directly to your R workspace or your computer. Routines for
 both single pixel data downloads and gridded (netCDF) data are provided.
 Please use the below citation when using the package.
 
+## How to cite this package
+
+> [!important]
+> Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2018
+> An integrated phenology modelling framework in R: Phenology modelling
+> with phenor. Methods in Ecology &
+> Evolution, 9: 1-10. https://doi.org/10.1111/2041-210X.12970
+
 ## Installation
 
 ### stable release
@@ -140,13 +148,6 @@ the provided geographic coordinates. In general the query area will be
 larger than the requested location. For more information I refer to
 [Daymet documentation](https://daymet.ornl.gov/web_services.html) on the
 web service.
-
-## Citation
-
-Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2018
-An integrated phenology modelling framework in R: Phenology modelling
-with phenor. Methods in Ecology &
-Evolution, 9: 1-10. https://doi.org/10.1111/2041-210X.12970
 
 ## Acknowledgements
 
