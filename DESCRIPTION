@@ -40,5 +40,5 @@ Suggests:
     covr,
     testthat
 VignetteBuilder: knitr
-URL: https://github.com/bluegreen-labs/daymetr
+URL: https://github.com/bluegreen-labs/daymetr, http://bluegreen-labs.github.io/daymetr/
 BugReports: https://github.com/bluegreen-labs/daymetr/issues
