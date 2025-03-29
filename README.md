@@ -11,6 +11,8 @@ climate data directly to your R workspace or your computer. Routines for
 both single pixel data downloads and gridded (netCDF) data are provided.
 Please use the below citation when using the package.
 
+> We received news from Dr. Michele Thornton at the Oak Ridge National Laboratory (ORNL) that the DAYMET API they host will be decommissioned. This change will be effective within weeks (late March 2025) and affect first and foremost the spatial (gridded/tiled) data products, before most likely covering the whole THREDDS data server setup including point based data by the end of the year. We suggest that users of our {daymetr} R package migrate to the NASA EarthData Appeears based API as covered by our [{appeears} R package](https://bluegreen-labs.github.io/appeears/).
+
 ## How to cite this package
 
 > Hufkens K., Basler J. D., Milliman T. Melaas E., Richardson A.D. 2018
